@@ -1,0 +1,7 @@
+.dot-icon::before {
+    content: '•';
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    color: #333;
+}
