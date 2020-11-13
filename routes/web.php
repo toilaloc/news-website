@@ -45,7 +45,7 @@ Route::group(['prefix' => 'frontend'], function () {
         return view('frontend.pages.posts.postDisplay');
     });
     Route::get('category', function(){
-        return view('frontend.pages.categories.categoryDisplay');
+        return view('frontend.pages.categories.categoriesDisplay');
     });
 
     // Account
