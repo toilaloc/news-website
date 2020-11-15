@@ -58,9 +58,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Add New A:</h6>
-          <a class="collapse-item" href="#">Post</a>
+          <a class="collapse-item" href="{{route('posts.create')}}">Post</a>
           <a class="collapse-item" href="{{route('categories.create')}}">Category</a>
-            <a class="collapse-item" href="buttons.html">Page</a>
           </div>
         </div>
       </li>
@@ -82,7 +81,7 @@
         <div id="collapseCategories" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Categories:</h6>
-            <a class="collapse-item" href="login.html">List Categories</a>
+            <a class="collapse-item" href="{{route('categories.index')}}">List Categories</a>
             <div class="collapse-divider"></div>
           </div>
       </li>
@@ -94,7 +93,7 @@
         <div id="collapsePosts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Posts:</h6>
-            <a class="collapse-item" href="login.html">List Posts</a>
+            <a class="collapse-item" href="{{route('posts.index')}}">List Posts</a>
             <div class="collapse-divider"></div>
           </div>
       </li>
@@ -374,7 +373,7 @@
         </nav>
         <!-- End of Topbar -->
 
-        
+
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -436,7 +435,7 @@
   <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
   <script>
-$(document).ready(function() { 
+$(document).ready(function() {
     $('#categoryName').change(function(){
       var name = $('#categoryName').val();
     //  $('#slugCategory').val(name);
@@ -455,7 +454,7 @@ $(document).ready(function() {
 
   </script>
     <script>
-      $(document).ready(function() { 
+      $(document).ready(function() {
           $('#postName').change(function(){
             var name = $('#postName').val();
           //  $('#slugCategory').val(name);
@@ -471,7 +470,7 @@ $(document).ready(function() {
             });
           });
         });
-      
+
         </script>
   <!-- JS Plugins Init. -->
   <script>

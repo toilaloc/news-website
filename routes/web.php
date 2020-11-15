@@ -98,3 +98,7 @@ Route::group(['prefix' => 'frontend'], function () {
         return view('frontend.pages.users_profile.follow');
     });
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

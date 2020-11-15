@@ -26,7 +26,7 @@
         <tr>
         <th scope="row">{{$post->id}}</th>
         <td>{{$post->name}}</td>
-        <td>{{$post->author_id}}</td>
+        <td>{{$post->Author->username}}</td>
         <td>
           @foreach($post->Categories as $categories)
           <span class="badge badge-primary">{{$categories->name}}</span>
