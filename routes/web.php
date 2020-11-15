@@ -33,6 +33,10 @@ Route::get('testadmin', function(){
 
 // View Admin
 Route::resource('posts', 'PostsController');
+Route::get('/post/{slug}', 'PostsController@show');
+
+
+
 Route::resource('categories', 'CategoriesController');
 
 Route::group(['prefix' => 'frontend'], function () {
@@ -99,6 +103,8 @@ Route::group(['prefix' => 'frontend'], function () {
     });
 });
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

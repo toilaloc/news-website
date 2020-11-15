@@ -1,11 +1,11 @@
 <li id="{{$subcategory->id}}" class="list-group-item">
-	<div class="mb-4">
+	<div class="mb-2">
 		<div class="d-inline"><a href="{{route('categories.edit', $subcategory->id)}}">{{$subcategory->name}}</a> </div>
 		<div class="d-inline" style="float:right;"> 
 		<form style="display: inline-block;" action="{{ route('categories.destroy',$subcategory->id) }}" method="POST">
 			@csrf
 			@method('DELETE')
-			<button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+			<button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
 		</form>
 		</div>
 	</div>

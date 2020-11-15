@@ -13,10 +13,10 @@
                 </nav>
             </div>
             <div class="mb-1 pl-3">
-                <h1 class="h2">Thương chiến Mỹ - Trung sẽ ra sao dưới thời ông Joe Biden?</h1>
+            <h1 class="h2">{{$post->name}}</h1>
             </div>
             <div class="col-lg-8">
-                <div class="w-lg-70 ">
+                <div class="w-lg-70">
                     <!-- Author -->
                     <div class=" border-bottom py-2 mb-5">
                         <div class="row align-items-md-center">
@@ -26,49 +26,28 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="d-flex justify-content-md-end align-items-center">
-                                    <span class="d-block text-muted">Hương Giang, 09:00 09/11/2020</span>
+                                <span class="d-block text-muted">{{$post->Author->fullname}}, {{$post->date}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- End Author -->
-
-
                 </div>
                 <div class="pl-lg-1" style="text-align: justify">
-                    <h2 class="h3">Ông Joe Biden giành được hai bang chiến trường quan trọng Wisconsin (10 đại cử tri) và Michigan (16 đại cử tri). Ông chỉ cần thêm 6 phiếu đại cử tri là có thể thắng cử.</h2>
-                    <p>Chiến dịch của Tổng thống Trump đang đệ đơn kiện vì “một quan sát viên của đảng Cộng hòa ở Georgia chứng kiến 53 lá phiếu vắng mặt đến muộn được gom chung một cách bất hợp pháp vào chồng phiếu vắng mặt đúng hạn ở hạt Chatham”.
-                        Phe ông Trump đang yêu cầu các quan chức không kiểm 53 lá phiếu đó - mặc dù họ không đưa ra bằng chứng nào về việc các lá phiếu này không hợp lệ. Cho đến nay, phần lớn phiếu bầu qua thư hoặc vắng mặt ủng hộ đảng Dân chủ.
-                        Điều này khiến chiến dịch của ông Trump tìm cách ngừng kiểm phiếu trong lúc tổng thống đang dẫn trước. Có khoảng 150.000 phiếu bầu chưa được kiểm xong ở Georgia. Ông Joe Biden chỉ kém đối thủ 47.000 phiếu. Ông Biden có
-                        thể chiến thắng cuộc đua sít sao này nếu số phiếu chưa được kiểm xong bầu cho cựu phó tổng thống.</p>
+                <p class="h3">{{$post->desc}}</p>
 
 
 
-                    <div class="pt-4 pt-sm-7 pb-5 pb-sm-9">
+                    {{-- <div class="pt-4 pt-sm-7 pb-5 pb-sm-9">
                         <img class="img-fluid rounded" src="../../../assets/img/900x450/img13.jpg" alt="Image Description">
-                    </div>
+                    </div> --}}
 
-                    <p>Nhà chức trách bang Nevada thông báo kết quả kiểm phiếu sẽ được cập nhật vào giữa trưa 5/11 (theo giờ địa phương).
+                    <p>
+                    @php
+                    $content =  $post->content; 
+                    echo str_replace("<img","<img class='img-fluid rounded'",$content);
+                    @endphp
                     </p>
-
-                    <p>Nội dung cập nhật sẽ bao gồm số phiếu được kiểm thêm tại 2 hạt đông dân nhất bang là Clark và Washoe. Ông Biden đang dẫn trước ở Nevada và có cơ hội lấy 6 phiếu đại cử tri tại bang này. Với 264 phiếu đã nắm trong tay nhờ 3
-                        chiến thắng quan trọng tại Wisconsin, Michigan và Arizona, chiến thắng ở Nevada sẽ giúp ứng viên đảng Dân chủ cán mốc 270 phiếu và đắc cử tổng thống.</p>
-
-                    <p>Tổng thống Donald Trump cần thắng đến 4 bang là Pennsylvania, Georgia, North Carolina và Nevada với tổng cộng 56 phiếu đại cử tri để cán mốc 270 phiếu."
-                    </p>
-
-                    <div class="pt-4 pt-sm-7 pb-5 pb-sm-9">
-                        <img class="img-fluid rounded" src="../../../assets/img/900x450/img12.jpg" alt="Image Description">
-                    </div>
-
-                    <p>Ủy ban tranh cử của Tổng thống Donald Trump đã nộp đơn kiện tại Georgia, yêu cầu ngừng kiểm phiếu ở bang chiến trường này, theo AP. Georgia có đến 16 phiếu đại cử tri. Theo thăm dò mới nhất của Wall Street Journal, tổng thống
-                        Mỹ đang dẫn trước đối thủ với khoảng cách rất hẹp là 49,9%, so với 48,8% phiếu ủng hộ ông Biden.
-
-                    </p>
-                    <p>Bà nhấn mạnh bang này đã "có tiến triển tuyệt vời" trong công tác kiểm phiếu. Phát biểu tại họp báo cùng Thống đốc Tom Wolf, Boockvar cho biết "hàng trăm nghìn phiếu" sẽ được kiểm trong đêm 4/11.</p>
-                    <p>Với 84% số phiếu đã được kiểm tại bang Pennsylvania, ông Trump đang dẫn trước với tỷ lệ 51,9%, trong khi ông Biden nhận được 46,8%, theo Edison Research. Pennsylvania là một trong các bang xanh, thành trì lâu đời của đảng Dân
-                        chủ nhưng đã rơi vào tay ông Trump trong cuộc bầu cử năm 2016. Ông Biden đã có chiến thắng quan trọng tại các bang xanh truyền thống khác là Michigan và Wisconsin. Chiến thắng ở Pennsylvania sẽ trở nên không quá quan trọng
-                        nếu ông giành được Nevada, nơi có 6 phiếu đại cử tri.</p>
 
                 </div>
 

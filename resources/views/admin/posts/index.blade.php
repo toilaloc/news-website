@@ -25,7 +25,7 @@
         @foreach($posts as $post)
         <tr>
         <th scope="row">{{$post->id}}</th>
-        <td>{{$post->name}}</td>
+        <td><a href="{{url('/post', $post->slug)}}">{{$post->name}}</a></td>
         <td>{{$post->Author->username}}</td>
         <td>
           @foreach($post->Categories as $categories)
@@ -36,12 +36,12 @@
         <td>{{$post->view}}</td>
         <td>{{$post->reviewer}}</td>
         <td>{{$post->date}}</td>
-      <td><a class="btn btn-success" href="{{route('posts.edit', $post->id)}}">Sửa</a></td>
+      <td><a class="btn btn-success btn-sm" href="{{route('posts.edit', $post->id)}}">Sửa</a></td>
         <td>
           <form action="{{route('posts.destroy',$post->id)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger">Xóa</button></td>
+            <button type="submit" class="btn btn-danger btn-sm">Xóa</button></td>
         </form>
         </tr>
           @endforeach

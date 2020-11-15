@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\Users;
+use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -22,7 +22,7 @@ class RegisterController extends Controller
     |
     */
 
-  //  use RegistersUsers;
+    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -51,13 +51,19 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255'],
-            'fullname' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'number', 'max:10'],
-            'address' => ['required', 'string', 'max:255'],
-            'thumbnail' => ['required', 'image'],
-            'gender' => ['required'],
+            'fullname',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'thumbnail' => ['required','image'],
+            'address' => ['required'],
+            'phone' => ['required'],
+            'bio',
+            'gender' => ['required'],
+            'active',
+            'vote',
+            'status',
+            'follower',
+            'following',
         ]);
     }
 
@@ -65,19 +71,30 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+     * @return \App\User
      */
     protected function create(array $data)
     {
-        return Users::create([
+
+        $getThumbnail = $data['thumbnail']->getClientOriginalName();
+        $pathThumbnail = $data['thumbnail']->move(public_path().'/uploads/users/',$getThumbnail);
+
+        return User::create([
             'username' => $data['username'],
-            'email' => $data['email'],
             'fullname' => $data['fullname'],
-            'phone' => $data['phone'],
-            'address' => $data['address'],
-            'gender' => $data['gender'],
-            'thumbnail' => $data['thumbnail'],
+            'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'thumbnail' => $pathThumbnail,
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'bio' => $data['bio'],
+            'gender' => $data['gender'],
+            'active' => 0,
+            'vote' => 0,
+            'status' => 0,
+            'follower' => NULL,
+            'following' => NULL,
         ]);
     }
+
 }

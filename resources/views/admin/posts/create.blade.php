@@ -46,7 +46,7 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Author</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="author_id" id="Author" placeholder="Author">
+                <input type="text" class="form-control" name="author_id">
                 </div>
               </div>
               <div class="form-group row">
@@ -92,18 +92,11 @@
                                 @endforeach
                             @endif
 
-
                             @endforeach
                           @endif
 
                     </div>
                     @endforeach
-
-                    {{-- <select name="categories_id[]" multiple>
-                      @foreach ($categories as $categoryParent)
-                        <option value="{{ $categoryParent->id }}">{{ $categoryParent->name }}</option>
-                      @endforeach
-                      </select> --}}
                    </div>
                 </div>
               </div>
@@ -115,6 +108,20 @@
                       </div>
                 </div>
               </div>
+              <div class="form-group row ">
+                <label class="col-sm-2 pt-4 col-form-label">Chế độ đăng</label>
+                <div class="col-sm-10 pt-4">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" name="status" value="0">
+                  <label class="form-check-label" for="inlineRadio1">Đăng ngay</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" name="status" value="1">
+                  <label class="form-check-label" for="inlineRadio2">Lưu nháp</label>
+                </div>
+              </div>
+            </div>
+
             <div class="form-group row">
               <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Post</button>

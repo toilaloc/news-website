@@ -70,10 +70,10 @@ class PostsController extends Controller
     $post->date = $request->date;
     $post->view = 0;
     $post->desc = $request->desc;
-    $post->status = 0;
+    $post->status = $request->status;
     $post->thumbnail = $thumbnail;
     $post->author_id = 1;
-    $post->reviewer = 1;
+    $post->reviewer = NULL;
     $post->save();
     $post->Categories()->attach($request->categories_id);
     return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');             
@@ -96,9 +96,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = Posts::where('slug', $slug)->firstOrFail(); 
+        return view('frontend.pages.posts.postDisplay', compact('post'));
     }
 
     /**
