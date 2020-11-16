@@ -1,5 +1,5 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', $post->name)
 @section('content')
     <hr>
     <!-- Content Section -->
@@ -107,8 +107,8 @@
 
                         <div class="col-lg-9 col-md-9 col-sm-9">
                             <!-- Info -->
-                            <h3 class="mb-0">Hanna Wolfe <button type="button" class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</button></h3>
-                            <p style="text-align: justify;">Nataly Gaga has a BS and MS in Mechanical Engineering from Santa Clara University and years of experience as a professional instructor and trainer for Data Science and programming. Nataly Gaga has a BS and MS in Mechanical Engineering from Santa Clara </p>
+                            <h3 class="mb-0">{{$post->Author->fullname}} <button type="button" class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</button></h3>
+                            <p style="text-align: justify;">{{$post->Author->bio}} </p>
                             <!-- End Info -->
                         </div>
                     </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- Title -->
-    <title>Blog Journal | Front - Responsive Website Template</title>
+    <title>@yield('title')</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">

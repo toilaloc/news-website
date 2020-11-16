@@ -108,15 +108,29 @@
                       </div>
                 </div>
               </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="pt-4 col-sm-2 col-form-label">Tags</label>
+                <div class="col-sm-10 pt-4">
+                    <input class="input-tags" name="tags[]" type="text" data-role="tagsinput">
+                    <input class="getTag" type="hidden" id="posttags" name="tag">
+                    <script>
+                      $('.input-tags').on('change', function(){
+                        var old = $(".input-tags").tagsinput('items');
+                        $('.getTag').val(old);
+                      });     
+                     </script>
+                </div>
+              </div>
+
               <div class="form-group row ">
                 <label class="col-sm-2 pt-4 col-form-label">Chế độ đăng</label>
                 <div class="col-sm-10 pt-4">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" name="status" value="0">
+                  <input class="form-check-input" type="radio"  name="status" value="0">
                   <label class="form-check-label" for="inlineRadio1">Đăng ngay</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" name="status" value="1">
+                  <input class="form-check-input" type="radio" n name="status" value="1">
                   <label class="form-check-label" for="inlineRadio2">Lưu nháp</label>
                 </div>
               </div>
@@ -162,6 +176,7 @@ quill.on('text-change', function(delta, oldDelta, source) {
             console.log(quill.container.firstChild.innerHTML)
             $('#contentPost').val(quill.container.firstChild.innerHTML);
         });
+        
 
 </script>
 @endsection

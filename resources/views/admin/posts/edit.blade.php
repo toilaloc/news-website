@@ -65,6 +65,32 @@
                 </div>
               </div>
               <div class="form-group row">
+                <label for="inputEmail3" class="pt-4 col-sm-2 col-form-label">Tags</label>
+                    {{-- <input type="text" id="posttags" class="input-tags" name="tags[]" data-role="tagsinput" value="tag,tag1"> --}}
+                    <div class="col-sm-10">
+                      
+                    <input class="tagsUpdate" type="text" data-role="tagsinput" name="tagsUpdate[]" value="
+                  
+                    @foreach($postEditing->Tags as $tag)
+                    @php 
+                    $getTags = $tag->name."--";
+                    $solvedTags = str_replace('--',',',$getTags);
+                    //$resolveTags = rtrim($solvedTags, ",");
+                    echo $solvedTags;
+                    @endphp
+                    @endforeach
+                    ">
+                    <input class="tagUpdate" type="hidden" name="tagUpdate" value="">
+                    </div>
+                    <script>
+                      $('.tagsUpdate').on('change', function(){
+                        var oldData = $('.tagsUpdate').val();
+                        $('.tagUpdate').val(oldData);
+                      });     
+                     </script>
+                </div>
+              </div>
+              <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Categories</label>
                 <div class="col-sm-10">
 

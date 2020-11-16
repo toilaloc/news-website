@@ -3,7 +3,7 @@
 
 <head>
     <!-- Title -->
-    <title>Customer Story | Front - Responsive Website Template</title>
+    <title>@yield('title')</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">

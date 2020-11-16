@@ -33,6 +33,11 @@ class Posts extends Model
         return $this->belongsToMany(Categories::class,'category_post', 'post_id', 'category_id');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tags', 'post_tag', 'post_id', 'tag_id');
+    }
+
     public function Author()
     {
         return $this->belongsTo('App\Models\Users');

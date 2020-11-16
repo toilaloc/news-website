@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Categories;
+use App\Models\Tags;
 use Illuminate\Support\Str;
 class PostsController extends Controller
 {
@@ -26,6 +27,7 @@ class PostsController extends Controller
      */
     public function create()
     {
+        $tags = Tags::get()->pluck('name', 'id');
         $categories = Categories::whereNull('category_id')->get();
         return view('admin.posts.create', compact('categories'));
     }
@@ -40,7 +42,7 @@ class PostsController extends Controller
     {
 
     $this->validate($request, [
-        'name' => ['required', 'string', 'max:100'],
+        'name' => ['required', 'string', 'unique:posts', 'max:100'],
         'content' => ['required', 'string'],
         'slug',
         'desc',
@@ -76,6 +78,29 @@ class PostsController extends Controller
     $post->reviewer = NULL;
     $post->save();
     $post->Categories()->attach($request->categories_id);
+
+    if($post)
+    {        
+
+        $tagNames = explode(',',$request->tag);
+        //dd($tagNames);
+        $tagIds = [];
+        foreach($tagNames as $tagName)
+        {
+            //$post->tags()->create(['name'=>$tagName]);
+            //Or to take care of avoiding duplication of Tag
+            //you could substitute the above line as
+            $tag = Tags::firstOrCreate([
+                'name'=>$tagName,
+                'slug' => Str::slug($tagName, '-'),
+                ]);
+            if($tag)
+            {
+              $tagIds[] = $tag->id;
+            }
+        }
+        $post->Tags()->sync($tagIds);
+    }
     return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');             
 
     }
@@ -125,7 +150,6 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $postUpdate = Posts::findOrFail($id);
-
         $this->validate($request, [
             'name' => ['required', 'string', 'max:100'],
             'content',
@@ -169,7 +193,7 @@ class PostsController extends Controller
         $authorId = $postUpdate->author_id;
         $reviewer = $postUpdate->reviewer;
 
-        $postUpdate->update([
+      $newUpdate =   $postUpdate->update([
             'name'  => $name,
             'content' => $content,
             'slug' => $slug,
@@ -182,6 +206,29 @@ class PostsController extends Controller
             'date' => $date,
             'reviewer' => $reviewer,
         ]);
+
+        if($newUpdate)
+    {        
+        $resolveTags = str_replace("                                        ","", $request->tagUpdate);
+        $tagNames = explode(',',$resolveTags);
+        //dd($tagNames);
+        $tagIds = [];
+        foreach($tagNames as $tagName)
+        {
+            //$post->tags()->create(['name'=>$tagName]);
+            //Or to take care of avoiding duplication of Tag
+            //you could substitute the above line as
+            $tag = Tags::firstOrCreate([
+                'name'=>$tagName,
+                'slug' => Str::slug($tagName, '-'),
+                ]);
+            if($tag)
+            {
+              $tagIds[] = $tag->id;
+            }
+        }
+        $postUpdate->Tags()->sync($tagIds);
+    }
 
         $postUpdate->Categories()->sync($request->input('categories_id', []));
 
@@ -201,8 +248,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $deletePost = Posts::where('id', $id)->delete();
-        Posts::find($id)->Categories()->detach();
+        $deleteTag =  Posts::find($id);
+        $deleteTag->tags()->detach();
+        $deletePost = Posts::find($id)->delete();
+
         if($deletePost) {
             return redirect()->route('posts.index')
             ->with('success','Đã xóa tin tức');
