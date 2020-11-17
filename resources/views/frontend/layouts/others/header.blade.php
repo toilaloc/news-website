@@ -254,7 +254,7 @@
             <nav class="js-mega-menu navbar navbar-expand-lg">
                 <!-- Logo -->
                 <a class="navbar-brand" href="../landings/index.html" aria-label="Front">
-                    <img src="../../../assets/svg/logos/logo.svg" alt="Logo">
+                    <img src="{{asset('frontend/assets/svg/logos/logo.svg')}}" alt="Logo">
                 </a>
                 <!-- End Logo -->
 

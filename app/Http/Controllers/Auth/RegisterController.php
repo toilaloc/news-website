@@ -50,15 +50,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
-            'fullname',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'thumbnail' => ['required','image'],
-            'address' => ['required'],
-            'phone' => ['required'],
-            'bio',
-            'gender' => ['required'],
+            'username' => 'required|string|max:50',
+            'fullname' => 'required',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'thumbnail',
+            'address' => 'required',
+            'phone' => 'required',
+            'bio' => 'string',
+            'gender' => 'required',
             'active',
             'vote',
             'status',
@@ -76,15 +76,19 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        $getThumbnail = $data['thumbnail']->getClientOriginalName();
-        $pathThumbnail = $data['thumbnail']->move(public_path().'/uploads/users/',$getThumbnail);
+            $file_name = $data['thumbnail']->getClientOriginalName();
+            $file_path = $data['thumbnail']->move(public_path().'/uploads/users/',$file_name);
+        if(empty($file_name)) {
+            $file_name = "default.jpg";
+        }
+        
 
         return User::create([
             'username' => $data['username'],
             'fullname' => $data['fullname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'thumbnail' => $pathThumbnail,
+            'thumbnail' => $file_name,
             'address' => $data['address'],
             'phone' => $data['phone'],
             'bio' => $data['bio'],

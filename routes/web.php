@@ -34,14 +34,13 @@ Route::get('testadmin', function(){
 // View Admin
 Route::resource('posts', 'PostsController');
 Route::get('/post/{slug}', 'PostsController@show');
-
-
-
 Route::resource('categories', 'CategoriesController');
+Route::resource('tags', 'TagsController');
+Route::resource('users', 'UsersController');
 
 Route::group(['prefix' => 'frontend'], function () {
 
-    // Main Pages
+    // Main PagesƯ
     Route::get('index', function(){
         return view('frontend.index');
     });
@@ -53,7 +52,7 @@ Route::group(['prefix' => 'frontend'], function () {
     });
 
     // Account
-    Route::get('login', function(){
+    Route::get('login-front', function(){
         return view('frontend.pages.account.login');
     });
     Route::get('register', function(){

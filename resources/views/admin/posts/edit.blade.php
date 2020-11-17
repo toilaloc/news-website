@@ -89,7 +89,7 @@
                       });     
                      </script>
                 </div>
-              </div>
+        
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Categories</label>
                 <div class="col-sm-10">

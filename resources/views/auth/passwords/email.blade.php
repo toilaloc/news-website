@@ -1,4 +1,53 @@
-@extends('layouts.app')
+@extends('frontend.layouts.others.index')
+
+@section('content')
+    <!-- Login Form -->
+    <div class="container space-2 space-lg-3">
+        <form class="js-validate w-md-75 w-lg-50 mx-md-auto" method="POST" action="{{ route('password.email') }}">
+            @csrf
+            <!-- Title -->
+            <div class="mb-5 mb-md-7">
+                <h1 class="h2 mb-0">Bạn quên mật khẩu?</h1>
+                <p>Hãy nhập địa chỉ Email vào biểu mẫu bên dưới để lấy mật khẩu.</p>
+
+                @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+            </div>
+            <!-- End Title -->
+
+            <!-- Form Group -->
+            <div class="js-form-message form-group">
+                <label class="input-label" for="signinSrEmail">Địa chỉ Email</label>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Button -->
+            <div class="row align-items-center mb-5">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                <a class="font-size-1 font-weight-bold" href="{{route('login')}}"><i class="fas fa-angle-left fa-sm mr-1"></i>Đăng nhập</a>
+                </div>
+
+                <div class="col-sm-6 text-sm-right">
+                    <button type="submit" class="btn btn-primary transition-3d-hover">Lấy lại mật khẩu</button>
+                </div>
+            </div>
+            <!-- End Button -->
+        </form>
+    </div>
+    <!-- End Login Form -->
+@endsection
+
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -44,4 +93,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}

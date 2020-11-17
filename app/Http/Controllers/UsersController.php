@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tags;
+use App\Models\Users;
 use Illuminate\Http\Request;
 
-class TagsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class TagsController extends Controller
      */
     public function index()
     {
-        $tags = Tags::all();
-        return view('admin.tags.index', compact('tags'));
+        $users = Users::all();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -25,7 +25,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        return view('admin.tags.index');
+        //
     }
 
     /**
@@ -81,10 +81,6 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        $deletePost = Tags::find($id)->delete();
-        if($deletePost) {
-            return redirect()->route('tags.index')
-            ->with('success','Đã xóa từ khóa');
-        }
+        //
     }
 }

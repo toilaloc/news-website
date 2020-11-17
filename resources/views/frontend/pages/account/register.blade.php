@@ -1,5 +1,4 @@
 @extends('frontend.layouts.others.index')
-
 @section('content')
     <!-- Login Form -->
     <div class="container space-2 space-lg-3">

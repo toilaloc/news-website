@@ -17,6 +17,8 @@
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
   <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 </head>
 <body id="page-top">
   <!-- Page Wrapper -->
@@ -144,7 +146,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+      <a class="nav-link" href="{{route('tags.index')}}">
           <i class="fas fa-tags"></i>
           <span>Tag</span></a>
       </li>
