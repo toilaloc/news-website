@@ -123,7 +123,7 @@
         <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Users:</h6>
-            <a class="collapse-item" href="login.html">List Users</a>
+          <a class="collapse-item" href="{{route('users.index')}}">List Users</a>
             <div class="collapse-divider"></div>
           </div>
       </li>

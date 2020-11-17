@@ -58,7 +58,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user =  Users::find($id);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -70,7 +71,57 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // get current user
+        $user = Users::findOrFail($id);
+
+        // get infor 
+        $username = $user->username;
+        $password = $user->password;
+        $oldThumbnail = $user->thumbnail;
+        $follower = $user->follower;
+        $following = $user->following;
+        $vote = $user->vote;
+
+       
+        $request->validate([
+            'fullname' => 'required',
+            'email' => 'required|email',
+            'thumbnail',
+            'address' => 'required',
+            'phone' => 'numeric|required',
+            'gender' => 'required'
+        ]);
+
+
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->thumbnail->getClientOriginalName();
+             if($thumbnail == $oldThumbnail){
+                $thumbnail = $oldThumbnail;
+             }else {
+                $request->file('thumbnail')->move(public_path('uploads/users'), $request->file('thumbnail')->getClientOriginalName());
+             }
+        }else {
+            $thumbnail = $oldThumbnail;
+        }
+
+        $user->update([
+            'username'  => $username,
+            'fullname' => $request->fullname,
+            'password' => $password,
+            'email' => $request->email,
+            'address' => $request->address,
+            'bio' => $request->bio,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'active' => $request->active,
+            'vote' => $vote,
+            'status' => $request->status,
+            'follower' => $follower,
+            'following' => $following,
+            'thumbnail' => $thumbnail,
+        ]);
+
+            return back()->with('success', 'Sửa thông tin thành viên thành công.');
     }
 
     /**
@@ -81,6 +132,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteUser =  Users::find($id)->delete();
+        if($deleteUser) {
+            return redirect()->route('users.index')
+            ->with('success','Đã xóa người dùng');
+        }
     }
 }
