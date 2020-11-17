@@ -38,6 +38,14 @@ Route::resource('categories', 'CategoriesController');
 Route::resource('tags', 'TagsController');
 Route::resource('users', 'UsersController');
 
+// Sitemap
+
+Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.xml');
+  Route::get('/sitemap-post.xml', 'SitemapController@posts');
+  Route::get('/sitemap-category.xml', 'SitemapController@categories');
+  Route::get('/sitemap-tag.xml', 'SitemapController@tags');
+
+
 Route::group(['prefix' => 'frontend'], function () {
 
     // Main PagesƯ
