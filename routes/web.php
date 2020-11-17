@@ -98,3 +98,7 @@ Route::group(['prefix' => 'frontend'], function () {
         return view('frontend.pages.users_profile.follow');
     });
 });
+// sitemap
+    Route::get('/sitemap.xml', 'SitemapController@index');
+    Route::get('/sitemap.xml/post', 'SitemapController@post');
+    Route::get('/sitemap.xml/categories', 'SitemapController@categories');
