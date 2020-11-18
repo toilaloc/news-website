@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Posts;
+use App\Models\Comments;
 use App\Models\Categories;
 use App\Models\Tags;
 use Illuminate\Support\Str;
@@ -63,7 +64,7 @@ class PostsController extends Controller
     }else {
             $thumbnail = "default.png";
     }
-   
+
     $post = new Posts();
     $post->name = $request->name;
     $post->content = $request->content;
@@ -80,7 +81,7 @@ class PostsController extends Controller
     $post->Categories()->attach($request->categories_id);
 
     if($post)
-    {        
+    {
 
         $tagNames = explode(',',$request->tag);
         //dd($tagNames);
@@ -101,13 +102,13 @@ class PostsController extends Controller
         }
         $post->Tags()->sync($tagIds);
     }
-    return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');             
+    return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');
 
     }
 
 
     public function getSlug(Request $request){
-        // get request 
+        // get request
         $name = $request->name;
         // name to slug
         $slug = Str::slug($name, '-');
@@ -123,7 +124,7 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
-        $post = Posts::where('slug', $slug)->firstOrFail(); 
+        $post = Posts::where('slug', $slug)->firstOrFail();
         return view('frontend.pages.posts.postDisplay', compact('post'));
     }
 
@@ -164,7 +165,7 @@ class PostsController extends Controller
             'categories_id' => ['required', 'array', 'min:1'],
             'categories_id.*' => ['required', 'integer', 'exists:categories,id'],
         ]);
-    
+
         if($request->hasfile('thumbnail')){
                 $file = $request->file('thumbnail');
                 if($file === "") {
@@ -174,12 +175,12 @@ class PostsController extends Controller
                 else {
                     $thumbnail = $postUpdate->thumbnail;
                 }
-               
+
         }else {
                 $thumbnail = $postUpdate->thumbnail;
         }
-       
-        // điều kiện ? đúng : sai  
+
+        // điều kiện ? đúng : sai
         $request->name !== $postUpdate->name ? $name = $request->name : $name = $postUpdate->name;
         $request->content !== $postUpdate->content ? $content = $request->content : $content = $postUpdate->content;
         $request->slug !== $postUpdate->slug ? $slug = $request->slug : $slug = $postUpdate->slug;
@@ -208,7 +209,7 @@ class PostsController extends Controller
         ]);
 
         if($newUpdate)
-    {        
+    {
         $resolveTags = str_replace("                                        ","", $request->tagUpdate);
         $tagNames = explode(',',$resolveTags);
         //dd($tagNames);
@@ -232,7 +233,7 @@ class PostsController extends Controller
 
         $postUpdate->Categories()->sync($request->input('categories_id', []));
 
-        return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');             
+        return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');
 
         // Add = attach
         // Delete = detach

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('get-category-slug', 'CategoriesController@getSlug')->name('categorie
 // Load Category
 Route::get('load-categories', 'CategoriesController@loadCategories')->name('load.categories');
 
-Route::get('testadmin', function(){
+Route::get('testadmin', function () {
     return view('admin.index');
 });
 
@@ -37,68 +38,69 @@ Route::get('/post/{slug}', 'PostsController@show');
 
 
 
+Route::resource('comments', 'CommentsController');
 Route::resource('categories', 'CategoriesController');
 
 Route::group(['prefix' => 'frontend'], function () {
 
     // Main Pages
-    Route::get('index', function(){
+    Route::get('index', function () {
         return view('frontend.index');
     });
-    Route::get('post', function(){
+    Route::get('post', function () {
         return view('frontend.pages.posts.postDisplay');
     });
-    Route::get('category', function(){
+    Route::get('category', function () {
         return view('frontend.pages.categories.categoriesDisplay');
     });
 
     // Account
-    Route::get('login', function(){
+    Route::get('login', function () {
         return view('frontend.pages.account.login');
     });
-    Route::get('register', function(){
+    Route::get('register', function () {
         return view('frontend.pages.account.register');
     });
-    Route::get('forget', function(){
+    Route::get('forget', function () {
         return view('frontend.pages.account.forget');
     });
 
     // Error
-    Route::get('error', function(){
+    Route::get('error', function () {
         return view('frontend.pages.errors.404');
     });
 
     // Contact
-    Route::get('about', function(){
+    Route::get('about', function () {
         return view('frontend.pages.contact.about');
     });
-    Route::get('contact', function(){
+    Route::get('contact', function () {
         return view('frontend.pages.contact.contact');
     });
-    Route::get('faq', function(){
+    Route::get('faq', function () {
         return view('frontend.pages.contact.faq');
     });
-    Route::get('term', function(){
+    Route::get('term', function () {
         return view('frontend.pages.contact.term');
     });
 
     // Profile
-    Route::get('profile', function(){
+    Route::get('profile', function () {
         return view('frontend.pages.users_profile.profile');
     });
-    Route::get('address', function(){
+    Route::get('address', function () {
         return view('frontend.pages.users_profile.address');
     });
-    Route::get('setting', function(){
+    Route::get('setting', function () {
         return view('frontend.pages.users_profile.setting');
     });
-    Route::get('change-password', function(){
+    Route::get('change-password', function () {
         return view('frontend.pages.users_profile.change-password');
     });
-    Route::get('activity', function(){
+    Route::get('activity', function () {
         return view('frontend.pages.users_profile.activity-history');
     });
-    Route::get('follow', function(){
+    Route::get('follow', function () {
         return view('frontend.pages.users_profile.follow');
     });
 });
@@ -107,4 +109,3 @@ Route::group(['prefix' => 'frontend'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
