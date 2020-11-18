@@ -8,7 +8,9 @@
             <div class="col-lg-12" style=" padding-left: 0px;">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb" style="margin-bottom: 0rem!important;">
-                        <li class="breadcrumb-item"><a href="#" style="color:#888; text-transform: uppercase;">Chính trị</a></li>
+                        @foreach($post->Categories as $category)
+                        <li class="breadcrumb-item"><a href="{{url('category',$category->slug)}}" style="color:#888; text-transform: uppercase;">{{$category->name}}</a></li>
+                        @endforeach
                     </ol>
                 </nav>
             </div>
@@ -26,7 +28,7 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="d-flex justify-content-md-end align-items-center">
-                                <span class="d-block text-muted">{{$post->Author->fullname}}, {{$post->date}}</span>
+                                <span class="d-block text-muted">{{$post->Author->fullname}}, {{$dateTime->diffForHumans($post->created_at)}}</span>
                                 </div>
                             </div>
                         </div>
@@ -53,11 +55,9 @@
 
                 <!-- Badges -->
                 <div class="mt-5">
-                    <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Ecommerce</a>
-                    <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Website</a>
-                    <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Bootstrap</a>
-                    <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Startup</a>
-                    <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Free</a>
+                    @foreach($post->Tags as $tag)
+                    <a class="btn btn-xs btn-soft-secondary mb-1" href="{{url('tag',$tag->slug)}}">{{$tag->name}}</a>
+                    @endforeach
                 </div>
                 <!-- End Badges -->
 
@@ -98,9 +98,9 @@
                     <h3 class="mb-4">Thông tin tác giả</h3>
 
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 pl-3">
+                        <div class="col-lg-3 col-md-3 col-sm-3 pl-7">
                             <div class="avatar avatar-xl avatar-circle mb-3">
-                                <img class="avatar-img" src="../../../assets/img/100x100/img1.jpg" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('uploads/users')}}/{{$post->Author->thumbnail}}" alt="Image Description">
                             </div>
                             <!-- End Icon Block -->
                         </div>
@@ -140,69 +140,9 @@
                "stickyOffsetTop": 24,
                "stickyOffsetBottom": 24
              }'>
-                    <div class="card-header" style="padding: 0rem 0rem; border-bottom: none;">
-                        <div class="col-lg">
-                            <div class="mb-7">
-                                <div class="mb-3 border-bottom">
-                                    <h3>Tin mới nhất</h3>
-                                </div>
 
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"  src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg" alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"  src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg" alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"  src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg" alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"  src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg" alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-
-                            </div>
-                        </div>
-                    </div>
+             {{-- Include 5 Post New --}}
+             @include('frontend.components.postNew')
 
                     <div class="card-header" style="padding: 0rem 0rem; border-bottom: none;">
                         <div class="col-lg">

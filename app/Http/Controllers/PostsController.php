@@ -7,6 +7,8 @@ use App\Models\Posts;
 use App\Models\Categories;
 use App\Models\Tags;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+
 class PostsController extends Controller
 {
     /**
@@ -29,7 +31,8 @@ class PostsController extends Controller
     {
         $tags = Tags::get()->pluck('name', 'id');
         $categories = Categories::whereNull('category_id')->get();
-        return view('admin.posts.create', compact('categories'));
+        $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
+        return view('admin.posts.create', compact('categories','dateTime'));
     }
 
     /**
@@ -74,7 +77,7 @@ class PostsController extends Controller
     $post->desc = $request->desc;
     $post->status = $request->status;
     $post->thumbnail = $thumbnail;
-    $post->author_id = 1;
+    $post->author_id = $request->author_id;
     $post->reviewer = NULL;
     $post->save();
     $post->Categories()->attach($request->categories_id);
@@ -101,6 +104,8 @@ class PostsController extends Controller
         }
         $post->Tags()->sync($tagIds);
     }
+
+    
     return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');             
 
     }
@@ -123,8 +128,10 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
+        $dateTime  = Carbon::now();
         $post = Posts::where('slug', $slug)->firstOrFail(); 
-        return view('frontend.pages.posts.postDisplay', compact('post'));
+        $postNew = Posts::take(5)->get();
+        return view('frontend.pages.posts.postDisplay', compact('post','dateTime','postNew'));
     }
 
     /**
@@ -232,7 +239,7 @@ class PostsController extends Controller
 
         $postUpdate->Categories()->sync($request->input('categories_id', []));
 
-        return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');             
+        return redirect()->route('posts.index')->with('success', 'Cập nhật tin tức thành công');             
 
         // Add = attach
         // Delete = detach
@@ -251,7 +258,6 @@ class PostsController extends Controller
         $deleteTag =  Posts::find($id);
         $deleteTag->tags()->detach();
         $deletePost = Posts::find($id)->delete();
-
         if($deletePost) {
             return redirect()->route('posts.index')
             ->with('success','Đã xóa tin tức');

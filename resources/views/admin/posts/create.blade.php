@@ -19,46 +19,42 @@
         <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Tên bài viết</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" name="name"  id="postName" placeholder="Name">
               </div>
             </div>
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">URL</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Địa chỉ</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="slug"  id="postSlug" placeholder="URL">
+                  <input type="text" class="form-control" name="slug"  id="postSlug" placeholder="URL" readonly>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Content</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Nội dung</label>
                <div class="col-sm-10 mb-2">
                 <div id="editor" style="height: 20rem;"></div>
                 <textarea style="display:none;" id="contentPost" name="content"></textarea>
               </div>
             </div>
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Short Description</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Mô tả ngắn:</label>
                 <div class="col-sm-10">
-                  <textarea class="form-control" id="Description" name="desc"  row="3" placeholder="Short Description"></textarea>
+                  <textarea class="form-control" id="Description" name="desc"  row="3" placeholder="Mô tả ngắn..."></textarea>
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Author</label>
-                <div class="col-sm-10">
-                <input type="text" class="form-control" name="author_id">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Date Posting</label>
-                <div class="col-sm-10">
-                  <input type="date" class="form-control" name="date" id="Date">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Categories</label>
-                <div class="col-sm-10">
+                {{-- Get author ID --}}
+                <input type="hidden" class="form-control" name="author_id" value="{{Auth::id()}}">
 
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Ngày đăng</label>
+                <div class="col-sm-10">
+                  <input type="datetime" class="form-control" name="date" id="Date" value="{{$dateTime->toDateTimeString()}}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Danh mục</label>
+                <div class="col-sm-10">
                    <div class="row">
                     @foreach($categories as $categoryParent)
                     <div class="col-sm-3 mb-2">
@@ -101,15 +97,15 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Thumbnails</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Ảnh đại diện:</label>
                 <div class="col-sm-10">
                     <div class="custom-file">
-                        <input type="file" name="thumbnail" class="form-control pb-5 pt-3" id="exampleFormControlFile1">
+                        <input type="file" name="thumbnail" class="form-control pb-5 pt-3">
                       </div>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputEmail3" class="pt-4 col-sm-2 col-form-label">Tags</label>
+                <label for="inputEmail3" class="pt-4 col-sm-2 col-form-label">Từ khóa:</label>
                 <div class="col-sm-10 pt-4">
                     <input class="input-tags" name="tags[]" type="text" data-role="tagsinput">
                     <input class="getTag" type="hidden" id="posttags" name="tag">
@@ -138,7 +134,7 @@
 
             <div class="form-group row">
               <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Post</button>
+                <button type="submit" class="btn btn-primary">Đăng bài viết</button>
               </div>
             </div>
           </form>
