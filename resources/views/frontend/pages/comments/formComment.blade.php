@@ -1,23 +1,33 @@
-<form class="js-validate pb-md-9">
-    <div class="form-row">
-        <div class="col-sm-12 mb-sm-3">
-            <div class="js-form-message form-group">
-                <label class="input-label">Họ và tên</label>
-                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" aria-label="Name" required data-msg="Please enter your name.">
+@if (Auth::user())
+    <form class="js-validate pb-md-9">
+        @csrf
+        <div class="form-row">
+            <div class="col-12 mb-sm-3">
+                <div class="js-form-message form-group">
+                    <input type="text" name="post_id" value="{{ $post_id }}">
+                    <input type="text" name="user_id" value="{{ Auth::user()->id }}">
+                    <textarea class="form-control" name="content" rows="7" id="descriptionTextarea"
+                        placeholder="Bạn nghĩ gì về tin này?" required></textarea>
+                </div>
             </div>
         </div>
 
-
-
-        <div class="col-12 mb-sm-3">
-            <div class="js-form-message form-group">
-                <label class="input-label">Bình luận</label>
-                <textarea class="form-control" rows="7" id="descriptionTextarea" placeholder="Bạn nghĩ gì về tin này?" required data-msg="Please enter your message."></textarea>
-            </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" id="create" class="btn btn-primary btn-wide transition-3d-hover">Gửi bình
+                luận</button>
+        </div>
+    </form>
+@else
+    <div class="card" style="width: 100%">
+        <div class="card-body">
+            <p class="card-text">Bạn phải đăng nhập mới có thể bình luận được</p>
         </div>
     </div>
+@endif
+{{--
+<script>
+    $('#create').on('click', function() {
 
-    <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary btn-wide transition-3d-hover">Gửi bình luận</button>
-    </div>
-</form>
+    })
+
+</script> --}}

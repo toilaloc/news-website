@@ -1,6 +1,16 @@
 @extends('frontend.layouts.others.index')
 @section('title', $post->name)
 @section('content')
+    <style>
+        .reply-button {
+            color: #377dff;
+        }
+
+        .reply-button:hover {
+            color: #0052ea;
+        }
+
+    </style>
     <hr>
     <!-- Content Section -->
     <div class="container space-lg-0">
@@ -15,7 +25,7 @@
                 </nav>
             </div>
             <div class="mb-1 pl-3">
-            <h1 class="h2">{{$post->name}}</h1>
+                <h1 class="h2">{{ $post->name }}</h1>
             </div>
             <div class="col-lg-8">
                 <div class="w-lg-70">
@@ -36,7 +46,7 @@
                     <!-- End Author -->
                 </div>
                 <div class="pl-lg-1" style="text-align: justify">
-                <p class="h3">{{$post->desc}}</p>
+                    <p class="h3">{{ $post->desc }}</p>
 
 
 
@@ -83,10 +93,12 @@
                     </div>
 
                     <div class="col-sm-6 text-sm-right">
-                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle mr-2" href="#" data-toggle="tooltip" data-placement="top" title="Bookmark story">
+                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle mr-2" href="#" data-toggle="tooltip"
+                            data-placement="top" title="Bookmark story">
                             <i class="far fa-bookmark"></i>
                         </a>
-                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle" href="#" data-toggle="tooltip" data-placement="top" title="Report story">
+                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle" href="#" data-toggle="tooltip"
+                            data-placement="top" title="Report story">
                             <i class="far fa-flag"></i>
                         </a>
                     </div>
@@ -107,8 +119,10 @@
 
                         <div class="col-lg-9 col-md-9 col-sm-9">
                             <!-- Info -->
-                            <h3 class="mb-0">{{$post->Author->fullname}} <button type="button" class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</button></h3>
-                            <p style="text-align: justify;">{{$post->Author->bio}} </p>
+                            <h3 class="mb-0">{{ $post->Author->fullname }} <button type="button"
+                                    class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</button>
+                            </h3>
+                            <p style="text-align: justify;">{{ $post->Author->bio }} </p>
                             <!-- End Info -->
                         </div>
                     </div>
@@ -120,14 +134,14 @@
                         <div class="mb-4">
                             <h3>3 Comments</h3>
                         </div>
-                        @include('frontend.pages.comments.listComments')
+                        @include('frontend.pages.comments.listComments',['comments'=>$post->Comment_post($post->id)])
                     </div>
 
                     <div class="mb-5">
                         <h3>Bình luận</h3>
                     </div>
                     <!-- Form -->
-                    @include('frontend.pages.comments.formComment')
+                    @include('frontend.pages.comments.formComment',['post_id'=>$post->id])
                     <!-- End Form -->
                 </div>
             </div>
@@ -155,10 +169,13 @@
                                 <article class="mb-3">
                                     <div class="media">
                                         <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"  src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg" alt="Image Description">
+                                            <img class="img-fluid"
+                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                alt="Image Description">
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền Trung mưa lớn</a></h4>
+                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền
+                                                    Trung mưa lớn</a></h4>
                                             <small class="d-inline-block">Feb 15, 2020</small>
                                         </div>
                                     </div>
@@ -168,10 +185,13 @@
                                 <article class="mb-3">
                                     <div class="media">
                                         <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"  src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg" alt="Image Description">
+                                            <img class="img-fluid"
+                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                alt="Image Description">
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền Trung mưa lớn</a></h4>
+                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền
+                                                    Trung mưa lớn</a></h4>
                                             <small class="d-inline-block">Feb 15, 2020</small>
                                         </div>
                                     </div>
@@ -181,10 +201,13 @@
                                 <article class="mb-3">
                                     <div class="media">
                                         <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"  src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg" alt="Image Description">
+                                            <img class="img-fluid"
+                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                alt="Image Description">
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền Trung mưa lớn</a></h4>
+                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền
+                                                    Trung mưa lớn</a></h4>
                                             <small class="d-inline-block">Feb 15, 2020</small>
                                         </div>
                                     </div>
@@ -194,10 +217,13 @@
                                 <article class="mb-3">
                                     <div class="media">
                                         <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"  src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg" alt="Image Description">
+                                            <img class="img-fluid"
+                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                alt="Image Description">
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền Trung mưa lớn</a></h4>
+                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền
+                                                    Trung mưa lớn</a></h4>
                                             <small class="d-inline-block">Feb 15, 2020</small>
                                         </div>
                                     </div>
@@ -261,11 +287,13 @@
                             <div class="row justify-content-between">
                                 <div class="col-6">
                                     <a class="d-block small font-weight-bold text-cap mb-2" href="#">Product</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Better is when everything works together</a></h4>
+                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Better is when
+                                            everything works together</a></h4>
                                 </div>
 
                                 <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img1.jpg" alt="Image Description">
+                                    <img class="img-fluid" src="../../../assets/img/500x280/img1.jpg"
+                                        alt="Image Description">
                                 </div>
                             </div>
                         </article>
@@ -278,11 +306,13 @@
                             <div class="row justify-content-between">
                                 <div class="col-6">
                                     <a class="d-block small font-weight-bold text-cap mb-2" href="#">Tech</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Should You Buy An Apple Pencil?</a></h4>
+                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Should You Buy An
+                                            Apple Pencil?</a></h4>
                                 </div>
 
                                 <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img3.jpg" alt="Image Description">
+                                    <img class="img-fluid" src="../../../assets/img/500x280/img3.jpg"
+                                        alt="Image Description">
                                 </div>
                             </div>
                         </article>
@@ -295,11 +325,13 @@
                             <div class="row justify-content-between">
                                 <div class="col-6">
                                     <a class="d-block small font-weight-bold text-cap mb-2" href="#">Product</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">This Watch gym partnerships give you perks for working out</a></h4>
+                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">This Watch gym
+                                            partnerships give you perks for working out</a></h4>
                                 </div>
 
                                 <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img5.jpg" alt="Image Description">
+                                    <img class="img-fluid" src="../../../assets/img/500x280/img5.jpg"
+                                        alt="Image Description">
                                 </div>
                             </div>
                         </article>
@@ -312,11 +344,13 @@
                             <div class="row justify-content-between">
                                 <div class="col-6">
                                     <a class="d-block small font-weight-bold text-cap mb-2" href="#">Tech</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Drone Company PrecisionHawk Names New CEO</a></h4>
+                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Drone Company
+                                            PrecisionHawk Names New CEO</a></h4>
                                 </div>
 
                                 <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img7.jpg" alt="Image Description">
+                                    <img class="img-fluid" src="../../../assets/img/500x280/img7.jpg"
+                                        alt="Image Description">
                                 </div>
                             </div>
                         </article>
@@ -338,12 +372,15 @@
                             <img class="card-img-top" src="../../../assets/img/480x320/img13.jpg" alt="Image Description">
                             <div class="card-body">
                                 <div class="max-w-13rem w-100 mb-3">
-                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/amazon-original.svg" alt="Logo">
+                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/amazon-original.svg"
+                                        alt="Logo">
                                 </div>
-                                <p class="mb-0">Amazon launched their enterprise platform and built a powerful user experience.</p>
+                                <p class="mb-0">Amazon launched their enterprise platform and built a powerful user
+                                    experience.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="font-weight-bold" href="customer-story.html">Read story <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+                                <a class="font-weight-bold" href="customer-story.html">Read story <i
+                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
                             </div>
                         </div>
                         <!-- End Card Info -->
@@ -355,12 +392,15 @@
                             <img class="card-img-top" src="../../../assets/img/480x320/img17.jpg" alt="Image Description">
                             <div class="card-body">
                                 <div class="max-w-13rem w-100 mb-3">
-                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/mapbox-original.svg" alt="Logo">
+                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/mapbox-original.svg"
+                                        alt="Logo">
                                 </div>
-                                <p class="mb-0">Mapbox empowers marketers to create digital marketing dashboards easily and share them with their team.</p>
+                                <p class="mb-0">Mapbox empowers marketers to create digital marketing dashboards easily and
+                                    share them with their team.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="font-weight-bold" href="customer-story.html">Read story <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+                                <a class="font-weight-bold" href="customer-story.html">Read story <i
+                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
                             </div>
                         </div>
                         <!-- End Card Info -->
@@ -372,12 +412,15 @@
                             <img class="card-img-top" src="../../../assets/img/480x320/img16.jpg" alt="Image Description">
                             <div class="card-body">
                                 <div class="max-w-13rem w-100 mb-3">
-                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/netflix-original.svg" alt="Logo">
+                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/netflix-original.svg"
+                                        alt="Logo">
                                 </div>
-                                <p class="mb-0">Netflix's mission is to create a planet run by the sun. In order to achieve this goal, they needed to find a way to make solar simple.</p>
+                                <p class="mb-0">Netflix's mission is to create a planet run by the sun. In order to achieve
+                                    this goal, they needed to find a way to make solar simple.</p>
                             </div>
                             <div class="card-footer">
-                                <a class="font-weight-bold" href="customer-story.html">Read story <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+                                <a class="font-weight-bold" href="customer-story.html">Read story <i
+                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
                             </div>
                         </div>
                         <!-- End Card Info -->
@@ -389,7 +432,8 @@
     </div>
     <!-- End Blog Card Section -->
 
-    <div class="card bg-img-hero bg-navy text-white text-center p-4 my-4 w-md-60  mx-md-auto " style="background-image: url({{asset('frontend/assets/svg/components/abstract-shapes-1.svg')}});">
+    <div class="card bg-img-hero bg-navy text-white text-center p-4 my-4 w-md-60  mx-md-auto "
+        style="background-image: url({{ asset('frontend/assets/svg/components/abstract-shapes-1.svg') }});">
         <h4 class="text-white mb-3">Like what you're reading? Subscribe to our top stories.</h4>
 
         <!-- Form -->
@@ -398,7 +442,8 @@
                 <div class="d-flex align-items-center">
                     <label class="sr-only" for="subscribeSrArticle">Subscribe</label>
                     <div class="input-group">
-                        <input type="email" class="form-control" id="subscribeSrArticle" placeholder="Your email" aria-label="Your email">
+                        <input type="email" class="form-control" id="subscribeSrArticle" placeholder="Your email"
+                            aria-label="Your email">
                     </div>
                     <button type="submit" class="btn btn-light ml-3">Submit</button>
                 </div>

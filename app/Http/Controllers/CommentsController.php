@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comments;
+use Illuminate\Support\Str;
 
 class CommentsController extends Controller
 {
@@ -13,7 +15,8 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+        $comments =  Comments::all()->whereNull('comment_id');
+        return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -34,7 +37,14 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'content' => 'required|min:60|max:5000'
+        ]);
+
+        if ($validateData) {
+            Comments::create($request->all());
+            return [$request->post_id, $request->user_id, $request->content, $request->comment_id];
+        }
     }
 
     /**

@@ -11,17 +11,17 @@ class Posts extends Model
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'name', 
+        'name',
         'slug',
         'content',
         'desc',
-        'date', 
+        'date',
         'vote',
         'status',
-        'view', 
-        'author_id', 
+        'view',
+        'author_id',
         'categories_id',
-        'reviewer', 
+        'reviewer',
         'thumbnail'
     ];
 
@@ -29,9 +29,21 @@ class Posts extends Model
         'categories_id' => 'array',
     ];
 
-    public function Categories(){
-        return $this->belongsToMany(Categories::class,'category_post', 'post_id', 'category_id');
+    public function Categories()
+    {
+        return $this->belongsToMany(Categories::class, 'category_post', 'post_id', 'category_id');
     }
+
+    public function Comment_post($id)
+    {
+        return Comments::where('post_id', $id)->whereNull('comment_id')->get();
+    }
+
+    public function Comments()
+    {
+        return $this->hasMany(Comments::class, 'id', 'post_id');
+    }
+
 
     public function tags()
     {
@@ -42,5 +54,4 @@ class Posts extends Model
     {
         return $this->belongsTo('App\Models\Users');
     }
-
 }
