@@ -39,9 +39,9 @@ class Posts extends Model
         return Comments::where('post_id', $id)->whereNull('comment_id')->get();
     }
 
-    public function Comments()
+    public function hasComments()
     {
-        return $this->hasMany(Comments::class, 'id', 'post_id');
+        return $this->hasMany(Comments::class, 'post_id');
     }
 
 

@@ -17,7 +17,7 @@ class CommentsController extends Controller
     public function index()
     {
        
-        $comments =  Comments::all()->whereNull('comment_id');
+        $comments =  Comments::all();
         return view('admin.comments.index', compact('comments'));
     }
 
@@ -111,6 +111,10 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteComments = Comments::find($id)->delete();
+        if($deleteComments) {
+            return redirect()->route('comments.index')
+            ->with('success','Đã xóa bình luận');
+        }
     }
 }

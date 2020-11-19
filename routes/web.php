@@ -34,6 +34,7 @@ Route::resource('posts', 'PostsController');
 Route::get('/post/{slug}', 'PostsController@show');
 Route::resource('categories', 'CategoriesController');
 Route::resource('tags', 'TagsController');
+Route::get('/tag/{slug}', 'TagsController@show');
 Route::resource('users', 'UsersController');
 
 // Sitemap

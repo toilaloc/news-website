@@ -47,13 +47,6 @@
                 </div>
                 <div class="pl-lg-1" style="text-align: justify">
                     <p class="h3">{{ $post->desc }}</p>
-
-
-
-                    {{-- <div class="pt-4 pt-sm-7 pb-5 pb-sm-9">
-                        <img class="img-fluid rounded" src="../../../assets/img/900x450/img13.jpg" alt="Image Description">
-                    </div> --}}
-
                     <p>
                     @php
                     $content =  $post->content; 
@@ -132,7 +125,7 @@
                 <div class="pt-2 mb-11 border-top space-lg-1">
                     <div class="pt-2 mb-11">
                         <div class="mb-4">
-                            <h3>3 Comments</h3>
+                            <h3>{{$post->hasComments->count()}} Bình luận</h3>
                         </div>
                         @include('frontend.pages.comments.listComments',['comments'=>$post->Comment_post($post->id)])
                     </div>
@@ -143,7 +136,7 @@
                     <!-- Form -->
                     @include('frontend.pages.comments.formComment',['post_id'=>$post->id])
                     <!-- End Form -->
-                </div>
+          
             </div>
             <div id="stickyBlockStartPoint" class="col-lg-4 mb-7 mb-lg-0">
                 <!-- Sidebar Content -->

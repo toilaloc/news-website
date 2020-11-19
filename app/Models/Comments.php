@@ -32,7 +32,7 @@ class Comments extends Model
 
     public function Posts()
     {
-        return $this->belongsToMany(Posts::class, 'category_post', 'post_id', 'category_id');
+        return $this->belongsTo(Posts::class, 'post_id', 'id');
     }
     public function Author()
     {

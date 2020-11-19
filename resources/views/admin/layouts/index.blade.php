@@ -19,6 +19,7 @@
   <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 </head>
 <body id="page-top">
   <!-- Page Wrapper -->
@@ -418,7 +419,14 @@
   <!-- Core plugin JavaScript-->
   <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
   <script src="{{asset('admin/js/taginput.js')}}"></script>
-
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        $('#table').DataTable();
+    });
+</script>
   <script>
 $(document).ready(function() {
     $('#categoryName').change(function(){

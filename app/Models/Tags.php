@@ -13,7 +13,7 @@ class Tags extends Model
         'slug'
     ];
 
-    public function Posts(){
+    public function hasPosts(){
         return $this->belongsToMany(Posts::class,'post_tag', 'post_id', 'tag_id');
     }
 }

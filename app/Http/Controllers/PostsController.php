@@ -132,6 +132,7 @@ class PostsController extends Controller
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $post = Posts::where('slug', $slug)->firstOrFail(); 
         $postNew = Posts::take(5)->get();
+       
         return view('frontend.pages.posts.postDisplay', compact('post','dateTime','postNew'));
     }
 
