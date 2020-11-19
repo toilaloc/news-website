@@ -76,12 +76,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-            $file_name = $data['thumbnail']->getClientOriginalName();
-            $file_path = $data['thumbnail']->move(public_path().'/uploads/users/',$file_name);
-        if(empty($file_name)) {
+        $file_name = $data['thumbnail']->getClientOriginalName();
+        $file_path = $data['thumbnail']->move(public_path() . '/uploads/users/', $file_name);
+        if (empty($file_name)) {
             $file_name = "default.jpg";
         }
-        
+
 
         return User::create([
             'username' => $data['username'],
@@ -100,5 +100,4 @@ class RegisterController extends Controller
             'following' => NULL,
         ]);
     }
-
 }

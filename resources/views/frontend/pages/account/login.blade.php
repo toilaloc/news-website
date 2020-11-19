@@ -2,32 +2,33 @@
 
 @section('content')
     <div class="container space-2 space-lg-3">
-        <form class="js-validate w-md-75 w-lg-50 mx-md-auto">
+        <form class="js-validate w-md-75 w-lg-50 mx-md-auto" action="213135341">
             <!-- Title -->
             <div class="mb-5 mb-md-7">
                 <h1 class="h2 mb-0">Chào mừng đến với hệ thống</h1>
-                <p>Hãy đăng nhập để trải nghiệm đầy đủ tính năng.</p>
+                <p>Hãy đăng nhập để trải nghiệm đầy đủ tính năngsss.</p>
             </div>
             <!-- End Title -->
 
             <!-- Form Group -->
             <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrEmail">Email:</label>
-                <input type="email" class="form-control" name="email" id="signinSrEmail" placeholder="Địa chỉ Email" aria-label="Email address" required
-                       data-msg="Please enter a valid email address.">
+                <input type="email" class="form-control" name="email" id="signinSrEmail" placeholder="Địa chỉ Email"
+                    aria-label="Email address" required data-msg="Please enter a valid email address.">
             </div>
             <!-- End Form Group -->
 
             <!-- Form Group -->
             <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrPassword">
-            <span class="d-flex justify-content-between align-items-center">
-              Mật khẩu:
-              <a class="link-underline text-capitalize font-weight-normal" href="recover-account-simple.html">Quên mật khẩu?</a>
-            </span>
+                    <span class="d-flex justify-content-between align-items-center">
+                        Mật khẩu:
+                        <a class="link-underline text-capitalize font-weight-normal" href="recover-account-simple.html">Quên
+                            mật khẩu?</a>
+                    </span>
                 </label>
-                <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="********" aria-label="********" required
-                       data-msg="Your password is invalid. Please try again.">
+                <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="********"
+                    aria-label="********" required data-msg="Your password is invalid. Please try again.">
             </div>
             <!-- End Form Group -->
 
@@ -40,6 +41,9 @@
 
                 <div class="col-sm-6 text-sm-right">
                     <button type="submit" class="btn btn-primary transition-3d-hover">Đăng nhập</button>
+                    <a href="login/facebook" class="btn btn-primary btn-block">
+                        Đăng nhập bằng Facebook
+                    </a>
                 </div>
             </div>
             <!-- End Button -->
