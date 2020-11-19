@@ -14,15 +14,12 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 // Get Slug
 Route::get('get-post-slug', 'PostsController@getSlug')->name('posts.getslug');
 Route::get('get-category-slug', 'CategoriesController@getSlug')->name('categories.getslug');
-
+Route::get('loadFormReply', 'AjaxController@loadFormReply')->name('load.formReply');
 
 // Load Category
 Route::get('load-categories', 'CategoriesController@loadCategories')->name('load.categories');
@@ -46,6 +43,7 @@ Route::get('/sitemap-post.xml', 'SitemapController@posts');
 Route::get('/sitemap-category.xml', 'SitemapController@categories');
 Route::get('/sitemap-tag.xml', 'SitemapController@tags');
 
+Route::resource('comments', 'CommentsController');
 
 Route::group(['prefix' => 'frontend'], function () {
 
@@ -115,5 +113,8 @@ Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
 Auth::routes();
-
+Route::get('logouts', function () {
+    Auth::logout();
+    return redirect('/');
+});
 Route::get('/', 'HomeController@index')->name('home');

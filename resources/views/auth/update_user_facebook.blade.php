@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container space-2 space-lg-3">
-        <form method="POST" action="{{ route('login') }}" class="js-validate w-md-75 w-lg-50 mx-md-auto">
+        <form method="POST" action="{{ route('register') }}" class="js-validate w-md-75 w-lg-50 mx-md-auto">
             @csrf
             <!-- Title -->
             <div class="mb-5 mb-md-7">

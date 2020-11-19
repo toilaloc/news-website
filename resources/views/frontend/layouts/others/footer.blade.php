@@ -232,6 +232,7 @@
 <script src="{{asset('frontend/assets/js/hs.core.js')}}"></script>
 <script src="{{asset('frontend/assets/js/hs.slick-carousel.js')}}"></script>
 <script src="{{asset('frontend/assets/js/hs.validation.js')}}"></script>
+<script src="{{asset('frontend/assets/js/load-form-comment.js')}}"></script>
 
 <!-- JS Plugins Init. -->
 <script>

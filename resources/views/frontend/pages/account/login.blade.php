@@ -6,7 +6,7 @@
             <!-- Title -->
             <div class="mb-5 mb-md-7">
                 <h1 class="h2 mb-0">Chào mừng đến với hệ thống</h1>
-                <p>Hãy đăng nhập để trải nghiệm đầy đủ tính năngsss.</p>
+                <p>Hãy đăng nhập để trải nghiệm đầy đủ tính năng.</p>
             </div>
             <!-- End Title -->
 
@@ -41,9 +41,7 @@
 
                 <div class="col-sm-6 text-sm-right">
                     <button type="submit" class="btn btn-primary transition-3d-hover">Đăng nhập</button>
-                    <a href="login/facebook" class="btn btn-primary btn-block">
-                        Đăng nhập bằng Facebook
-                    </a>
+
                 </div>
             </div>
             <!-- End Button -->

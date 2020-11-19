@@ -1,65 +1,34 @@
 <ul class="list-unstyled">
-    <!-- Comment -->
-    <li class="mb-5">
-        <div class="media align-items-center mb-2">
-            <div class="avatar avatar-circle mr-3">
-                <img class="avatar-img" src="{{asset('frontend/assets/img/100x100/img3.jpg')}}" alt="Image Description">
-            </div>
-            <div class="media-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="h5 mb-0">Dave Austin</span>
-                    <small class="text-muted">1 day ago</small>
+    @foreach ($comments as $item)
+        <!-- Comment -->
+        <li class="mb-5">
+            <div class="media align-items-center mb-2">
+                <div class="avatar avatar-circle mr-3">
+                    <img class="avatar-img" style="width: 100%;height: 100%;" src="{{ asset('uploads/users/'.$item->Author->thumbnail) }}"
+                        alt="Image Description">
                 </div>
-            </div>
-        </div>
-
-        <p>As a Special Education teacher this resonates so well with me. Fighting with gen ed teachers to flatten for the students with learning disabilities. It also confirms some things for me in my writing.</p>
-
-        <a class="font-weight-bold" href="#">Reply</a>
-
-        <ul class="list-unstyled mt-5">
-            <!-- Comment -->
-            <li class="mb-5">
-                <div class="border-left border-3 pl-4">
-                    <div class="media align-items-center mb-2">
-                        <div class="avatar avatar-circle mr-3">
-                            <img class="avatar-img" src="{{asset('frontend/assets/img/100x100/img11.jpg')}}" alt="Image Description">
-                        </div>
-                        <div class="media-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="h5 mb-0">Hanna Wolfe</span>
-                                <small class="text-muted">1 day ago</small>
-                            </div>
-                        </div>
+                <div class="media-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 mb-0" id="author_comment">{{ $item->Author->fullname }}</span>
+                        <small
+                            class="text-muted">{{$dateTime->diffForHumans($item->created_at)}}</small>
                     </div>
-
-                    <p>Love it Dave! We're all about keeping it up.</p>
-
-                    <a class="font-weight-bold" href="#">Reply</a>
-                </div>
-            </li>
-            <!-- End Comment -->
-        </ul>
-    </li>
-    <!-- End Comment -->
-
-    <!-- Comment -->
-    <li class="mb-5">
-        <div class="media align-items-center mb-2">
-            <div class="avatar avatar-circle mr-3">
-                <img class="avatar-img" src="{{asset('frontend/assets/img/100x100/img1.jpg')}}" alt="Image Description">
-            </div>
-            <div class="media-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="h5 mb-0">Christina Kray</span>
-                    <small class="text-muted">2 days ago</small>
                 </div>
             </div>
-        </div>
 
-        <p>Since our attention spans seem to be shrinking by the day&#8202;—&#8202;keeping it simple is more important than ever.</p>
+            <p style="margin-bottom: 0rem" id="commentContent">{{ $item->content }}</p>
 
-        <a class="font-weight-bold" href="#">Reply</a>
-    </li>
-    <!-- End Comment -->
+        <button class="font-weight-bold btn reply-button" style="padding: 0rem 0rem" id="replyComment" data-idCmt="{{$item->id}}" data-authorReply="{{$item->Author->fullname}}">Trả lời</button>
+
+            <ul class="list-unstyled mt-3">
+                <!-- subComment -->
+                @foreach ($item->subComments as $subComment)
+                    @include('frontend.pages.comments.subComments',['subComment'=>$subComment])
+                @endforeach
+                <!-- End subComment -->
+            </ul>
+        </li>
+        <!-- End Comment -->
+    @endforeach
+
 </ul>

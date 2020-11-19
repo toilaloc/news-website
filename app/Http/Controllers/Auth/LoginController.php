@@ -58,8 +58,7 @@ class LoginController extends Controller
         $user = Socialite::driver('facebook')->user();
         $check = User::where('email', $user->email)->first();
         if ($check) {
-            // $data = [$user->email, $user->id];
-            // Auth::login();
+            Auth::login($check);
             return redirect('/');
         } else {
             $data = new User;
@@ -73,7 +72,7 @@ class LoginController extends Controller
             $data->save();
 
             Auth::login($data);
-            return view('frontend.pages.account.update_user_facebook');
+            return redirect('/');
         }
     }
 }
