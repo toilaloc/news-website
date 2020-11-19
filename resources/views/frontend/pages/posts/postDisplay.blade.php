@@ -112,7 +112,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-3 pl-7">
                             <div class="avatar avatar-xl avatar-circle mb-3">
-                            <img class="avatar-img" src="{{asset('uploads/users')}}/{{$post->Author->thumbnail}}" alt="Image Description">
+                            <img class="avatar-img" style="width: 100%;height: 100%;" src="{{asset('uploads/users')}}/{{$post->Author->thumbnail}}" alt="Image Description">
                             </div>
                             <!-- End Icon Block -->
                         </div>
@@ -234,24 +234,6 @@
                         </div>
                     </div>
 
-                    <div class="card-header" style="padding: 0rem 0rem; border-bottom: none;">
-                        <div class="col-lg">
-                            <div class="mb-3">
-                                <div class="mb-3">
-                                    <h3>Tags</h3>
-                                </div>
-                                <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Business</a>
-                                <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Adventure</a>
-                                <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Community</a>
-                                <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Announcements</a>
-                                <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Tutorials</a>
-                                <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Resources</a>
-                                <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Classic</a>
-                                <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Photography</a>
-                                <a class="btn btn-xs btn-soft-secondary mb-1" href="#">Interview</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- End Sidebar Content -->

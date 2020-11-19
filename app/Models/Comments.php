@@ -12,7 +12,9 @@ class Comments extends Model
         'content',
         'post_id',
         'user_id',
-        'comment_id'
+        'comment_id',
+        'vote',
+        'date'
     ];
 
 

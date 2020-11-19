@@ -4,23 +4,23 @@
         <li class="mb-5">
             <div class="media align-items-center mb-2">
                 <div class="avatar avatar-circle mr-3">
-                    <img class="avatar-img" src="{{ asset('img/' . $item->Author->thumbnail) }}"
+                    <img class="avatar-img" style="width: 100%;height: 100%;" src="{{ asset('uploads/users/'.$item->Author->thumbnail) }}"
                         alt="Image Description">
                 </div>
                 <div class="media-body">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="h5 mb-0">{{ $item->Author->fullname }}</span>
+                        <span class="h5 mb-0" id="author_comment">{{ $item->Author->fullname }}</span>
                         <small
-                            class="text-muted">{{ date('m-d-Y', strtotime(Str::substr($item->date, 0, 10))) }}</small>
+                            class="text-muted">{{$dateTime->diffForHumans($item->created_at)}}</small>
                     </div>
                 </div>
             </div>
 
-            <p>{{ $item->content }}</p>
+            <p style="margin-bottom: 0rem" id="commentContent">{{ $item->content }}</p>
 
-            <button class="font-weight-bold btn reply-button">Trả lời</button>
+        <button class="font-weight-bold btn reply-button" style="padding: 0rem 0rem" id="replyComment" data-idCmt="{{$item->id}}" data-authorReply="{{$item->Author->fullname}}">Trả lời</button>
 
-            <ul class="list-unstyled mt-5">
+            <ul class="list-unstyled mt-3">
                 <!-- subComment -->
                 @foreach ($item->subComments as $subComment)
                     @include('frontend.pages.comments.subComments',['subComment'=>$subComment])

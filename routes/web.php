@@ -22,7 +22,7 @@ Route::get('/', function () {
 // Get Slug
 Route::get('get-post-slug', 'PostsController@getSlug')->name('posts.getslug');
 Route::get('get-category-slug', 'CategoriesController@getSlug')->name('categories.getslug');
-
+Route::get('loadFormReply', 'AjaxController@loadFormReply')->name('load.formReply');
 
 // Load Category
 Route::get('load-categories', 'CategoriesController@loadCategories')->name('load.categories');
