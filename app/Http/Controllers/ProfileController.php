@@ -12,21 +12,18 @@ class ProfileController extends Controller
 
         $user = Users::where('username', $username)->first();
         if($user){
-        if(Auth::user()){
-            if(Auth::user()->username === $user->username){
-                return view('frontend.pages.users_profile.profile', compact('user'));
+            if(Auth::user()){
+                if(Auth::user()->username === $user->username){
+                    return view('frontend.pages.users_profile.profile', compact('user'));
+                }else {
+                    return view('frontend.pages.errors.404');
+                }
             }else {
                 return view('frontend.pages.errors.404');
-            }
+            }         
         }else {
             return view('frontend.pages.errors.404');
-        }
-                    
-    }else {
-        return view('frontend.pages.errors.404');
-    }
-        
-        
+        }   
     }
     public function changePassword($username){
 
