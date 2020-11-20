@@ -136,7 +136,7 @@
                     <!-- Form -->
                     @include('frontend.pages.comments.formComment',['post_id'=>$post->id])
                     <!-- End Form -->
-          
+                </div>
             </div>
             <div id="stickyBlockStartPoint" class="col-lg-4 mb-7 mb-lg-0">
                 <!-- Sidebar Content -->
@@ -240,7 +240,6 @@
 
     <!-- Testimonials -->
     <div class="bg-light">
-
     </div>
     <!-- Testimonials -->
 

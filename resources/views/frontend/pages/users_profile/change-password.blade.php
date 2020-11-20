@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Breadcrumb Section -->
-    <div class="bg-navy" style="background-image: url(../../../../assets//svg/components/abstract-shapes-20.svg);">
+    <div class="bg-navy" style="background-image: url({{asset('frontend/assets/svg/components/abstract-shapes-20.svg')}});">
         <div class="container space-1 space-top-lg-2 space-bottom-lg-3">
             <div class="row align-items-center">
                 <div class="col">
@@ -56,12 +56,12 @@
                                 <!-- Avatar -->
                                 <div class="d-none d-lg-block text-center mb-5">
                                     <div class="avatar avatar-xxl avatar-circle mb-3">
-                                        <img class="avatar-img" src="../../../../assets//img/160x160/img1.jpg" alt="Image Description">
-                                        <img class="avatar-status avatar-lg-status" src="../../../../assets//svg/illustrations/top-vendor.svg" alt="Image Description" data-toggle="tooltip" data-placement="top" title="Verified user">
+                                    <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{$user->thumbnail}}" alt="{{$user->fullname}}">
+                                        <img class="avatar-status avatar-lg-status" src="{{asset('frontend/assets/svg/illustrations/top-vendor.svg')}}" data-toggle="tooltip" data-placement="top" title="Verified user">
                                     </div>
 
-                                    <h4 class="card-title">Trần Thanh Nam</h4>
-                                    <p class="card-text font-size-1">namttpd02755@fpt.edu.vn</p>
+                                <h4 class="card-title">{{$user->name}}</h4>
+                                <p class="card-text font-size-1">{{$user->email}}</p>
                                 </div>
                                 <!-- End Avatar -->
 
@@ -70,65 +70,38 @@
                                 <!-- List -->
                                 <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.html">
+                                    <a class="nav-link" href="{{url('user', $user->username)}}">
                                             <i class="fas fa-id-card nav-icon"></i> Thông tin cá nhân
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="login-and-security.html">
-                                            <i class="fas fa-shield-alt nav-icon"></i> Đăng nhập &amp; bảo mật
+                                    <a class="nav-link" href="{{url('/change-password',$user->username)}}">
+                                            <i class="fas fa-shield-alt nav-icon"></i> Đổi mật khẩu
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="notifications.html">
-                                            <i class="fas fa-bell nav-icon"></i> Thông báo
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">1</span>
+                                    <a class="nav-link" href="{{url('author',$user->username)}}">
+                                            <i class="fas fa-chart-line nav-icon"></i> Hoạt động
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="preferences.html">
-                                            <i class="fas fa-sliders-h nav-icon"></i> Sở thích
-                                        </a>
-                                    </li>
+    
                                 </ul>
                                 <!-- End List -->
 
-                                <h6 class="text-cap small">Mua sắm</h6>
-
-                                <!-- List -->
-                                <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="orders.html">
-                                            <i class="fas fa-shopping-basket nav-icon"></i>Đơn đặt hàng của bạn
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="wishlist.html">
-                                            <i class="fas fa-heart nav-icon"></i> Danh sách yêu thích
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">2</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!-- End List -->
-
-                                <h6 class="text-cap small">Thanh toán</h6>
+                                <h6 class="text-cap small">Theo dõi</h6>
 
                                 <!-- List -->
                                 <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="billing.html">
-                                            <i class="fas fa-credit-card nav-icon"></i> Các gói &amp; Thanh toán
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="address.html">
-                                            <i class="fas fa-map-marker-alt nav-icon"></i> Địa chỉ
+                                        <a class="nav-link" href="teams.html">
+                                            <i class="fas fa-users nav-icon"></i> Đang theo dõi
+                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="teams.html">
-                                            <i class="fas fa-users nav-icon"></i> Đội
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">+2 người dùng mới</span>
+                                            <i class="fas fa-user-friends nav-icon"></i> Người theo dõi
+                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -140,8 +113,13 @@
                                     <!-- List -->
                                     <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2">
                                         <li class="nav-item">
-                                            <a class="nav-link text-primary" href="#">
-                                                <i class="fas fa-sign-out-alt nav-icon"></i> Đăng xuất
+                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                             @csrf
+                                         </form>
+                                            <a class="nav-link text-primary" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-sign-out-alt nav-icon"></i> Đăng xuất
                                             </a>
                                         </li>
                                     </ul>
@@ -156,40 +134,6 @@
             </div>
 
             <div class="col-lg-9">
-                <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center">
-                            <h5 class="card-title">Xác minh hai bước
-                            </h5>
-                            <span class="badge badge-soft-danger ml-2">Ẩn</span>
-                        </div>
-                    </div>
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <p class="card-text">Bắt đầu bằng cách nhập mật khẩu của bạn để chúng tôi biết đó là bạn. Sau đó, chúng tôi sẽ hướng dẫn bạn qua hai bước đơn giản hơn.</p>
-                        <form>
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="accountPasswordLabel" class="col-sm-3 col-form-label input-label">Mật khẩu tài khoản</label>
-
-                                <div class="col-sm-9">
-                                    <input type="password" class="form-control" name="currentPassword" id="accountPasswordLabel" placeholder="Enter current password" aria-label="Enter current password">
-                                    <small class="form-text">Đây là mật khẩu bạn sử dụng để đăng nhập vào tài khoản Mặt trận của mình.</small>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">Thiết lập</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- End Body -->
-                </div>
-                <!-- End Card -->
-
                 <!-- Card -->
                 <div class="card mb-3 mb-lg-5">
                     <div class="card-header">

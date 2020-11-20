@@ -27,6 +27,7 @@
         <th scope="col">Đang theo dõi</th>
         <th scope="col">Trạng thái</th>
         <th scope="col">Vai trò</th>
+        <th scope="col">Số bài viết</th>
         <th scope="col">Ngày đăng ký</th>
         <th scope="col" colspan="2">Chức năng</th>
       </tr>
@@ -56,6 +57,7 @@
             @endif
         </td>
         <td>Thành viên</td>
+      <td>{{$user->hasPosts->count()}}</td>
         <td>{{$user->created_at}}</td>
       <td><a class="btn btn-success btn-sm" href="{{route('users.edit', $user->id)}}">Sửa</a></td>
         <td>

@@ -625,9 +625,30 @@
 
                             <!-- Button -->
                             <li class="navbar-nav-last-item">
-                                <a class="btn btn-sm btn-primary transition-3d-hover" href="https://themes.getbootstrap.com/product/front-multipurpose-responsive-template/" target="_blank">
-                                    Buy Now
-                                </a>
+                                @guest
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            @else
+                                    <a class="btn btn-sm btn-primary transition-3d-hover" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                        @endguest
+                            </li>
+                            <li class="navbar-nav-last-item">
+                                @guest
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            @else
+                            <a class="btn btn-sm btn-primary transition-3d-hover" href="{{url('user',Auth::user()->username)}}">
+                                        {{Auth::user()->fullname}}
+                                    </a>
+                                </div>
+                        @endguest
                             </li>
                             <!-- End Button -->
                         </ul>

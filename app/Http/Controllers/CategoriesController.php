@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -113,9 +114,13 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $category = Categories::where('slug', $slug)->first();
+        $posts = Posts::whereHas('categories', function($query) use ($slug) {
+            $query->whereSlug($slug);
+          })->get();
+        return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts'));
     }
 
     /**

@@ -33,10 +33,18 @@ Route::get('testadmin', function () {
 Route::resource('posts', 'PostsController');
 Route::get('/post/{slug}', 'PostsController@show');
 Route::resource('categories', 'CategoriesController');
+Route::get('/category/{slug}', 'CategoriesController@show');
 Route::resource('tags', 'TagsController');
 Route::get('/tag/{slug}', 'TagsController@show');
+
 Route::resource('users', 'UsersController');
 
+
+// View Profile
+Route::get('user/{username}','ProfileController@index');
+Route::get('change-password/{username}','ProfileController@changePassword');
+Route::get('author/{username}','ProfileController@activityAccount');
+Route::match(['put', 'patch'],'user/{username}', 'ProfileController@resolveChangeInfo')->name('userfront.update');
 // Sitemap
 
 Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.xml');
@@ -48,27 +56,10 @@ Route::resource('comments', 'CommentsController');
 
 Route::group(['prefix' => 'frontend'], function () {
 
-    // Main Pages
-    Route::get('index', function(){
-        return view('frontend.index');
-    });
-    Route::get('post', function () {
-        return view('frontend.pages.posts.postDisplay');
-    });
     Route::get('category', function () {
         return view('frontend.pages.categories.categoriesDisplay');
     });
 
-    // Account
-    Route::get('login-front', function(){
-        return view('frontend.pages.account.login');
-    });
-    Route::get('register', function () {
-        return view('frontend.pages.account.register');
-    });
-    Route::get('forget', function () {
-        return view('frontend.pages.account.forget');
-    });
 
     // Error
     Route::get('error', function () {
