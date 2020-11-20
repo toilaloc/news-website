@@ -74,7 +74,7 @@ class ProfileController extends Controller
             'email' => 'required|email',
             'thumbnail',
             'address' => 'required',
-            'phone' => 'numeric|required',
+            'phone' => 'numeric|required|max:11',
             'gender' => 'required'
         ]);
 
