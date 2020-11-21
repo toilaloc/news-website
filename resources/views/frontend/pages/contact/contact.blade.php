@@ -140,7 +140,21 @@
                     </div>
                     <!-- End Input -->
                 </div>
-
+                <!-- Input -->
+                <div class="col-sm-6 mb-4" style="padding-left: 0;">
+                    <div class="js-form-message">
+                        <label class="input-label">User info</label>
+                        <select class="form-control form-control-sm"  name="user_id" >
+                        @guest
+                            <option>None</option>
+                        @else
+                            <option value="{{Auth::user()->id}}">{{Auth::user()->fullname}}</option>
+                        @endguest
+                        </select>
+                    </div>
+                </div>
+                <!-- End Input -->
+                
                 <!-- Input -->
                 <div class="js-form-message mb-6">
                     <label class="input-label">How can we help you?</label>

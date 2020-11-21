@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contacts;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Contacts;
+use App\Models\Users;
 
 class ContactsController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.contact.contact');
+         return view('frontend.pages.contact.contact');
     }
     public function store(Request $request)
     {
@@ -35,6 +37,7 @@ class ContactsController extends Controller
             date_default_timezone_set("Asia/Ho_Chi_Minh");
             $contact = new Contacts();
             $contact->contact_name = $request->contact_name;
+            $contact->user_id = $request->user_id;
             $contact->contact_email = $request->contact_email;
             $contact->contact_title = $request->contact_title;
             $contact->contact_phone = $request->contact_phone;

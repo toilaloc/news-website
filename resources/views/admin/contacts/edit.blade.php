@@ -31,6 +31,17 @@
               </div>
             </div>
             <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">user info</label>
+              <div class="col-sm-10">
+              @if($contactsEditing->user_id != '')
+              <input type="text" class="form-control" name="user_id"  value="{{$contactsEditing->user_id}}" disabled>
+              @else
+              <input type="text" class="form-control" name="user_id"  value="none" disabled>
+              @endif
+                
+              </div>
+            </div>
+            <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="contact_email"   value="{{$contactsEditing->contact_email}}">

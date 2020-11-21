@@ -20,6 +20,7 @@
       <tr>
         <th scope="col">Title</th>
         <th scope="col">Tên</th>
+        <th scope="col">user_id</th>
         <th scope="col">Email</th>
         <th scope="col">Phone</th>
         <th scope="col">Message</th>
@@ -31,6 +32,13 @@
         <tr>
             <td><a href="">{{$contact->contact_title}}</a></td>
             <td>{{$contact->contact_name}}</td>
+            <td>
+              @if($contact->user_id != '')
+                {{$contact->user_id}}
+              @else
+                None
+              @endif
+            </td>
             <td>{{$contact->contact_email}}</td>
             <td>{{$contact->contact_phone}}</td>
             <td>{{$contact->contact_message}}</td>
