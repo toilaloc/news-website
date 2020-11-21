@@ -12,7 +12,7 @@
 
         @import url(//netdna.bootstrapcdn.com/font-awesome/5.10.0/css/font-awesome.css);
 
-        /*reset css*/
+        /*reset css*
         div,
         label {
             margin: 0;
