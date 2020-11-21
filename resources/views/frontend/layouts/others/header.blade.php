@@ -177,8 +177,8 @@
 
                     <!-- Links -->
                     <div class="nav nav-sm nav-y-0 d-none d-sm-flex ml-sm-auto">
-                        <a class="nav-link" href="faq.html">Help</a>
-                        <a class="nav-link" href="contacts-agency.html">Contacts</a>
+                        <a class="nav-link" href="{{url('frontend/contacts')}}">Help</a>
+                        <a class="nav-link" href="{{url('frontend/contacts')}}">Contacts</a>
                     </div>
                     <!-- End Links -->
                 </div>

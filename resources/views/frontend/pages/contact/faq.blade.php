@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Hero Section -->
-    <div class="bg-img-hero" style="background-image: url(../../../../assets//svg/components/abstract-shapes-12.svg);">
+    <div class="bg-img-hero" style="background-image: url(assets/svg/components/abstract-shapes-12.svg);">
         <div class="container space-top-3 space-top-lg-4 space-bottom-2 position-relative z-index-2">
             <div class="w-md-80 w-lg-60 text-center mx-md-auto">
                 <h1>FAQ</h1>
@@ -370,7 +370,7 @@
                             <div class="card-body">
                                 <div class="media">
                                     <figure class="w-100 max-w-6rem mr-3">
-                                        <img class="img-fluid" src="../../../../assets//svg/icons/icon-4.svg" alt="SVG">
+                                        <img class="img-fluid" src="assets//svg/icons/icon-4.svg" alt="SVG">
                                     </figure>
                                     <div class="media-body">
                                         <h3>Ask a question</h3>
@@ -388,7 +388,7 @@
                             <div class="card-body">
                                 <div class="media">
                                     <figure class="w-100 max-w-6rem mr-3">
-                                        <img class="img-fluid" src="../../../../assets//svg/icons/icon-2.svg" alt="SVG">
+                                        <img class="img-fluid" src="assets//svg/icons/icon-2.svg" alt="SVG">
                                     </figure>
                                     <div class="media-body">
                                         <h3>Read documentation</h3>

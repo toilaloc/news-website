@@ -38,8 +38,11 @@ Route::resource('tags', 'TagsController');
 Route::get('/tag/{slug}', 'TagsController@show');
 
 Route::resource('users', 'UsersController');
-
-
+// contatcs
+Route::get('/contacts','ContactsController@getContacts');
+Route::get('/contacts/{id}/edit','ContactsController@edit');
+Route::post('/contacts/update','ContactsController@update');
+Route::get('contacts/{id}/delete', 'ContactsController@destroy'); 
 // View Profile
 Route::get('user/{username}','ProfileController@index');
 Route::get('change-password/{username}','ProfileController@changePassword');
@@ -70,9 +73,9 @@ Route::group(['prefix' => 'frontend'], function () {
     Route::get('about', function () {
         return view('frontend.pages.contact.about');
     });
-    Route::get('contact', function () {
-        return view('frontend.pages.contact.contact');
-    });
+    Route::get('contacts','ContactsController@index');
+    Route::post('contacts','ContactsController@store');
+    
     Route::get('faq', function () {
         return view('frontend.pages.contact.faq');
     });
