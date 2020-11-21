@@ -1,6 +1,7 @@
-@extends('frontend.layouts.others.index')
+@extends('frontend.layouts.index')
 @section('title', $user->fullname)
 @section('content')
+
     <!-- Breadcrumb Section -->
     <div class="bg-navy" style="background-image: url({{asset('frontend/assets/svg/components/abstract-shapes-20.svg')}});">
         <div class="container space-1 space-top-lg-2 space-bottom-lg-3">
@@ -19,19 +20,6 @@
                 </div>
 
                 <div class="col-auto">
-                    <div class="d-none d-lg-block">
-                        <a class="btn btn-sm btn-soft-light" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Đăng xuất') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                    </div>
-
                     <!-- Responsive Toggle Button -->
                     <button type="button" class="navbar-toggler btn btn-icon btn-sm rounde-circle d-lg-none" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebarNav" data-toggle="collapse" data-target="#sidebarNav">
               <span class="navbar-toggler-default">
@@ -53,7 +41,7 @@
     <!-- End Breadcrumb Section -->
 
 
-  
+
 
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
         @if(session()->get('success'))
@@ -65,7 +53,7 @@
               </svg>
             </button>
           </div>
-          @endif   
+          @endif
         <div class="row">
             <div class="col-lg-3">
                 <!-- Navbar -->
@@ -105,7 +93,7 @@
                                             <i class="fas fa-chart-line nav-icon"></i> Hoạt động
                                         </a>
                                     </li>
-    
+
                                 </ul>
                                 <!-- End List -->
 
@@ -184,7 +172,7 @@
                                  }'>
                                             </div>
 
-                                         
+
                                         </div>
                                     </div>
                                 </div>
@@ -319,8 +307,8 @@
                             <!-- End Form Group -->
 
                             <!-- Form Group -->
-        
-                        
+
+
                     </div>
                     <!-- End Body -->
 
