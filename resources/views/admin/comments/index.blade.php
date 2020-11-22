@@ -24,7 +24,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Danh sách bình luận</h6>
             </div>
             <div class="card-body">
-                <table class="table table-striped table-bordered" id="table">
+                <table class="table table-striped table-bordered" id="tableComment">
                     <thead>
                         <tr>
                             <th scope='col'>#</th>

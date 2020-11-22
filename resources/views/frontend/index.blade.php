@@ -156,100 +156,71 @@
 <!-- End Hero Section -->
 
 <!-- Show Content Bellow Header-->
-<div class="container space-2 space-lg-3">
+<div class="container space-1 space-lg-1">
+    <div class="mb-3">
+        <h3>TIN NÓNG</h3>
+    </div>
     <div class="row">
-        <!-- Blog -->
         <div class="col-lg-4 d-none d-lg-block">
+            {{-- lấy 5 bài tin công nghệ --}}
+            @if(empty($breakingNewsLeft) == true)
+            {{'Không có bài viết để hiển thị'}}  
+            @else
+            @foreach($breakingNewsLeft as $contentsLeft)
             <article class="mb-3 pb-3 border-bottom">
                 <div class="media  text-inherit">
                     <div class="avatar avatar-lg mr-3">
-                        <img class="avatar-img" src="https://znews-photo.zadn.vn/w210/Uploaded/sgtnrb/2020_11_11/merlin_179552940_2da83d38_7216_4e60_911b_3362a216b569_jumbo.jpg" alt="Image Description" style="border-radius: 0rem;">
+                    <img class="avatar-img" src="{{asset('uploads/posts/thumbnail')}}/{{$contentsLeft->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
                     </div>
                     <div class="media-body">
-                        <h4 class="h6 mb-0"><a class="text-inherit" href="#">Nhân viên bưu chính Pennsylvania rút lại lời khai về gian lận bầu cử</a></h4>
+                        <h4 class="h6 mb-0"><a class="text-inherit" href="{{url('post',$contentsLeft->slug)}}">{{$contentsLeft->name}}</a></h4>
                     </div>
                 </div>
             </article>
-            <!-- End Blog -->
-
-            <!-- Blog -->
-            <article class="mb-3 pb-3 border-bottom">
-                <div class="media text-inherit">
-                    <div class="avatar avatar-lg mr-3">
-                        <img class="avatar-img" src="https://znews-photo.zadn.vn/w210/Uploaded/ngotgs/2020_11_11/a.JPG" alt="Image Description" style="border-radius: 0rem;">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="h6 mb-0"><a class="text-inherit" href="#">Đề xuất truy thăng quân hàm cho thượng úy hy sinh khi ngăn ẩu đả</a></h4>
-                    </div>
-                </div>
-            </article>
-            <!-- End Blog -->
-
-            <!-- Blog -->
-            <article class="mb-3 pb-3 border-bottom">
-                <div class="media text-inherit">
-                    <div class="avatar avatar-lg mr-3">
-                        <img class="avatar-img" src="https://znews-photo.zadn.vn/w210/Uploaded/chuobun/2020_04_11/57b438af8c0f77512e1e.jpg" alt="Image Description" style="border-radius: 0rem;">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="h6 mb-0"><a class="text-inherit" href="#">Giá xăng giảm xuống thấp nhất 4 tháng</a></h4>
-                    </div>
-                </div>
-            </article>
-
-
-            <article class="mb-3 pb-3 border-bottom">
-                <div class="media text-inherit">
-                    <div class="avatar avatar-lg mr-3">
-                        <img class="avatar-img" src="https://znews-photo.zadn.vn/w210/Uploaded/izhqv/2020_11_11/1_1.jpg" alt="Image Description" style="border-radius: 0rem;">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="h6 mb-0"><a class="text-inherit" href="#">Phát ngôn dung tục, MCK đội Karik tự hủy hoại mình ở Rap Việt</a></h4>
-                    </div>
-                </div>
-            </article>
-
-
-            <article class="mb-3 pb-3 border-bottom">
-                <div class="media text-inherit">
-                    <div class="avatar avatar-lg mr-3">
-                        <img class="avatar-img" src="https://znews-photo.zadn.vn/w210/Uploaded/ngogtn/2020_10_19/4556f3d5_truong_doan_vinh_hoa_23.jpg" alt="Image Description" style="border-radius: 0rem;">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="h6 mb-0"><a class="text-inherit" href="#">‘Đoạn trường vinh hoa’ - nghệ thuật huy hoàng kết tinh từ nỗi đau</a></h4>
-                    </div>
-                </div>
-            </article>
+                    @if($loop->index == 4)
+                        @break
+                        @endif
+            @endforeach
+            @endif
         </div>
 
 
         <div class="col-lg-5 col-md-7 d-none d-lg-block">
-            <article class="card" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1)">
-                <img class="card-img-top" src="https://znews-photo.zadn.vn/w960/Uploaded/sgtnrb/2020_11_04/1000_2020_11_10T050328.865.jpeg" alt="Image Description">
+            @if(empty($breakingNewsCenter) == true)
+            {{'Không có bài viết để hiển thị'}}
+            @else 
+            @foreach($breakingNewsCenter as $postCenter)
+                @if($loop->first)
+                <article class="card" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1)">
+                <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$postCenter->thumbnail}}" alt="Image Description">
                 <div class="card-body" style="padding: 0.3rem;">
-                    <h2 class="h3"><a class="text-inherit" href="single-article.html">Ông Trump sa thải Bộ trưởng Quốc phòng Esper</a></h2>
-                    <p>Ông Donald Trump hôm 9/11 đã sa thải Bộ trưởng Quốc phòng Mark Esper, động thái chưa từng tiền lệ của một tổng thống sau khi thất bại trong bầu cử.</p>
+                    <h2 class="h3"><a class="text-inherit" href="{{url('post',$postCenter->slug)}}">{{$postCenter->name}}</a></h2>
+                    <p>{{$postCenter->desc}}</p>
                 </div>
-            </article>
+                </article>
+                @endif
+            @endforeach
+            @endif
         </div>
 
         <div class="col-lg-3 col-md-5 d-none d-lg-block">
+            @if(empty($breakingNewsRight) == true)
+            {{'Không có bài viết để hiển thị'}}
+            @else 
+            @foreach($breakingNewsRight as $postRight) 
             <article class="card" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1)">
                 <div class="card-img-top">
-                    <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/ovhpaob/2020_11_10/202011060840246073_Toan_canh_PTT_Truong_Hoa_Binh.jpg" alt="Image Description">
+                <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$postRight->thumbnail}}" alt="Image Description">
                 </div>
                 <div class="card-body" style="padding: 0.1rem;">
-                    <h5><a class="text-inherit" href="single-article.html">Thủ tướng trả lời chất vấn đại biểu Quốc hội</a></h5>
+                    <h5><a class="text-inherit" href="{{url('post',$postRight->slug)}}">{{$postRight->name}}</a></h5>
                 </div>
             </article>
-            <article class="card" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1)">
-                <div class="card-img-top">
-                    <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/reyxqqskxq/2020_11_09/biden_anti_china_3_theintercept.jpg" alt="Image Description">
-                </div>
-                <div class="card-body" style="padding: 0.1rem;">
-                    <h5><a class="text-inherit" href="single-article.html">Đừng trông đợi ông Biden gỡ bỏ thuế trừng phạt Trung Quốc</a></h5>
-                </div>
-            </article>
+                @if($loop->index == 1)
+                    @break
+                @endif
+            @endforeach
+            @endif
         </div>
         <!-- End Blog -->
 
@@ -259,7 +230,7 @@
           "prevArrow": "<span class=\"fas fa-arrow-left slick-arrow slick-arrow-soft-white slick-arrow-left slick-arrow-centered-y rounded-circle ml-sm-2 ml-xl-4\"></span>",
           "nextArrow": "<span class=\"fas fa-arrow-right slick-arrow slick-arrow-soft-white slick-arrow-right slick-arrow-centered-y rounded-circle mr-sm-2 mr-xl-4\"></span>",
           "autoplay": true,
-       "autoplaySpeed": 5000,
+       "autoplaySpeed": 2500,
        "infinite": true,
           "adaptiveHeight": true,
           "responsive": [{
@@ -274,87 +245,59 @@
             }
           }]
         }'>
-
+        @if(empty($breakingNewsLeft) == true)
+        {{'Không có bài viết để hiển thị'}}  
+        @else
+        @foreach($breakingNewsLeft as $contentsLeft)
                 <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w210/Uploaded/pwivovlb/2020_11_10/bao_ve_1.jpg" alt="Image Description">
+                <a class="card h-100 transition-3d-hover" href="{{url('post',$contentsLeft->slug)}}">
+                    <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$contentsLeft->thumbnail}}" alt="Image Description">
                         <div class="card-body">
-                            <h5 class="mb-0">Bảo vệ chung cư xịt sơn hàng loạt ôtô</h5>
-                            <p class="font-size-1 text-body mb-0">Chiều 10/11, Công an quận Hà Đông, Hà Nội, cho biết cơ quan điều tra đã triệu tập Trần Đình Thắng, Nguyễn Xuân Loan và Nguyễn Văn Tâm (các nhân viên của Công ty bảo vệ Tây Hồ).</p>
+                            <h5 class="mb-0">{{$contentsLeft->name}}</h5>
+                            <p class="font-size-1 text-body mb-0">{{$contentsLeft->desc}}</p>
                         </div>
                     </a>
                 </div>
+        @endforeach
+        @endif
 
+        @if(empty($breakingNewsCenter) == true)
+        {{'Không có bài viết để hiển thị'}}  
+        @else
+        @foreach($breakingNewsCenter as $contentCenter)
+        @if($loop->first)
                 <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_10/ten_bao_10.11_thumb2.jpg" alt="Image Description">
+                <a class="card h-100 transition-3d-hover" href="{{url('post',$contentCenter->slug)}}">
+                    <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$contentCenter->thumbnail}}" alt="Image Description">
                         <div class="card-body">
-                            <h5 class="mb-0">Vì sao cơn bão sắp vào Biển Đông có tên Vamco?</h5>
-                            <p class="font-size-1 text-body mb-0">Cơn bão Vamco sắp vào Biển Đông là tên mà cơ quan khí tượng Việt Nam đề xuất, với tên Tiếng Việt là Vàm Cỏ. Tên của các cơn bão được đặt theo danh sách đề cử của các quốc gia.</p>
+                            <h5 class="mb-0">{{$contentCenter->name}}</h5>
+                            <p class="font-size-1 text-body mb-0">{{$contentCenter->desc}}</p>
                         </div>
                     </a>
                 </div>
+        @endif
+        @endforeach
+        @endif
+
+        @if(empty($breakingNewsRight) == true)
+        {{'Không có bài viết để hiển thị'}}  
+        @else
+        @foreach($breakingNewsRight as $contentRight)
 
                 <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w210/Uploaded/chuobun/2020_04_01/20160427162842thitlontanggia.jpg" alt="Image Description">
+                <a class="card h-100 transition-3d-hover" href="{{url('post',$contentRight->slug)}}">
+                    <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$contentRight->thumbnail}}" alt="Image Description">
                         <div class="card-body">
-                            <h5 class="mb-0">Giá lợn hơi tại miền Nam đắt hơn miền Bắc 10.000 đồng/kg</h5>
-                            <p class="font-size-1 text-body mb-0">Giá lợn hơi trên cả nước ngày 10/11 có dấu hiệu hạ nhiệt. Tiểu thương thu mua tại miền Bắc với giá 64.000-68.000 đồng/kg, trong khi miền Nam dao động 72.000-77.000 đồng/kg.</p>
+                            <h5 class="mb-0">{{$contentRight->name}}</h5>
+                            <p class="font-size-1 text-body mb-0">{{$contentRight->desc}}</p>
                         </div>
                     </a>
                 </div>
-
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w210/Uploaded/yqdlcqrwq/2020_11_09/10809112020_1_copy.jpg" alt="Image Description">
-                        <div class="card-body">
-                            <h5 class="mb-0">Ứng dụng của DJI hiện ‘đường lưỡi bò’ phi pháp</h5>
-                            <p class="font-size-1 text-body mb-0">DJI Fly, ứng dụng điều khiển thiết bị bay của hãng công nghệ Trung Quốc bị người dùng phản ánh hiện “đường lưỡi bò” trong phần bản đồ.</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w210/Uploaded/zxgorz/2020_11_10/bat_canh_sat.jpg" alt="Image Description">
-                        <div class="card-body">
-                            <h5 class="mb-0">Bắt thêm một công an phường ở TP.HCM</h5>
-                            <p class="font-size-1 text-body mb-0">Sau khi bắt tạm giam 7 cán bộ Công an phường Phú Thọ Hòa, Công an TP.HCM xử lý thêm một trường hợp khác liên quan vụ nhận tiền của người vi phạm pháp luật.</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w960/Uploaded/ovhpaob/2020_11_10/w.jpg" alt="Image Description">
-                        <div class="card-body">
-                            <h5 class="mb-0">Thủ tướng: Người tài giỏi, người tâm huyết phải được trọng dụng</h5>
-                            <p class="font-size-1 text-body mb-0">Những gì tháo gỡ được để dân tộc tiến bước mạnh mẽ hơn thì phải đặt ra trong văn kiện để mọi người đóng góp. Người tài giỏi, người tâm huyết phải được trọng dụng”, Thủ tướng nói.</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/ovhpaob/2020_11_10/201906051221501429_Dao_Thanh_Hai_Doan_DBQH_thanh_pho_Ha_Noi_2_copy_1.jpg" alt="Image Description">
-                        <div class="card-body">
-                            <h5 class="mb-0">Tướng Đào Thanh Hải: Không bảo vệ được cán bộ, không ai dám đổi mới</h5>
-                            <p class="font-size-1 text-body mb-0">Theo thiếu tướng Đào Thanh Hải, trong đổi mới sáng tạo, ranh giới giữa đúng và sai rất mong manh. Gần đây, có tình trạng cán bộ đảng viên chỉ làm tròn vai, không dám đột phá.</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/pwvopivp/2020_11_10/e6f1be19a0b25eec07a3.jpg" alt="Image Description">
-                        <div class="card-body">
-                            <h5 class="mb-0">Sau ngày bầu cử, ông Trump và Biden sống 'hai thế giới song song</h5>
-                            <p class="font-size-1 text-body mb-0">Ở thế giới thứ nhất, ông Biden và các phụ tá bắt đầu lên kế hoạch tiếp quản đất nước. Ở thế giới còn lại, Tổng thống Trump và đội ngũ đánh cược với một cuộc chiến pháp lý lâu dài.</p>
-                        </div>
-                    </a>
-                </div>
-
+                @if($loop->index == 1)
+                @break
+            @endif
+        @endforeach
+        @endif
 
 
             </div>
@@ -364,7 +307,7 @@
         <!-- Hien thi slide tren man hinh ipad/laptop -->
         <div class="d-none d-lg-block col-lg-12 space-lg-1">
             <div class="mb-3">
-                <h3>TIN TỔNG HỢP</h3>
+                <h3>TIN THỂ THAO</h3>
             </div>
             <div class="js-slick-carousel slick slick-gutters-1"
                  data-hs-slick-carousel-options='{
@@ -381,77 +324,25 @@
          }
        }]
      }'>
-
+    
+                @foreach($getAllSubCate as $subCate)
+                @foreach($subCate->getPosts($subCate->id) as $posts)
+                
                 <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#" >
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/dqmblcvo/2020_11_11/51B40456_15A5_476C_9F21_7088FD95F5B3.jpeg" alt="Image Description" style="border-top-left-radius: 0rem;
-            border-top-right-radius: 0rem; height: 150px;">
+                    <a class="card h-100 transition-3d-hover" href="{{url('post',$posts->slug)}}" >
+                    <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$posts->thumbnail}}" alt="{{$posts->name}}" style="border-top-left-radius: 0rem;border-top-right-radius: 0rem; height: 150px;">
                         <div class="card-body" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">Nhất định tôi sẽ tìm ra người thương tôi</h5>
+                            <h5 class="mb-0">{{$posts->name}}</h5>
                         </div>
                     </a>
                     <!-- End Card -->
                 </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#" >
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_11/thumb_chim_xanh.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-          border-top-right-radius: 0rem; height: 150px;">
-                        <div class="card-body" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">'Con chim xanh biếc bay về' - cổ tích cho người lớn</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#" >
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/qoswae/2020_11_12/Pies_okopy.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-        border-top-right-radius: 0rem; height: 150px;">
-                        <div class="card-body h-25" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">Sự hiện diện của các loài vật trong cuộc sống</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_12/starry_night_.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-      border-top-right-radius: 0rem; height: 150px;">
-                        <div class="card-body" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">Sự im lặng của bầy cừu - Tiến sĩ lạ lùng</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#" >
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/qoswae/2020_11_12/Pies_okopy.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-        border-top-right-radius: 0rem; height: 150px;">
-                        <div class="card-body h-25" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">Sự hiện diện của các loài vật trong cuộc sống</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_12/starry_night_.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-      border-top-right-radius: 0rem; height: 150px;">
-                        <div class="card-body" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">Sự im lặng của bầy cừu - Tiến sĩ lạ lùng</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#" style="background: #f7f7f7; ">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_11/Tu_Du.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-    border-top-right-radius: 0rem; height: 150px;">
-                        <div class="card-body" style="padding: 0.5rem;">
-                            <h5 class="mb-0">'Từ Dụ thái hậu' đoạt giải nhất cuộc thi tiểu thuyết</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
+                @if($loop->index == 9)
+                    @break
+                @endif
+                @endforeach
+                @endforeach
+                
                 <!-- End -->
             </div>
         </div>
@@ -479,76 +370,24 @@
           }]
         }'>
 
+        @foreach($getAllSubCate as $subCate)
+                @foreach($subCate->getPosts($subCate->id) as $posts)
+                
                 <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/dqmblcvo/2020_11_11/51B40456_15A5_476C_9F21_7088FD95F5B3.jpeg" alt="Image Description" style="border-top-left-radius: 0rem;
+                    <a class="card h-100 transition-3d-hover" href="{{url('post',$posts->slug)}}">
+                        <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$posts->thumbnail}}" alt="{{$posts->name}}" style="border-top-left-radius: 0rem;
                border-top-right-radius: 0rem; height: 200px;">
                         <div class="card-body" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">Nhất định tôi sẽ tìm ra người thương tôi</h5>
+                            <h5 class="mb-0">{{$posts->name}}</h5>
                         </div>
                     </a>
                     <!-- End Card -->
                 </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_11/thumb_chim_xanh.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-             border-top-right-radius: 0rem; height: 200px;">
-                        <div class="card-body" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">'Con chim xanh biếc bay về' - cổ tích cho người lớn</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/qoswae/2020_11_12/Pies_okopy.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-           border-top-right-radius: 0rem; height: 200px; ">
-                        <div class="card-body h-25" style="background: #f7f7f7;padding: 0.5rem;">
-                            <h5 class="mb-0">Sự hiện diện của các loài vật trong cuộc sống</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_12/starry_night_.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-        border-top-right-radius: 0rem; height: 200px;">
-                        <div class="card-body" style="background: #f7f7f7;padding: 0.5rem;">
-                            <h5 class="mb-0">Sự im lặng của bầy cừu - Tiến sĩ lạ lùng</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_11/Tu_Du.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-      border-top-right-radius: 0rem; height: 200px;">
-                        <div class="card-body" style="background: #f7f7f7;padding: 0.5rem;">
-                            <h5 class="mb-0">'Từ Dụ thái hậu' đoạt giải nhất cuộc thi tiểu thuyết</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_12/starry_night_.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-         border-top-right-radius: 0rem; height: 200px;">
-                        <div class="card-body" style="background: #f7f7f7;padding: 0.5rem;">
-                            <h5 class="mb-0">Sự im lặng của bầy cừu - Tiến sĩ lạ lùng</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
-                <div class="js-slide bg-img-hero-center">
-                    <a class="card h-100 transition-3d-hover" href="#">
-                        <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_11/Tu_Du.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-       border-top-right-radius: 0rem; height: 200px;">
-                        <div class="card-body" style="background: #f7f7f7;padding: 0.5rem;">
-                            <h5 class="mb-0">'Từ Dụ thái hậu' đoạt giải nhất cuộc thi tiểu thuyết</h5>
-                        </div>
-                    </a>
-                    <!-- End Card -->
-                </div>
+                @if($loop->index == 9)
+                    @break
+                @endif
+                @endforeach
+                @endforeach
                 <!-- End -->
             </div>
         </div>
@@ -558,63 +397,54 @@
 
     <div class="col-lg-12 mb-3">
         <div class="mb-3">
-            <h3>TIN SHOWBIZ</h3>
+            <h3>TIN GIẢI TRÍ</h3>
         </div>
         <div data-aos="fade-up" class="aos-init aos-animate">
             <div class="row" style="background: rgba(245, 202, 153, 0.1)">
                 <div class="col-lg-6 col-md-6 order-md-2 col-sm-12 col-12 order-2 order-lg-2 mb-5 mb-lg-0">
                     <div class="row">
+                    @foreach($getSubTinGiaiTri as $subTinGiaiTri)
+                        @foreach($subTinGiaiTri->getPosts($subTinGiaiTri->id) as $postOfTinGiaiTri)
                         <div class="col-lg-6 col-md-12 mb-md-2 col-sm-12 mb-sm-2 mb-4">
-                            <a class="card transition-3d-hover" href="#" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
-                                <img class="card-img-top d-none d-lg-block" src="https://znews-photo.zadn.vn/w480/Uploaded/ovhpaob/2020_11_10/z2171282557494_5d27b80fa4f7b4c3e7e2441b6d7ae184.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
+                            <a class="card transition-3d-hover" href="{{url('post',$postOfTinGiaiTri->slug)}}" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
+                            <img class="card-img-top d-none d-lg-block" src="{{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}}" alt="{{$postOfTinGiaiTri->name}}" style="border-top-left-radius: 0rem;
                       border-top-right-radius: 0rem; ">
                                 <div class="card-body" style="background: rgba(245, 202, 153, 0.1); padding: 4px 4px 4px 4px;">
-                                    <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> Những phát ngôn làm nóng nghị trường Quốc hội</h5>
+                                    <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> {{$postOfTinGiaiTri->name}}</h5>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-lg-6 col-md-12 mb-md-2 col-sm-12 mb-sm-2 mb-4">
-                            <a class="card transition-3d-hover" href="#" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
-                                <img class="card-img-top d-none d-lg-block" src="https://znews-photo.zadn.vn/w480/Uploaded/zdhwqmjwq/2020_11_11/r.jpeg" alt="Image Description" style="border-top-left-radius: 0rem;
-                        border-top-right-radius: 0rem;">
-                                <div class="card-body" style="background: rgba(245, 202, 153, 0.1); padding: 4px 4px 4px 4px;">
-                                    <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> Người TP.HCM co ro giữa tiết trời se lạnh</h5>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 mb-md-2 col-sm-12 mb-sm-2 mb-4">
-                            <a class="card transition-3d-hover" href="#" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
-                                <img class="card-img-top d-none d-lg-block" src="https://znews-photo.zadn.vn/w480/Uploaded/mdf_uswreo/2020_11_11/t400.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-                          border-top-right-radius: 0rem;">
-                                <div class="card-body" style="background: rgba(245, 202, 153, 0.1); padding: 4px 4px 4px 4px;">
-                                    <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> Ivanka Trump thay đổi thế nào từ khi vào Nhà Trắng</h5>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-6 col-md-12 mb-md-2 col-sm-12 mb-sm-2 mb-4">
-                            <a class="card transition-3d-hover" href="#" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
-                                <img class="card-img-top d-none d-lg-block" src="https://znews-photo.zadn.vn/w480/Uploaded/ohunuai/2020_11_10/NGCg.jpg_6654.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
-                            border-top-right-radius: 0rem;">
-                                <div class="card-body" style="background: rgba(245, 202, 153, 0.1);padding: 4px 4px 4px 4px;">
-                                    <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> Gil Lê tránh chụp ảnh chung với Hoàng Thùy Linh</h5>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
+                            {{-- @if($loop->first)  --}}
+                            @if($loop->index == 1) 
+                            @break
+                            @endif  
+                    @endforeach
+                    @endforeach
+                </div>
                 </div>
 
 
 
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 order-1 order-md-1">
                     <!-- Blog -->
-                    <article>
-                        <a class="card align-items-start flex-wrap flex-row h-380rem gradient-x-overlay-sm-navy bg-img-hero transition-3d-hover mb-1" href="blog-profile.html" style="background-image: url(https://znews-photo.zadn.vn/w860/Uploaded/izhqv/2020_10_26/Thumb.jpg);">
+                    @foreach($getSubTinGiaiTri as $subTinGiaiTri)
+                        @foreach($subTinGiaiTri->getPosts($subTinGiaiTri->id) as $postOfTinGiaiTri)
+                        <article>
+                        <a class="card align-items-start flex-wrap flex-row h-380rem gradient-x-overlay-sm-navy bg-img-hero transition-3d-hover mb-1" href="{{url('post',$postOfTinGiaiTri->slug)}}" style="background-image: url({{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}});">
                             <div class="card-footer border-0 bg-transparent mt-auto">
-                                <h3 class="h2 text-white">Noo Phước Thịnh: 'Tôi mất rất nhiều, ví như mối quan hệ với Thủy Tiên'</h3>
+                            <h3 class="h2 text-white">{{$postOfTinGiaiTri->name}}</h3>
                             </div>
                         </a>
-                    </article>
+                    </article>    
+                    @if ($loop->first) 
+                    @break
+                    @endif       
+                    @endforeach
+                    @if($loop->index == 1)
+                    @break
+                    @endif 
+                   
+                    @endforeach
                     <!-- End Blog -->
                 </div>
             </div>
@@ -627,179 +457,36 @@
                 <h3>TIN TỔNG HỢP</h3>
             </div>
             <!-- Card -->
+            @foreach($tinTongHop as $postTinTH)
             <div class="row mb-2 pb-2 border-bottom">
                 <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                     <div class="position-relative">
                         <a href="course-description.html">
-                            <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/lce_uxlcq/2020_11_11/ds.jpg" alt="Image Description" style="border-radius: 0rem;">
+                            <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postTinTH->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
                         </a>
                     </div>
                 </div>
                 <div class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
                     <div class="media mb-2">
                         <div class="media-body">
-                            <a href="course-description.html"><h3 class="h4 text-hover-primary mb-0" >Nhiều người chơi Liên Quân Mobile chưa bị thu lại vật phẩm 'tặng nhầm'</h3></a>
+                        <a href="{{url('post',$postTinTH->slug)}}"><h3 class="h4 text-hover-primary mb-0" >{{$postTinTH->name}}</h3></a>
                         </div>
                     </div>
                     <div class="d-flex justify-content-start align-items-center small text-muted">
                         <div class="d-inline-block mr-2">
-                            6 GIỜ TRƯỚC
+                            {{$dateTime->diffForHumans($postTinTH->created_at)}}
                         </div>
                         <div class="d-inline-block mr-2">
-                            <a style="color: #333;" href="course-description.html">THỂ THAO</a>
+                            @foreach($postTinTH->Categories as $categoryTH)
+                        <a style="color: #333;" href="{{$categoryTH->slug}}">{{$categoryTH->name}}</a>
+                            @endforeach
                         </div>
                     </div>
                     <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">
-                        Sau sự cố ngày 11/11, nhiều người chơi của Liên Quân Mobile vẫn được trang bị skin, tướng đầy đủ. Những người còn lại đã bị thu hồi vật phẩm "tặng nhầm".</p>
+                    {{$postTinTH->desc}}</p>
                 </div>
             </div>
-
-
-            <div class="row mb-2 pb-2 border-bottom">
-                <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
-                    <div class="position-relative">
-                        <a href="course-description.html">
-                            <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/mdf_drkydd/2020_11_11/800.jpeg" alt="Image Description" style="border-radius: 0rem;">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <div class="media mb-2">
-                        <div class="media-body">
-                            <a href="course-description.html"><h3 class="h4 text-hover-primary mb-0" >Gia đình ông Trump có thể không giàu như nhiều người nghĩ</h3></a>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center small text-muted">
-                        <div class="d-inline-block mr-2">
-                            6 GIỜ TRƯỚC
-                        </div>
-                        <div class="d-inline-block mr-2">
-                            <a style="color: #333;" href="course-description.html">THỂ THAO</a>
-                        </div>
-                    </div>
-                    <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">
-                        Kể từ khi cha bước chân vào Nhà Trắng, công việc kinh doanh của Ivanka và các anh trai cũng chịu ảnh hưởng.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="row mb-2 pb-2 border-bottom">
-                <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
-                    <div class="position-relative">
-                        <a href="course-description.html">
-                            <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/neg_sfzyrwj/2020_11_11/gian_lan.jpg" alt="Image Description" style="border-radius: 0rem;">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <div class="media mb-2">
-                        <div class="media-body">
-                            <a href="course-description.html"><h3 class="h4 text-hover-primary mb-0" >Quan chức Nhà Trắng tung 234 trang hồ sơ cáo buộc gian lận bầu cử</h3></a>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center small text-muted">
-                        <div class="d-inline-block mr-2">
-                            6 GIỜ TRƯỚC
-                        </div>
-                        <div class="d-inline-block mr-2">
-                            <a style="color: #333;" href="course-description.html">THỂ THAO</a>
-                        </div>
-                    </div>
-                    <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">
-                        Xuất hiện trên kênh Fox News ngày 10/11, Thư ký Báo chí Nhà Trắng Kayleigh McEnany đưa ra tập hồ sơ 234 trang chứa thông tin về 11.000 vụ gian lận bầu cử.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row mb-2 pb-2 border-bottom">
-                <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
-                    <div class="position-relative">
-                        <a href="course-description.html">
-                            <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/lce_jwqcz/2020_11_11/khong_che_bb_baaacF5lT4.jpg" alt="Image Description" style="border-radius: 0rem;">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <div class="media mb-2">
-                        <div class="media-body">
-                            <a href="course-description.html"><h3 class="h4 text-hover-primary mb-0" >
-                                    Khởi tố nghi phạm giết chị ruột ở TP.HCM
-                                </h3></a>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center small text-muted">
-                        <div class="d-inline-block mr-2">
-                            6 GIỜ TRƯỚC
-                        </div>
-                        <div class="d-inline-block mr-2">
-                            <a style="color: #333;" href="course-description.html">THỂ THAO</a>
-                        </div>
-                    </div>
-                    <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">
-                        Sau khi cãi vã, Nho sát hại chị gái rồi cố thủ trong nhà. Cảnh sát phải phá cửa để khống chế nghi phạm.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row mb-2 pb-2 border-bottom">
-                <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
-                    <div class="position-relative">
-                        <a href="course-description.html">
-                            <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/yrfjpyvslyr/2020_11_11/anh4.jpg" alt="Image Description" style="border-radius: 0rem;">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <div class="media mb-2">
-                        <div class="media-body">
-                            <a href="course-description.html"><h3 class="h4 text-hover-primary mb-0" >
-                                    Đông đảo CĐV nữ xem Jack so tài Quang Hải trên sân cỏ</h3></a>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center small text-muted">
-                        <div class="d-inline-block mr-2">
-                            6 GIỜ TRƯỚC
-                        </div>
-                        <div class="d-inline-block mr-2">
-                            <a style="color: #333;" href="course-description.html">THỂ THAO</a>
-                        </div>
-                    </div>
-                    <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">
-                        Nhiều cổ động viên nữ có mặt trên khán đài sân Thống Nhất để xem trận đấu giao hữu giữa các tuyển thủ Việt Nam và dàn nghệ sĩ nổi tiếng như Jack, ViruSs lúc 18h30 ngày 11/11.</p>
-                </div>
-            </div>
-
-            <div class="row mb-2 pb-2 border-bottom">
-                <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
-                    <div class="position-relative">
-                        <a href="course-description.html">
-                            <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/wpdhnwhnw/2020_11_11/116418721_2252453701566817_9208072881615440565_o.jpg" alt="Image Description" style="border-radius: 0rem;">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <div class="media mb-2">
-                        <div class="media-body">
-                            <a href="course-description.html"><h3 class="h4 text-hover-primary mb-0" >Game show đã khiến nghệ sĩ Việt lao đao thế nào?</h3></a>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center small text-muted">
-                        <div class="d-inline-block mr-2">
-                            6 GIỜ TRƯỚC
-                        </div>
-                        <div class="d-inline-block mr-2">
-                            <a style="color: #333;" href="course-description.html">THỂ THAO</a>
-                        </div>
-                    </div>
-                    <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">
-                        Về bản chất, game show như một con dao hai lưỡi. Nó có thể mang lại tiền bạc, tên tuổi cho nghệ sĩ nhưng cũng là nguyên nhân khiến họ bị nhấn chìm.</p>
-                </div>
-            </div>
-
-            <!-- End Card -->
-            <!-- Pagination -->
-            <!-- End Pagination -->
+            @endforeach
         </div>
         <!-- Sticky Block End Point -->
         <div id="stickyBlockEndPoint"></div>

@@ -113,8 +113,6 @@
                     <!-- End Author -->
                 </div>
                 <div class="pl-lg-1" style="text-align: justify">
-                    <p class="h3">{{ $post->desc }}</p>
-                    <p>
                     @php
                     $content =  $post->content; 
                     echo str_replace("<img","<img class='img-fluid rounded'",$content);

@@ -1,4 +1,4 @@
-@extends('frontend.layouts.index')
+@extends('frontend.layouts.others.index')
 
 @section('content')
     <div class="container space-1 space-lg-3">
