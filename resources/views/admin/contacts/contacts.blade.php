@@ -27,7 +27,7 @@
                 <table class="table table-striped table-bordered" id="table">
                     <thead>
                         <tr>
-                        <th scope="col">Title</th>
+                          <th scope="col">Title</th>
                           <th scope="col">Tên</th>
                           <th scope="col">user_id</th>
                           <th scope="col">Email</th>
@@ -43,7 +43,7 @@
                           <td>{{$contact->contact_name}}</td>
                           <td>
                             @if($contact->user_id != '')
-                              {{$contact->user_id}}
+                              {{$contact->fullname}}
                             @else
                               None
                             @endif

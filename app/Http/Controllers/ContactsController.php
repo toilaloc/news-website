@@ -49,7 +49,9 @@ class ContactsController extends Controller
 
     public function getContacts()
     {
-        $contacts = Contacts::all();
+        $contacts = DB::table('contacts as p')
+                    ->leftJoin('users as us', 'p.user_id', '=', 'us.id')
+                    ->select('p.id','p.contact_name','us.fullname','p.user_id','p.contact_email','p.contact_title','p.contact_phone','p.contact_message')->orderby('id','desc')->get();
         return view('admin.contacts.contacts', compact('contacts'));
     }
 
