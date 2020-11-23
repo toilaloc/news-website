@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Comments;
-use App\Models\Post_votes;
+use App\Models\Followers;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
-class CommentsController extends Controller
+class FollowersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,6 @@ class CommentsController extends Controller
      */
     public function index()
     {
-
-        $comments =  Comments::all();
-        return view('admin.comments.index', compact('comments'));
     }
 
     /**
@@ -29,9 +25,7 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        //
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -41,36 +35,18 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'content' => 'required|max:500',
-            'comment_id',
-            'star',
-            'date',
-            'vote'
-        ]);
-
-        if (!empty($request->comment_id)) {
-            $comment_id = $request->comment_id;
+        if (isset($request->follow)) {
+            $data = new Followers();
+            $data->user_id = $request->user_id;
+            $data->author_id = $request->author_id;
+            $data->save();
+            return back();
+        } else if (isset($request->unfollow)) {
+            Followers::where(['author_id' => $request->author_id, 'user_id' => $request->user_id])->delete();
+            return back();
         } else {
-            $comment_id = NULL;
-        }
-
-        if ($validateData) {
-            $comment =  Comments::create([
-                'post_id' => $request->post_id,
-                'user_id' => $request->user_id,
-                'content' => $request->content,
-                'comment_id' => $comment_id,
-                'date' => $request->date,
-                'vote' => NULL
-            ]);
-            $rate =  Post_votes::create([
-                'post_id' => $request->post_id,
-                'user_id' => $request->user_id,
-                'rate' => $request->star,
-            ]);
-            // dd($request->star);
-            return back()->with('success', 'Đã bình luận');
+            dd(123);
+            // return back();
         }
     }
 
@@ -82,7 +58,6 @@ class CommentsController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -93,7 +68,6 @@ class CommentsController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -105,7 +79,6 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -116,10 +89,5 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        $deleteComments = Comments::find($id)->delete();
-        if ($deleteComments) {
-            return redirect()->route('comments.index')
-                ->with('success', 'Đã xóa bình luận');
-        }
     }
 }

@@ -19,19 +19,19 @@ class Users extends Model
      */
 
     protected $fillable = [
-        'username', 
-        'fullname', 
-        'email', 
-        'bio', 
-        'address', 
-        'gender', 
-        'phone', 
-        'active', 
-        'thumbnail', 
-        'vote', 
-        'status', 
-        'follower', 
-        'following', 
+        'username',
+        'fullname',
+        'email',
+        'bio',
+        'address',
+        'gender',
+        'phone',
+        'active',
+        'thumbnail',
+        'vote',
+        'status',
+        'follower',
+        'following',
         'password',
     ];
 
@@ -53,11 +53,12 @@ class Users extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function hasPosts(){
+    public function hasPosts()
+    {
         return $this->hasMany(Posts::class, 'author_id');
     }
-    public function hasComments(){
+    public function hasComments()
+    {
         return $this->hasMany(Comments::class, 'user_id');
     }
-
 }

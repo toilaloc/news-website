@@ -106,8 +106,8 @@ class PostsController extends Controller
         $post->Tags()->sync($tagIds);
     }
 
-    
-    return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');             
+
+    return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');
 
     }
 
@@ -130,9 +130,9 @@ class PostsController extends Controller
     public function show($slug)
     {
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
-        $post = Posts::where('slug', $slug)->firstOrFail(); 
+        $post = Posts::where('slug', $slug)->firstOrFail();
         $postNew = Posts::take(5)->get();
-       
+
         return view('frontend.pages.posts.postDisplay', compact('post','dateTime','postNew'));
     }
 
@@ -241,7 +241,7 @@ class PostsController extends Controller
 
         $postUpdate->Categories()->sync($request->input('categories_id', []));
 
-        return redirect()->route('posts.index')->with('success', 'Cập nhật tin tức thành công');             
+        return redirect()->route('posts.index')->with('success', 'Cập nhật tin tức thành công');
 
         // Add = attach
         // Delete = detach

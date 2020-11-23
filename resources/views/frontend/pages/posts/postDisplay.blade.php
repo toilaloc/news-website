@@ -10,69 +10,45 @@
             color: #0052ea;
         }
 
-        @import url(//netdna.bootstrapcdn.com/font-awesome/5.10.0/css/font-awesome.css);
-
-        /*reset css*
-        div,
-        label {
-            margin: 0;
-            padding: 0;
+        div.stars {
+            width: 42%;
+            display: inline-block;
         }
 
-        body {
-            margin: 20px;
-        }
-
-        h1 {
-            font-size: 1.5em;
-            margin: 10px;
-        }
-
-        /****** Style Star Rating Widget *****/
-        #rating {
-            border: none;
-            float: left;
-        }
-
-        #rating>input {
+        input.star {
             display: none;
         }
 
-        /*ẩn input radio - vì chúng ta đã có label là GUI*/
-        #rating>label:before {
-            margin: 5px;
-            font-size: 1.25em;
-            font-family: FontAwesome;
-            display: inline-block;
-            content: "\f005";
-        }
-
-        /*1 ngôi sao*/
-        #rating>.half:before {
-            content: "\f089";
-            position: absolute;
-        }
-
-        /*0.5 ngôi sao*/
-        #rating>label {
-            color: #ddd;
+        label.star {
             float: right;
+            padding: 10px;
+            font-size: 36px;
+            color: #444;
+            transition: all .2s;
         }
 
-        /*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
-        /*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
-        #rating>input:checked~label,
-        #rating:not(:checked)>label:hover,
-        #rating:not(:checked)>label:hover~label {
-            color: #FFD700;
+        input.star:checked~label.star:before {
+            content: '\f005';
+            color: #FD4;
+            transition: all .25s;
         }
 
-        /* Hover vào các sao phía trước ngôi sao đã chọn*/
-        #rating>input:checked+label:hover,
-        #rating>input:checked~label:hover,
-        #rating>label:hover~input:checked~label,
-        #rating>input:checked~label:hover~label {
-            color: #FFED85;
+        input.star-5:checked~label.star:before {
+            color: rgb(255, 238, 0);
+            text-shadow: 0 0 20px rgb(248, 236, 56);
+        }
+
+        input.star-1:checked~label.star:before {
+            color: #F62;
+        }
+
+        label.star:hover {
+            transform: rotate(-15deg) scale(1.3);
+        }
+
+        label.star:before {
+            content: '\f005';
+            font-family: 'Font Awesome 5 Free';
         }
 
     </style>
@@ -114,101 +90,150 @@
                 </div>
                 <div class="pl-lg-1" style="text-align: justify">
                     @php
-                    $content =  $post->content; 
-                    echo str_replace("<img","<img class='img-fluid rounded'",$content);
-                    @endphp
-                    </p>
+                    $content = $post->content;
+                    echo str_replace("<img","<img
+                        class='img-fluid rounded'",$content);
+                                                                                                                                                        @endphp
+                                                                                                                                          </div>
+                                                                                                                                          <!-- Badges -->
+                                                                                                                                          <div class="
+                        mt-5">
+                        @foreach ($post->Tags as $tag)
+                            <a class="btn btn-xs btn-soft-secondary mb-1"
+                                href="{{ url('tag', $tag->slug) }}">{{ $tag->name }}</a>
+                        @endforeach
+                </div>
+                <!-- End Badges -->
 
-                                        </div>
+                <!-- Share -->
+                <div class="row justify-content-sm-between align-items-sm-center space-1 ">
+                    <div class="col-sm-7 mb-2 mb-sm-0">
+                        <div class="d-flex align-items-center">
+                            <span class="d-block small font-weight-bold text-cap mr-2">Share:</span>
 
-                                        <!-- Badges -->
-                                        <div class=" mt-5">
-                                @foreach ($post->Tags as $tag)
-                                    <a class="btn btn-xs btn-soft-secondary mb-1"
-                                        href="{{ url('tag', $tag->slug) }}">{{ $tag->name }}</a>
-                                @endforeach
+                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </div>
                     </div>
-                    <!-- End Badges -->
+                    <div class="col-sm-2 text-sm-right">
+                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle mr-2" href="#" data-toggle="tooltip"
+                            data-placement="top" title="Bookmark story">
+                            <i class="far fa-bookmark"></i>
+                        </a>
+                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle" href="#" data-toggle="tooltip"
+                            data-placement="top" title="Report story">
+                            <i class="far fa-flag"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- End Share -->
 
-                    <!-- Share -->
-                    <div class="row justify-content-sm-between align-items-sm-center space-1 ">
-                        <div class="col-sm-7 mb-2 mb-sm-0">
-                            <div class="d-flex align-items-center">
-                                <span class="d-block small font-weight-bold text-cap mr-2">Share:</span>
 
-                                <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                    <i class="fab fa-telegram"></i>
-                                </a>
+                <div class="border-top pt-3">
+                    <h3 class="mb-4">Thông tin tác giả</h3>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 pl-7">
+                            <div class="avatar avatar-xl avatar-circle mb-3">
+                                <img class="avatar-img" style="width: 100%;height: 100%;"
+                                    src="{{ asset('uploads/users') }}/{{ $post->Author->thumbnail }}"
+                                    alt="Image Description">
                             </div>
+                            <!-- End Icon Block -->
                         </div>
-                        <div class="col-sm-3 mb-2 mb-sm-0" id="rating">
-                            <input type="radio" id="star5" name="rating" value="5" />
-                            <label class="full" for="star5" title="Awesome - 5 stars"></label>
 
-                            <input type="radio" id="star4" name="rating" value="4" />
-                            <label class="full" for="star4" title="Pretty good - 4 stars"></label>
-
-                            <input type="radio" id="star3" name="rating" value="3" />
-                            <label class="full" for="star3" title="Meh - 3 stars"></label>
-
-                            <input type="radio" id="star2" name="rating" value="2" />
-                            <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-
-                            <input type="radio" id="star1" name="rating" value="1" />
-                            <label class="full" for="star1" title="Sucks big time - 1 star"></label>
-                        </div>
-                        <div class="col-sm-2 text-sm-right">
-                            <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle mr-2" href="#"
-                                data-toggle="tooltip" data-placement="top" title="Bookmark story">
-                                <i class="far fa-bookmark"></i>
-                            </a>
-                            <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle" href="#" data-toggle="tooltip"
-                                data-placement="top" title="Report story">
-                                <i class="far fa-flag"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- End Share -->
-
-
-                    <div class="border-top pt-3">
-                        <h3 class="mb-4">Thông tin tác giả</h3>
-
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-3 pl-7">
-                                <div class="avatar avatar-xl avatar-circle mb-3">
-                                    <img class="avatar-img" style="width: 100%;height: 100%;"
-                                        src="{{ asset('uploads/users') }}/{{ $post->Author->thumbnail }}"
-                                        alt="Image Description">
+                        <div class="col-lg-9 col-md-9 col-sm-9">
+                            <!-- Info -->
+                            <div class="row">
+                                <div class="col-6">
+                                    @if (App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
+                                        <form action="{{ route('followers.store') }}" method="POST">
+                                            @csrf
+                                            <h3 class="mb-0">{{ $post->Author->fullname }}
+                                                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                                <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                                                <button type="submit"
+                                                    class="btn btn-xs btn-soft-danger font-weight-bold transition-3d-hover py-1 px-2 ml-1"
+                                                    name="unfollow" value="unfollow">Unfollow
+                                                </button>
+                                            </h3>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('followers.store') }}" method="POST">
+                                            @csrf
+                                            <h3 class="mb-0">{{ $post->Author->fullname }}
+                                                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                                <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                                                <button type="submit"
+                                                    class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1"
+                                                    name="follow" value="follow">Follow
+                                                </button>
+                                            </h3>
+                                        </form>
+                                    @endif
                                 </div>
-                                <!-- End Icon Block -->
-                            </div>
+                                <div class="col-6">
+                                    {{-- @if (App\Models\Author_votes::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
+                                        <span>Bạn đã đánh giá bài tác giả này rồi!</span>
+                                    @else
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <div class="stars" style="float: right;width: 100%;">
+                                                    <input class="star star-5" id="star-5" type="radio" value="5"
+                                                        name="star" />
+                                                    <label style="padding: 2px;font-size: 14px;" class="star star-5"
+                                                        for="star-5"></label>
+                                                    <input class="star star-4" id="star-4" type="radio" value="4"
+                                                        name="star" />
+                                                    <label style="padding: 2px;font-size: 14px;" class="star star-4"
+                                                        for="star-4"></label>
+                                                    <input class="star star-3" id="star-3" type="radio" value="3"
+                                                        name="star" />
+                                                    <label style="padding: 2px;font-size: 14px;" class="star star-3"
+                                                        for="star-3"></label>
+                                                    <input class="star star-2" id="star-2" type="radio" value="2"
+                                                        name="star" />
+                                                    <label style="padding: 2px;font-size: 14px;" class="star star-2"
+                                                        for="star-2"></label>
+                                                    <input class="star star-1" id="star-1" type="radio" value="1"
+                                                        name="star" />
+                                                    <label style="padding: 2px;font-size: 14px;" class="star star-1"
+                                                        for="star-1"></label>
 
-                            <div class="col-lg-9 col-md-9 col-sm-9">
-                                <!-- Info -->
-                                <h3 class="mb-0">{{ $post->Author->fullname }} <button type="button"
-                                        class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</button>
-                                </h3>
-                                <p style="text-align: justify;">{{ $post->Author->bio }} </p>
-                                <!-- End Info -->
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <form action="">
+                                                    <button class="btn btn-primary btn-xs " style="float: left"
+                                                        type="submit">Đánh
+                                                        giá
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @endif --}}
+                                </div>
                             </div>
+                            <p style="text-align: justify;">{{ $post->Author->bio }} </p>
+                            <!-- End Info -->
                         </div>
                     </div>
+                </div>
 
 
                 <div class="pt-2 mb-11 border-top space-lg-1">
                     <div class="pt-2 mb-11">
                         <div class="mb-4">
-                            <h3>{{$post->hasComments->count()}} Bình luận</h3>
+                            <h3>{{ $post->hasComments->count() }} Bình luận</h3>
                         </div>
                         @include('frontend.pages.comments.listComments',['comments'=>$post->Comment_post($post->id)])
                         <div class="mb-5">
@@ -220,104 +245,104 @@
                     </div>
                 </div>
             </div>
-                <div id="stickyBlockStartPoint" class="col-lg-4 mb-7 mb-lg-0">
-                    <!-- Sidebar Content -->
-                    <div class="js-sticky-block card bg-white" data-hs-sticky-block-options='{
-                                       "parentSelector": "#stickyBlockStartPoint",
-                                       "startPoint": "#stickyBlockStartPoint",
-                                       "endPoint": "#stickyBlockEndPoint",
-                                       "stickyOffsetTop": 24,
-                                       "stickyOffsetBottom": 24
-                                     }'>
+            <div id="stickyBlockStartPoint" class="col-lg-4 mb-7 mb-lg-0">
+                <!-- Sidebar Content -->
+                <div class="js-sticky-block card bg-white"
+                    data-hs-sticky-block-options='{"parentSelector": "#stickyBlockStartPoint","startPoint": "#stickyBlockStartPoint",
+                                                                                                                                                                                                                    "endPoint": "#stickyBlockEndPoint","stickyOffsetTop": 24,"stickyOffsetBottom": 24}'>
 
-                        {{-- Include 5 Post New --}}
-                        @include('frontend.components.postNew')
+                    {{-- Include 5 Post New --}}
+                    @include('frontend.components.postNew')
 
-                        <div class="card-header" style="padding: 0rem 0rem; border-bottom: none;">
-                            <div class="col-lg">
-                                <div class="mb-7">
-                                    <div class="mb-3 border-bottom">
-                                        <h3>Tin nổi bật</h3>
-                                    </div>
-
-                                    <!-- Blog -->
-                                    <article class="mb-3">
-                                        <div class="media">
-                                            <div class="avatar avatar-lg mr-3">
-                                                <img class="img-fluid"
-                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                    alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                        miền
-                                                        Trung mưa lớn</a></h4>
-                                                <small class="d-inline-block">Feb 15, 2020</small>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <!-- End Blog -->
-                                    <!-- Blog -->
-                                    <article class="mb-3">
-                                        <div class="media">
-                                            <div class="avatar avatar-lg mr-3">
-                                                <img class="img-fluid"
-                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                    alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                        miền
-                                                        Trung mưa lớn</a></h4>
-                                                <small class="d-inline-block">Feb 15, 2020</small>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <!-- End Blog -->
-                                    <!-- Blog -->
-                                    <article class="mb-3">
-                                        <div class="media">
-                                            <div class="avatar avatar-lg mr-3">
-                                                <img class="img-fluid"
-                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                    alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                        miền
-                                                        Trung mưa lớn</a></h4>
-                                                <small class="d-inline-block">Feb 15, 2020</small>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <!-- End Blog -->
-                                    <!-- Blog -->
-                                    <article class="mb-3">
-                                        <div class="media">
-                                            <div class="avatar avatar-lg mr-3">
-                                                <img class="img-fluid"
-                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                    alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                        miền
-                                                        Trung mưa lớn</a></h4>
-                                                <small class="d-inline-block">Feb 15, 2020</small>
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <!-- End Blog -->
+                    <div class="card-header" style="padding: 0rem 0rem; border-bottom: none;">
+                        <div class="col-lg">
+                            <div class="mb-7">
+                                <div class="mb-3 border-bottom">
+                                    <h3>Tin nổi bật</h3>
                                 </div>
+
+                                <!-- Blog -->
+                                <article class="mb-3">
+                                    <div class="media">
+                                        <div class="avatar avatar-lg mr-3">
+                                            <img class="img-fluid"
+                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                alt="Image Description">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình
+                                                    thành,
+                                                    miền
+                                                    Trung mưa lớn</a></h4>
+                                            <small class="d-inline-block">Feb 15, 2020</small>
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- End Blog -->
+                                <!-- Blog -->
+                                <article class="mb-3">
+                                    <div class="media">
+                                        <div class="avatar avatar-lg mr-3">
+                                            <img class="img-fluid"
+                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                alt="Image Description">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình
+                                                    thành,
+                                                    miền
+                                                    Trung mưa lớn</a></h4>
+                                            <small class="d-inline-block">Feb 15, 2020</small>
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- End Blog -->
+                                <!-- Blog -->
+                                <article class="mb-3">
+                                    <div class="media">
+                                        <div class="avatar avatar-lg mr-3">
+                                            <img class="img-fluid"
+                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                alt="Image Description">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình
+                                                    thành,
+                                                    miền
+                                                    Trung mưa lớn</a></h4>
+                                            <small class="d-inline-block">Feb 15, 2020</small>
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- End Blog -->
+                                <!-- Blog -->
+                                <article class="mb-3">
+                                    <div class="media">
+                                        <div class="avatar avatar-lg mr-3">
+                                            <img class="img-fluid"
+                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                alt="Image Description">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình
+                                                    thành,
+                                                    miền
+                                                    Trung mưa lớn</a></h4>
+                                            <small class="d-inline-block">Feb 15, 2020</small>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <!-- End Blog -->
                             </div>
                         </div>
-
                     </div>
+
                 </div>
-                <!-- End Sidebar Content -->
             </div>
+            <!-- End Sidebar Content -->
         </div>
+    </div>
     </div>
     <!-- End Content Section -->
 
@@ -366,7 +391,8 @@
                             <div class="row justify-content-between">
                                 <div class="col-6">
                                     <a class="d-block small font-weight-bold text-cap mb-2" href="#">Tech</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Should You Buy An
+                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Should You Buy
+                                            An
                                             Apple Pencil?</a></h4>
                                 </div>
 
@@ -455,7 +481,8 @@
                                     <img class="img-fluid" src="../../../assets/svg/clients-logo/mapbox-original.svg"
                                         alt="Logo">
                                 </div>
-                                <p class="mb-0">Mapbox empowers marketers to create digital marketing dashboards easily and
+                                <p class="mb-0">Mapbox empowers marketers to create digital marketing dashboards easily
+                                    and
                                     share them with their team.</p>
                             </div>
                             <div class="card-footer">
@@ -475,7 +502,8 @@
                                     <img class="img-fluid" src="../../../assets/svg/clients-logo/netflix-original.svg"
                                         alt="Logo">
                                 </div>
-                                <p class="mb-0">Netflix's mission is to create a planet run by the sun. In order to achieve
+                                <p class="mb-0">Netflix's mission is to create a planet run by the sun. In order to
+                                    achieve
                                     this goal, they needed to find a way to make solar simple.</p>
                             </div>
                             <div class="card-footer">
@@ -517,6 +545,47 @@
                 id = 'star' + f + (r % f ? 'half' : '')
             id && (document.getElementById(id).checked = !0)
         }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                    'content')
+            }
+        });
+        // $(document).on('click', '#follow', function(e) {
+        //     $.ajax({
+        //         url: "{{ route('followers.store') }}",
+        //         type: "post",
+        //         data: {
+        //             'user_id': '{{ Auth::id() }}',
+        //             'author_id': '{{ $post->author_id }}',
+        //             'follow': 1
+        //         },
+        //         success: function(data) {
+        //             alert("Theo dõi tác giả thành công!");
+        //         },
+        //         error: function(error) {
+        //             alert("Theo dõi tác giả thất bại!");
+        //         }
+        //     });
+        // });
+        // $(document).on('click', '#unfollow', function(e) {
+        //     $.ajax({
+        //         url: "{{ route('followers.store') }}",
+        //         type: "post",
+        //         data: {
+        //             'user_id': '{{ Auth::id() }}',
+        //             'author_id': '{{ $post->author_id }}',
+        //             'unfollow': 1
+        //         },
+        //         success: function(data) {
+        //             alert("Hủy theo dõi tác giả thành công!");
+        //         },
+        //         error: function(error) {
+        //             alert("Hủy theo dõi tác giả thất bại!");
+        //         }
+        //     });
+        // });
+
     </script>
 
 
