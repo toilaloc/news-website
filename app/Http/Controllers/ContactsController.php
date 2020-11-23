@@ -44,7 +44,7 @@ class ContactsController extends Controller
             $contact->contact_message = $request->contact_message;
             $contact->save();
     //Thực hiện chuyển trang
-    return redirect('frontend/contacts')->with('success', 'Gửi liên hệ thành công, chúng tối sẽ trả lời bạn qua email sớm nhất có thể');
+    return redirect('frontend/contacts')->with('success', 'Gửi liên hệ thành công, chúng tối sẽ trả lời bạn qua email hoặc số điện thoại bạn đã cung cấp sớm nhất có thể');
     }
 
     public function getContacts()

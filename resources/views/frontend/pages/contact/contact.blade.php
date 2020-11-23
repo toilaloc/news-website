@@ -82,6 +82,9 @@
             <h2>Nói cho chúng tôi vấn đề của bạn</h2>
             <p>Chúng tôi sẽ giải đáp mọi thắc mắc trong quá trình sử dụng hệ thống.</p>
         </div>
+        <!-- End Title -->
+
+        <div class="w-lg-80 mx-auto">
         
         @if(session()->get('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -91,9 +94,19 @@
             </button>
             </div>
         @endif
-        <!-- End Title -->
-
-        <div class="w-lg-80 mx-auto">
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+        @endif
             <!-- Contacts Form -->
             <form class="js-validate" action="{{url('frontend/contacts')}}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -101,9 +114,9 @@
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
-                            <label class="input-label">Your name</label>
-                            <input type="text" class="form-control" name="contact_name" placeholder="Name" aria-label="Jeff Fisher" required
-                                   data-msg="Please enter your name.">
+                            <label class="input-label">Tên của bạn</label>
+                            <input type="text" class="form-control" name="contact_name" placeholder="Tên của bạn" aria-label="Tên của bạn" required
+                                   data-msg="Làm ơn nhập tên của bạn.">
                         </div>
                     </div>
                     <!-- End Input -->
@@ -111,9 +124,9 @@
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
-                            <label class="input-label">Your email address</label>
-                            <input type="email" class="form-control" name="contact_email" placeholder="email@gmail.com" aria-label="jackwayley@gmail.com" required
-                                   data-msg="Please enter a valid email address.">
+                            <label class="input-label">Địa chỉ email</label>
+                            <input type="email" class="form-control" name="contact_email" placeholder="Địa chỉ email" aria-label="Địa chỉ email" required
+                                   data-msg="Làm ơn nhập địa chỉ email.">
                         </div>
                     </div>
                     <!-- End Input -->
@@ -123,9 +136,9 @@
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
-                            <label class="input-label">title</label>
-                            <input type="text" class="form-control" name="contact_title" placeholder="Tiêu đề" aria-label="Web design" required
-                                   data-msg="Please enter a subject.">
+                            <label class="input-label">Tiều đề</label>
+                            <input type="text" class="form-control" name="contact_title" placeholder="Tiêu đề" aria-label="Tiêu đề" required
+                                   data-msg="Làm ơn nhập tiêu đề.">
                         </div>
                     </div>
                     <!-- End Input -->
@@ -133,26 +146,25 @@
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
-                            <label class="input-label">Your phone number</label>
-                            <input type="number" class="form-control" name="contact_phone" placeholder="+84 1111 1111 1" aria-label="1-800-643-4500" required
-                                   data-msg="Please enter a valid phone number.">
+                            <label class="input-label">Số điện thoại</label>
+                            <input type="number" class="form-control" name="contact_phone" placeholder="+84 1111 1111 1" aria-label="+84 1111 1111 1" required
+                                   data-msg="Làm ơn nhập đúng số điệ thoại.">
                         </div>
                     </div>
                     <!-- End Input -->
                 </div>
                 <!-- Input -->
+                @guest
+                @else
                 <div class="col-sm-6 mb-4" style="padding-left: 0;">
                     <div class="js-form-message">
                         <label class="input-label">User info</label>
-                        <select class="form-control form-control-sm"  name="user_id" >
-                        @guest
-                            <option>None</option>
-                        @else
+                        <select class="form-control"  name="user_id" >
                             <option value="{{Auth::user()->id}}">{{Auth::user()->fullname}}</option>
-                        @endguest
                         </select>
                     </div>
                 </div>
+                @endguest
                 <!-- End Input -->
                 
                 <!-- Input -->
