@@ -18,12 +18,12 @@ class CreatePostsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('content');
-            $table->text('desc')->nullable();;
+            $table->text('desc')->nullable();
             $table->string('thumbnail');
-            $table->date('date')->nullable();;
-            $table->boolean('vote')->nullable();;
+            $table->date('date')->nullable();
+            $table->boolean('vote')->nullable();
             $table->boolean('status');
-            $table->boolean('view')->nullable();;
+            $table->boolean('view')->nullable();
             $table->bigInteger('author_id')->unsigned();
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('reviewer');
