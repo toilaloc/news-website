@@ -41,36 +41,47 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'content' => 'required|max:500',
-            'comment_id',
-            'star',
-            'date',
-            'vote'
-        ]);
-
-        if (!empty($request->comment_id)) {
-            $comment_id = $request->comment_id;
-        } else {
-            $comment_id = NULL;
-        }
-
-        if ($validateData) {
-            $comment =  Comments::create([
-                'post_id' => $request->post_id,
-                'user_id' => $request->user_id,
-                'content' => $request->content,
-                'comment_id' => $comment_id,
-                'date' => $request->date,
-                'vote' => NULL
+        if ($request->content) {
+            $validateData = $request->validate([
+                'content' => 'required|max:500',
+                'comment_id',
+                'date',
+                'vote'
             ]);
+
+            if (!empty($request->comment_id)) {
+                $comment_id = $request->comment_id;
+            } else {
+                $comment_id = NULL;
+            }
+
+            if ($validateData) {
+                $comment =  Comments::create([
+                    'post_id' => $request->post_id,
+                    'user_id' => $request->user_id,
+                    'content' => $request->content,
+                    'comment_id' => $comment_id,
+                    'date' => $request->date,
+                    'vote' => NULL
+                ]);
+                if ($request->star) {
+                    $rate =  Post_votes::create([
+                        'post_id' => $request->post_id,
+                        'user_id' => $request->user_id,
+                        'rate' => $request->star,
+                    ]);
+                }
+                // dd($request->star);
+                return back()->with('success', 'Đã bình luận');
+            }
+        } else {
             $rate =  Post_votes::create([
                 'post_id' => $request->post_id,
                 'user_id' => $request->user_id,
                 'rate' => $request->star,
             ]);
             // dd($request->star);
-            return back()->with('success', 'Đã bình luận');
+            return back()->with('success', 'Đã đánh giá');
         }
     }
 
