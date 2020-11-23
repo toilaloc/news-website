@@ -14,7 +14,7 @@
 
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
-
+    <script src="{{asset('frontend/assets/vendor/jquery/dist/jquery.min.js')}}"></script>
     <!-- CSS Implementing Plugins -->
 
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/font-awesome/css/all.min.css') }}">
@@ -24,6 +24,7 @@
 
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/theme.css') }}">
+    <link rel="stylesheet" href="{{asset('frontend/assets/css/custom.css')}}">
 </head>
 
 <body>

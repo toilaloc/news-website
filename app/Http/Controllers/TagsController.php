@@ -51,7 +51,7 @@ class TagsController extends Controller
     {
         $posts = Posts::whereHas('tags', function($query) use ($slug) {
             $query->whereSlug($slug);
-          })->get();
+          })->orderBy('id', 'DESC')->get();
         $tag = Tags::where('slug', $slug)->first();
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $hotPosts = Posts::take(5)->get();

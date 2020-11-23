@@ -28,8 +28,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
+        // Sẽ viết lại vì vi phạm DRY
 
+        $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         // Tin nóng bên trái
         $breakingNewsLeft = Categories::find(6);
         $slugLeft = $breakingNewsLeft->slug;

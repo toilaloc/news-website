@@ -1,6 +1,6 @@
 <ul class="list-unstyled">
     <!-- subComment -->
-    <li class="mb-2 ml-3">
+    <li class="mb-2 ml-3 mt-2">
         <div class="border-left border-3 pl-4">
             <div class="media align-items-center mb-2">
                 <div class="avatar avatar-circle mr-3">
@@ -11,7 +11,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="h5 mb-0">{{ $subComment->Author->fullname }}</span>
                         <small
-                            class="text-muted">{{$dateTime->diffForHumans($item->date)}}</small>
+                            class="text-muted">{{$dateTime->diffForHumans($item->created_at)}}</small>
                     </div>
                 </div>
             </div>
