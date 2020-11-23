@@ -29,7 +29,7 @@
                         <tr>
                           <th scope="col">Title</th>
                           <th scope="col">Tên</th>
-                          <th scope="col">user_id</th>
+                          <th scope="col">Tên người dùng</th>
                           <th scope="col">Email</th>
                           <th scope="col">Phone</th>
                           <th scope="col">Message</th>
