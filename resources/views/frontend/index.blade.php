@@ -478,7 +478,7 @@
                         </div>
                         <div class="d-inline-block mr-2">
                             @foreach($postTinTH->Categories as $categoryTH)
-                        <a style="color: #333;" href="{{$categoryTH->slug}}">{{$categoryTH->name}}</a>
+                        <a style="color: #333;" href="{{url('category',$categoryTH->slug)}}">{{$categoryTH->name}}</a>
                             @endforeach
                         </div>
                     </div>
@@ -494,17 +494,17 @@
         <div class="col-lg-3">
             <div class="mb-7">
                 <div class="mb-3">
-                    <h3>Newsletter</h3>
+                    <h3>Nhận tin tức</h3>
                 </div>
 
                 <!-- Form -->
                 <form class="js-validate mb-2">
-                    <label class="sr-only" for="subscribeSr">Subscribe</label>
+                    <label class="sr-only" for="subscribeSr">Đăng ký</label>
                     <div class="input-group input-group-flush mb-3">
-                        <input type="email" class="form-control form-control-sm" name="email" id="subscribeSr" placeholder="Your email" aria-label="Your email" required
+                        <input type="email" class="form-control form-control-sm" name="email" id="subscribeSr" placeholder="Nhập email" aria-label="Your email" required
                                data-msg="Please enter a valid email address.">
                     </div>
-                    <button type="submit" class="btn btn-sm btn-primary btn-block">Subscribe</button>
+                    <button type="submit" class="btn btn-sm btn-primary btn-block">Đăng ký</button>
                 </form>
                 <!-- End Form -->
             </div>
@@ -524,7 +524,7 @@
                }'>
                 <div class="mb-7">
                     <div class="mb-3">
-                        <h3>Front culture</h3>
+                        <h3>Đang Được Quan Tâm</h3>
                     </div>
 
                     <!-- Blog -->
@@ -535,32 +535,6 @@
                             </div>
                             <div class="media-body">
                                 <h4 class="h6 mb-0"><a class="text-inherit" href="#">Announcing a free plan for small teams</a></h4>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- End Blog -->
-
-                    <!-- Blog -->
-                    <article class="mb-5">
-                        <div class="media align-items-center text-inherit">
-                            <div class="avatar avatar-lg mr-3">
-                                <img class="avatar-img" src="../../../../assets//img/320x320/img10.jpg" alt="Image Description">
-                            </div>
-                            <div class="media-body">
-                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Mapping the first family tree for Front office</a></h4>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- End Blog -->
-
-                    <!-- Blog -->
-                    <article class="mb-5">
-                        <div class="media align-items-center text-inherit">
-                            <div class="avatar avatar-lg mr-3">
-                                <img class="avatar-img" src="../../../../assets//img/320x320/img9.jpg" alt="Image Description">
-                            </div>
-                            <div class="media-body">
-                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Felline eyeing first major Classic win in 2018</a></h4>
                             </div>
                         </div>
                     </article>
@@ -578,70 +552,35 @@
                     </div>
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
-                            <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/piqbzcvo/2020_11_11/avd2_1592382028933928334407.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
+                        <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstXuatBan->thumbnail}}" alt="{{$firstXuatBan->name}}" style="border-top-left-radius: 0rem;
                   border-top-right-radius: 0rem;">
                         </div>
                         <div class="card-body" style="padding: 0.5rem;">
-                            <h4 class="h5"><a class="text-inherit" href="single-article.html">Những bảo bối nào thường xuyên được Doraemon sử dụng?</a></h4>
+                            <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstXuatBan->slug)}}">{{$firstXuatBan->name}}</a></h4>
                         </div>
                     </article>
 
+                    @foreach($lastXuatBan as $postXuatBan)
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
                             <div class="position-relative">
                                 <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_10/44043524_1903944283234338_6629408168860450816_n.jpg" alt="Image Description" style="border-radius: 0rem;">
+                                <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postXuatBan->thumbnail}}" alt="{{$postXuatBan->name}}" style="border-radius: 0rem;">
                                 </a>
                             </div>
                         </div>
                         <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
                             <div class="media mb-2">
                                 <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Khoảng trống sách nghệ thuật</h4></a>
+                                    <a href="{{url('post',$postXuatBan->thumbnail)}}"><h4 class="h6 text-hover-primary mb-0">{{$postXuatBan->name}}</h4></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="row mb-2 mt-2 pb-2 border-bottom">
-                        <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
-                            <div class="position-relative">
-                                <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/piqbzcvo/2020_10_29/dan_quan.jpg" alt="Image Description" style="border-radius: 0rem;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
-                            <div class="media mb-2">
-                                <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Cuộc sống tại Hà Nội những năm 1967 đến 1975</h4></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-2 mt-2 pb-2 border-bottom">
-                        <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
-                            <div class="position-relative">
-                                <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/jugtzb/2020_10_27/N23.jpg" alt="Image Description" style="border-radius: 0rem;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
-                            <div class="media mb-2">
-                                <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Đà Nẵng cấm tàu thuyền ra khơi</h4></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
 
+                 <!-- End Xuất Bản  -->
 
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="mb-3">
@@ -649,205 +588,106 @@
                     </div>
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
-                            <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_11/ly_thanh_co_elle_man_feature.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
+                        <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstSachHay->thumbnail}}" alt="{{$firstSachHay->name}}" style="border-top-left-radius: 0rem;
                   border-top-right-radius: 0rem;">
                         </div>
                         <div class="card-body" style="padding: 0.5rem;">
-                            <h4 class="h5"><a class="text-inherit" href="single-article.html">'Trăng mật với bản thân' - bí quyết sống hạnh phúc của người độc thân</a></h4>
+                            <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstSachHay->slug)}}">{{$firstSachHay->name}}</a></h4>
                         </div>
                     </article>
 
+                    @foreach($lastSachHay as $postSachHay)
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
                             <div class="position-relative">
                                 <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/dqmblcvo/2020_11_07/SachSG1.jpg" alt="Image Description" style="border-radius: 0rem;">
+                                <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postSachHay->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
                                 </a>
                             </div>
                         </div>
                         <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
                             <div class="media mb-2">
                                 <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Phố heo may về</h4></a>
+                                <a href="{{url('post',$postSachHay->slug)}}"><h4 class="h6 text-hover-primary mb-0">
+                                    {{$postSachHay->name}}</h4></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="row mb-2 mt-2 pb-2 border-bottom">
-                        <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
-                            <div class="position-relative">
-                                <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/mdf_fedrei/2020_11_10/gia_tri_cua_su_tu_te_2.jpg" alt="Image Description" style="border-radius: 0rem;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
-                            <div class="media mb-2">
-                                <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Nuôi dưỡng sự tử tế để chữa lành tâm hồn</h4></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-2 mt-2 pb-2 border-bottom">
-                        <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
-                            <div class="position-relative">
-                                <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/jugtzb/2020_10_27/N23.jpg" alt="Image Description" style="border-radius: 0rem;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
-                            <div class="media mb-2">
-                                <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Đà Nẵng cấm tàu thuyền ra khơi</h4></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+                <!-- End Sách Hay  -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="mb-3">
                         <h3>TÁC GIẢ</h3>
                     </div>
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
-                            <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_10_26/thumb_R.jpg" alt="Image Description" style="border-top-left-radius: 0rem;
+                            <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstTacGia->thumbnail}}" alt="{{$firstTacGia->name}}" style="border-top-left-radius: 0rem;
                   border-top-right-radius: 0rem;">
                         </div>
                         <div class="card-body" style="padding: 0.5rem;">
-                            <h4 class="h5"><a class="text-inherit" href="single-article.html">Bức tranh cuộc đời trong 'Bệnh vẩy nến nơi vĩnh hằng'</a></h4>
+                            <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstTacGia->thumbnail)}}">{{$firstTacGia->name}}</a></h4>
                         </div>
                     </article>
-
+                    
+                    @foreach($lastTacGia as $postTacGia)
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
                             <div class="position-relative">
                                 <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/bpcpwiq2/2020_11_07/Di_tron_202011_Quynh_Tram_7_.JPG" alt="Image Description" style="border-radius: 0rem;">
+                                    <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postTacGia->thumbnail}}" alt="{{$postTacGia->name}}" style="border-radius: 0rem;">
                                 </a>
                             </div>
                         </div>
                         <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
                             <div class="media mb-2">
                                 <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Tiểu thuyết mới của Bình Ca không có đánh lộn và yêu đương</h4></a>
+                                    <a href="{{url('post',$postTacGia->thumbnail)}}"><h4 class="h6 text-hover-primary mb-0">
+                                        {{$postTacGia->name}}</h4></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="row mb-2 mt-2 pb-2 border-bottom">
-                        <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
-                            <div class="position-relative">
-                                <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/oplukaa/2020_11_09/Hoc_tro.jpg" alt="Image Description" style="border-radius: 0rem;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
-                            <div class="media mb-2">
-                                <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Mối tình đầu</h4></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-2 mt-2 pb-2 border-bottom">
-                        <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
-                            <div class="position-relative">
-                                <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/jugtzb/2020_10_27/N23.jpg" alt="Image Description" style="border-radius: 0rem;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
-                            <div class="media mb-2">
-                                <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Đà Nẵng cấm tàu thuyền ra khơi</h4></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+                 <!-- End Tác Giả  -->
+
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="mb-3">
-                        <h3>XÃ HỘI</h3>
+                        <h3>THẾ GIỚI</h3>
                     </div>
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
-                            <img class="card-img-top" src="https://znews-photo.zadn.vn/w480/Uploaded/pgi_qvradhnat/2020_11_11/thumb_hue.jpeg" alt="Image Description" style="border-top-left-radius: 0rem;
+                            <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstTheGioi->thumbnail}}" alt="{{$firstTheGioi->name}}" style="border-top-left-radius: 0rem;
                   border-top-right-radius: 0rem;">
                         </div>
                         <div class="card-body" style="padding: 0.5rem;">
-                            <h4 class="h5"><a class="text-inherit" href="single-article.html">Người Huế đưa ôtô, xe máy lên cầu tránh lũ</a></h4>
+                            <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstTheGioi->slug)}}">{{$firstTheGioi->name}}</a></h4>
                         </div>
                     </article>
-
+                    @foreach($lastTheGioi as $postTheGioi)
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
                             <div class="position-relative">
                                 <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/qhj_dvoahficbu/2020_11_12/uuu.jpg" alt="Image Description" style="border-radius: 0rem;">
+                                    <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postTheGioi->thumbnail}}" alt="{{$postTheGioi->name}}" style="border-radius: 0rem;">
                                 </a>
                             </div>
                         </div>
                         <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
                             <div class="media mb-2">
                                 <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Chưa tăng lương để dành tiền chống dịch, khắc phục hậu quả thiên tai</h4></a>
+                                <a href="{{url('post',$postTheGioi->thumbnail)}}"><h4 class="h6 text-hover-primary mb-0">
+                                        {{$postTheGioi->name}}</h4></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="row mb-2 mt-2 pb-2 border-bottom">
-                        <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
-                            <div class="position-relative">
-                                <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/jugtzb/2020_10_27/N23.jpg" alt="Image Description" style="border-radius: 0rem;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
-                            <div class="media mb-2">
-                                <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Đà Nẵng cấm tàu thuyền ra khơi</h4></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-2 mt-2 pb-2 border-bottom">
-                        <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
-                            <div class="position-relative">
-                                <a href="course-description.html">
-                                    <img class="img-fluid w-100" src="https://znews-photo.zadn.vn/w480/Uploaded/jugtzb/2020_10_27/N23.jpg" alt="Image Description" style="border-radius: 0rem;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
-                            <div class="media mb-2">
-                                <div class="media-body">
-                                    <a href="course-description.html"><h4 class="h6 text-hover-primary mb-0">
-                                            Đà Nẵng cấm tàu thuyền ra khơi</h4></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+                 <!-- End Thế Giới  -->
 
             </div>
         </div>

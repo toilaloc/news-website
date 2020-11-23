@@ -210,7 +210,7 @@
                         <div class="mb-4">
                             <h3>{{$post->hasComments->count()}} Bình luận</h3>
                         </div>
-
+                        @include('frontend.pages.comments.listComments',['comments'=>$post->Comment_post($post->id)])
                         <div class="mb-5">
                             <h3>Bình luận</h3>
                         </div>
