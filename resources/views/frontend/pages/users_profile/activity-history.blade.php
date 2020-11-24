@@ -91,7 +91,7 @@
                           </div>
                           <div class="media-body">
                             <span class="d-inline font-size-1 font-weight-bold">Người theo dõi</span>
-                            <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
+                          <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->Following->count()}}</span>
                           </div>
                         </a>
                         <!-- End Social Profiles -->
@@ -103,7 +103,7 @@
                       </div>
                       <div class="media-body">
                         <span class="d-inline font-size-1 font-weight-bold">Đang theo dõi</span>
-                        <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
+                        <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->hasFollowers->count()}}</span>
                       </div>
                     </a>
                     <!-- End Social Profiles -->
