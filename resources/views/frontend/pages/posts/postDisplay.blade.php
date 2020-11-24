@@ -80,9 +80,7 @@
 
                             @if (App\Models\Post_votes::where(['post_id' => $post->id, 'user_id' => Auth::user()->id])->exists())
                                 <div class="stars" style="float: right;">
-                                    @foreach ($collection as $item)
-
-                                    @endforeach
+                         
                                     <input class="star star-5" id="star-5" type="radio" value="5" name="star" />
                                     <label style="padding: 2px;font-size: 16px;margin-top: 8px;"for="star-5"></label>
                                 </div>
