@@ -43,6 +43,7 @@ class PostsController extends Controller
             'user_id' => $request->user_id,
             'rate' => $request->star,
         ]);
+        return "success";
     }
     /**
      * Store a newly created resource in storage.

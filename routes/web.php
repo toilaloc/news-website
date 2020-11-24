@@ -35,6 +35,8 @@ Route::resource('tags', 'TagsController');
 Route::get('/tag/{slug}', 'TagsController@show');
 
 Route::resource('users', 'UsersController');
+//vote
+Route::post('post_vote', 'PostsController@post_vote');
 
 
 // View Profile

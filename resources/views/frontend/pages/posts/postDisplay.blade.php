@@ -1,57 +1,6 @@
 @extends('frontend.layouts.others.index')
 @section('title', $post->name)
 @section('content')
-    <style>
-        .reply-button {
-            color: #377dff;
-        }
-
-        .reply-button:hover {
-            color: #0052ea;
-        }
-
-        div.stars {
-            width: 42%;
-            display: inline-block;
-        }
-
-        input.star {
-            display: none;
-        }
-
-        label.star {
-            float: right;
-            padding: 10px;
-            font-size: 36px;
-            color: #444;
-            transition: all .2s;
-        }
-
-        input.star:checked~label.star:before {
-            content: '\f005';
-            color: #FD4;
-            transition: all .25s;
-        }
-
-        input.star-5:checked~label.star:before {
-            color: rgb(255, 238, 0);
-            text-shadow: 0 0 20px rgb(248, 236, 56);
-        }
-
-        input.star-1:checked~label.star:before {
-            color: #F62;
-        }
-
-        label.star:hover {
-            transform: rotate(-15deg) scale(1.3);
-        }
-
-        label.star:before {
-            content: '\f005';
-            font-family: 'Font Awesome 5 Free';
-        }
-
-    </style>
     <hr>
     <!-- Content Section -->
     <div class="container space-lg-0">
@@ -93,10 +42,10 @@
                     $content = $post->content;
                     echo str_replace("<img","<img
                         class='img-fluid rounded'",$content);
-                                                                                                                                                                                                    @endphp
-                                                                                                                                                                                      </div>
-                                                                                                                                                                                      <!-- Badges -->
-                                                                                                                                                                                      <div class="
+                                                                                                                                                                                                                                                @endphp
+                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                  <!-- Badges -->
+                                                                                                                                                                                                                                  <div class="
                         mt-5">
                         @foreach ($post->Tags as $tag)
                             <a class="btn btn-xs btn-soft-secondary mb-1"
@@ -123,6 +72,39 @@
                             <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
                                 <i class="fab fa-telegram"></i>
                             </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-7 mb-2 mb-sm-0">
+                        <div class="d-flex align-items-center">
+                            <span class="d-block small font-weight-bold text-cap mr-2">Đánh giá:</span>
+
+                            @if (App\Models\Post_votes::where(['post_id' => $post->id, 'user_id' => Auth::user()->id])->exists())
+                                <div class="stars" style="float: right;">
+                                    @foreach ($collection as $item)
+
+                                    @endforeach
+                                    <input class="star star-5" id="star-5" type="radio" value="5" name="star" />
+                                    <label style="padding: 2px;font-size: 16px;margin-top: 8px;"for="star-5"></label>
+                                </div>
+                            @else
+                                <div class="stars" style="float: right;">
+                                    <input class="star star-5" id="star-5" type="radio" value="5" name="star" />
+                                    <label style="padding: 2px;font-size: 16px;    margin-top: 8px;" class="star star-5"
+                                        for="star-5"></label>
+                                    <input class="star star-4" id="star-4" type="radio" value="4" name="star" />
+                                    <label style="padding: 2px;font-size: 16px;    margin-top: 8px;" class="star star-4"
+                                        for="star-4"></label>
+                                    <input class="star star-3" id="star-3" type="radio" value="3" name="star" />
+                                    <label style="padding: 2px;font-size: 16px;    margin-top: 8px;" class="star star-3"
+                                        for="star-3"></label>
+                                    <input class="star star-2" id="star-2" type="radio" value="2" name="star" />
+                                    <label style="padding: 2px;font-size: 16px;    margin-top: 8px;" class="star star-2"
+                                        for="star-2"></label>
+                                    <input class="star star-1" id="star-1" type="radio" value="1" name="star" />
+                                    <label style="padding: 2px;font-size: 16px;    margin-top: 8px;" class="star star-1"
+                                        for="star-1"></label>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-sm-2 text-sm-right">
@@ -153,76 +135,32 @@
 
                         <div class="col-lg-9 col-md-9 col-sm-9">
                             <!-- Info -->
-                            <div class="row">
-                                <div class="col-6">
-                                    @if (App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
-                                        <form action="{{ route('followers.store') }}" method="POST">
-                                            @csrf
-                                            <h3 class="mb-0">{{ $post->Author->fullname }}
-                                                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                                                <input type="hidden" name="author_id" value="{{ $post->author_id }}">
-                                                <button type="submit"
-                                                    class="btn btn-xs btn-soft-danger font-weight-bold transition-3d-hover py-1 px-2 ml-1"
-                                                    name="unfollow" value="unfollow">Unfollow
-                                                </button>
-                                            </h3>
-                                        </form>
-                                    @else
-                                        <form action="{{ route('followers.store') }}" method="POST">
-                                            @csrf
-                                            <h3 class="mb-0">{{ $post->Author->fullname }}
-                                                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                                                <input type="hidden" name="author_id" value="{{ $post->author_id }}">
-                                                <button type="submit"
-                                                    class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1"
-                                                    name="follow" value="follow">Follow
-                                                </button>
-                                            </h3>
-                                        </form>
-                                    @endif
-                                </div>
-                                <div class="col-6">
-                                    @if (App\Models\Author_votes::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
-                                        <span>Bạn đã đánh giá bài tác giả này rồi!</span>
-                                    @else
-                                        <div class="row">
-                                            <div class="col-7">
-                                                <div class="stars" style="float: right;width: 100%;">
-                                                    <input class="star star-5" id="star-5" type="radio" value="5"
-                                                        name="star" />
-                                                    <label style="padding: 2px;font-size: 14px;" class="star star-5"
-                                                        for="star-5"></label>
-                                                    <input class="star star-4" id="star-4" type="radio" value="4"
-                                                        name="star" />
-                                                    <label style="padding: 2px;font-size: 14px;" class="star star-4"
-                                                        for="star-4"></label>
-                                                    <input class="star star-3" id="star-3" type="radio" value="3"
-                                                        name="star" />
-                                                    <label style="padding: 2px;font-size: 14px;" class="star star-3"
-                                                        for="star-3"></label>
-                                                    <input class="star star-2" id="star-2" type="radio" value="2"
-                                                        name="star" />
-                                                    <label style="padding: 2px;font-size: 14px;" class="star star-2"
-                                                        for="star-2"></label>
-                                                    <input class="star star-1" id="star-1" type="radio" value="1"
-                                                        name="star" />
-                                                    <label style="padding: 2px;font-size: 14px;" class="star star-1"
-                                                        for="star-1"></label>
+                            @if (App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
+                                <form action="{{ route('followers.store') }}" method="POST">
+                                    @csrf
+                                    <h3 class="mb-0">{{ $post->Author->fullname }}
+                                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                        <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                                        <button type="submit"
+                                            class="btn btn-xs btn-soft-danger font-weight-bold transition-3d-hover py-1 px-2 ml-1"
+                                            name="unfollow" value="unfollow">Unfollow
+                                        </button>
+                                    </h3>
+                                </form>
+                            @else
+                                <form action="{{ route('followers.store') }}" method="POST">
+                                    @csrf
+                                    <h3 class="mb-0">{{ $post->Author->fullname }}
+                                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                        <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                                        <button type="submit"
+                                            class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1"
+                                            name="follow" value="follow">Follow
+                                        </button>
+                                    </h3>
+                                </form>
+                            @endif
 
-                                                </div>
-                                            </div>
-                                            <div class="col-5">
-                                                <form action="">
-                                                    <button class="btn btn-primary btn-xs " style="float: left"
-                                                        type="submit">Đánh
-                                                        giá
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
                             <p style="text-align: justify;">{{ $post->Author->bio }} </p>
                             <!-- End Info -->
                         </div>
@@ -333,7 +271,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-header" style="padding: 0rem 0rem; border-bottom: none;">
+                    {{-- <div class="card-header"
+                        style="padding: 0rem 0rem; border-bottom: none;">
                         <div class="col-lg">
                             <div class="mb-7">
                                 <div class="mb-3 border-bottom">
@@ -346,7 +285,7 @@
                                         <div class="mb-4">
                                             <span>Bạn đã đánh giá bài viết này rồi!</span>
                                         </div>
-                                    @else
+                                        @else
                                         <div class="border-bottom pb-4 mb-4">
                                             <!-- Checkboxes -->
                                             <div
@@ -441,7 +380,7 @@
                                 <!-- End Blog -->
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!-- End Sidebar Content -->
@@ -649,7 +588,19 @@
                 id = 'star' + f + (r % f ? 'half' : '')
             id && (document.getElementById(id).checked = !0)
         }
-        $(document).on('change', 'input[name="rating"]', function(e) {
+        // $(document).on('change', 'input[type=star]', function() {
+        //     if ($(this).is(':checked')) {
+        //         ids.push($(this).val());
+        //         count++;
+        //         // alert(123);
+        //     } else {
+        //         ids.splice($.inArray($(this).val(), ids), 1);
+        //         count--;
+        //         // alert(321);
+        //     }
+        // })
+        $(document).on('change', 'input[name="star"]', function() {
+            // alert($(this).val());
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
@@ -657,18 +608,18 @@
                 }
             });
             $.ajax({
-                url: "{{ route('followers.store') }}",
+                url: "{{ url('post_vote') }}",
                 type: "post",
                 data: {
+                    'star': $(this).val(),
                     'user_id': '{{ Auth::id() }}',
-                    'author_id': '{{ $post->author_id }}',
-                    'follow': 1
+                    'post_id': '{{ $post->id }}'
                 },
                 success: function(data) {
-                    alert("Theo dõi tác giả thành công!");
+                    alert(data);
                 },
                 error: function(error) {
-                    alert("Theo dõi tác giả thất bại!");
+                    alert(error);
                 }
             });
         });
