@@ -7,6 +7,13 @@
       <div class="col-lg-8">
         <div class="mb-3">
         <h3>DANH MỤC: <span class="text-uppercase">{{$category->name}}</span></h3>
+        @if(isset($getChildCate))
+        @foreach($getChildCate as $childCates)
+            <li class="d-inline"><a href="{{ url('category', $childCates->slug) }}"
+             style="color:#888; text-transform: uppercase; padding-right: 10px;">{{ $childCates->name }}</a></li>
+      
+        @endforeach
+        @endif
         </div>
         <!-- Card -->
         @foreach($posts as $post)

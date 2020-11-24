@@ -33,7 +33,7 @@
                     <div class="media align-items-center mb-3"
                          data-hs-slick-carousel-animation="fadeInUp">
                         <div class="avatar avatar-sm avatar-circle mr-3">
-                            <img class="avatar-img" src="../../../../assets//img/100x100/img10.jpg" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('frontend/assets/img/100x100/img10.jpg')}}" alt="Image Description">
                         </div>
                         <div class="media-body">
                             <a class="text-white" href="single-article.html">Christina Kray</a>
@@ -62,7 +62,7 @@
                     <div class="media align-items-center mb-3"
                          data-hs-slick-carousel-animation="fadeInUp">
                         <div class="avatar avatar-sm avatar-circle mr-3">
-                            <img class="avatar-img" src="../../../../assets//img/100x100/img10.jpg" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('frontend/assets/img/100x100/img10.jpg')}}" alt="Image Description">
                         </div>
                         <div class="media-body">
                             <a class="text-white" href="single-article.html">Christina Kray</a>
@@ -92,7 +92,7 @@
                         <div class="media align-items-center mb-3"
                              data-hs-slick-carousel-animation="fadeInUp">
                             <div class="avatar avatar-sm avatar-circle mr-3">
-                                <img class="avatar-img" src="../../../../assets//img/100x100/img4.jpg" alt="Image Description">
+                                <img class="avatar-img" src="{{asset('frontend/assets/img/100x100/img4.jpg')}}" alt="Image Description">
                             </div>
                             <div class="media-body">
                                 <a class="text-white" href="single-article.html">Jeff Fisher</a>
@@ -163,7 +163,7 @@
     <div class="row">
         <div class="col-lg-4 d-none d-lg-block">
             {{-- lấy 5 bài tin công nghệ --}}
-            @if(empty($breakingNewsLeft) == true)
+            @if($breakingNewsLeft->count() == 0)
             {{'Không có bài viết để hiển thị'}}  
             @else
             @foreach($breakingNewsLeft as $contentsLeft)
@@ -186,7 +186,7 @@
 
 
         <div class="col-lg-5 col-md-7 d-none d-lg-block">
-            @if(empty($breakingNewsCenter) == true)
+            @if($breakingNewsCenter->count() == 0)
             {{'Không có bài viết để hiển thị'}}
             @else 
             @foreach($breakingNewsCenter as $postCenter)
@@ -204,7 +204,7 @@
         </div>
 
         <div class="col-lg-3 col-md-5 d-none d-lg-block">
-            @if(empty($breakingNewsRight) == true)
+            @if($breakingNewsRight->count() == 0)
             {{'Không có bài viết để hiển thị'}}
             @else 
             @foreach($breakingNewsRight as $postRight) 
@@ -245,7 +245,7 @@
             }
           }]
         }'>
-        @if(empty($breakingNewsLeft) == true)
+        @if($breakingNewsLeft->count() == 0)
         {{'Không có bài viết để hiển thị'}}  
         @else
         @foreach($breakingNewsLeft as $contentsLeft)
@@ -261,7 +261,7 @@
         @endforeach
         @endif
 
-        @if(empty($breakingNewsCenter) == true)
+        @if($breakingNewsCenter->count() == 0)
         {{'Không có bài viết để hiển thị'}}  
         @else
         @foreach($breakingNewsCenter as $contentCenter)
@@ -279,7 +279,7 @@
         @endforeach
         @endif
 
-        @if(empty($breakingNewsRight) == true)
+        @if($breakingNewsRight->count() == 0)
         {{'Không có bài viết để hiển thị'}}  
         @else
         @foreach($breakingNewsRight as $contentRight)
@@ -324,6 +324,9 @@
          }
        }]
      }'>
+     @if($getAllSubCate->count() == 0)
+     {{"Không có bài viết để hiển thị"}}
+     @else
     
                 @foreach($getAllSubCate as $subCate)
                 @foreach($subCate->getPosts($subCate->id) as $posts)
@@ -342,6 +345,7 @@
                 @endif
                 @endforeach
                 @endforeach
+                @endif
                 
                 <!-- End -->
             </div>
@@ -457,6 +461,9 @@
                 <h3>TIN TỔNG HỢP</h3>
             </div>
             <!-- Card -->
+            @if($tinTongHop->count() == 0)
+            {{"Không có bài viết để hiển thị"}}
+            @else
             @foreach($tinTongHop as $postTinTH)
             <div class="row mb-2 pb-2 border-bottom">
                 <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
@@ -487,6 +494,7 @@
                 </div>
             </div>
             @endforeach
+            @endif
         </div>
         <!-- Sticky Block End Point -->
         <div id="stickyBlockEndPoint"></div>
@@ -528,16 +536,22 @@
                     </div>
 
                     <!-- Blog -->
+                    @if($hotPosts->count()== 0)
+                    {{"Không có bài viết để hiện thị"}}
+                    @else
+                    @foreach($hotPosts as $hotPost)
                     <article class="mb-5">
                         <div class="media align-items-center text-inherit">
                             <div class="avatar avatar-lg mr-3">
-                                <img class="avatar-img" src="../../../../assets//img/320x320/img1.jpg" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('uploads/posts/thumbnail')}}/{{$hotPost->thumbnail}}" alt="{{$hotPost->name}}">
                             </div>
                             <div class="media-body">
-                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Announcing a free plan for small teams</a></h4>
+                            <h4 class="h6 mb-0"><a class="text-inherit" href="{{url('post',$hotPost->name)}}">{{$hotPost->name}}</a></h4>
                             </div>
                         </div>
                     </article>
+                    @endforeach
+                    @endif
                     <!-- End Blog -->
                 </div>
 
@@ -550,6 +564,9 @@
                     <div class="mb-3">
                         <h3>XUẤT BẢN</h3>
                     </div>
+                    @if($firstXuatBan->count() == 0)
+                    {{"Không có bài viết để hiển thị"}}
+                    @else
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
                         <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstXuatBan->thumbnail}}" alt="{{$firstXuatBan->name}}" style="border-top-left-radius: 0rem;
@@ -559,6 +576,7 @@
                             <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstXuatBan->slug)}}">{{$firstXuatBan->name}}</a></h4>
                         </div>
                     </article>
+                    @endif
 
                     @foreach($lastXuatBan as $postXuatBan)
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
@@ -586,6 +604,9 @@
                     <div class="mb-3">
                         <h3>SÁCH HAY</h3>
                     </div>
+                    @if($firstSachHay->count() == 0)
+                    {{"Không có bài viết để hiển thị"}}
+                    @else
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
                         <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstSachHay->thumbnail}}" alt="{{$firstSachHay->name}}" style="border-top-left-radius: 0rem;
@@ -595,6 +616,7 @@
                             <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstSachHay->slug)}}">{{$firstSachHay->name}}</a></h4>
                         </div>
                     </article>
+                    @endif
 
                     @foreach($lastSachHay as $postSachHay)
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
@@ -622,6 +644,9 @@
                     <div class="mb-3">
                         <h3>TÁC GIẢ</h3>
                     </div>
+                    @if($firstTacGia->count() == 0)
+                    {{"Không có bài viết để hiển thị"}}
+                    @else
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
                             <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstTacGia->thumbnail}}" alt="{{$firstTacGia->name}}" style="border-top-left-radius: 0rem;
@@ -631,6 +656,7 @@
                             <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstTacGia->thumbnail)}}">{{$firstTacGia->name}}</a></h4>
                         </div>
                     </article>
+                    @endif
                     
                     @foreach($lastTacGia as $postTacGia)
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
@@ -658,6 +684,9 @@
                     <div class="mb-3">
                         <h3>THẾ GIỚI</h3>
                     </div>
+                    @if($firstTacGia->count() == 0)
+                    {{"Không có bài viết để hiển thị"}}
+                    @else
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
                             <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstTheGioi->thumbnail}}" alt="{{$firstTheGioi->name}}" style="border-top-left-radius: 0rem;
@@ -667,6 +696,7 @@
                             <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstTheGioi->slug)}}">{{$firstTheGioi->name}}</a></h4>
                         </div>
                     </article>
+                    @endif
                     @foreach($lastTheGioi as $postTheGioi)
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">

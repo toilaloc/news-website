@@ -123,6 +123,7 @@ class HomeController extends Controller
           $query->whereSlug($slugTTG);
         })->skip(1)->take(3)->orderBy('id', 'DESC')->get();
 
+        $hotPosts = Posts::where('view','>','0')->take(5)->get();
         return view('frontend.index', compact(
           'breakingNewsLeft', 
           'breakingNewsCenter', 
@@ -138,7 +139,8 @@ class HomeController extends Controller
           'firstTacGia',
           'lastTacGia',
           'firstTheGioi',
-          'lastTheGioi'
+          'lastTheGioi',
+          'hotPosts'
         ));
     }
 }

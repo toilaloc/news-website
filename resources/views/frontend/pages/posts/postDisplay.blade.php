@@ -1,81 +1,6 @@
 @extends('frontend.layouts.others.index')
 @section('title', $post->name)
 @section('content')
-    <style>
-        .reply-button {
-            color: #377dff;
-        }
-
-        .reply-button:hover {
-            color: #0052ea;
-        }
-
-        @import url(//netdna.bootstrapcdn.com/font-awesome/5.10.0/css/font-awesome.css);
-
-        /*reset css*
-        div,
-        label {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            margin: 20px;
-        }
-
-        h1 {
-            font-size: 1.5em;
-            margin: 10px;
-        }
-
-        /****** Style Star Rating Widget *****/
-        #rating {
-            border: none;
-            float: left;
-        }
-
-        #rating>input {
-            display: none;
-        }
-
-        /*ẩn input radio - vì chúng ta đã có label là GUI*/
-        #rating>label:before {
-            margin: 5px;
-            font-size: 1.25em;
-            font-family: FontAwesome;
-            display: inline-block;
-            content: "\f005";
-        }
-
-        /*1 ngôi sao*/
-        #rating>.half:before {
-            content: "\f089";
-            position: absolute;
-        }
-
-        /*0.5 ngôi sao*/
-        #rating>label {
-            color: #ddd;
-            float: right;
-        }
-
-        /*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
-        /*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
-        #rating>input:checked~label,
-        #rating:not(:checked)>label:hover,
-        #rating:not(:checked)>label:hover~label {
-            color: #FFD700;
-        }
-
-        /* Hover vào các sao phía trước ngôi sao đã chọn*/
-        #rating>input:checked+label:hover,
-        #rating>input:checked~label:hover,
-        #rating>label:hover~input:checked~label,
-        #rating>input:checked~label:hover~label {
-            color: #FFED85;
-        }
-
-    </style>
     <hr>
     <!-- Content Section -->
     <div class="container space-lg-0">
@@ -240,75 +165,7 @@
                                         <h3>Tin nổi bật</h3>
                                     </div>
 
-                                    <!-- Blog -->
-                                    <article class="mb-3">
-                                        <div class="media">
-                                            <div class="avatar avatar-lg mr-3">
-                                                <img class="img-fluid"
-                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                    alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                        miền
-                                                        Trung mưa lớn</a></h4>
-                                                <small class="d-inline-block">Feb 15, 2020</small>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <!-- End Blog -->
-                                    <!-- Blog -->
-                                    <article class="mb-3">
-                                        <div class="media">
-                                            <div class="avatar avatar-lg mr-3">
-                                                <img class="img-fluid"
-                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                    alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                        miền
-                                                        Trung mưa lớn</a></h4>
-                                                <small class="d-inline-block">Feb 15, 2020</small>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <!-- End Blog -->
-                                    <!-- Blog -->
-                                    <article class="mb-3">
-                                        <div class="media">
-                                            <div class="avatar avatar-lg mr-3">
-                                                <img class="img-fluid"
-                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                    alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                        miền
-                                                        Trung mưa lớn</a></h4>
-                                                <small class="d-inline-block">Feb 15, 2020</small>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <!-- End Blog -->
-                                    <!-- Blog -->
-                                    <article class="mb-3">
-                                        <div class="media">
-                                            <div class="avatar avatar-lg mr-3">
-                                                <img class="img-fluid"
-                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                    alt="Image Description">
-                                            </div>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                        miền
-                                                        Trung mưa lớn</a></h4>
-                                                <small class="d-inline-block">Feb 15, 2020</small>
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <!-- End Blog -->
+                                    @include('frontend.components.hotPosts')
                                 </div>
                             </div>
                         </div>
@@ -341,150 +198,18 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <!-- Blog Card -->
-                        <article class="border-bottom h-100 py-5">
-                            <div class="row justify-content-between">
-                                <div class="col-6">
-                                    <a class="d-block small font-weight-bold text-cap mb-2" href="#">Product</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Better is when
-                                            everything works together</a></h4>
-                                </div>
-
-                                <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img1.jpg"
-                                        alt="Image Description">
-                                </div>
-                            </div>
-                        </article>
-                        <!-- End Blog Card -->
-                    </div>
-
-                    <div class="col-md-6">
-                        <!-- Blog Card -->
-                        <article class="border-bottom h-100 py-5">
-                            <div class="row justify-content-between">
-                                <div class="col-6">
-                                    <a class="d-block small font-weight-bold text-cap mb-2" href="#">Tech</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Should You Buy An
-                                            Apple Pencil?</a></h4>
-                                </div>
-
-                                <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img3.jpg"
-                                        alt="Image Description">
-                                </div>
-                            </div>
-                        </article>
-                        <!-- End Blog Card -->
-                    </div>
-
-                    <div class="col-md-6">
-                        <!-- Blog Card -->
-                        <article class="border-bottom h-100 py-5">
-                            <div class="row justify-content-between">
-                                <div class="col-6">
-                                    <a class="d-block small font-weight-bold text-cap mb-2" href="#">Product</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">This Watch gym
-                                            partnerships give you perks for working out</a></h4>
-                                </div>
-
-                                <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img5.jpg"
-                                        alt="Image Description">
-                                </div>
-                            </div>
-                        </article>
-                        <!-- End Blog Card -->
-                    </div>
-
-                    <div class="col-md-6">
-                        <!-- Blog Card -->
-                        <article class="border-bottom h-100 py-5">
-                            <div class="row justify-content-between">
-                                <div class="col-6">
-                                    <a class="d-block small font-weight-bold text-cap mb-2" href="#">Tech</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Drone Company
-                                            PrecisionHawk Names New CEO</a></h4>
-                                </div>
-
-                                <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img7.jpg"
-                                        alt="Image Description">
-                                </div>
-                            </div>
-                        </article>
-                        <!-- End Blog Card -->
-                    </div>
+                    @include('frontend.components.relaPost')
                 </div>
 
 
 
                 <div class="mb-3 border-bottom mt-3">
-                    <h3>Có thể bạn quan tâm</h3>
+                <h3>Bài khác của tác giả {{$post->Author->fullname}}</h3>
                 </div>
                 <!-- End Title -->
 
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 mb-5">
-                        <!-- Card Info -->
-                        <div class="card h-100">
-                            <img class="card-img-top" src="../../../assets/img/480x320/img13.jpg" alt="Image Description">
-                            <div class="card-body">
-                                <div class="max-w-13rem w-100 mb-3">
-                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/amazon-original.svg"
-                                        alt="Logo">
-                                </div>
-                                <p class="mb-0">Amazon launched their enterprise platform and built a powerful user
-                                    experience.</p>
-                            </div>
-                            <div class="card-footer">
-                                <a class="font-weight-bold" href="customer-story.html">Read story <i
-                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
-                            </div>
-                        </div>
-                        <!-- End Card Info -->
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 mb-5">
-                        <!-- Card Info -->
-                        <div class="card h-100">
-                            <img class="card-img-top" src="../../../assets/img/480x320/img17.jpg" alt="Image Description">
-                            <div class="card-body">
-                                <div class="max-w-13rem w-100 mb-3">
-                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/mapbox-original.svg"
-                                        alt="Logo">
-                                </div>
-                                <p class="mb-0">Mapbox empowers marketers to create digital marketing dashboards easily and
-                                    share them with their team.</p>
-                            </div>
-                            <div class="card-footer">
-                                <a class="font-weight-bold" href="customer-story.html">Read story <i
-                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
-                            </div>
-                        </div>
-                        <!-- End Card Info -->
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 mb-5">
-                        <!-- Card Info -->
-                        <div class="card h-100">
-                            <img class="card-img-top" src="../../../assets/img/480x320/img16.jpg" alt="Image Description">
-                            <div class="card-body">
-                                <div class="max-w-13rem w-100 mb-3">
-                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/netflix-original.svg"
-                                        alt="Logo">
-                                </div>
-                                <p class="mb-0">Netflix's mission is to create a planet run by the sun. In order to achieve
-                                    this goal, they needed to find a way to make solar simple.</p>
-                            </div>
-                            <div class="card-footer">
-                                <a class="font-weight-bold" href="customer-story.html">Read story <i
-                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
-                            </div>
-                        </div>
-                        <!-- End Card Info -->
-                    </div>
+                    @include('frontend.components.postAuthor')
                 </div>
             </div>
             <!-- End Stories Section -->
