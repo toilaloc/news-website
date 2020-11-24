@@ -23,7 +23,7 @@ class Categories extends Model
     
     public function subcategories(){
 
-        return $this->hasMany('App\Models\Categories', 'category_id');
+        return $this->belongsToMany('App\Models\Categories', 'category_id');
     }
 
     public function parent() {

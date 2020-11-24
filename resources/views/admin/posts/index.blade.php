@@ -42,7 +42,7 @@
         <a href="{{url('/tags', $tag->slug)}}" class="badge badge-success">{{$tag->name}}</a>
           @endforeach
         </td>
-        <td>{{$post->date}}</td>
+        <td>{{$post->created_at}}</td>
       <td><a class="btn btn-success btn-sm" href="{{route('posts.edit', $post->id)}}">Sửa</a></td>
       <td>
           <form class="d-inline" action="{{route('posts.destroy',$post->id)}}" method="POST">

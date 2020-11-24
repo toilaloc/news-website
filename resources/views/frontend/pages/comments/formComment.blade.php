@@ -34,7 +34,6 @@
         <div class="card-body">
             <p class="card-text">Bạn phải đăng nhập mới có thể bình luận được</p>
         </div>
-    </div>
 @endif
 </div>
 <div id="loadCmt">

@@ -54,10 +54,10 @@ class Users extends Model
     ];
 
     public function hasPosts(){
-        return $this->hasMany(Posts::class, 'author_id');
+        return $this->hasMany(Posts::class, 'author_id')->orderBy('created_at', 'DESC');
     }
     public function hasComments(){
-        return $this->hasMany(Comments::class, 'user_id');
+        return $this->hasMany(Comments::class, 'user_id')->orderBy('created_at', 'DESC');
     }
 
 }

@@ -14,6 +14,6 @@ class Tags extends Model
     ];
 
     public function hasPosts(){
-        return $this->belongsToMany(Posts::class,'post_tag', 'post_id', 'tag_id');
+        return $this->belongsToMany(Posts::class,'post_tag', 'post_id', 'tag_id')->orderBy('created_at', 'DESC');
     }
 }

@@ -21,6 +21,9 @@
 
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="{{asset('frontend/assets/css/theme.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/assets/css/custom.css')}}">
+
+    
 </head>
 
 <body>

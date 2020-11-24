@@ -14,11 +14,12 @@
                    "stickyOffsetTop": 12,
                    "stickyOffsetBottom": 12
                  }'>
+
               <div class="text-center">
                 <!-- User Content -->
-              <img class="img-fluid rounded-circle mx-auto" src="{{asset('uploads/users')}}/{{$user->thumbnail}}" alt="Image Description" width="120" height="120">
+              <img style="height: 120px;" class="img-fluid rounded-circle mx-auto" src="{{asset('uploads/users')}}/{{$user->thumbnail}}" alt="Image Description" width="120" height="120">
   
-                <span class="d-block text-body font-size-1 mt-3">Joined in 2017</span>
+              <span class="d-block text-body font-size-1 mt-3">Tham gia kể từ {{$user->created_at}}</span>
   
                 <div class="mt-3">
                   <a class="btn btn-sm btn-outline-primary transition-3d-hover" href="#">
@@ -146,9 +147,29 @@
                 <span class="link-icon ml-1">+</span>
               </a>
               <!-- End Link -->
+   
+                <div class="border-top pt-5 mt-5">
+                  <h3 class="mb-4">Bình luận gần đây</h3>
+                  <div class="row">
+                  <div class="activity-feed">
+                    @foreach($user->hasComments as $comments)
+                    <div class="feed-item">
+                    <div class="date">{{$comments->created_at}}</div>
+                      <div class="text">"<em>{{$comments->content}}</em>" tại <a href="{{url('post',$comments->Posts->slug)}}">{{$comments->Posts->name}}</a></div>
+                    </div>
+                    @if($loop->index == 9)
+                        @break
+                    @endif
+                    @endforeach
+                    @if($user->hasPosts->count() == 0)
+                    {{"Chưa có bình luận nào"}}
+                    @endif
+                </div>
+              </div>
+            </div>
   
               <!-- Courses -->
-              <div class="border-top pt-5 mt-5">
+              <div class="border-top pt-5 mt-3">
               <h3 class="mb-4">Bài viết của Tác giả: {{$user->fullname}}</h3>
   
                     @if($user->hasPosts)
@@ -181,15 +202,25 @@
                                 {{$post->desc}}</p>
                             </div>
                         </div>
-                        @endforeach
-                        @else
-                        {{"Tác giả này hiện chưa có bài viết nào!"}}
+                        @if($loop->index == 5)
+                        @break
                         @endif
-                <div class="text-right font-size-1 mt-6">
+                        @endforeach
+                        @endif
+                        @if($user->hasPosts->count() == 0)
+                        <div class="row" style="margin-bottom: 20rem;">
+                        <p class="pl-3">(Tác giả này hiện chưa có bài viết nào!)</p>
+                          <script>$('#readMorePost').hide();</script>
+                        </div>
+                        @endif
+                <div id="readMorePost" class="text-right font-size-1 mt-6">
                   <a class="font-weight-bold" href="courses-listing.html">Xem thêm <i class="fas fa-angle-right fa-sm ml-1"></i></a>
                 </div>
               </div>
               <!-- End Courses -->
+                        @if($user->hasPosts->count() == 0)
+                          <script>$('#readMorePost').hide();</script>
+                        @endif
 
   
               <!-- Sticky Block End Point -->

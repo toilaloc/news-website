@@ -40,6 +40,45 @@
           </div>
           @endforeach
 
+          {{-- Nếu có chuyên mục con thì show thêm --}}
+          @if(isset($getChildCate))
+          @foreach($getChildCate as $childCates)
+          @foreach($childCates->getPosts($childCates->id) as $postChild)
+          <div class="row mb-2 pb-2 border-bottom">
+            <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
+              <div class="position-relative">
+                <a href="course-description.html">
+                <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postChild->thumbnail}}" alt="{{$postChild->name}}" style="border-radius: 0rem;">
+             </a>
+              </div>
+            </div>
+            <div class="col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <div class="media mb-2">
+                <div class="media-body">
+                <a href="{{url('post', $postChild->slug)}}"><h3 class="h4 text-hover-primary mb-0" >{{$postChild->name}}</h3></a>
+                </div>
+              </div>
+              <div class="d-flex justify-content-start align-items-center small text-muted">
+                <div class="d-inline-block mr-2">
+                  {{$postChild->created_at}}
+                </div>
+                <div class="d-inline-block mr-2">
+                    @foreach($postChild->Categories as $categories)
+                  <a style="color: #333;" href="{{url('category',$categories->slug)}}">{{$categories->name}}</a>
+                  @endforeach
+                </div>
+              </div>
+              <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">
+              {{$postChild->desc}}</p>
+            </div>
+        </div>
+            {{-- @if($loop->index == 2)
+                    @break
+                @endif --}}
+            @endforeach 
+          @endforeach
+          @endif
+
       </div>
         <!-- Sticky Block End Point -->
         <div id="stickyBlockEndPoint"></div>

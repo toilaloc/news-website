@@ -24,11 +24,8 @@ Route::get('loadFormReply', 'AjaxController@loadFormReply')->name('load.formRepl
 // Load Category
 Route::get('load-categories', 'CategoriesController@loadCategories')->name('load.categories');
 
-Route::get('testadmin', function () {
-    return view('admin.index');
-});
 
-
+Route::get('panel', 'AdminController@index');
 // View Admin
 Route::resource('posts', 'PostsController');
 Route::get('/post/{slug}', 'PostsController@show');
@@ -80,21 +77,8 @@ Route::group(['prefix' => 'frontend'], function () {
         return view('frontend.pages.contact.term');
     });
 
-    // Profile
-    Route::get('profile', function () {
-        return view('frontend.pages.users_profile.profile');
-    });
-    Route::get('address', function () {
-        return view('frontend.pages.users_profile.address');
-    });
     Route::get('setting', function () {
         return view('frontend.pages.users_profile.setting');
-    });
-    Route::get('change-password', function () {
-        return view('frontend.pages.users_profile.change-password');
-    });
-    Route::get('activity', function () {
-        return view('frontend.pages.users_profile.activity-history');
     });
     Route::get('follow', function () {
         return view('frontend.pages.users_profile.follow');
