@@ -131,9 +131,14 @@ class PostsController extends Controller
     {
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $post = Posts::where('slug', $slug)->firstOrFail(); 
+        $authorId = $post->author_id;
         $postNew = Posts::take(5)->get();
-       
-        return view('frontend.pages.posts.postDisplay', compact('post','dateTime','postNew'));
+        $hotPosts = Posts::where('view','>','0')->take(5)->get();
+        $relaPost =  Posts::whereHas('categories', function($query) use ($slug) {
+            $query->where('slug','!=',$slug);
+          })->take(4)->orderBy('id', 'DESC')->get();
+        $postAuthor = Posts::where('author_id','=',$authorId)->take(3)->get();
+        return view('frontend.pages.posts.postDisplay', compact('post','dateTime','postNew','hotPosts','relaPost', 'postAuthor'));
     }
 
     /**

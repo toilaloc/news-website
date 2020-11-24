@@ -60,8 +60,9 @@
                     </a>
     
                     <div id="searchClassic" class="hs-unfold-content dropdown-menu w-100 border-0 rounded-0 px-3 mt-0">
-                      <form class="input-group input-group-sm input-group-merge">
-                        <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
+                    <form method="GET" action="{{route('search.index')}}" class="input-group input-group-sm input-group-merge">
+                      @csrf
+                        <input type="text" name="key" class="form-control" placeholder="Bạn muốn tìm kiếm?" aria-label="Bạn muốn tìm kiếm?">
                         <div class="input-group-append">
                           <div class="input-group-text">
                             <i class="fas fa-search"></i>
@@ -226,13 +227,14 @@
     
                     <!-- Search Form -->
                     <li class="d-none d-lg-inline-block navbar-nav-item flex-grow-1 mx-2">
-                      <form class="input-group input-group-sm input-group-merge w-75">
-                        <div class="input-group-prepend">
+                    <form method="POST" action="{{route('search.index')}}" class="input-group input-group-sm input-group-merge w-75">
+                        @csrf
+                      <div class="input-group-prepend">
                           <div class="input-group-text">
                             <i class="fa fa-search"></i>
                           </div>
                         </div>
-                        <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
+                        <input type="text" name="key" class="form-control" placeholder="Bạn muốn tìm kiếm?" aria-label="Bạn muốn tìm kiếm?">
                       </form>
                     </li>
                     <!-- End Search Form -->
@@ -274,7 +276,7 @@
                             <a class="media" href="#">
                               <div class="mt-1 mr-3">
                                 <div class="avatar">
-                                  <img class="avatar-img rounded-sm" src="../../assets/svg/components/graphics-8.svg" alt="Image Description">
+                                  <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
                                 </div>
                               </div>
                               <div class="media-body">
@@ -297,7 +299,7 @@
                             <a class="media mt-5" href="#">
                               <div class="mt-1 mr-3">
                                 <div class="avatar">
-                                  <img class="avatar-img rounded-sm" src="../../assets/svg/components/graphics-7.svg" alt="Image Description">
+                                  <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-7.svg')}}" alt="Image Description">
                                 </div>
                               </div>
                               <div class="media-body">

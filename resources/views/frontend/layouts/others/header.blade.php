@@ -56,8 +56,9 @@
                           </a>
           
                           <div id="searchClassic" class="hs-unfold-content dropdown-menu w-100 border-0 rounded-0 px-3 mt-0">
-                            <form class="input-group input-group-sm input-group-merge">
-                              <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
+                          <form method="POST" action="{{route('search.index')}}" class="input-group input-group-sm input-group-merge">
+                             @csrf
+                            <input type="text" name="key" class="form-control" placeholder="Bạn muốn tìm kiếm?" aria-label="Bạn muốn tìm kiếm?">
                               <div class="input-group-append">
                                 <div class="input-group-text">
                                   <i class="fas fa-search"></i>
@@ -222,13 +223,15 @@
           
                           <!-- Search Form -->
                           <li class="d-none d-lg-inline-block navbar-nav-item flex-grow-1 mx-2">
-                            <form class="input-group input-group-sm input-group-merge w-75">
+                        
+                            <form method="POST" action="{{route('search.index')}}"  class="input-group input-group-sm input-group-merge w-75">
+                              @csrf
                               <div class="input-group-prepend">
                                 <div class="input-group-text">
                                   <i class="fa fa-search"></i>
                                 </div>
                               </div>
-                              <input type="text" class="form-control" placeholder="What do you want to learn?" aria-label="What do you want to learn?">
+                              <input type="text" name="key" class="form-control" placeholder="Bạn muốn tìm kiếm?" aria-label="Bạn muốn tìm kiếm?">
                             </form>
                           </li>
                           <!-- End Search Form -->

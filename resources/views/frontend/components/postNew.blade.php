@@ -4,7 +4,9 @@
             <div class="mb-3 border-bottom">
                 <h3>Tin mới nhất</h3>
             </div>
-
+            @if($postNew->count() == 0)
+            {{"Chưa có bài viết để hiển thị"}}
+            @else
            @foreach($postNew as $news)
             <article class="mb-3">
                 <div class="media">
@@ -18,6 +20,7 @@
                 </div>
             </article>
             @endforeach
+            @endif
             <!-- End Blog -->
         </div>
     </div>

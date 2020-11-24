@@ -24,7 +24,7 @@ Route::get('loadFormReply', 'AjaxController@loadFormReply')->name('load.formRepl
 // Load Category
 Route::get('load-categories', 'CategoriesController@loadCategories')->name('load.categories');
 
-
+Route::post('search', 'SearchController@index')->name('search.index');
 Route::get('panel', 'AdminController@index');
 // View Admin
 Route::resource('posts', 'PostsController');
