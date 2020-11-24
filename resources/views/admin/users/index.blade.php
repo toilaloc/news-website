@@ -12,10 +12,10 @@
 @endif
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">List of Categories</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Danh Sách Người Dùng</h6>
     </div>
     <div class="card-body">
-    <table class="table table-bordered">
+    <table id="tableUser" class="table table-striped table-bordered">
     <thead>
       <tr>
         <th scope="col">Tên người dùng</th>
@@ -29,13 +29,14 @@
         <th scope="col">Vai trò</th>
         <th scope="col">Số bài viết</th>
         <th scope="col">Ngày đăng ký</th>
-        <th scope="col" colspan="2">Chức năng</th>
+        <th scope="col">Sửa</th>
+        <th scope="col">Xóa</th>
       </tr>
     </thead>
     <tbody>
         @foreach($users as $user)
         <tr>
-        <td><a href="{{url('/user', $user->username)}}">{{$user->fullname}}</a></td>
+        <td><a href="{{url('/author', $user->username)}}">{{$user->fullname}}</a></td>
         <td> <img class="rounded-circle" src="{{url('uploads/users/', $user->thumbnail)}}" alt="{{$user->fullname}}" height="50px" width="50px"></td>
         <td>{{$user->address}}</td>
         <td>@if($user->gender == 0)
@@ -67,9 +68,7 @@
             <button type="submit" class="btn btn-danger btn-sm">Xóa</button></td>
         </form>
         </tr>
-        <tr>
-        <td colspan="12">Giới thiệu: {{$user->bio}}</td>
-        </tr>
+        
           @endforeach
     </tbody>
   </table>

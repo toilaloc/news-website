@@ -23,7 +23,22 @@ class Categories extends Model
     
     public function subcategories(){
 
-        return $this->hasMany('App\Models\Categories', 'category_id');
+        return $this->belongsToMany('App\Models\Categories', 'category_id');
+    }
+
+    public function parent() {
+        return $this->belongsTo(Categories::class, 'category_id');
+    }
+    
+    public function childs() {
+        return $this->hasMany(Categories::class, 'category_id');
+    }
+
+    public function getPosts($id){
+        $data =   Posts::whereHas('categories', function($query) use ($id) {
+            $query->whereId($id);
+          })->orderBy('created_at', 'DESC')->get();
+        return $data;
     }
 
     public function Posts(){

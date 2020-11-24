@@ -34,6 +34,11 @@ class Comments extends Model
     {
         return $this->belongsTo(Posts::class, 'post_id', 'id');
     }
+
+    public function Reply($id){
+        return Comments::find($id);
+    }
+
     public function Author()
     {
         return $this->belongsTo('App\Models\Users', 'user_id', 'id');

@@ -6301,7 +6301,7 @@ a.close.disabled {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1004;
+  z-index: -1;
   width: 100vw;
   height: 100vh;
   background-color: rgba(33, 50, 91, 0.125);

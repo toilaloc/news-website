@@ -19,7 +19,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Posts::all();
+        $posts = Posts::orderBy('id', 'DESC')->get();
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -176,7 +176,7 @@ class PostsController extends Controller
 
         if($request->hasfile('thumbnail')){
                 $file = $request->file('thumbnail');
-                if($file === "") {
+                if($file) {
                     $thumbnail = $file->getClientOriginalName();
                     $file->move(public_path('uploads/posts/thumbnail'), $thumbnail);
                 }

@@ -10,6 +10,71 @@
             color: #0052ea;
         }
 
+        @import url(//netdna.bootstrapcdn.com/font-awesome/5.10.0/css/font-awesome.css);
+
+        /*reset css*
+        div,
+        label {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin: 10px;
+        }
+
+        /****** Style Star Rating Widget *****/
+        #rating {
+            border: none;
+            float: left;
+        }
+
+        #rating>input {
+            display: none;
+        }
+
+        /*ẩn input radio - vì chúng ta đã có label là GUI*/
+        #rating>label:before {
+            margin: 5px;
+            font-size: 1.25em;
+            font-family: FontAwesome;
+            display: inline-block;
+            content: "\f005";
+        }
+
+        /*1 ngôi sao*/
+        #rating>.half:before {
+            content: "\f089";
+            position: absolute;
+        }
+
+        /*0.5 ngôi sao*/
+        #rating>label {
+            color: #ddd;
+            float: right;
+        }
+
+        /*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+        /*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+        #rating>input:checked~label,
+        #rating:not(:checked)>label:hover,
+        #rating:not(:checked)>label:hover~label {
+            color: #FFD700;
+        }
+
+        /* Hover vào các sao phía trước ngôi sao đã chọn*/
+        #rating>input:checked+label:hover,
+        #rating>input:checked~label:hover,
+        #rating>label:hover~input:checked~label,
+        #rating>input:checked~label:hover~label {
+            color: #FFED85;
+        }
+
     </style>
     <hr>
     <!-- Content Section -->
@@ -18,8 +83,9 @@
             <div class="col-lg-12" style=" padding-left: 0px;">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb" style="margin-bottom: 0rem!important;">
-                        @foreach($post->Categories as $category)
-                        <li class="breadcrumb-item"><a href="{{url('category',$category->slug)}}" style="color:#888; text-transform: uppercase;">{{$category->name}}</a></li>
+                        @foreach ($post->Categories as $category)
+                            <li class="breadcrumb-item"><a href="{{ url('category', $category->slug) }}"
+                                    style="color:#888; text-transform: uppercase;">{{ $category->name }}</a></li>
                         @endforeach
                     </ol>
                 </nav>
@@ -38,7 +104,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="d-flex justify-content-md-end align-items-center">
-                                <span class="d-block text-muted">{{$post->Author->fullname}}, {{$dateTime->diffForHumans($post->created_at)}}</span>
+                                    <span class="d-block text-muted">{{ $post->Author->fullname }},
+                                        {{ $dateTime->diffForHumans($post->created_at) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -46,80 +113,96 @@
                     <!-- End Author -->
                 </div>
                 <div class="pl-lg-1" style="text-align: justify">
-                    <p class="h3">{{ $post->desc }}</p>
-                    <p>
                     @php
                     $content =  $post->content; 
                     echo str_replace("<img","<img class='img-fluid rounded'",$content);
                     @endphp
                     </p>
 
-                </div>
+                                        </div>
 
-                <!-- Badges -->
-                <div class="mt-5">
-                    @foreach($post->Tags as $tag)
-                    <a class="btn btn-xs btn-soft-secondary mb-1" href="{{url('tag',$tag->slug)}}">{{$tag->name}}</a>
-                    @endforeach
-                </div>
-                <!-- End Badges -->
-
-                <!-- Share -->
-                <div class="row justify-content-sm-between align-items-sm-center space-1 ">
-                    <div class="col-sm-6 mb-2 mb-sm-0">
-                        <div class="d-flex align-items-center">
-                            <span class="d-block small font-weight-bold text-cap mr-2">Share:</span>
-
-                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                <i class="fab fa-telegram"></i>
-                            </a>
-                        </div>
+                                        <!-- Badges -->
+                                        <div class=" mt-5">
+                                @foreach ($post->Tags as $tag)
+                                    <a class="btn btn-xs btn-soft-secondary mb-1"
+                                        href="{{ url('tag', $tag->slug) }}">{{ $tag->name }}</a>
+                                @endforeach
                     </div>
+                    <!-- End Badges -->
 
-                    <div class="col-sm-6 text-sm-right">
-                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle mr-2" href="#" data-toggle="tooltip"
-                            data-placement="top" title="Bookmark story">
-                            <i class="far fa-bookmark"></i>
-                        </a>
-                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle" href="#" data-toggle="tooltip"
-                            data-placement="top" title="Report story">
-                            <i class="far fa-flag"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- End Share -->
+                    <!-- Share -->
+                    <div class="row justify-content-sm-between align-items-sm-center space-1 ">
+                        <div class="col-sm-7 mb-2 mb-sm-0">
+                            <div class="d-flex align-items-center">
+                                <span class="d-block small font-weight-bold text-cap mr-2">Share:</span>
 
-
-                <div class="border-top pt-3">
-                    <h3 class="mb-4">Thông tin tác giả</h3>
-
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 pl-7">
-                            <div class="avatar avatar-xl avatar-circle mb-3">
-                            <img class="avatar-img" style="width: 100%;height: 100%;" src="{{asset('uploads/users')}}/{{$post->Author->thumbnail}}" alt="Image Description">
+                                <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
                             </div>
-                            <!-- End Icon Block -->
                         </div>
+                        <div class="col-sm-3 mb-2 mb-sm-0" id="rating">
+                            <input type="radio" id="star5" name="rating" value="5" />
+                            <label class="full" for="star5" title="Awesome - 5 stars"></label>
 
-                        <div class="col-lg-9 col-md-9 col-sm-9">
-                            <!-- Info -->
-                            <h3 class="mb-0">{{ $post->Author->fullname }} <button type="button"
-                                    class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</button>
-                            </h3>
-                            <p style="text-align: justify;">{{ $post->Author->bio }} </p>
-                            <!-- End Info -->
+                            <input type="radio" id="star4" name="rating" value="4" />
+                            <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+
+                            <input type="radio" id="star3" name="rating" value="3" />
+                            <label class="full" for="star3" title="Meh - 3 stars"></label>
+
+                            <input type="radio" id="star2" name="rating" value="2" />
+                            <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                            <input type="radio" id="star1" name="rating" value="1" />
+                            <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                        </div>
+                        <div class="col-sm-2 text-sm-right">
+                            <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle mr-2" href="#"
+                                data-toggle="tooltip" data-placement="top" title="Bookmark story">
+                                <i class="far fa-bookmark"></i>
+                            </a>
+                            <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle" href="#" data-toggle="tooltip"
+                                data-placement="top" title="Report story">
+                                <i class="far fa-flag"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
+                    <!-- End Share -->
+
+
+                    <div class="border-top pt-3">
+                        <h3 class="mb-4">Thông tin tác giả</h3>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 pl-7">
+                                <div class="avatar avatar-xl avatar-circle mb-3">
+                                    <img class="avatar-img" style="width: 100%;height: 100%;"
+                                        src="{{ asset('uploads/users') }}/{{ $post->Author->thumbnail }}"
+                                        alt="Image Description">
+                                </div>
+                                <!-- End Icon Block -->
+                            </div>
+
+                            <div class="col-lg-9 col-md-9 col-sm-9">
+                                <!-- Info -->
+                                <h3 class="mb-0">{{ $post->Author->fullname }} <button type="button"
+                                        class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</button>
+                                </h3>
+                                <p style="text-align: justify;">{{ $post->Author->bio }} </p>
+                                <!-- End Info -->
+                            </div>
+                        </div>
+                    </div>
 
 
                 <div class="pt-2 mb-11 border-top space-lg-1">
@@ -128,110 +211,113 @@
                             <h3>{{$post->hasComments->count()}} Bình luận</h3>
                         </div>
                         @include('frontend.pages.comments.listComments',['comments'=>$post->Comment_post($post->id)])
+                        <div class="mb-5">
+                            <h3>Bình luận</h3>
+                        </div>
+                        <!-- Form -->
+                        @include('frontend.pages.comments.formComment',['post_id'=>$post->id])
+                        <!-- End Form -->
                     </div>
-
-                    <div class="mb-5">
-                        <h3>Bình luận</h3>
-                    </div>
-                    <!-- Form -->
-                    @include('frontend.pages.comments.formComment',['post_id'=>$post->id])
-                    <!-- End Form -->
                 </div>
             </div>
-            <div id="stickyBlockStartPoint" class="col-lg-4 mb-7 mb-lg-0">
-                <!-- Sidebar Content -->
-                <div class="js-sticky-block card bg-white" data-hs-sticky-block-options='{
-               "parentSelector": "#stickyBlockStartPoint",
-               "startPoint": "#stickyBlockStartPoint",
-               "endPoint": "#stickyBlockEndPoint",
-               "stickyOffsetTop": 24,
-               "stickyOffsetBottom": 24
-             }'>
+                <div id="stickyBlockStartPoint" class="col-lg-4 mb-7 mb-lg-0">
+                    <!-- Sidebar Content -->
+                    <div class="js-sticky-block card bg-white" data-hs-sticky-block-options='{
+                                       "parentSelector": "#stickyBlockStartPoint",
+                                       "startPoint": "#stickyBlockStartPoint",
+                                       "endPoint": "#stickyBlockEndPoint",
+                                       "stickyOffsetTop": 24,
+                                       "stickyOffsetBottom": 24
+                                     }'>
 
-             {{-- Include 5 Post New --}}
-             @include('frontend.components.postNew')
+                        {{-- Include 5 Post New --}}
+                        @include('frontend.components.postNew')
 
-                    <div class="card-header" style="padding: 0rem 0rem; border-bottom: none;">
-                        <div class="col-lg">
-                            <div class="mb-7">
-                                <div class="mb-3 border-bottom">
-                                    <h3>Tin nổi bật</h3>
+                        <div class="card-header" style="padding: 0rem 0rem; border-bottom: none;">
+                            <div class="col-lg">
+                                <div class="mb-7">
+                                    <div class="mb-3 border-bottom">
+                                        <h3>Tin nổi bật</h3>
+                                    </div>
+
+                                    <!-- Blog -->
+                                    <article class="mb-3">
+                                        <div class="media">
+                                            <div class="avatar avatar-lg mr-3">
+                                                <img class="img-fluid"
+                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                    alt="Image Description">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
+                                                        miền
+                                                        Trung mưa lớn</a></h4>
+                                                <small class="d-inline-block">Feb 15, 2020</small>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <!-- End Blog -->
+                                    <!-- Blog -->
+                                    <article class="mb-3">
+                                        <div class="media">
+                                            <div class="avatar avatar-lg mr-3">
+                                                <img class="img-fluid"
+                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                    alt="Image Description">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
+                                                        miền
+                                                        Trung mưa lớn</a></h4>
+                                                <small class="d-inline-block">Feb 15, 2020</small>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <!-- End Blog -->
+                                    <!-- Blog -->
+                                    <article class="mb-3">
+                                        <div class="media">
+                                            <div class="avatar avatar-lg mr-3">
+                                                <img class="img-fluid"
+                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                    alt="Image Description">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
+                                                        miền
+                                                        Trung mưa lớn</a></h4>
+                                                <small class="d-inline-block">Feb 15, 2020</small>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <!-- End Blog -->
+                                    <!-- Blog -->
+                                    <article class="mb-3">
+                                        <div class="media">
+                                            <div class="avatar avatar-lg mr-3">
+                                                <img class="img-fluid"
+                                                    src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
+                                                    alt="Image Description">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
+                                                        miền
+                                                        Trung mưa lớn</a></h4>
+                                                <small class="d-inline-block">Feb 15, 2020</small>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <!-- End Blog -->
                                 </div>
-
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành, miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <!-- End Blog -->
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
+                <!-- End Sidebar Content -->
             </div>
-            <!-- End Sidebar Content -->
         </div>
-    </div>
     </div>
     <!-- End Content Section -->
 
@@ -425,7 +511,13 @@
         </form>
         <!-- End Form -->
     </div>
-
+    <script>
+        function calcRate(r) {
+            const f = ~~r, //Tương tự Math.floor(r)
+                id = 'star' + f + (r % f ? 'half' : '')
+            id && (document.getElementById(id).checked = !0)
+        }
+    </script>
 
 
 

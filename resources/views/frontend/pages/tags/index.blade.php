@@ -32,7 +32,7 @@
                         </div>
                         <div class="d-inline-block mr-2">
                             @foreach($post->Categories as $categories)
-                        <a style="color: #333;" href="{{$categories->slug}}">{{$categories->name}}</a>
+                        <a style="color: #333;" href="{{url('category',$categories->slug)}}">{{$categories->name}}</a>
                             @endforeach
                         </div>
                     </div>
