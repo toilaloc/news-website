@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ Route::get('user/{username}', 'ProfileController@index');
 Route::get('change-password/{username}', 'ProfileController@changePassword');
 Route::get('author/{username}', 'ProfileController@activityAccount');
 Route::match(['put', 'patch'], 'user/{username}', 'ProfileController@resolveChangeInfo')->name('userfront.update');
-Route::match(['put', 'patch'],'change-password-profile/{username}','ProfileController@resolveChangePassword')->name('userfront.pass');
+Route::match(['put', 'patch'], 'change-password-profile/{username}', 'ProfileController@resolveChangePassword')->name('userfront.pass');
 // Sitemap
 
 Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.xml');
@@ -90,6 +91,12 @@ Route::group(['prefix' => 'frontend'], function () {
     });
 });
 
+Route::get('send-mail', function () {
+
+    Mail::to('hoangxam2@gmail.com')->send(new \App\Mail\SendPassword());
+
+    dd("Email is Sent.");
+});
 
 Auth::routes();
 

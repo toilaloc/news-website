@@ -137,10 +137,10 @@
                                         </h3>
                                     </form>
                                 @endif
-                                @else 
+                                @else
                                 <h3 class="mb-0">{{ $post->Author->fullname }}</h3>
                             @endif
-                           
+
 
                             <p style="text-align: justify;">{{ $post->Author->bio }} </p>
                             <!-- End Info -->
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <!-- End Sidebar Content -->
@@ -280,10 +280,10 @@
                     'post_id': '{{ $post->id }}'
                 },
                 success: function(data) {
-                    alert(data);
+                    document.location.reload(true);
                 },
                 error: function(error) {
-                    alert(error);
+                    document.location.reload(true);
                 }
             });
         });
