@@ -13,7 +13,7 @@ class SearchController extends Controller
         $result = Posts::where('name', 'like', '%'.$key.'%')->orwhereHas('categories', function($query) use ($key) {
                 $query->where('name', 'like', '%'.$key.'%');
               })->get();
-        $hotPosts = Posts::where('view','>','0')->take(5)->get();
+              $hotPosts = Posts::where('view','>', 0)->take(5)->get();
       return view('frontend.search.searching', compact('result', 'key', 'dateTime', 'hotPosts'));
     }
 }

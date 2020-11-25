@@ -140,6 +140,7 @@
                                 @else 
                                 <h3 class="mb-0">{{ $post->Author->fullname }}</h3>
                             @endif
+                           
 
                             <p style="text-align: justify;">{{ $post->Author->bio }} </p>
                             <!-- End Info -->
@@ -174,84 +175,11 @@
                                 <div class="mb-3 border-bottom">
                                     <h3>Tin nổi bật</h3>
                                 </div>
-
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình
-                                                    thành,
-                                                    miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình
-                                                    thành,
-                                                    miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình
-                                                    thành,
-                                                    miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình
-                                                    thành,
-                                                    miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                    @include('frontend.components.hotPosts')
+                                @include('frontend.components.hotPosts')
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div> 
                 </div>
             </div>
             <!-- End Sidebar Content -->

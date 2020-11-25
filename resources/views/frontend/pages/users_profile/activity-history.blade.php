@@ -90,8 +90,8 @@
                             <i class="pl-1 fas fa-user-friends nav-icon"></i>
                           </div>
                           <div class="media-body">
-                            <span class="d-inline font-size-1 font-weight-bold">Người theo dõi</span>
-                            <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
+                            <span class="d-inline font-size-1 font-weight-bold" data-toggle="modal" data-target="#staticBackdrop">Người theo dõi</span>
+                          <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->hasFollowers->count()}}</span>
                           </div>
                         </a>
                         <!-- End Social Profiles -->
@@ -102,10 +102,62 @@
                         <i class="pl-1 fas fa-users nav-icon"></i>
                       </div>
                       <div class="media-body">
-                        <span class="d-inline font-size-1 font-weight-bold">Đang theo dõi</span>
-                        <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
+                        <span  class="d-inline font-size-1 font-weight-bold" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop1">Đang theo dõi</span>
+                        <span class="badge badge-soft-navy badge-pill nav-link-badge" >{{$user->Following->count()}}</span>
                       </div>
                     </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop1" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Đang theo dõi</h5>
+                          </div>
+                          <div class="modal-body">
+                           @foreach($user->Following as $following)  
+                           @foreach(App\Models\Users::all()->where('id', $following->author_id) as $follow)
+                           <div class="d-flex align-items-center mr-4">
+                            <div class="avatar-group">
+                              <span class="avatar avatar-xs avatar-circle">
+                                <img class="avatar-img w-100" src="{{asset('uploads/users/')}}/{{$follow->thumbnail}}" alt="Image Description">
+                              </span>
+                            </div>
+                            <span class="pl-2"><a class="link-underline" href="{{url('author', $follow->username)}}">{{$follow->fullname}}</a></span>
+                            
+                          </div> 
+                                   @endforeach       
+                            @endforeach
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Người theo dõi</h5>
+                          </div>
+                          <div class="modal-body">
+                           @foreach($user->hasFollowers as $follower)  
+                           <div class="d-flex align-items-center mr-4">
+                            <div class="avatar-group">
+                              <span class="avatar avatar-xs avatar-circle">
+                                <img class="avatar-img w-100" src="{{asset('uploads/users/')}}/{{App\Models\Users::find($follower->user_id)->thumbnail}}" alt="Image Description">
+                              </span>
+                            </div>
+                            <span class="pl-2"><a class="link-underline" href="{{url('author',App\Models\Users::find($follower->user_id)->username)}}">{{App\Models\Users::find($follower->user_id)->fullname}}</a></span>
+                          </div>                         
+                            @endforeach
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <!-- End Social Profiles -->
                   </div>
                 </div>

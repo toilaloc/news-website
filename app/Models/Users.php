@@ -61,4 +61,14 @@ class Users extends Model
     {
         return $this->hasMany(Comments::class, 'user_id');
     }
+    public function Following(){
+        return $this->hasMany(Followers::class, 'user_id');
+    }
+    public function hasFollowers(){
+        return $this->hasMany(Followers::class, 'author_id');
+    }
+
+    public function infoFollow($id){
+        return Users::find($id);
+    }
 }
