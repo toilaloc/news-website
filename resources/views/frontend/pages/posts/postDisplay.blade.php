@@ -42,10 +42,10 @@
                     $content = $post->content;
                     echo str_replace("<img","<img
                         class='img-fluid rounded'",$content);
-                                                                                                                                                                                                                                                                                    @endphp
-                                                                                                                                                                                                                                                                      </div>
-                                                                                                                                                                                                                                                                      <!-- Badges -->
-                                                                                                                                                                                                                                                                      <div class="
+                                                                                                                                                                                                                                                                                        @endphp
+                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                          <!-- Badges -->
+                                                                                                                                                                                                                                                                          <div class="
                         mt-5">
                         @foreach ($post->Tags as $tag)
                             <a class="btn btn-xs btn-soft-secondary mb-1"
@@ -111,30 +111,32 @@
 
                         <div class="col-lg-9 col-md-9 col-sm-9">
                             <!-- Info -->
-                            @if (App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
-                                <form action="{{ route('followers.store') }}" method="POST">
-                                    @csrf
-                                    <h3 class="mb-0">{{ $post->Author->fullname }}
-                                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                                        <input type="hidden" name="author_id" value="{{ $post->author_id }}">
-                                        <button type="submit"
-                                            class="btn btn-xs btn-soft-danger font-weight-bold transition-3d-hover py-1 px-2 ml-1"
-                                            name="unfollow" value="unfollow">Unfollow
-                                        </button>
-                                    </h3>
-                                </form>
-                            @else
-                                <form action="{{ route('followers.store') }}" method="POST">
-                                    @csrf
-                                    <h3 class="mb-0">{{ $post->Author->fullname }}
-                                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                                        <input type="hidden" name="author_id" value="{{ $post->author_id }}">
-                                        <button type="submit"
-                                            class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1"
-                                            name="follow" value="follow">Follow
-                                        </button>
-                                    </h3>
-                                </form>
+                            @if (Auth::check())
+                                @if (App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
+                                    <form action="{{ route('followers.store') }}" method="POST">
+                                        @csrf
+                                        <h3 class="mb-0">{{ $post->Author->fullname }}
+                                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                            <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                                            <button type="submit"
+                                                class="btn btn-xs btn-soft-danger font-weight-bold transition-3d-hover py-1 px-2 ml-1"
+                                                name="unfollow" value="unfollow">Unfollow
+                                            </button>
+                                        </h3>
+                                    </form>
+                                @else
+                                    <form action="{{ route('followers.store') }}" method="POST">
+                                        @csrf
+                                        <h3 class="mb-0">{{ $post->Author->fullname }}
+                                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                            <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                                            <button type="submit"
+                                                class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1"
+                                                name="follow" value="follow">Follow
+                                            </button>
+                                        </h3>
+                                    </form>
+                                @endif
                             @endif
 
                             <p style="text-align: justify;">{{ $post->Author->bio }} </p>
