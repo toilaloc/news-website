@@ -77,12 +77,10 @@
                     <div class="col-sm-7 mb-2 mb-sm-0">
                         <div class="d-flex align-items-center">
                             <span class="d-block small font-weight-bold text-cap mr-2">Đánh giá:</span>
-
+                            @if(Auth::check())
                             @if (App\Models\Post_votes::where(['post_id' => $post->id, 'user_id' => Auth::user()->id])->exists())
                                 <div class="stars" style="float: right;">
-                         
-                                    <input class="star star-5" id="star-5" type="radio" value="5" name="star" />
-                                    <label style="padding: 2px;font-size: 16px;margin-top: 8px;"for="star-5"></label>
+                                    {{"hiển thị sao"}}
                                 </div>
                             @else
                                 <div class="stars" style="float: right;">
@@ -102,6 +100,9 @@
                                     <label style="padding: 2px;font-size: 16px;    margin-top: 8px;" class="star star-1"
                                         for="star-1"></label>
                                 </div>
+                            @endif
+                            @else 
+                                {{"chưa đăng nhập"}}
                             @endif
                         </div>
                     </div>
@@ -133,7 +134,8 @@
 
                         <div class="col-lg-9 col-md-9 col-sm-9">
                             <!-- Info -->
-                            @if (App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
+                            @if(Auth::check())
+                            @if(App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
                                 <form action="{{ route('followers.store') }}" method="POST">
                                     @csrf
                                     <h3 class="mb-0">{{ $post->Author->fullname }}
@@ -157,6 +159,9 @@
                                         </button>
                                     </h3>
                                 </form>
+                            @endif
+                            @else 
+                            <h3 class="mb-0">{{ $post->Author->fullname }}</h3>
                             @endif
 
                             <p style="text-align: justify;">{{ $post->Author->bio }} </p>
