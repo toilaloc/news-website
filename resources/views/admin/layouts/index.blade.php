@@ -66,6 +66,9 @@
             <h6 class="collapse-header">Thêm mới:</h6>
           <a class="collapse-item" href="{{route('posts.create')}}">Bài viết</a>
           <a class="collapse-item" href="{{route('categories.create')}}">Danh mục</a>
+          <a class="collapse-item" href="{{route('users.create')}}">Người dùng</a>
+          <a class="collapse-item" href="{{route('roles.create')}}">Quyền người dùng</a>
+          <a class="collapse-item" href="{{route('permissions.create')}}">Quyền chi tiết</a>
           </div>
         </div>
       </li>
@@ -126,6 +129,20 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Users:</h6>
           <a class="collapse-item" href="{{route('users.index')}}">Danh sách người dùng</a>
+            <div class="collapse-divider"></div>
+          </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRoles" aria-expanded="true" aria-controls="collapseRoles">
+          <i class="far fa-address-card"></i>
+          <span>Quyền người dùng</span>
+        </a>
+        <div id="collapseRoles" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Quyền:</h6>
+          <a class="collapse-item" href="{{route('roles.index')}}">Danh sách quyền</a>
+          <a class="collapse-item" href="{{route('permissions.index')}}">Danh sách quyền chi tiết</a>
             <div class="collapse-divider"></div>
           </div>
       </li>

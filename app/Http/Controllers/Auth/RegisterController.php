@@ -50,11 +50,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|max:50',
+            'username' => 'required|string|max:50|unique:users',
             'fullname' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'thumbnail',
+            'thumbnail' => 'required',
             'address' => 'required',
             'phone' => 'required',
             'bio' => 'string',
@@ -85,9 +85,8 @@ class RegisterController extends Controller
         if(empty($file_name)) {
             $file_name = "default.jpg";
         }
-        
 
-        return User::create([
+        $user = User::create([
             'username' => $data['username'],
             'fullname' => $data['fullname'],
             'email' => $data['email'],
@@ -103,6 +102,10 @@ class RegisterController extends Controller
             'follower' => NULL,
             'following' => NULL,
         ]);
+
+        $user->Roles()->attach(4);
+        
+        return $user;
     }
 
 }

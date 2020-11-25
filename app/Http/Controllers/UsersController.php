@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Roles;
 use App\Models\Users;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller
 {
     /**
@@ -25,7 +26,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Roles::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -36,7 +38,54 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'username' => 'required|string|max:50|unique:users',
+            'fullname' => 'required',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'thumbnail',
+            'address' => 'required',
+            'phone' => 'required',
+            'bio' => 'string',
+            'gender' => 'required',
+            'active',
+            'vote',
+            'status',
+            'follower',
+            'following',
+        ],[
+            'required' => ':attribute không được để trống.',
+            'min' => ':attribute phải có ít nhất :min ký tự.',
+            'email' => 'Không đúng định dạng',
+        ]);
+
+        if ($request->hasfile('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $thumbnail = $file->getClientOriginalName();
+            $file->move(public_path('uploads/users/'), $thumbnail);
+        } else {
+            $thumbnail = "default.png";
+        }
+
+        $user = new Users();
+        $user->username = $request->username;
+        $user->fullname = $request->fullname;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->thumbnail = $thumbnail;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+        $user->bio = $request->bio;
+        $user->gender = $request->gender;
+        $user->active = 0;
+        $user->vote = 0;
+        $user->status = 0;
+        $user->follower = NULL;
+        $user->following = NULL;
+        $user->save();
+        $user->Roles()->attach($request->role_id);
+
+        return redirect()->route('users.index')->with('success', 'Thêm người dùng thành công');
     }
 
     /**
@@ -59,7 +108,8 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user =  Users::find($id);
-        return view('admin.users.edit', compact('user'));
+        $roles =  Roles::all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -88,14 +138,15 @@ class UsersController extends Controller
             'email' => 'required|email',
             'thumbnail',
             'address' => 'required',
-            'phone' => 'numeric|required|min:10|max:10',
-            'gender' => 'required'
-        ],[
-            'required' => ':attribute không được để trống',
-            'email' => 'Email không đúng định dạng',
-            'numeric' => ':attribute Phải là số',
-            'min' => ':attribute phải là 10 số',
-            'max' => ':attribute không được quá 10 số',
+            'phone' => 'numeric|required|min:10',
+            'gender' => 'required',
+            'username',
+            'password',
+            'bio',
+            'vote',
+            'status',
+            'follower',
+            'following'
         ]);
     
         if ($request->hasFile('thumbnail')) {
@@ -109,7 +160,7 @@ class UsersController extends Controller
             $thumbnail = $oldThumbnail;
         }
 
-        $user->update([
+       $user->update([
             'username'  => $username,
             'fullname' => $request->fullname,
             'password' => $password,
@@ -126,7 +177,11 @@ class UsersController extends Controller
             'thumbnail' => $thumbnail,
         ]);
 
-            return back()->with('success', 'Sửa thông tin thành viên thành công.');
+        $user->Roles()->sync($request->role_id);
+
+
+
+        return back()->with('success', 'Sửa thông tin thành viên thành công.');
     }
 
     /**
@@ -138,6 +193,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $deleteUser =  Users::find($id)->delete();
+       // $deleteUser->Roles()->detach($id);
         if($deleteUser) {
             return redirect()->route('users.index')
             ->with('success','Đã xóa người dùng');

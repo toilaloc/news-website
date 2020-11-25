@@ -40,7 +40,7 @@
                             </td>
                             <td>
                                 @foreach ($post->Tags as $tag)
-                                    <a href="{{ url('/tags', $tag->slug) }}"
+                                    <a href="{{ url('/tag', $tag->slug) }}"
                                         class="badge badge-success">{{ $tag->name }}</a>
                                 @endforeach
                             </td>

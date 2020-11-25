@@ -83,7 +83,7 @@
              <!-- Form Group -->
              <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrEmail">Ảnh đại diện:</label>
-                       <input id="thumbnail" type="file" class="form-control @error('thumbnail') is-invalid @enderror" autocomplete="thumbnail" autofocus>
+                       <input id="thumbnail" type="file" class="form-control @error('thumbnail') is-invalid @enderror" name="thumbnail" autofocus>
                        @error('thumbnail')
                            <span class="invalid-feedback" role="alert">
                                <strong>{{ $message }}</strong>

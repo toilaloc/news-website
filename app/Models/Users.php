@@ -68,6 +68,11 @@ class Users extends Model
         return $this->hasMany(Followers::class, 'author_id');
     }
 
+    public function Roles()
+    {
+        return $this->belongsToMany(Roles::class,'users_roles', 'user_id', 'role_id');
+    }
+
     public function infoFollow($id){
         return Users::find($id);
     }

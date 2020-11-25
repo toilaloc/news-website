@@ -10,6 +10,15 @@
       </button>
     </div>
     @endif
+    @if($errors->any())
+    <div class="alert alert-danger" role="alert">
+       <ul>
+           @foreach($errors->all() as $error)
+           <li>{{$error}}</li>
+           @endforeach
+       </ul> 
+    </div>
+    @endif
   <div class="card shadow mb-4">
       <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">EDIT USER: {{$user->fullname}}</h6>
@@ -129,6 +138,20 @@
                    
                 </div>
               </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Quyền người dùng</label>
+                <div class="col-sm-10">
+                    <select name="role_id[]" class="form-control">
+                    @foreach($roles as $role)  
+                    <option value="{{$role->id}}"
+                      @foreach($user->Roles as $userRoles)
+                      @if($userRoles->pivot->role_id == $role->id) {{"selected"}} @endif
+                      @endforeach
+                      >{{$role->name}}</option>
+                    @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="form-group row">
               <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Đổi thông tin</button>

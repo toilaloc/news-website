@@ -93,14 +93,9 @@ class PostsController extends Controller
         $post->Categories()->attach($request->categories_id);
 
         if ($post) {
-
             $tagNames = explode(',', $request->tag);
-            //dd($tagNames);
             $tagIds = [];
             foreach ($tagNames as $tagName) {
-                //$post->tags()->create(['name'=>$tagName]);
-                //Or to take care of avoiding duplication of Tag
-                //you could substitute the above line as
                 $tag = Tags::firstOrCreate([
                     'name' => $tagName,
                     'slug' => Str::slug($tagName, '-'),
