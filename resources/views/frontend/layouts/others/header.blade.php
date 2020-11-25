@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="shortcut icon" href="{{asset('frontend/assets/favicon.ico')}}">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
