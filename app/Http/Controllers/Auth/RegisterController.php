@@ -64,6 +64,10 @@ class RegisterController extends Controller
             'status',
             'follower',
             'following',
+        ],[
+            'required' => ':attribute không được để trống.',
+            'min' => ':attribute phải có ít nhất :min ký tự.',
+            'email' => 'Không đúng định dạng',
         ]);
     }
 

@@ -238,13 +238,13 @@
 
                           <!-- Pages -->
                           <li class="hs-has-sub-menu navbar-nav-item mr-lg-auto">
-                            <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Pages</a>
+                            <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Trang</a>
 
                             <!-- Pages - Submenu -->
                             <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
-                              <a class="dropdown-item" href="courses-listing.html">Courses</a>
-                              <a class="dropdown-item" href="course-description.html">Course description</a>
-                              <a class="dropdown-item" href="author.html">Author</a>
+                            <a class="dropdown-item" href="{{url('/frontend/contact')}}">Liên Hệ</a>
+                              <a class="dropdown-item" href="{{url('/frontend/term')}}">Góp ý</a>
+                              <a class="dropdown-item" href="{{url('/frontend/faq')}}">Hỏi đáp</a>
                             </div>
                             <!-- End Pages - Submenu -->
                           </li>
@@ -259,13 +259,13 @@
                                   "maxWidth": "350px"
                                 }
                               }'>
-                            <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">My courses</a>
+                            <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Thông báo</a>
 
                             <!-- My Courses - Submenu -->
                             <div class="hs-mega-menu dropdown-menu" aria-labelledby="myCoursesMegaMenu">
                               <div class="card">
                                 <div class="card-header py-3">
-                                  <span class="text-dark font-weight-bold">My courses</span>
+                                  <span class="text-dark font-weight-bold">Thông báo của tôi</span>
                                 </div>
 
                                 <div class="card-body">
@@ -273,7 +273,7 @@
                                   <a class="media" href="#">
                                     <div class="mt-1 mr-3">
                                       <div class="avatar">
-                                        <img class="avatar-img rounded-sm" src="../../assets/svg/components/graphics-8.svg" alt="Image Description">
+                                        <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
                                       </div>
                                     </div>
                                     <div class="media-body">
@@ -292,33 +292,11 @@
                                   </a>
                                   <!-- End Course -->
 
-                                  <!-- Course -->
-                                  <a class="media mt-5" href="#">
-                                    <div class="mt-1 mr-3">
-                                      <div class="avatar">
-                                        <img class="avatar-img rounded-sm" src="../../assets/svg/components/graphics-7.svg" alt="Image Description">
-                                      </div>
-                                    </div>
-                                    <div class="media-body">
-                                      <div class="mb-2">
-                                        <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">The Ultimate MySQL Bootcamp: Go from SQL Beginner</span>
-                                        <small class="d-block text-body">By Nataly Gaga and 2 others</small>
-                                      </div>
-                                      <div class="d-flex justify-content-between mb-1">
-                                        <span class="d-block text-body small text-cap">Completed</span>
-                                        <small class="text-dark font-weight-bold">100%</small>
-                                      </div>
-                                      <div class="progress" style="height: 6px;">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                    </div>
-                                  </a>
-                                  <!-- End Course -->
                                 </div>
 
                                 <div class="card-footer text-center py-3">
                                   <a class="font-size-1" href="#">
-                                    See all
+                                    Xem thêm
                                     <i class="fa fa-angle-right ml-1"></i>
                                   </a>
                                 </div>

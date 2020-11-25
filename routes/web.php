@@ -44,6 +44,7 @@ Route::get('user/{username}', 'ProfileController@index');
 Route::get('change-password/{username}', 'ProfileController@changePassword');
 Route::get('author/{username}', 'ProfileController@activityAccount');
 Route::match(['put', 'patch'], 'user/{username}', 'ProfileController@resolveChangeInfo')->name('userfront.update');
+Route::match(['put', 'patch'],'change-password-profile/{username}','ProfileController@resolveChangePassword')->name('userfront.pass');
 // Sitemap
 
 Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.xml');

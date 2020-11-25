@@ -209,7 +209,7 @@
                     <div class="date">{{$comments->created_at}}</div>
                       <div class="text">"<em>{{$comments->content}}</em>" tại <a href="{{url('post',$comments->Posts->slug)}}">{{$comments->Posts->name}}</a></div>
                     </div>
-                    @if($loop->index == 9)
+                    @if($loop->index == 4)
                         @break
                     @endif
                     @endforeach

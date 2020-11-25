@@ -11,7 +11,7 @@
                 <h1 class="h2 mb-0">Chào mừng bạn đến với hệ thống</h1>
                 <p>Điền vào biểu mẫu để tiến hành đăng ký.</p>
 
-                @if ($errors->any())
+                {{-- @if ($errors->any())
                 @foreach ($errors->all() as $error)
         <div class="alert alert-danger alert-dismissible fade show" role="alert">   
             {{ $error}}
@@ -22,7 +22,7 @@
             </button>
           </div>
           @endforeach
-          @endif
+          @endif --}}
             </div>
            
             <!-- End Title -->
@@ -65,21 +65,25 @@
             <!-- Form Group -->
             <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrPassword">Mật khẩu:</label>
-                <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="********" aria-label="********" 
-                       data-msg="Your password is invalid. Please try again.">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                       @error('password')
+                       <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                       </span>
+                   @enderror
             </div>
             <!-- End Form Group -->
 
             <!-- Form Group -->
             <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrConfirmPassword">Nhập lại mật khẩu:</label>
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" data-msg="Password does not match the confirm password.">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" data-msg="Mật khẩu không khớp nhau.">
             </div>
 
              <!-- Form Group -->
              <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrEmail">Ảnh đại diện:</label>
-                       <input id="thumbnail" type="file" class="form-control @error('thumbnail') is-invalid @enderror" name="thumbnail" value="{{ old('thumbnail') }}" autocomplete="thumbnail" autofocus>
+                       <input id="thumbnail" type="file" class="form-control @error('thumbnail') is-invalid @enderror" autocomplete="thumbnail" autofocus>
                        @error('thumbnail')
                            <span class="invalid-feedback" role="alert">
                                <strong>{{ $message }}</strong>
@@ -157,11 +161,11 @@
             <div class="js-form-message mb-5">
                 <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
                     <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" required
-                           data-msg="Please accept our Terms and Conditions.">
+                           data-msg="Vui lòng chấp nhận điều khoản và quy định để đăng ký.">
                     <label class="custom-control-label" for="termsCheckbox">
                         <small>
                             Tôi đồng ý với
-                            <a class="link-underline" href="../pages/terms.html">Điều khoản và quy định</a>
+                        <a class="link-underline" href="{{url('frontend/faq')}}">Điều khoản và quy định</a>
                             của hệ thống.
                         </small>
                     </label>

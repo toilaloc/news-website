@@ -45,6 +45,38 @@
 
     <!-- Content Section -->
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+<div class="alert alert-danger alert-dismissible fade show" role="alert">   
+    {{ $error}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+      </svg>
+    </button>
+  </div>
+  @endforeach
+  @endif
+        @if(session()->get('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session()->get('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+              </svg>
+            </button>
+          </div>
+          @endif   
+          @if(session()->get('danger'))
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session()->get('danger') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+                </svg>
+              </button>
+            </div>
+            @endif   
         <div class="row">
             <div class="col-lg-3">
                 <!-- Navbar -->
@@ -95,13 +127,13 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="teams.html">
                                             <i class="fas fa-users nav-icon"></i> Đang theo dõi
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
+                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->Following->count()}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="teams.html">
                                             <i class="fas fa-user-friends nav-icon"></i> Người theo dõi
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
+                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->hasFollowers->count()}}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -143,13 +175,15 @@
                     <!-- Body -->
                     <div class="card-body">
                         <!-- Form -->
-                        <form>
+                        <form method="POST" action="{{route('userfront.pass',$user->username)}}" enctype="multipart/form-data">
+                            @csrf
+                            @method('PATCH')
                             <!-- Form Group -->
                             <div class="row form-group">
                                 <label for="currentPasswordLabel" class="col-sm-3 col-form-label input-label">Mật khẩu hiện tại</label>
 
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" name="currentPassword" id="currentPasswordLabel" placeholder="Enter current password" aria-label="Enter current password">
+                                    <input type="password" class="form-control" name="currentPassword" id="currentPasswordLabel" placeholder="Nhập mật khẩu cũ" aria-label="Nhập mật khẩu cũ">
                                 </div>
                             </div>
                             <!-- End Form Group -->
@@ -159,7 +193,7 @@
                                 <label for="newPassword" class="col-sm-3 col-form-label input-label">Mật khẩu mới</label>
 
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="Enter new password" aria-label="Enter new password">
+                                    <input type="password" class="form-control" name="password" id="newPassword" placeholder="Nhập mật khẩu mới" aria-label="Nhập mật khẩu mới">
                                 </div>
                             </div>
                             <!-- End Form Group -->
@@ -170,7 +204,7 @@
 
                                 <div class="col-sm-9">
                                     <div class="mb-3">
-                                        <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPasswordLabel" placeholder="Confirm your new password" aria-label="Confirm your new password">
+                                        <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPasswordLabel" placeholder="Nhập lại mật khẩu mới" aria-label="Nhập lại mật khẩu mới">
                                     </div>
 
                                     <h5>Yêu cầu mật khẩu:</h5>

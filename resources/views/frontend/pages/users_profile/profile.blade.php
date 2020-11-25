@@ -116,13 +116,13 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="teams.html">
                                             <i class="fas fa-users nav-icon"></i> Đang theo dõi
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
+                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->Following->count()}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="teams.html">
                                             <i class="fas fa-user-friends nav-icon"></i> Người theo dõi
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">0</span>
+                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->hasFollowers->count()}}</span>
                                         </a>
                                     </li>
                                 </ul>
