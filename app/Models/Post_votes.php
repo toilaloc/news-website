@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Post_votes extends Model
 {
@@ -13,4 +14,6 @@ class Post_votes extends Model
         'user_id',
         'rate',
     ];
+
+
 }
