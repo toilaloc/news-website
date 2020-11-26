@@ -35,21 +35,26 @@ Route::resource('tags', 'TagsController');
 Route::get('/tag/{slug}', 'TagsController@show');
 
 Route::resource('users', 'UsersController');
+//vote
+Route::post('post_vote', 'PostsController@post_vote');
 
 
 // View Profile
-Route::get('user/{username}','ProfileController@index');
-Route::get('change-password/{username}','ProfileController@changePassword');
-Route::get('author/{username}','ProfileController@activityAccount');
-Route::match(['put', 'patch'],'user/{username}', 'ProfileController@resolveChangeInfo')->name('userfront.update');
+Route::get('user/{username}', 'ProfileController@index');
+Route::get('change-password/{username}', 'ProfileController@changePassword');
+Route::get('author/{username}', 'ProfileController@activityAccount');
+Route::match(['put', 'patch'], 'user/{username}', 'ProfileController@resolveChangeInfo')->name('userfront.update');
+Route::match(['put', 'patch'],'change-password-profile/{username}','ProfileController@resolveChangePassword')->name('userfront.pass');
 // Sitemap
 
 Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.xml');
-  Route::get('/sitemap-post.xml', 'SitemapController@posts');
-  Route::get('/sitemap-category.xml', 'SitemapController@categories');
-  Route::get('/sitemap-tag.xml', 'SitemapController@tags');
+Route::get('/sitemap-post.xml', 'SitemapController@posts');
+Route::get('/sitemap-category.xml', 'SitemapController@categories');
+Route::get('/sitemap-tag.xml', 'SitemapController@tags');
 
 Route::resource('comments', 'CommentsController');
+
+Route::resource('followers', 'FollowersController');
 
 Route::group(['prefix' => 'frontend'], function () {
 
@@ -89,4 +94,3 @@ Route::group(['prefix' => 'frontend'], function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-

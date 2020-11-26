@@ -88,11 +88,16 @@ class UsersController extends Controller
             'email' => 'required|email',
             'thumbnail',
             'address' => 'required',
-            'phone' => 'numeric|required',
+            'phone' => 'numeric|required|min:10|max:10',
             'gender' => 'required'
+        ],[
+            'required' => ':attribute không được để trống',
+            'email' => 'Email không đúng định dạng',
+            'numeric' => ':attribute Phải là số',
+            'min' => ':attribute phải là 10 số',
+            'max' => ':attribute không được quá 10 số',
         ]);
-
-
+    
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->thumbnail->getClientOriginalName();
              if($thumbnail == $oldThumbnail){
