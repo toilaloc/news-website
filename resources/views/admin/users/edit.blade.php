@@ -109,7 +109,7 @@
                         {{"checked"}}
                         @endif
                         >
-                        <label class="form-check-label" for="inlineRadio1">Có</label>
+                        <label class="form-check-label" for="inlineRadio1">Công khai</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="1"
@@ -117,7 +117,7 @@
                         {{"checked"}}
                         @endif
                         >
-                        <label class="form-check-label" for="inlineRadio2">Không</label>
+                        <label class="form-check-label" for="inlineRadio2">Riêng tư</label>
                       </div>
                 </div>
               </div>
