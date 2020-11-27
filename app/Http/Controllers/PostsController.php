@@ -17,6 +17,14 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+       
+       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet');
+        
+    }
+
     public function index()
     {
         $posts = Posts::orderBy('id', 'DESC')->get();

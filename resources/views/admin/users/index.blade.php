@@ -48,8 +48,8 @@
                 @endif
         </td>
         <td>{{$user->email}}</td>
-        <td>{{$user->follower}}</td>
-        <td>{{$user->following}}</td>
+        <td>{{$user->hasFollowers->count()}}</td>
+        <td>{{$user->Following->count()}}</td>
         <td>
             @if($user->status == 0)
             {{"Chưa xác thực"}}
@@ -57,7 +57,11 @@
             {{"Đã xác thực"}}
             @endif
         </td>
-        <td>Thành viên</td>
+      <td>
+      @foreach($user->Roles as $role)
+        {{$role->name}}
+      @endforeach
+      </td>
       <td>{{$user->hasPosts->count()}}</td>
         <td>{{$user->created_at}}</td>
       <td><a class="btn btn-success btn-sm" href="{{route('users.edit', $user->id)}}">Sửa</a></td>

@@ -12,6 +12,14 @@ class PermissionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+       
+       $this->middleware('checkpermissions:quan-ly-quyen-chi-tiet,them-quyen-chi-tiet,thay-quyen-chi-tiet,xoa-quyen-chi-tiet');
+        
+    }
+
     public function index()
     {
         $permissions = Permissions::all();

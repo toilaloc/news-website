@@ -19,7 +19,7 @@
         @foreach($tags as $tag)
         <tr>
         <th>{{$tag->id}}</th>
-        <td><a href="{{url('/tags', $tag->slug)}}">{{$tag->name}}</a></td>
+        <td><a href="{{url('/tag', $tag->slug)}}">{{$tag->name}}</a></td>
         <td>
         <form class="d-inline" action="{{route('tags.destroy',$tag->id)}}" method="POST">
             @csrf

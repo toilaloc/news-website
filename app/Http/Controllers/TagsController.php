@@ -14,6 +14,14 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+       
+       $this->middleware('checkpermissions:quan-ly-tu-khoa,xoa-tu-khoa');
+        
+    }
+
     public function index()
     {
         $tags = Tags::all();

@@ -13,7 +13,18 @@ class CategoriesController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * 
      */
+
+
+     public function __construct()
+     {
+        
+        $this->middleware('checkpermissions:them-danh-muc,xoa-danh-muc,sua-danh-muc');
+         
+     }
+     
     public function index()
     {
         $categories =  Categories::all()->whereNull('category_id');

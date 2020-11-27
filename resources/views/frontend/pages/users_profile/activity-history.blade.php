@@ -141,15 +141,17 @@
                             <h5 class="modal-title" id="staticBackdropLabel">Người theo dõi</h5>
                           </div>
                           <div class="modal-body">
-                           @foreach($user->hasFollowers as $follower)  
+                           @foreach($user->hasFollowers as $followers)  
+                           @foreach(App\Models\Users::where('id',$followers->user_id)->get() as $follower)
                            <div class="d-flex align-items-center mr-4">
                             <div class="avatar-group">
                               <span class="avatar avatar-xs avatar-circle">
-                                <img class="avatar-img w-100" src="{{asset('uploads/users/')}}/{{App\Models\Users::find($follower->user_id)->thumbnail}}" alt="Image Description">
+                                <img class="avatar-img w-100" src="{{asset('uploads/users/')}}/{{$follower->thumbnail}}" alt="Image Description">
                               </span>
                             </div>
-                            <span class="pl-2"><a class="link-underline" href="{{url('author',App\Models\Users::find($follower->user_id)->username)}}">{{App\Models\Users::find($follower->user_id)->fullname}}</a></span>
-                          </div>                         
+                          <span class="pl-2"><a class="link-underline" href="{{url('author',$follower->username)}}">{{$follower->fullname}}</a></span>
+                          </div>     
+                             @endforeach      
                             @endforeach
                           </div>
                           <div class="modal-footer">

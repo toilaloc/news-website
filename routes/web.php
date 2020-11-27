@@ -30,7 +30,7 @@ Route::get('load-categories', 'CategoriesController@loadCategories')->name('load
 Route::post('search', 'SearchController@index')->name('search.index');
 
 // ALL PANEL
-Route::group(['prefix' => 'panel', 'middleware' => 'auth'],  function () {
+Route::group(['prefix' => 'panel', 'middleware' => ['auth', 'checkroles']],  function () {
     Route::get('/', 'AdminController@index');
     Route::resource('posts', 'PostsController');
     Route::resource('categories', 'CategoriesController');

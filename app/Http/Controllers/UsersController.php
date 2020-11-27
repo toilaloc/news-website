@@ -13,6 +13,14 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+       
+       $this->middleware('checkpermissions:quan-ly-nguoi-dung,them-moi-nguoi-dung,sua-thong-tin-nguoi-dung,xoa-nguoi-dung');
+        
+    }
+     
     public function index()
     {
         $users = Users::all();

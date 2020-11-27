@@ -100,7 +100,7 @@
                             <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}" alt="Image Description">
                             </div>
                             <div class="media-body">
-                              <span class="d-block font-weight-bold">{{Auth::user()->fullname}} <span class="badge badge-success ml-1">Pro</span></span>
+                            <span class="d-block font-weight-bold">{{Auth::user()->fullname}} <span class="badge badge-success ml-1">@foreach(Auth::user()->Roles as $role) {{$role->name}} @endforeach</span></span>
                               <span class="d-block small text-muted">{{Auth::user()->email}}</span>
                             </div>
                           </a>

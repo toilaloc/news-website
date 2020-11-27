@@ -13,6 +13,14 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+       
+       $this->middleware('checkpermissions:quan-ly-quyen,them-quyen-nguoi-dung,thay-quyen-nguoi-dung,xoa-quyen-nguoi-dung');
+        
+    }
+
     public function index()
     {
         $roles = Roles::all();
