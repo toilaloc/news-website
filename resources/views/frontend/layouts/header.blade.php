@@ -125,6 +125,14 @@
                             Quản lý hệ thống
                           </a>
                           @endif
+                           @if($role->id == 3) 
+                          <a class="dropdown-item px-0" href="{{url('panel')}}">
+                            <span class="dropdown-item-icon">
+                              <i class="fas fa-pen"></i>
+                            </span>
+                            Viết bài
+                          </a>
+                          @endif
                           @endforeach
                           <a class="dropdown-item px-0" href="#">
                             <span class="dropdown-item-icon">
