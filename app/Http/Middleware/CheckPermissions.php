@@ -36,7 +36,7 @@ class CheckPermissions
 
       
 
-    $checkPermissions = Permissions::where('slug', $permissions)->value('id');
+        $checkPermissions = Permissions::where('slug', $permissions)->value('id');
 
        if($listRoles->contains($checkPermissions)){
             return $next($request);

@@ -116,6 +116,16 @@
                             </span>
                            Thông tin tài khoản
                           </a>
+                          @foreach(Auth::user()->Roles as $role) 
+                          @if($role->id == 1 || $role->id == 2) 
+                          <a class="dropdown-item px-0" href="{{url('panel')}}">
+                            <span class="dropdown-item-icon">
+                              <i class="fas fa-cogs"></i>
+                            </span>
+                            Quản lý hệ thống
+                          </a>
+                          @endif
+                          @endforeach
                           <a class="dropdown-item px-0" href="#">
                             <span class="dropdown-item-icon">
                               <i class="fas fa-credit-card"></i>
@@ -239,6 +249,7 @@
                     </li>
                     <!-- End Search Form -->
 
+                    
                     <!-- Pages -->
                     <li class="hs-has-sub-menu navbar-nav-item mr-lg-auto">
                       <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Pages</a>

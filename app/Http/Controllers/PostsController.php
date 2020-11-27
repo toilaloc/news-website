@@ -21,8 +21,7 @@ class PostsController extends Controller
     public function __construct()
     {
        
-       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet');
-        
+       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet')->except(['create']);;
     }
 
     public function index()

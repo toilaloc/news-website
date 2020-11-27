@@ -405,6 +405,9 @@ $(document).ready(function() {
         "order": [[ 10, "desc" ]]
     });
 } );
+$(document).ready(function() {
+    $('#tablePermissions').DataTable();
+} );
 </script>
   <script>
 $(document).ready(function() {

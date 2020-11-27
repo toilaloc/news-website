@@ -16,13 +16,13 @@ class ProfileController extends Controller
                 if(Auth::user()->username === $user->username){
                     return view('frontend.pages.users_profile.profile', compact('user'));
                 }else {
-                    return view('frontend.pages.errors.404');
+                    return view('errors.404');
                 }
             }else {
-                return view('frontend.pages.errors.404');
+                return view('errors.404');
             }         
         }else {
-            return view('frontend.pages.errors.404');
+            return view('errors.404');
         }   
     }
     public function changePassword($username){
@@ -33,14 +33,14 @@ class ProfileController extends Controller
                 if(Auth::user()->username === $user->username){
                     return view('frontend.pages.users_profile.change-password', compact('user'));
                 }else {
-                    return view('frontend.pages.errors.404');
+                    return view('errors.404');
                 }
             }else {
-                return view('frontend.pages.errors.404');
+                return view('errors.404');
             }
                         
         }else {
-            return view('frontend.pages.errors.404');
+            return view('errors.404');
         }
     }
     public function activityAccount($username){

@@ -15,12 +15,11 @@
       <h6 class="m-0 font-weight-bold text-primary">Danh Sách Quyền Chi Tiết</h6>
     </div>
     <div class="card-body">
-    <table id="tableUser" class="table table-striped table-bordered">
+    <table id="tablePermissions" class="table table-striped table-bordered">
     <thead>
       <tr>
         <th scope="col">Quyền</th>
         <th scope="col">Quyền không dấu</th>
-        <th scope="col">Mô tả</th>
         <th scope="col">Sửa</th>
         <th scope="col">Xóa</th>
       </tr>
@@ -30,7 +29,6 @@
         <tr>
         <td>{{$permission->name}}</td>
         <td>{{$permission->slug}}</td>
-        <td>Mô tả ở đây</td>
       <td><a class="btn btn-success btn-sm" href="{{route('permissions.edit', $permission->id)}}">Sửa</a></td>
         <td>
           <form action="{{route('permissions.destroy',$permission->id)}}" method="POST">
