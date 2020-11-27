@@ -27,6 +27,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
+      @foreach(Auth::user()->Roles as $role) 
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
@@ -64,11 +65,16 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Thêm mới:</h6>
+        
           <a class="collapse-item" href="{{route('posts.create')}}">Bài viết</a>
+          @if($role->id != 3)
           <a class="collapse-item" href="{{route('categories.create')}}">Danh mục</a>
+          @if($role->id == 1)
           <a class="collapse-item" href="{{route('users.create')}}">Người dùng</a>
           <a class="collapse-item" href="{{route('roles.create')}}">Quyền người dùng</a>
           <a class="collapse-item" href="{{route('permissions.create')}}">Quyền chi tiết</a>
+          @endif
+          @endif
           </div>
         </div>
       </li>
@@ -82,6 +88,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+      @if($role->id == 1 || $role->id == 2)
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -106,7 +113,6 @@
             <div class="collapse-divider"></div>
           </div>
       </li>
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseComments" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-comments"></i>
@@ -119,7 +125,9 @@
             <div class="collapse-divider"></div>
           </div>
       </li>
+       @endif
 
+      @if($role->id == 1)
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapsePages">
           <i class="far fa-address-card"></i>
@@ -146,7 +154,8 @@
             <div class="collapse-divider"></div>
           </div>
       </li>
-
+      @endif
+      @if($role->id == 1 || $role->id == 2)
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-bullhorn"></i>
@@ -161,14 +170,14 @@
             <div class="collapse-divider"></div>
           </div>
       </li>
-
-
+      
       <!-- Nav Item - Charts -->
       <li class="nav-item">
       <a class="nav-link" href="{{route('tags.index')}}">
           <i class="fas fa-tags"></i>
           <span>Từ khóa</span></a>
       </li>
+      @endif
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
@@ -185,6 +194,7 @@
       </div>
 
     </ul>
+    @endforeach
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
