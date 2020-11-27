@@ -42,7 +42,7 @@
               <div class="navbar-nav-wrap">
                 <!-- Logo -->
               <a class="navbar-brand navbar-nav-wrap-brand" href="{{route('home')}}" aria-label="Front">
-                  <img src="{{asset('frontend/assets/svg/logos/logo.svg')}}" alt="Logo">
+                  <img src="{{asset('frontend/assets/svg/logos/logo.png')}}" alt="Logo">
                 </a>
                 <!-- End Logo -->
 
