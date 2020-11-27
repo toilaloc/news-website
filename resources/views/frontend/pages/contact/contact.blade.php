@@ -210,4 +210,20 @@
             }'></div>
     </div>
     <!-- End Leaflet -->
+    <div class="hotline-phone-ring-wrap">
+    <div class="hotline-phone-ring">
+    <div class="hotline-phone-ring-circle"></div>
+    <div class="hotline-phone-ring-circle-fill"></div>
+    <div class="hotline-phone-ring-img-circle">
+    <a href="tel:0376637703" class="pps-btn-img">
+    <img src="{{asset('frontend/assets/img/contacts/phone.png')}}" width="50">
+    </a>
+    </div>
+    </div>
+    <div class="hotline-bar">
+    <a href="tel:0376637703">
+    <span class="text-hotline">037.6637.703</span>
+    </a>
+    </div>
+    </div>
 @endsection
