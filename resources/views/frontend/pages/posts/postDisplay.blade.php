@@ -196,7 +196,7 @@
                 </div>
 
 
-                <div class="pt-2 mb-11 border-top space-lg-1">
+                <div class="pt-2  border-top space-lg-1">
                     <div class="pt-2 mb-11">
                         <div class="mb-4">
                             <h3>{{ $post->hasComments->count() }} Bình luận</h3>
@@ -216,6 +216,7 @@
                 <div class="card bg-white">
                     {{-- Include 5 Post New --}}
                     @include('frontend.components.postNew')
+                    
                     <div class="card-header" style="padding: 0rem 0rem; border-bottom: none;">
                         <div class="col-lg">
                             <div class="mb-7">

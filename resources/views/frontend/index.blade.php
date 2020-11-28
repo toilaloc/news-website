@@ -173,7 +173,7 @@
                     <img class="avatar-img" src="{{asset('uploads/posts/thumbnail')}}/{{$contentsLeft->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
                     </div>
                     <div class="media-body">
-                        <h4 class="h6 mb-0"><a class="text-inherit" href="{{url('post',$contentsLeft->slug)}}">{{$contentsLeft->name}}</a></h4>
+                        <h4 class="h6 mb-0"><a class="text-inherit" href="{{url('post',$contentsLeft->slug)}}">{!! Str::limit($contentsLeft->name, 65, ' ...') !!}</a></h4>
                     </div>
                 </div>
             </article>
@@ -194,7 +194,7 @@
                 <article class="card" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1)">
                 <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$postCenter->thumbnail}}" alt="Image Description">
                 <div class="card-body" style="padding: 0.3rem;">
-                    <h2 class="h3"><a class="text-inherit" href="{{url('post',$postCenter->slug)}}">{{$postCenter->name}}</a></h2>
+                    <h2 class="h3"><a class="text-inherit" href="{{url('post',$postCenter->slug)}}">{!! Str::limit($postCenter->name, 75, ' ...') !!}</a></h2>
                     <p>{{$postCenter->desc}}</p>
                 </div>
                 </article>
@@ -213,7 +213,7 @@
                 <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$postRight->thumbnail}}" alt="Image Description">
                 </div>
                 <div class="card-body" style="padding: 0.1rem;">
-                    <h5><a class="text-inherit" href="{{url('post',$postRight->slug)}}">{{$postRight->name}}</a></h5>
+                    <h5><a class="text-inherit" href="{{url('post',$postRight->slug)}}">{!! Str::limit($postRight->name, 45, ' ...') !!}</a></h5>
                 </div>
             </article>
                 @if($loop->index == 1)
@@ -335,7 +335,7 @@
                     <a class="card h-100 transition-3d-hover" href="{{url('post',$posts->slug)}}" >
                     <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$posts->thumbnail}}" alt="{{$posts->name}}" style="border-top-left-radius: 0rem;border-top-right-radius: 0rem; height: 150px;">
                         <div class="card-body" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">{{$posts->name}}</h5>
+                            <h5 class="mb-0">{!! Str::limit($posts->name, 45, ' ...') !!}</h5>
                         </div>
                     </a>
                     <!-- End Card -->
@@ -382,7 +382,7 @@
                         <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$posts->thumbnail}}" alt="{{$posts->name}}" style="border-top-left-radius: 0rem;
                border-top-right-radius: 0rem; height: 200px;">
                         <div class="card-body" style="background: #f7f7f7; padding: 0.5rem;">
-                            <h5 class="mb-0">{{$posts->name}}</h5>
+                            <h5 class="mb-0">{!! Str::limit($posts->name, 45, ' ...') !!}</h5>
                         </div>
                     </a>
                     <!-- End Card -->
@@ -490,7 +490,7 @@
                         </div>
                     </div>
                     <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">
-                    {{$postTinTH->desc}}</p>
+                        {!! Str::limit($postTinTH->desc, 200, ' ...') !!}</p>
                 </div>
             </div>
             @endforeach

@@ -8,7 +8,7 @@
         <div class="row justify-content-between">
             <div class="col-6">
                 @foreach($relaPosts->categories as $categories)
-            <a class="d-block small font-weight-bold text-cap mb-2" href="{{url('category',$categories->slug)}}">{{$categories->name}}</a>
+            <a class="d-block small font-weight-bold text-cap mb-2" style="display: inline !important; padding-right:10px;" href="{{url('category',$categories->slug)}}">{{$categories->name}}</a>
                 @endforeach
             <h4 class="mb-0"><a class="text-inherit" href="{{url('post',$relaPosts->slug)}}">{{$relaPosts->name}}</a></h4>
             </div>

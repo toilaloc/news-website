@@ -36,7 +36,7 @@
                             @endforeach
                         </div>
                     </div>
-                <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">{{$post->desc}}</p>
+                <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">{!! Str::limit($post->desc, 200, ' ...') !!}</p>
                 </div>
             </div>
             @endforeach

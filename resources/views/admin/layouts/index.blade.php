@@ -35,7 +35,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">ADMIN PANEL <sup>NEWS SITE</sup></div>
+        <div class="sidebar-brand-text mx-3">QUẢN LÝ<BR><sup>TIN TỨC</sup></div>
       </a>
 
       <!-- Divider -->
