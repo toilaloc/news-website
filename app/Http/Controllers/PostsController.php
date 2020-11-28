@@ -9,6 +9,8 @@ use App\Models\Categories;
 use App\Models\Tags;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PostsController extends Controller
 {
@@ -21,7 +23,7 @@ class PostsController extends Controller
     public function __construct()
     {
        
-       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet')->except(['create']);;
+       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet')->except(['create','show']);
     }
 
     public function index()
@@ -50,6 +52,7 @@ class PostsController extends Controller
             'user_id' => $request->user_id,
             'rate' => $request->star,
         ]);
+        
         return "success";
     }
     /**

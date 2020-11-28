@@ -5,7 +5,7 @@
 <form style="display: inline-block;" action="{{ route('categories.destroy',$category->id) }}" method="POST">
     @csrf
     @method('DELETE')
-    <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('bạn có chắc muốn xóa');"><i class="far fa-trash-alt"></i></button>
 </form>
 </div>
 </div>

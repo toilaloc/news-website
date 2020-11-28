@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::get('loadFormReply', 'AjaxController@loadFormReply')->name('load.formRepl
 
 // LOAD CATEGORY AJAX
 Route::get('load-categories', 'CategoriesController@loadCategories')->name('load.categories');
-
+Route::post('reporting', 'AjaxController@report')->name('reporting.store');
 // SEARCHING
 Route::post('search', 'SearchController@index')->name('search.index');
 
@@ -39,6 +40,7 @@ Route::group(['prefix' => 'panel', 'middleware' => ['auth', 'checkroles']],  fun
     Route::resource('comments', 'CommentsController');
     Route::resource('roles', 'RolesController');
     Route::resource('permissions', 'PermissionsController');
+    Route::resource('report', 'ReportControler');
 });
 
 // SHOW CONTENT
@@ -87,6 +89,12 @@ Route::group(['prefix' => 'frontend'], function () {
     });
 });
 
+Route::get('send-mail', function () {
+
+    Mail::to('hoangxam2@gmail.com')->send(new \App\Mail\SendPassword());
+
+    dd("Email is Sent.");
+});
 
 Auth::routes();
 

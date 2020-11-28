@@ -21,7 +21,7 @@ class CategoriesController extends Controller
      public function __construct()
      {
         
-        $this->middleware('checkpermissions:them-danh-muc,xoa-danh-muc,sua-danh-muc');
+        $this->middleware('checkpermissions:them-danh-muc,xoa-danh-muc,sua-danh-muc')->except(['show']);
          
      }
      

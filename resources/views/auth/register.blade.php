@@ -13,7 +13,7 @@
 
                 {{-- @if ($errors->any())
                 @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">   
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ $error}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +24,7 @@
           @endforeach
           @endif --}}
             </div>
-           
+
             <!-- End Title -->
 
             <!-- Form Group -->
@@ -83,7 +83,7 @@
              <!-- Form Group -->
              <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrEmail">Ảnh đại diện:</label>
-                       <input id="thumbnail" type="file" class="form-control @error('thumbnail') is-invalid @enderror" name="thumbnail" autofocus>
+                       <input id="thumbnail" type="file" class="form-control @error('thumbnail') is-invalid @enderror" name="thumbnail" autocomplete="thumbnail" autofocus>
                        @error('thumbnail')
                            <span class="invalid-feedback" role="alert">
                                <strong>{{ $message }}</strong>
@@ -146,7 +146,7 @@
               <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrEmail">Giới thiệu bản thân:</label>
                 <textarea class="form-control" name="bio" id="bio"  @error('bio') is-invalid @enderror cols="30" rows="3"></textarea>
-                                
+
                 @error('bio')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -190,7 +190,7 @@
     <!-- End Login Form -->
 
 
-{{-- 
+{{--
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -293,7 +293,7 @@
 
                             <div class="col-md-6">
                                 <textarea class="form-control" name="bio" id="bio"  @error('bio') is-invalid @enderror cols="30" rows="3"></textarea>
-                                
+
                                 @error('bio')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -301,7 +301,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Giới tính') }}</label>
 
@@ -318,7 +318,7 @@
                                     <input class="form-check-input" @error('gender') is-invalid @enderror type="radio" name="gender" id="inlineRadio2">
                                     <label class="form-check-label" for="inlineRadio2">Khác</label>
                                   </div>
-                               
+
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -329,10 +329,10 @@
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Ảnh đại diện') }}</label>
-    
+
                                 <div class="col-md-6">
                                     <input id="thumbnail"  class="form-control" type="file" @error('thumbnail') is-invalid @enderror name="thumbnail">
-    
+
                                     @error('thumbnail')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -340,7 +340,7 @@
                                     @enderror
                                 </div>
                             </div>
-                
+
 
                         <div class="form-group row mb-3">
                             <div class="col-md-6 offset-md-4">
@@ -349,7 +349,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>

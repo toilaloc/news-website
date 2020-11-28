@@ -296,6 +296,7 @@
         });
     });
 </script>
+@include('sweetalert::alert')
 <!-- IE Support -->
 <script>
     if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="{{asset('frontend/assets/vendor/polifills.js')}}"><\/script>');
