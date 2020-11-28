@@ -42,7 +42,7 @@
               <div class="navbar-nav-wrap">
                 <!-- Logo -->
               <a class="navbar-brand navbar-nav-wrap-brand" href="{{route('home')}}" aria-label="Front">
-                  <img src="{{asset('frontend/assets/svg/logos/logo.svg')}}" alt="Logo">
+                  <img src="{{asset('frontend/assets/svg/logos/logo.png')}}" alt="Logo">
                 </a>
                 <!-- End Logo -->
 
@@ -287,12 +287,18 @@
                       <div class="hs-mega-menu dropdown-menu" aria-labelledby="myCoursesMegaMenu">
                         <div class="card">
                           <div class="card-header py-3">
-                            <span class="text-dark font-weight-bold">My courses</span>
+                            <span class="text-dark font-weight-bold">Thông báo</span>
                           </div>
 
                           <div class="card-body">
                             <!-- Course -->
-                            <a class="media" href="#">
+                            @foreach($notifications as $notification)
+                            <a class="media border-bottom" href="
+                              @if($notification->type == "post")
+                              {{url('post',$notification->Post->slug)}}
+                              @else 
+                              {{"#"}}                     
+                              @endif">
                               <div class="mt-1 mr-3">
                                 <div class="avatar">
                                   <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
@@ -300,41 +306,29 @@
                               </div>
                               <div class="media-body">
                                 <div class="mb-2">
-                                  <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">Java programming masterclass for software developers</span>
-                                  <small class="d-block text-body">By Emily Milda</small>
+                                <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
+                                  @if($notification->type == "comment")
+                                  {{"Bình luận của bạn"}}
+                                  @elseif($notification->type == "post")
+                                  {{"Bài viết của"}}
+                                  @else 
+                                  {{"Bạn"}}
+                                  @endif
+                                  đã bị báo cáo tại
+                                  "{{Illuminate\Support\Str::limit($notification->Post->name, $limit = 20, $end = '...') }}"
+                                </span>
+                                  <small class="d-block text-body">Bởi {{$notification->Reporter->fullname}}</small>
                                 </div>
                                 <div class="d-flex justify-content-between mb-1">
-                                  <span class="d-block text-body small text-cap">Completed</span>
-                                  <small class="text-dark font-weight-bold">25%</small>
-                                </div>
-                                <div class="progress" style="height: 6px;">
-                                  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                               </div>
                             </a>
+                            @if($loop->index == 1)
+                            @break
+                            @endif
+                            @endforeach
                             <!-- End Course -->
-
-                            <!-- Course -->
-                            <a class="media mt-5" href="#">
-                              <div class="mt-1 mr-3">
-                                <div class="avatar">
-                                  <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-7.svg')}}" alt="Image Description">
-                                </div>
-                              </div>
-                              <div class="media-body">
-                                <div class="mb-2">
-                                  <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">The Ultimate MySQL Bootcamp: Go from SQL Beginner</span>
-                                  <small class="d-block text-body">By Nataly Gaga and 2 others</small>
-                                </div>
-                                <div class="d-flex justify-content-between mb-1">
-                                  <span class="d-block text-body small text-cap">Completed</span>
-                                  <small class="text-dark font-weight-bold">100%</small>
-                                </div>
-                                <div class="progress" style="height: 6px;">
-                                  <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </div>
-                            </a>
+        
                             <!-- End Course -->
                           </div>
 

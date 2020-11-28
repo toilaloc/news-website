@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comments;
 use App\Models\Posts;
 use App\Models\Users;
+use App\Models\Report;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,7 +15,7 @@ class AdminController extends Controller
         $user = Users::all();
         $post = Posts::all();
         $comment = Comments::all();
-        $report = 10;
+        $report = Report::all();
         return view('admin.index', compact('user', 'post', 'comment', 'report'));
     }
 }

@@ -286,9 +286,19 @@
                                   <span class="text-dark font-weight-bold">Thông báo của tôi</span>
                                 </div>
 
-                                <div class="card-body">
+                                <div class="card-body" >
                                   <!-- Course -->
-                                  <a class="media" href="#">
+                                  @if($notifications->count() == 0)
+                                  {{"Chưa có thông báo mới"}}
+                                  @else
+                                  @foreach($notifications as $notification)
+                                  @if($notification->Post->author_id == Auth::user()->id)
+                                  <a class="media border-bottom" href="
+                                   @if($notification->type == "post")
+                                    {{url('post',$notification->Post->slug)}}
+                                    @else 
+                                    {{"#"}}                     
+                                    @endif">
                                     <div class="mt-1 mr-3">
                                       <div class="avatar">
                                         <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
@@ -296,18 +306,35 @@
                                     </div>
                                     <div class="media-body">
                                       <div class="mb-2">
-                                        <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">Java programming masterclass for software developers</span>
-                                        <small class="d-block text-body">By Emily Milda</small>
+                                      <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
+                                        @if($notification->type == "comment")
+                                        {{"Bình luận của bạn"}}
+                                        @elseif($notification->type == "post")
+                                        {{"Bài viết của"}}
+                                        @else 
+                                        {{"Bạn"}}
+                                        @endif
+                                        đã bị báo cáo tại
+                                        "{{Illuminate\Support\Str::limit($notification->Post->name, $limit = 20, $end = '...') }}"
+                                      </span>
+                                        <small class="d-block text-body">Bởi {{$notification->Reporter->fullname}}</small>
                                       </div>
                                       <div class="d-flex justify-content-between mb-1">
-                                        <span class="d-block text-body small text-cap">Completed</span>
-                                        <small class="text-dark font-weight-bold">25%</small>
-                                      </div>
-                                      <div class="progress" style="height: 6px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                       </div>
                                     </div>
                                   </a>
+                                  @else
+                                  {{"Chưa có thông báo mới"}}
+                                  @if($loop->index == 0)
+                                  @break
+                                  @endif
+                                  @endif
+                                  @if($loop->index == 1)
+                                  @break
+                                  @endif
+
+                                  @endforeach
+                                  @endif
                                   <!-- End Course -->
 
                                 </div>

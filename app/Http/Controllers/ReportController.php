@@ -2,30 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Posts;
-use App\Models\Tags;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
-class TagsController extends Controller
+
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-       
-       $this->middleware('checkpermissions:quan-ly-tu-khoa,xoa-tu-khoa')->except(['show']);;
-        
-    }
-
     public function index()
     {
-        $tags = Tags::all();
-        return view('admin.tags.index', compact('tags'));
+        //
     }
 
     /**
@@ -35,7 +23,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        return view('admin.tags.index');
+        //
     }
 
     /**
@@ -46,7 +34,7 @@ class TagsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+   
     }
 
     /**
@@ -55,15 +43,9 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $posts = Posts::whereHas('tags', function($query) use ($slug) {
-            $query->whereSlug($slug);
-          })->orderBy('id', 'DESC')->get();
-        $tag = Tags::where('slug', $slug)->first();
-        $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
-        $hotPosts = Posts::take(5)->get();
-        return view('frontend.pages.tags.index', compact('posts', 'tag', 'dateTime', 'hotPosts'));
+        //
     }
 
     /**
@@ -97,10 +79,6 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        $deletePost = Tags::find($id)->delete();
-        if($deletePost) {
-            return redirect()->route('tags.index')
-            ->with('success','Đã xóa từ khóa');
-        }
+        //
     }
 }

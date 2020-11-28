@@ -57,6 +57,7 @@ class Users extends Model
     {
         return $this->hasMany(Posts::class, 'author_id');
     }
+
     public function hasComments()
     {
         return $this->hasMany(Comments::class, 'user_id');

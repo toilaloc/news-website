@@ -51,7 +51,7 @@
                                 <form class="d-inline" action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('bạn có chắc muốn xóa');">Xóa</button>
                             </td>
                             </form>
                             </td>

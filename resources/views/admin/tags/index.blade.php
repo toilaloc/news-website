@@ -24,7 +24,7 @@
         <form class="d-inline" action="{{route('tags.destroy',$tag->id)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-sm d-inline">Xóa</button>
+            <button type="submit" class="btn btn-danger btn-sm d-inline" onclick="return confirm('bạn có chắc muốn xóa');">Xóa</button>
         </form>
         </td>
         </tr>
