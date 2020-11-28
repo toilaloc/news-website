@@ -128,22 +128,22 @@ class CategoriesController extends Controller
     public function show($slug)
     {
         $category = Categories::where('slug', $slug)->first();
-        
+        $hotPosts = Posts::where('view','>', 0)->take(5)->where('status', '<>', 1)->get();
         if($category->category_id == NULL){
            
             $posts = Posts::whereHas('categories', function($query) use ($slug) {
-                $query->whereSlug($slug);
+                $query->whereSlug($slug)->where('status', '<>', 1);
             })->orderBy('id', 'DESC')->get();
 
             $getChildCate = $category->childs;
-              return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts', 'getChildCate'));
+              return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts', 'getChildCate','hotPosts'));
 
         }
         else{
             $posts = Posts::whereHas('categories', function($query) use ($slug) {
-                $query->whereSlug($slug);
+                $query->whereSlug($slug)->where('status', '<>', 1);
               })->orderBy('id', 'DESC')->get();
-            return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts'));
+            return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts','hotPosts'));
         }
     }
 

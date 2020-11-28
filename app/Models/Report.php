@@ -16,4 +16,17 @@ class Report extends Model
         'reason',	
         'type'
     ];
+
+    public function Reporter(){
+        return $this->hasOne(Users::class, 'id', 'reporter_id');
+    }
+    public function Author(){
+        return $this->hasOne(Users::class, 'id', 'author_id');
+    }
+    public function Post(){
+        return $this->hasOne(Posts::class, 'id', 'post_id');
+    }
+    public function Comment(){
+        return $this->hasOne(Comments::class, 'id', 'user_id');
+    }
 }

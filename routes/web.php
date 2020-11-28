@@ -40,10 +40,13 @@ Route::group(['prefix' => 'panel', 'middleware' => ['auth', 'checkroles']],  fun
     Route::resource('comments', 'CommentsController');
     Route::resource('roles', 'RolesController');
     Route::resource('permissions', 'PermissionsController');
-    Route::resource('report', 'ReportControler');
+    Route::resource('reports', 'ReportController');
 });
 
 // SHOW CONTENT
+Route::get('/mypost', 'PostsController@myPost')->name('posts.mypost');
+Route::get('/approval-post', 'PostsController@approvalPost')->name('posts.approval');
+Route::match(['put', 'patch'], 'approval-post/{id}', 'PostsController@resolvedApprovalPost')->name('posts.approvaled');
 Route::get('/post/{slug}', 'PostsController@show');
 Route::get('/category/{slug}', 'CategoriesController@show');
 Route::get('/tag/{slug}', 'TagsController@show');

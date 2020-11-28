@@ -409,6 +409,7 @@
                     <div class="row">
                     @foreach($getSubTinGiaiTri as $subTinGiaiTri)
                         @foreach($subTinGiaiTri->getPosts($subTinGiaiTri->id) as $postOfTinGiaiTri)
+                        @if($postOfTinGiaiTri->status != 1)
                         <div class="col-lg-6 col-md-12 mb-md-2 col-sm-12 mb-sm-2 mb-4">
                             <a class="card transition-3d-hover" href="{{url('post',$postOfTinGiaiTri->slug)}}" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                             <img class="card-img-top d-none d-lg-block" src="{{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}}" alt="{{$postOfTinGiaiTri->name}}" style="border-top-left-radius: 0rem;
@@ -422,6 +423,7 @@
                             @if($loop->index == 1) 
                             @break
                             @endif  
+                            @endif
                     @endforeach
                     @endforeach
                 </div>
@@ -432,7 +434,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 order-1 order-md-1">
                     <!-- Blog -->
                     @foreach($getSubTinGiaiTri as $subTinGiaiTri)
-                        @foreach($subTinGiaiTri->getPosts($subTinGiaiTri->id) as $postOfTinGiaiTri)
+                    @foreach($subTinGiaiTri->getPosts($subTinGiaiTri->id) as $postOfTinGiaiTri)
+                    @if($postOfTinGiaiTri->status != 1)
                         <article>
                         <a class="card align-items-start flex-wrap flex-row h-380rem gradient-x-overlay-sm-navy bg-img-hero transition-3d-hover mb-1" href="{{url('post',$postOfTinGiaiTri->slug)}}" style="background-image: url({{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}});">
                             <div class="card-footer border-0 bg-transparent mt-auto">
@@ -440,13 +443,16 @@
                             </div>
                         </a>
                     </article>    
+                    @endif 
                     @if ($loop->first) 
                     @break
-                    @endif       
+                    @endif
+                         
                     @endforeach
                     @if($loop->index == 1)
                     @break
                     @endif 
+                  
                    
                     @endforeach
                     <!-- End Blog -->

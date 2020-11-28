@@ -35,21 +35,21 @@ class HomeController extends Controller
         $breakingNewsLeft = Categories::find(6);
         $slugLeft = $breakingNewsLeft->slug;
         $breakingNewsLeft = Posts::whereHas('categories', function($query) use ($slugLeft) {
-            $query->whereSlug($slugLeft);
+            $query->whereSlug($slugLeft)->where('status', '<>', 1);
           })->orderBy('id', 'DESC')->get();
 
         // Tin nóng ở giữa
         $breakingNewsCenter = Categories::find(7);
         $slugCenter = $breakingNewsCenter->slug;
         $breakingNewsCenter = Posts::whereHas('categories', function($query) use ($slugCenter) {
-            $query->whereSlug($slugCenter);
+            $query->whereSlug($slugCenter)->where('status', '<>', 1);;
           })->orderBy('id', 'DESC')->get();
 
         // Tin nóng bên phải
           $breakingNewsRight = Categories::find(8);
           $slugRight = $breakingNewsRight->slug;
           $breakingNewsRight = Posts::whereHas('categories', function($query) use ($slugRight) {
-              $query->whereSlug($slugRight);
+              $query->whereSlug($slugRight)->where('status', '<>', 1);;
         })->orderBy('id', 'DESC')->get();
 
 
@@ -62,7 +62,7 @@ class HomeController extends Controller
         $idTinGiaiTri = 4;
         $tinGiaiTri = Categories::find($idTinGiaiTri);
         $getSubTinGiaiTri = $tinGiaiTri->childs;
-        $tinTongHop = Posts::all()->random(6);
+        $tinTongHop = Posts::all()->random(6)->where('status', '<>', 1);
 
 
         // ****  Xuất Bản   **** //
@@ -71,12 +71,12 @@ class HomeController extends Controller
         $slugTXB = $tinXuatBan->slug;
         // Get bài viết đầu tiên của tin xuất bản
         $firstXuatBan =  Posts::whereHas('categories', function($query) use ($slugTXB) {
-          $query->whereSlug($slugTXB);
+          $query->whereSlug($slugTXB)->where('status', '<>', 1);;
         })->orderBy('id', 'DESC')->first();
 
         // Get 4 bài viết, bỏ qua bài viết đầu tiên
         $lastXuatBan =  Posts::whereHas('categories', function($query) use ($slugTXB) {
-          $query->whereSlug($slugTXB);
+          $query->whereSlug($slugTXB)->where('status', '<>', 1);;
         })->skip(1)->take(3)->orderBy('id', 'DESC')->get();
 
 
@@ -86,12 +86,12 @@ class HomeController extends Controller
         $slugTSH = $tinSachHay->slug;
         // Get bài viết đầu tiên của tin xuất bản
         $firstSachHay =  Posts::whereHas('categories', function($query) use ($slugTSH) {
-          $query->whereSlug($slugTSH);
+          $query->whereSlug($slugTSH)->where('status', '<>', 1);;
         })->orderBy('id', 'DESC')->first();
 
         // Get 4 bài viết, bỏ qua bài viết đầu tiên
         $lastSachHay =  Posts::whereHas('categories', function($query) use ($slugTSH) {
-          $query->whereSlug($slugTSH);
+          $query->whereSlug($slugTSH)->where('status', '<>', 1);;
         })->skip(1)->take(3)->orderBy('id', 'DESC')->get();
 
        
@@ -101,12 +101,12 @@ class HomeController extends Controller
         $slugTTaG = $tinTacGia->slug;
         // Get bài viết đầu tiên của tin xuất bản
         $firstTacGia =  Posts::whereHas('categories', function($query) use ($slugTTaG) {
-          $query->whereSlug($slugTTaG);
+          $query->whereSlug($slugTTaG)->where('status', '<>', 1);;
         })->orderBy('id', 'DESC')->first();
 
         // Get 4 bài viết, bỏ qua bài viết đầu tiên
         $lastTacGia =  Posts::whereHas('categories', function($query) use ($slugTTaG) {
-          $query->whereSlug($slugTTaG);
+          $query->whereSlug($slugTTaG)->where('status', '<>', 1);;
         })->skip(1)->take(3)->orderBy('id', 'DESC')->get();
 
         // ****  Thế Giới   **** //
@@ -115,12 +115,12 @@ class HomeController extends Controller
         $slugTTG = $tinTheGioi->slug;
         // Get bài viết đầu tiên của tin xuất bản
         $firstTheGioi =  Posts::whereHas('categories', function($query) use ($slugTTG) {
-          $query->whereSlug($slugTTG);
+          $query->whereSlug($slugTTG)->where('status', '<>', 1);;
         })->orderBy('id', 'DESC')->first();
 
         // Get 4 bài viết, bỏ qua bài viết đầu tiên
         $lastTheGioi =  Posts::whereHas('categories', function($query) use ($slugTTG) {
-          $query->whereSlug($slugTTG);
+          $query->whereSlug($slugTTG)->where('status', '<>', 1);;
         })->skip(1)->take(3)->orderBy('id', 'DESC')->get();
 
         $hotPosts = Posts::where('view','>','0')->take(5)->get();

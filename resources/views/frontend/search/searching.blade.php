@@ -12,6 +12,7 @@
             <!-- Card -->
 
             @foreach($result as $post)
+            @if($post->status != 1)
             <div class="row mb-2 pb-2 border-bottom">
                 <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                     <div class="position-relative">
@@ -39,6 +40,7 @@
                 <p class="font-size-1 text-body mb-0 d-none d-md-block d-lg-block">{!! Str::limit($post->desc, 200, ' ...') !!}</p>
                 </div>
             </div>
+            @endif
             @endforeach
 
 
@@ -87,6 +89,7 @@
 
                     <!-- Blog -->
                     @foreach($hotPosts as $hotPost)
+                    @if($hotPost->status != 1)
                     <article class="mb-5">
                         <div class="media align-items-center text-inherit">
                             <div class="avatar avatar-lg mr-3">
@@ -97,6 +100,7 @@
                             </div>
                         </div>
                     </article>
+                    @endif
                     @endforeach
                     <!-- End Blog -->
                 </div>

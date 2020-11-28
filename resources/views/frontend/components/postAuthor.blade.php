@@ -2,6 +2,7 @@
 {{"Tác giả này chưa có bài viết mới"}}
 @else
 @foreach($postAuthor as $postAuthors)
+@if($postAuthors->status != 1)
 <div class="col-sm-6 col-md-4 mb-5">
     <!-- Card Info -->
     <div class="card h-100">
@@ -16,5 +17,6 @@
     </div>
     <!-- End Card Info -->
 </div>
+@endif
 @endforeach
 @endif

@@ -118,20 +118,6 @@
                 </div>
               </div>
 
-              <div class="form-group row ">
-                <label class="col-sm-2 pt-4 col-form-label">Chế độ đăng</label>
-                <div class="col-sm-10 pt-4">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio"  name="status" value="0">
-                  <label class="form-check-label" for="inlineRadio1">Đăng ngay</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" n name="status" value="1">
-                  <label class="form-check-label" for="inlineRadio2">Lưu nháp</label>
-                </div>
-              </div>
-            </div>
-
             <div class="form-group row">
               <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Đăng bài viết</button>

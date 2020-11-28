@@ -8,7 +8,8 @@
             {{"Chưa có bài viết để hiển thị"}}
             @else
            @foreach($postNew as $news)
-            <article class="mb-3">
+           @if($news->status != 1) 
+           <article class="mb-3">
                 <div class="media">
                     <div class="avatar avatar-lg mr-3">
                     <img class="img-fluid"  src="{{asset('uploads/posts/thumbnail')}}/{{$news->thumbnail}}" alt="Image Description">
@@ -19,6 +20,7 @@
                     </div>
                 </div>
             </article>
+            @endif
             @endforeach
             @endif
             <!-- End Blog -->

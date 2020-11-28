@@ -58,11 +58,11 @@ class TagsController extends Controller
     public function show($slug)
     {
         $posts = Posts::whereHas('tags', function($query) use ($slug) {
-            $query->whereSlug($slug);
+            $query->whereSlug($slug)->where('status', '<>', 1);;
           })->orderBy('id', 'DESC')->get();
         $tag = Tags::where('slug', $slug)->first();
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
-        $hotPosts = Posts::take(5)->get();
+        $hotPosts = Posts::take(5)->where('status', '<>', 1)->get();
         return view('frontend.pages.tags.index', compact('posts', 'tag', 'dateTime', 'hotPosts'));
     }
 

@@ -228,6 +228,7 @@
   
                     @if($user->hasPosts)
                     @foreach($user->hasPosts as $post)
+                    @if($post->status != 1)
                         <div class="row mb-2 pb-2 border-bottom">
                             <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                                 <div class="position-relative">
@@ -258,6 +259,7 @@
                         </div>
                         @if($loop->index == 5)
                         @break
+                        @endif
                         @endif
                         @endforeach
                         @endif

@@ -2,6 +2,7 @@
 {{"Không có bài viết"}}
 @else
 @foreach($relaPost as $relaPosts)
+@if($relaPosts->status != 1)
 <div class="col-md-6">
     <!-- Blog Card -->
     <article class="border-bottom h-100 py-5">
@@ -21,5 +22,6 @@
     </article>
     <!-- End Blog Card -->
 </div>
+@endif
 @endforeach
 @endif

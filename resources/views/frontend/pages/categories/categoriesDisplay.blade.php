@@ -17,6 +17,7 @@
         </div>
         <!-- Card -->
         @foreach($posts as $post)
+        @if($post->status != 1)
         <div class="row mb-2 pb-2 border-bottom">
               <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                 <div class="position-relative">
@@ -45,12 +46,14 @@
                 {{$post->desc}}</p>
               </div>
           </div>
+          @endif
           @endforeach
 
           {{-- Nếu có chuyên mục con thì show thêm --}}
           @if(isset($getChildCate))
           @foreach($getChildCate as $childCates)
           @foreach($childCates->getPosts($childCates->id) as $postChild)
+          @if($postChild->status != 1)
           <div class="row mb-2 pb-2 border-bottom">
             <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
               <div class="position-relative">
@@ -82,6 +85,7 @@
             {{-- @if($loop->index == 2)
                     @break
                 @endif --}}
+                @endif
             @endforeach 
           @endforeach
           @endif
@@ -123,47 +127,30 @@
              }'>
           <div class="mb-7">
             <div class="mb-3">
-              <h3>Front culture</h3>
+              <h3>Bài viết đang hot</h3>
             </div>
 
-            <!-- Blog -->
-            <article class="mb-5">
-              <div class="media align-items-center text-inherit">
-                <div class="avatar avatar-lg mr-3">
-                  <img class="avatar-img" src="../../../../assets//img/320x320/img1.jpg" alt="Image Description">
-                </div>
-                <div class="media-body">
-                  <h4 class="h6 mb-0"><a class="text-inherit" href="#">Announcing a free plan for small teams</a></h4>
-                </div>
-              </div>
-            </article>
-            <!-- End Blog -->
+            @if($hotPosts->count() == 0)
+{{"Chưa có bài viết để hiển thị"}}
+@else
+@foreach($hotPosts as $hotPost)
 
-            <!-- Blog -->
-            <article class="mb-5">
-              <div class="media align-items-center text-inherit">
-                <div class="avatar avatar-lg mr-3">
-                  <img class="avatar-img" src="../../../../assets//img/320x320/img10.jpg" alt="Image Description">
-                </div>
-                <div class="media-body">
-                  <h4 class="h6 mb-0"><a class="text-inherit" href="#">Mapping the first family tree for Front office</a></h4>
-                </div>
-              </div>
-            </article>
-            <!-- End Blog -->
-
-            <!-- Blog -->
-            <article class="mb-5">
-              <div class="media align-items-center text-inherit">
-                <div class="avatar avatar-lg mr-3">
-                  <img class="avatar-img" src="../../../../assets//img/320x320/img9.jpg" alt="Image Description">
-                </div>
-                <div class="media-body">
-                  <h4 class="h6 mb-0"><a class="text-inherit" href="#">Felline eyeing first major Classic win in 2018</a></h4>
-                </div>
-              </div>
-            </article>
-            <!-- End Blog -->
+<article class="mb-3">
+    <div class="media">
+        <div class="avatar avatar-lg mr-3">
+            <img class="img-fluid"
+        src="{{asset('uploads/posts/thumbnail')}}/{{$hotPost->thumbnail}}"
+        alt="{{$hotPost->name}}">
+        </div>
+        <div class="media-body">
+        <h4 class="h6 mb-0"><a class="text-inherit" href="{{url('post', $hotPost->slug)}}">{{$hotPost->name}}</a></h4>
+        <small class="d-inline-block">{{$hotPost->create_at}}</small>
+        </div>
+    </div>
+</article>
+<!-- End Blog -->
+@endforeach
+@endif
           </div>
 
         </div>

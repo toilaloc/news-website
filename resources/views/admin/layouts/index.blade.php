@@ -86,7 +86,20 @@
       <div class="sidebar-heading">
         Quản lý
       </div>
-
+      @if($role->id == 3)
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePosts" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-archive"></i>
+          <span>Bài viết</span>
+        </a>
+        <div id="collapsePosts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Posts:</h6>
+            <a class="collapse-item" href="{{route('posts.mypost')}}">Bài viết của tôi</a>
+            <div class="collapse-divider"></div>
+          </div>
+      </li>
+      @endif
       <!-- Nav Item - Pages Collapse Menu -->
       @if($role->id == 1 || $role->id == 2)
       <li class="nav-item">
@@ -110,6 +123,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Posts:</h6>
             <a class="collapse-item" href="{{route('posts.index')}}">Danh sách bài viết</a>
+            <a class="collapse-item" href="{{route('posts.approval')}}">Duyệt bài viết</a>
             <div class="collapse-divider"></div>
           </div>
       </li>
@@ -403,6 +417,16 @@
    $(document).ready(function() {
     $('#tablePost').DataTable( {
         "order": [[ 4, "desc" ]]
+    } );
+} );
+$(document).ready(function() {
+    $('#tableMyPost').DataTable( {
+        "order": [[ 5, "desc" ]]
+    } );
+} );
+$(document).ready(function() {
+    $('#tableReport').DataTable( {
+        "order": [[ 0, "desc" ]]
     } );
 } );
 $(document).ready(function() {

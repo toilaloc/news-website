@@ -10,7 +10,7 @@ use App\Models\Tags;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -23,12 +23,12 @@ class PostsController extends Controller
     public function __construct()
     {
        
-       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet')->except(['create','show']);
+       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet')->except(['create','show','getSlug', 'store', 'myPost']);
     }
 
     public function index()
     {
-        $posts = Posts::orderBy('id', 'DESC')->get();
+        $posts = Posts::orderBy('id', 'DESC')->where('status','<>',1)->get();
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -87,6 +87,15 @@ class PostsController extends Controller
             $thumbnail = "default.png";
         }
 
+        foreach(Auth::user()->Roles as $role) {
+        if($role->id == 3 && $role->id != 4){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
+        }
+
+
         $post = new Posts();
         $post->name = $request->name;
         $post->content = $request->content;
@@ -95,7 +104,7 @@ class PostsController extends Controller
         $post->date = $request->date;
         $post->view = 0;
         $post->desc = $request->desc;
-        $post->status = $request->status;
+        $post->status = $status;
         $post->thumbnail = $thumbnail;
         $post->author_id = $request->author_id;
         $post->reviewer = NULL;
@@ -118,7 +127,20 @@ class PostsController extends Controller
         }
 
 
-        return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');
+        foreach(Auth::user()->Roles as $role) {
+            if($role->id == 3){
+        return redirect()->route('posts.mypost')->with('success', 'Thêm tin tức thành công');
+            }
+            else {
+                return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');
+            }
+        }
+    }
+
+
+    public function myPost(){
+        $myposts = Posts::where('author_id', Auth::user()->id)->get();
+        return view('admin.posts.myPost', compact('myposts'));
     }
 
 
@@ -281,5 +303,68 @@ class PostsController extends Controller
             return redirect()->route('posts.index')
                 ->with('success', 'Đã xóa tin tức');
         }
+    }
+
+    public function approvalPost(){
+        $approvalPosts = Posts::all()->where('status', '<>', 0);
+        return view('admin.posts.approvalPost', compact('approvalPosts'));
+    }
+
+    public function resolvedApprovalPost(Request $request, $id){
+
+        $approvalPost = Posts::findOrFail($id);
+
+        $this->validate($request, [
+            'name',
+            'content',
+            'slug',
+            'desc',
+            'vote',
+            'view',
+            'status',
+            'author_id',
+            'thumbnail',
+            'date',
+            'categories_id',
+            'categories_id.*' =>  'exists:categories,id',
+        ]);
+
+
+            $thumbnail = $approvalPost->thumbnail;
+
+        // điều kiện ? đúng : sai
+         $name = $approvalPost->name;
+        $content = $approvalPost->content;
+       $slug = $approvalPost->slug;
+        $vote = $approvalPost->vote;
+       $date = $approvalPost->date;
+        $view = $approvalPost->view;
+         $desc = $approvalPost->desc;
+        $endThumbnail = $thumbnail;
+        $status = 0;
+        $authorId = $approvalPost->author_id;
+        $reviewer = Auth::user()->id;
+
+        $newUpdate =   $approvalPost->update([
+            'name'  => $name,
+            'content' => $content,
+            'slug' => $slug,
+            'desc' => $desc,
+            'vote' => $vote,
+            'view' => $view,
+            'status' => $status,
+            'author_id' => $authorId,
+            'thumbnail' => $endThumbnail,
+            'date' => $date,
+            'reviewer' => $reviewer,
+        ]);
+
+        if ($newUpdate) {
+            return back()->with('success', 'Đã duyệt bài');
+        }
+
+
+
+      
     }
 }
