@@ -2,6 +2,7 @@
 {{"Chưa có bài viết để hiển thị"}}
 @else
 @foreach($hotPosts as $hotPost)
+
 <article class="mb-3">
     <div class="media">
         <div class="avatar avatar-lg mr-3">

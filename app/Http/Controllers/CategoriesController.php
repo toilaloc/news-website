@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
@@ -42,44 +43,44 @@ class CategoriesController extends Controller
         return view('admin.categories.create', compact('categories'));
     }
 
-    public function loadCategories(){   
+    // public function loadCategories(){   
 
-        /**
-        * Set default value skipPost = 0
-        * If isset varrible count get from request set new varrible value to skipPost 
-        */
-        $skipPost = 0;
-        if(isset($_GET['count'])){
-            $skipPost = $_GET['count'];
-        }
+    //     /**
+    //     * Set default value skipPost = 0
+    //     * If isset varrible count get from request set new varrible value to skipPost 
+    //     */
+    //     $skipPost = 0;
+    //     if(isset($_GET['count'])){
+    //         $skipPost = $_GET['count'];
+    //     }
 
-        // Get data categories limit 2
-        $rawDatas = Categories::limit(2)->skip($skipPost)->get();
+    //     // Get data categories limit 2
+    //     $rawDatas = Categories::limit(2)->skip($skipPost)->get();
 
-        /** 
-         * If the rawDatas has data get limit data and send response
-         * Client get data and show 
-        */
+    //     /** 
+    //      * If the rawDatas has data get limit data and send response
+    //      * Client get data and show 
+    //     */
 
-        if(!$rawDatas->isEmpty()){
+    //     if(!$rawDatas->isEmpty()){
 
-        $data='';
+    //     $data='';
 
-        foreach ($rawDatas as $rawData) {
-            $data.="<li id='$rawData->id' class='list-group-item'><a href='http://localhost/news/public/categories/$rawData->id/edit'>".$rawData->name."</a>
-            <small class='text-muted'>".$rawData->slug."</small>
-            </li>";
-        }
-    }
+    //     foreach ($rawDatas as $rawData) {
+    //         $data.="<li id='$rawData->id' class='list-group-item'><a href='http://localhost/news/public/categories/$rawData->id/edit'>".$rawData->name."</a>
+    //         <small class='text-muted'>".$rawData->slug."</small>
+    //         </li>";
+    //     }
+    // }
 
-        // If not has data is show notification and hide butotn loadmore.
-        else {
-            $data =  "<li class='list-group-item'><center>No data to load</center></li>";
-            $data .= "<script> $('#loadCategory').remove()</script>";
-        }
+    //     // If not has data is show notification and hide butotn loadmore.
+    //     else {
+    //         $data =  "<li class='list-group-item'><center>No data to load</center></li>";
+    //         $data .= "<script> $('#loadCategory').remove()</script>";
+    //     }
     
-        return response()->json([ 'data' => $data]);
-    }
+    //     return response()->json([ 'data' => $data]);
+    // }
 
     public function getSlug(Request $request){
 
@@ -128,21 +129,22 @@ class CategoriesController extends Controller
     public function show($slug)
     {
         $category = Categories::where('slug', $slug)->first();
+        $categoryId = $category->id;
         $hotPosts = Posts::where('view','>', 0)->take(5)->where('status', '<>', 1)->get();
+        
         if($category->category_id == NULL){
-           
-            $posts = Posts::whereHas('categories', function($query) use ($slug) {
-                $query->whereSlug($slug)->where('status', '<>', 1);
-            })->orderBy('id', 'DESC')->get();
-
             $getChildCate = $category->childs;
-              return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts', 'getChildCate','hotPosts'));
+            $posts = Posts::WhereHas('categories', function($query) use ($categoryId) {
+                $query->where('categories.id', $categoryId)->Orwhere('categories.category_id', $categoryId);
+            })->orderBy('created_at', 'DESC')->take(4)->get();
+            
+            return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts','getChildCate','hotPosts'));
 
         }
         else{
             $posts = Posts::whereHas('categories', function($query) use ($slug) {
                 $query->whereSlug($slug)->where('status', '<>', 1);
-              })->orderBy('id', 'DESC')->get();
+              })->take(4)->orderBy('created_at', 'DESC')->get();
             return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts','hotPosts'));
         }
     }

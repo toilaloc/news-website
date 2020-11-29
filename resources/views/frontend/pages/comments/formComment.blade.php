@@ -1,7 +1,7 @@
 @if (Auth::user())
     <div id="commentForm">
         <input type="hidden" name="loadFormReply" value="{{ route('load.formReply') }}" />
-        <form method="POST" action="{{ route('comments.store') }}" class="js-validate pb-md-9">
+        <form method="POST" action="{{ route('components.storeComment') }}" class="js-validate pb-md-9">
             @csrf
             <div class="form-row">
                 <div class="col-12 mb-sm-3">

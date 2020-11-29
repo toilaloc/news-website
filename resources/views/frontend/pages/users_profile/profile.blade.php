@@ -56,6 +56,18 @@
   
 
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+<div class="alert alert-danger alert-dismissible fade show" role="alert">   
+    {{ $error}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+      </svg>
+    </button>
+  </div>
+  @endforeach
+  @endif
         @if(session()->get('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session()->get('success') }}
@@ -114,13 +126,13 @@
                                 <!-- List -->
                                 <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="teams.html">
+                                        <a class="nav-link" href="javascript:;">
                                             <i class="fas fa-users nav-icon"></i> Đang theo dõi
                                             <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->Following->count()}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="teams.html">
+                                        <a class="nav-link" href="javascript:;">
                                             <i class="fas fa-user-friends nav-icon"></i> Người theo dõi
                                             <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->hasFollowers->count()}}</span>
                                         </a>
@@ -234,35 +246,6 @@
                             </div>
                             <!-- End Form Group -->
 
-                            <!-- Add Phone Input Field -->
-                            <div id="addPhoneFieldTemplate" style="display: none;">
-                                <div class="input-group input-group-add-field">
-                                    <input type="text" class="js-masked-input form-control" data-name="additionlPhone" placeholder="+x(xxx)xxx-xx-xx" aria-label="+x(xxx)xxx-xx-xx" data-hs-mask-options='{
-                             "template": "+0(000)000-00-00"
-                           }'>
-
-                                    <div class="input-group-append">
-                                        <!-- Select -->
-                                        <select class="js-custom-select-dynamic btn btn-white dropdown-toggle" data-name="additionlPhoneSelect" data-hs-select2-options='{
-                              "minimumResultsForSearch": "Infinity",
-                              "customClass": "custom-select",
-                              "dropdownAutoWidth": true,
-                              "width": true
-                            }'>
-                                            <option value="Mobile" selected>Mobile</option>
-                                            <option value="Home">Home</option>
-                                            <option value="Work">Work</option>
-                                            <option value="Fax">Fax</option>
-                                            <option value="Direct">Direct</option>
-                                        </select>
-                                        <!-- End Select -->
-                                    </div>
-
-                                    <a class="js-delete-field input-group-add-field-delete" href="javascript:;">
-                                        <i class="fas fa-times"></i>
-                                    </a>
-                                </div>
-                            </div>
                             <!-- End Add Phone Input Field -->
 
                             <!-- Form Group -->
@@ -283,7 +266,7 @@
                                         <!-- Custom Radio -->
                                         <div class="form-control">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input" name="genderTypeRadio" id="genderTypeRadio2" value="1"  @if($user->gender == 1) {{"checked"}} @endif>
+                                                <input type="radio" class="custom-control-input" name="gender" id="genderTypeRadio2" value="1"  @if($user->gender == 1) {{"checked"}} @endif>
                                                 <label class="custom-control-label" for="genderTypeRadio2">Nữ</label>
                                             </div>
                                         </div>
@@ -292,7 +275,7 @@
                                         <!-- Custom Radio -->
                                         <div class="form-control">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" class="custom-control-input" name="genderTypeRadio" id="genderTypeRadio3" value="NULL"  @if($user->gender != 0 && $user->gender != 1) {{"checked"}} @endif>
+                                                <input type="radio" class="custom-control-input" name="gender" id="genderTypeRadio3" value="NULL"  @if($user->gender != 0 && $user->gender != 1) {{"checked"}} @endif>
                                                 <label class="custom-control-label" for="genderTypeRadio3">Khác</label>
                                             </div>
                                         </div>
@@ -350,18 +333,20 @@
                                 <div class="col-sm-3">
                                     <span class="d-block font-size-1 mb-2">Ai có thể xem ảnh hồ sơ của bạn? <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Your visibility setting only applies to your profile photo. Your header image is always visible to anyone."></i></span>
                                 </div>
-
-                                <div class="col-sm-9">
+ <input type="hidden" name="ajaxLoadStatus" value="{{route('ajax.loadStatus')}}" />
+                                      
+                                <div class="col-sm-9 resDataStatus">
                                     <!-- Select -->
                                     <div class="select2-custom">
-                                        <select class="js-custom-select form-control" data-hs-select2-options='{
+                                        <select class="js-custom-select status-select form-control" data-hs-select2-options='{
                                 "minimumResultsForSearch": "Infinity",
                                 "customClass": "custom-select"
                               }'>
-                                            <option  value="privacy1" data-option-template='<span class="media"><i class="fas fa-globe-americas text-body mt-1 mr-2"></i><span class="media-body"><span class="d-block">Anyone</span><small class="select2-custom-hide">Visible to anyone who can view your content. Accessible by installed apps.</small></span></span>'>Công khai</option>
-                                            <option value="privacy2" data-option-template='<span class="media"><i class="fas fa-user-lock text-body mt-1 mr-2"></i><span class="media-body"><span class="d-block">Only you</span><small class="select2-custom-hide">Only visible to you.</small></span></span>'>Riêng tư</option>
-                                        </select>
+                                            <option  value="0" data-option-template='<span class="media"><i class="fas fa-globe-americas text-body mt-1 mr-2"></i><span class="media-body"><span class="d-block">Anyone</span><small class="select2-custom-hide">Visible to anyone who can view your content. Accessible by installed apps.</small></span></span>' @if($user->status == 0) {{"selected"}} @endif>Công khai</option>
+                                            <option value="1" data-option-template='<span class="media"><i class="fas fa-user-lock text-body mt-1 mr-2"></i><span class="media-body"><span class="d-block">Only you</span><small class="select2-custom-hide">Only visible to you.</small></span></span>' @if($user->status == 1) {{"selected"}} @endif>Riêng tư</option>
+                                         </select>
                                     </div>
+                                <script src="{{asset('frontend/assets/js/load-status.js')}}"></script>
                                     <!-- End Select -->
                                 </div>
                             </div>
@@ -373,7 +358,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card">
+                {{-- <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Xóa tài khoản của bạn</h5>
                     </div>
@@ -396,7 +381,7 @@
                         </div>
                     </div>
                     <!-- End Body -->
-                </div>
+                </div> --}}
                 <!-- End Card -->
             </div>
         </div>

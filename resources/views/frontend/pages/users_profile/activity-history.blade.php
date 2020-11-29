@@ -62,7 +62,22 @@
                       <span class="avatar avatar-xs mr-3">
                         <img class="avatar-img" src="{{asset('frontend/assets/svg/illustrations/medal.svg')}}" alt="Image Description">
                       </span>
-                      <span class="text-body font-size-1 mt-1">Tác giả</span>
+                      <span class="text-body font-size-1 mt-1">
+                        @foreach($user->roles as $roles)
+                        @if($roles->pivot->role_id == 1)
+                        {{"Quản trị viên"}}
+                        @endif
+                        @if($roles->pivot->role_id == 2)
+                        {{"Quản lý"}}
+                        @endif
+                        @if($roles->pivot->role_id == 3)
+                        {{"Tác giả"}}
+                        @endif
+                        @if($roles->pivot->role_id == 4)
+                        {{"Người đọc"}}
+                        @endif
+                        @endforeach
+                      </span>
                     </div>
                     <!-- End Icon Block -->
                   </div>
@@ -223,6 +238,8 @@
             </div>
   
               <!-- Courses -->
+              @foreach($user->roles as $roles)
+              @if($roles->pivot->role_id == 1 || $roles->pivot->role_idd == 2 || $roles->pivot->role_id == 3)
               <div class="border-top pt-5 mt-3">
               <h3 class="mb-4">Bài viết của Tác giả: {{$user->fullname}}</h3>
   
@@ -257,22 +274,28 @@
                                 {{$post->desc}}</p>
                             </div>
                         </div>
-                        @if($loop->index == 5)
+                        @if($loop->index == 4)
                         @break
                         @endif
                         @endif
                         @endforeach
                         @endif
+                       
                         @if($user->hasPosts->count() == 0)
                         <div class="row" style="margin-bottom: 20rem;">
                         <p class="pl-3">(Tác giả này hiện chưa có bài viết nào!)</p>
                           <script>$('#readMorePost').hide();</script>
                         </div>
                         @endif
+                        @endif
                 <div id="readMorePost" class="text-right font-size-1 mt-6">
-                  <a class="font-weight-bold" href="courses-listing.html">Xem thêm <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+                  <a class="font-weight-bold loadPostAuthor" href="javscript:;">Xem thêm <i class="fas fa-angle-right fa-sm ml-1"></i></a>
                 </div>
               </div>
+       
+      
+             @endforeach
+            
               <!-- End Courses -->
                         @if($user->hasPosts->count() == 0)
                           <script>$('#readMorePost').hide();</script>

@@ -74,7 +74,7 @@ class ProfileController extends Controller
             'email' => 'required|email',
             'thumbnail',
             'address' => 'required',
-            'phone' => 'numeric|required|max:10',
+            'phone' => 'numeric|required',
             'gender' => 'required'
         ]);
 
@@ -108,14 +108,17 @@ class ProfileController extends Controller
             'thumbnail' => $thumbnail,
         ]);
 
-       // dd($newInfo);
 
-            return back()->with('success', 'Sửa thông tin thành viên thành công.');
+        if($newInfo){
+            toast('Đổi thông tin thành công','success');
+            return back();
         }else {
-            return back()->with('danger', 'Bạn không có quyền đổi thông tin.');;
+            toast('Đổi không thành công','error');
+            return back();
         }
 
     }
+}
 
 }
         // dd($info, $request);

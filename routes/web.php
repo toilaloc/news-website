@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Mail;
 Route::get('get-post-slug', 'PostsController@getSlug')->name('posts.getslug');
 Route::get('get-category-slug', 'CategoriesController@getSlug')->name('categories.getslug');
 Route::get('loadFormReply', 'AjaxController@loadFormReply')->name('load.formReply');
-
+Route::post('load-status-profile', 'AjaxController@loadStatusProfile')->name('ajax.loadStatus');
+Route::get('load-post-category', 'AjaxController@loadPostCategory')->name('load.postCategory');
+Route::get('load-post-category-all', 'AjaxController@loadPostCategoryAll')->name('load.postCategoryAll');
 // Route::get('loadFormReply', 'AjaxController@loadFormReply')->name('load.formReply');
 
 // LOAD CATEGORY AJAX
@@ -53,6 +55,10 @@ Route::get('/tag/{slug}', 'TagsController@show');
 
 // VOTE STAR POST
 Route::post('post_vote', 'PostsController@post_vote');
+
+
+// ADD COMMENT 
+Route::post('add-comment', 'ComponentsController@storeComment')->name('components.storeComment');
 
 
 // PROFILE USER

@@ -19,7 +19,7 @@ class CommentsController extends Controller
     public function __construct()
     {
        
-       $this->middleware('checkpermissions:xoa-binh-luan,quan-ly-binh-luan');
+       $this->middleware('checkpermissions:xoa-binh-luan,quan-ly-binh-luan')->except(['store']);;
         
     }
 

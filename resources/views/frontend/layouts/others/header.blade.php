@@ -22,6 +22,7 @@
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="{{asset('frontend/assets/css/theme.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/custom.css')}}">
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 
     
 </head>

@@ -37,7 +37,7 @@ class Categories extends Model
     public function getPosts($id){
         $data =   Posts::whereHas('categories', function($query) use ($id) {
             $query->whereId($id);
-          })->orderBy('created_at', 'DESC')->get();
+          })->orderBy('created_at', 'DESC')->limit(2)->get();
         return $data;
     }
 
