@@ -230,7 +230,7 @@
                         @break
                     @endif
                     @endforeach
-                    @if($user->hasPosts->count() == 0)
+                    @if($user->hasComments->count() == 0)
                     {{"Chưa có bình luận nào"}}
                     @endif
                 </div>
