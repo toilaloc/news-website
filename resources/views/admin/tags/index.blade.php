@@ -7,7 +7,7 @@
       <h6 class="m-0 font-weight-bold text-primary">Danh sách từ khóa</h6>
     </div>
     <div class="card-body">
-    <table class="table table-bordered">
+    <table id="tableTag" class="table table-bordered">
     <thead>
       <tr>
         <th scope="col" width="5%">#</th>

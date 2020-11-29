@@ -178,9 +178,8 @@
         <div id="collapseReports" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Danh sách báo cáo:</h6>
-            <a class="collapse-item" href="login.html">Báo cáo bài viết</a>
-            <a class="collapse-item" href="login.html">Báo cáo người dùng</a>
-            <a class="collapse-item" href="login.html">Báo cáo bình luận</a>
+          <a class="collapse-item" href="{{route('reports.index')}}">Báo cáo</a>
+         
             <div class="collapse-divider"></div>
           </div>
       </li>
@@ -425,6 +424,16 @@ $(document).ready(function() {
     } );
 } );
 $(document).ready(function() {
+    $('#tableTag').DataTable( {
+        "order": [[ 0, "desc" ]]
+    } );
+} );
+$(document).ready(function() {
+    $('#tableApproval').DataTable( {
+        "order": [[ 4, "desc" ]]
+    } );
+} );
+$(document).ready(function() {
     $('#tableReport').DataTable( {
         "order": [[ 0, "desc" ]]
     } );
@@ -443,6 +452,7 @@ $(document).ready(function() {
     $('#tablePermissions').DataTable();
 } );
 </script>
+@include('sweetalert::alert')
   <script>
 $(document).ready(function() {
     $('#categoryName').change(function(){
