@@ -22,7 +22,14 @@
               <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                 <div class="position-relative">
                   <a href="course-description.html">
-                  <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$post->thumbnail}}" alt="{{$post->name}}" style="border-radius: 0rem;">
+                  <div  style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$post->thumbnail}}'); min-height: 150px; max-height:150px; background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+ 
+
+                  <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$post->thumbnail}}" alt="{{$post->name}}" style="border-radius: 0rem; visibility:hidden;">
+
+</div>
+               
                </a>
                 </div>
               </div>
@@ -58,7 +65,14 @@
             <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
               <div class="position-relative">
                 <a href="course-description.html">
-                <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postChild->thumbnail}}" alt="{{$postChild->name}}" style="border-radius: 0rem;">
+                <div  style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$postChild->thumbnail}}'); min-height: 150px; max-height:150px;  background-position: center; background-repeat: no-repeat; background-size: cover;">
+
+ 
+
+                <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postChild->thumbnail}}" alt="{{$postChild->name}}" style="border-radius: 0rem; visibility:hidden;">
+
+</div>
+            
              </a>
               </div>
             </div>

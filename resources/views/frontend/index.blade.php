@@ -251,7 +251,16 @@
         @foreach($breakingNewsLeft as $contentsLeft)
                 <div class="js-slide bg-img-hero-center">
                 <a class="card h-100 transition-3d-hover" href="{{url('post',$contentsLeft->slug)}}">
-                    <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$contentsLeft->thumbnail}}" alt="Image Description">
+                <div  style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$contentsLeft->thumbnail}}'); min-height: 230px; max-height:330px;  background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+ 
+
+                <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$contentsLeft->thumbnail}}" alt="Image Description" style=" visibility:hidden;" >
+
+</div>
+                 
+
+
                         <div class="card-body">
                             <h5 class="mb-0">{{$contentsLeft->name}}</h5>
                             <p class="font-size-1 text-body mb-0">{{$contentsLeft->desc}}</p>
@@ -268,7 +277,14 @@
         @if($loop->first)
                 <div class="js-slide bg-img-hero-center">
                 <a class="card h-100 transition-3d-hover" href="{{url('post',$contentCenter->slug)}}">
-                    <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$contentCenter->thumbnail}}" alt="Image Description">
+                <div  style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$contentCenter->thumbnail}}'); min-height: 230px; max-height:330px;  background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+ 
+
+<img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$contentCenter->thumbnail}}" alt="Image Description" style=" visibility:hidden;" >
+
+</div>
+                  
                         <div class="card-body">
                             <h5 class="mb-0">{{$contentCenter->name}}</h5>
                             <p class="font-size-1 text-body mb-0">{{$contentCenter->desc}}</p>
@@ -286,7 +302,14 @@
 
                 <div class="js-slide bg-img-hero-center">
                 <a class="card h-100 transition-3d-hover" href="{{url('post',$contentRight->slug)}}">
-                    <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$contentRight->thumbnail}}" alt="Image Description">
+                <div  style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$contentRight->thumbnail}}'); min-height: 230px; max-height:330px; background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+ 
+
+<img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$contentRight->thumbnail}}" alt="Image Description" style=" visibility:hidden;" >
+
+</div>
+                   
                         <div class="card-body">
                             <h5 class="mb-0">{{$contentRight->name}}</h5>
                             <p class="font-size-1 text-body mb-0">{{$contentRight->desc}}</p>
@@ -412,8 +435,17 @@
                         @if($postOfTinGiaiTri->status != 1)
                         <div class="col-lg-6 col-md-12 mb-md-2 col-sm-12 mb-sm-2 mb-4">
                             <a class="card transition-3d-hover" href="{{url('post',$postOfTinGiaiTri->slug)}}" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
-                            <img class="card-img-top d-none d-lg-block" src="{{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}}" alt="{{$postOfTinGiaiTri->name}}" style="border-top-left-radius: 0rem;
-                      border-top-right-radius: 0rem; ">
+                            <div class="card-img-top d-none d-lg-block" style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}}'); min-height: 145px;  max-height: 145px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+ 
+
+<img class="card-img-top d-none d-lg-block" src="{{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}}" alt="{{$postOfTinGiaiTri->name}}" style="border-top-left-radius: 0rem;
+border-top-right-radius: 0rem; visibility:hidden; ">
+</div>
+
+
+
+
                                 <div class="card-body" style="background: rgba(245, 202, 153, 0.1); padding: 4px 4px 4px 4px;">
                                     <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> {{$postOfTinGiaiTri->name}}</h5>
                                 </div>
@@ -475,7 +507,11 @@
                 <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                     <div class="position-relative">
                         <a href="course-description.html">
-                            <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postTinTH->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
+                        
+                            <div style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$postTinTH->thumbnail}}'); min-height: 150px;  max-height: 120px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+                        <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postTinTH->thumbnail}}" alt="Image Description" style="border-radius: 0rem; visibility:hidden; "> 
+                           </div>
                         </a>
                     </div>
                 </div>
@@ -575,8 +611,13 @@
                     @else
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
-                        <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstXuatBan->thumbnail}}" alt="{{$firstXuatBan->name}}" style="border-top-left-radius: 0rem;
-                  border-top-right-radius: 0rem;">
+                        <div style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$firstXuatBan->thumbnail}}'); min-height: 170px;  max-height: 250px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+ 
+<img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstXuatBan->thumbnail}}" alt="{{$firstXuatBan->name}}" style="border-top-left-radius: 0rem;
+                  border-top-right-radius: 0rem;  visibility:hidden; ">
+   </div>
+                       
                         </div>
                         <div class="card-body" style="padding: 0.5rem;">
                             <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstXuatBan->slug)}}">{{$firstXuatBan->name}}</a></h4>
@@ -615,8 +656,15 @@
                     @else
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
-                        <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstSachHay->thumbnail}}" alt="{{$firstSachHay->name}}" style="border-top-left-radius: 0rem;
-                  border-top-right-radius: 0rem;">
+                            
+                   
+                    <div style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$firstSachHay->thumbnail}}'); min-height: 170px;  max-height: 250px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+ 
+
+                       <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstSachHay->thumbnail}}" alt="{{$firstSachHay->name}}" style="border-top-left-radius: 0rem;
+                  border-top-right-radius: 0rem;  visibility:hidden;">
+   </div>
                         </div>
                         <div class="card-body" style="padding: 0.5rem;">
                             <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstSachHay->slug)}}">{{$firstSachHay->name}}</a></h4>
@@ -655,8 +703,15 @@
                     @else
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
-                            <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstTacGia->thumbnail}}" alt="{{$firstTacGia->name}}" style="border-top-left-radius: 0rem;
-                  border-top-right-radius: 0rem;">
+                        <div style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$firstTacGia->thumbnail}}'); min-height: 170px;  max-height: 250px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+ 
+
+
+       <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstTacGia->thumbnail}}" alt="{{$firstTacGia->name}}" style="border-top-left-radius: 0rem;
+                  border-top-right-radius: 0rem;  visibility:hidden;">
+</div>
+                          
                         </div>
                         <div class="card-body" style="padding: 0.5rem;">
                             <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstTacGia->thumbnail)}}">{{$firstTacGia->name}}</a></h4>
@@ -695,8 +750,16 @@
                     @else
                     <article class="card border-bottom" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
                         <div class="card-img-top position-relative">
-                            <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstTheGioi->thumbnail}}" alt="{{$firstTheGioi->name}}" style="border-top-left-radius: 0rem;
-                  border-top-right-radius: 0rem;">
+                        <div style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$firstTheGioi->thumbnail}}'); min-height: 170px;  max-height: 250px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
+
+ 
+                        <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$firstTheGioi->thumbnail}}" alt="{{$firstTheGioi->name}}" style="border-top-left-radius: 0rem;
+                  border-top-right-radius: 0rem; visibility:hidden;">
+
+
+</div>
+                       
+
                         </div>
                         <div class="card-body" style="padding: 0.5rem;">
                             <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstTheGioi->slug)}}">{{$firstTheGioi->name}}</a></h4>
