@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\User;
 use App\DripEmailer;
-use App\Mail\SendPassword;
+use App\Mail\SendNotification;
 use Illuminate\Support\Facades\Mail;
 
 class SendMail extends Command
@@ -15,7 +15,7 @@ class SendMail extends Command
      *
      * @var string
      */
-    protected $signature = 'Send:password';
+    protected $signature = 'Send:Notification';
 
     /**
      * The console command description.
@@ -42,6 +42,6 @@ class SendMail extends Command
     public function handle()
     {
         $user = User::find($this->argument('user'));
-        Mail::to($user)->send(new SendPassword());
+        Mail::to($user)->send(new SendNotification());
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Post_votes;
 use App\Models\Categories;
+use App\Models\Subcribe;
 use App\Models\Tags;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -89,12 +90,12 @@ class PostsController extends Controller
 
         foreach(Auth::user()->Roles as $role) {
         if($role->id == 3 && $role->id != 4){
-            $status = 1;
+            $status = 1;                                                  
         }else{
             $status = 0;
         }
-        }
-
+        }                               
+                   
 
         $post = new Posts();
         $post->name = $request->name;
@@ -126,6 +127,15 @@ class PostsController extends Controller
             $post->Tags()->sync($tagIds);
         }
 
+        $sub = Subcribe::where('author_id',Auth::id())->get();
+        foreach ($sub as $value) {
+
+            Mail::to($value->email)->send('mail.SendNotification',[
+                'link'=>'http://127.0.0.1:8000/post/'.$request->slug,
+                'author'=>Auth::user()->name
+            ]);
+
+        }
 
         foreach(Auth::user()->Roles as $role) {
             if($role->id == 3){
