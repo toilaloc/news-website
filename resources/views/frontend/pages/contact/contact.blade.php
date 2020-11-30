@@ -75,8 +75,8 @@
     </div>
     <!-- End Hero Section -->
 
-    <!-- Contact Form Section -->
-    <div class="container space-2 space-lg-3">
+   <!-- Contact Form Section -->
+   <div class="container space-2 space-lg-3">
         <!-- Title -->
         <div class="w-md-80 w-lg-50 text-center mx-md-auto mb-5 mb-md-9">
             <h2>Nói cho chúng tôi vấn đề của bạn</h2>
@@ -85,15 +85,38 @@
         <!-- End Title -->
 
         <div class="w-lg-80 mx-auto">
+        
+        @if(session()->get('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session()->get('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+        @endif
             <!-- Contacts Form -->
-            <form class="js-validate">
+            <form class="js-validate" action="{{url('frontend/contacts')}}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
-                            <label class="input-label">Your name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Jeff Fisher" aria-label="Jeff Fisher" required
-                                   data-msg="Please enter your name.">
+                            <label class="input-label">Tên của bạn</label>
+                            <input type="text" class="form-control" name="contact_name" placeholder="Tên của bạn" aria-label="Tên của bạn" required
+                                   data-msg="Làm ơn nhập tên của bạn.">
                         </div>
                     </div>
                     <!-- End Input -->
@@ -101,9 +124,9 @@
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
-                            <label class="input-label">Your email address</label>
-                            <input type="email" class="form-control" name="email" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required
-                                   data-msg="Please enter a valid email address.">
+                            <label class="input-label">Địa chỉ email</label>
+                            <input type="email" class="form-control" name="contact_email" placeholder="Địa chỉ email" aria-label="Địa chỉ email" required
+                                   data-msg="Làm ơn nhập địa chỉ email.">
                         </div>
                     </div>
                     <!-- End Input -->
@@ -113,9 +136,9 @@
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
-                            <label class="input-label">Subject</label>
-                            <input type="text" class="form-control" name="subject" placeholder="Web design" aria-label="Web design" required
-                                   data-msg="Please enter a subject.">
+                            <label class="input-label">Tiều đề</label>
+                            <input type="text" class="form-control" name="contact_title" placeholder="Tiêu đề" aria-label="Tiêu đề" required
+                                   data-msg="Làm ơn nhập tiêu đề.">
                         </div>
                     </div>
                     <!-- End Input -->
@@ -123,19 +146,32 @@
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
-                            <label class="input-label">Your phone number</label>
-                            <input type="number" class="form-control" name="phone" placeholder="1-800-643-4500" aria-label="1-800-643-4500" required
-                                   data-msg="Please enter a valid phone number.">
+                            <label class="input-label">Số điện thoại</label>
+                            <input type="number" class="form-control" name="contact_phone" placeholder="+84 1111 1111 1" aria-label="+84 1111 1111 1" required
+                                   data-msg="Làm ơn nhập đúng số điệ thoại.">
                         </div>
                     </div>
                     <!-- End Input -->
                 </div>
-
+                <!-- Input -->
+                @guest
+                @else
+                <div class="col-sm-6 mb-4" style="padding-left: 0;">
+                    <div class="js-form-message">
+                        <label class="input-label">User info</label>
+                        <select class="form-control"  name="user_id" >
+                            <option value="{{Auth::user()->id}}">{{Auth::user()->fullname}}</option>
+                        </select>
+                    </div>
+                </div>
+                @endguest
+                <!-- End Input -->
+                
                 <!-- Input -->
                 <div class="js-form-message mb-6">
                     <label class="input-label">How can we help you?</label>
                     <div class="input-group">
-              <textarea class="form-control" rows="4" name="text" placeholder="Hi there, I would like to ..." aria-label="Hi there, I would like to ..." required
+              <textarea class="form-control" rows="4" name="contact_message" placeholder="Hi there, I would like to ..." aria-label="Hi there, I would like to ..." required
                         data-msg="Please enter a reason."></textarea>
                     </div>
                 </div>
@@ -143,14 +179,13 @@
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-wide transition-3d-hover mb-4">Submit</button>
-                    <p class="small">We'll get back to you in 1-2 business days.</p>
+                    <p class="small">Chúng tôi sẽ trả lời bạn trong vòng 1-2 ngày.</p>
                 </div>
             </form>
             <!-- End Contacts Form -->
         </div>
     </div>
     <!-- End Contact Form Section -->
-
     <!-- Leaflet -->
     <div class="container-fluid mb-3">
         <div id="map" class="min-h-450rem rounded"
