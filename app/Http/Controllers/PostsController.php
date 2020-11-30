@@ -23,7 +23,7 @@ class PostsController extends Controller
     public function __construct()
     {
        
-       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet')->except(['create','show','getSlug', 'store', 'myPost']);
+       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet')->except(['create','show','getSlug', 'store', 'myPost', 'edit', 'update']);
     }
 
     public function index()
@@ -41,6 +41,7 @@ class PostsController extends Controller
     {
         $tags = Tags::get()->pluck('name', 'id');
         $categories = Categories::whereNull('category_id')->get();
+        Carbon::setLocale('vi');
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         return view('admin.posts.create', compact('categories', 'dateTime'));
     }
@@ -139,8 +140,10 @@ class PostsController extends Controller
 
 
     public function myPost(){
+        Carbon::setLocale('vi');
+        $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $myposts = Posts::where('author_id', Auth::user()->id)->get();
-        return view('admin.posts.myPost', compact('myposts'));
+        return view('admin.posts.myPost', compact('myposts', 'dateTime'));
     }
 
 
@@ -161,7 +164,7 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
-    {
+    {   Carbon::setLocale('vi');
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $post = Posts::where('slug', $slug)->firstOrFail(); 
         $authorId = $post->author_id;
@@ -190,7 +193,25 @@ class PostsController extends Controller
     {
         $categories = Categories::whereNull('category_id')->get();
         $postEditing = Posts::find($id);
-        return view('admin.posts.edit', compact('postEditing', 'categories'));
+
+
+        foreach(Auth::user()->Roles as $role) {
+
+        // Nếu là tác giả của bài viết đó thì được sửa    
+        if(Auth::user()->id == $postEditing->author_id){
+            return view('admin.posts.edit', compact('postEditing', 'categories'));
+        }
+
+        // Còn nếu là admin hoặc quản lý vẫn vào sửa được
+        else if($role->id == 1 || $role->id == 2){
+            return view('admin.posts.edit', compact('postEditing', 'categories'));
+        }
+        // Còn không thì return về trang 401
+        else {
+            return view('errors.401');
+        }
+        }
+       
     }
 
     /**
@@ -258,29 +279,71 @@ class PostsController extends Controller
             'reviewer' => $reviewer,
         ]);
 
-        if ($newUpdate) {
-            $resolveTags = str_replace("                                        ", "", $request->tagUpdate);
-            $tagNames = explode(',', $resolveTags);
-            //dd($tagNames);
-            $tagIds = [];
-            foreach ($tagNames as $tagName) {
-                //$post->tags()->create(['name'=>$tagName]);
-                //Or to take care of avoiding duplication of Tag
-                //you could substitute the above line as
-                $tag = Tags::firstOrCreate([
-                    'name' => $tagName,
-                    'slug' => Str::slug($tagName, '-'),
-                ]);
-                if ($tag) {
-                    $tagIds[] = $tag->id;
-                }
-            }
-            $postUpdate->Tags()->sync($tagIds);
+        if(empty($postUpdate->author_id)){
+            return view('errors.404');
         }
 
-        $postUpdate->Categories()->sync($request->input('categories_id', []));
 
-        return redirect()->route('posts.index')->with('success', 'Cập nhật tin tức thành công');
+        foreach(Auth::user()->Roles as $role) {
+
+            // Nếu là tác giả của bài viết đó thì được sửa    
+            if(Auth::user()->id == $postUpdate->author_id){
+                if ($newUpdate) {
+                    $resolveTags = str_replace("                                        ", "", $request->tagUpdate);
+                    $tagNames = explode(',', $resolveTags);
+                    //dd($tagNames);
+                    $tagIds = [];
+                    foreach ($tagNames as $tagName) {
+                        //$post->tags()->create(['name'=>$tagName]);
+                        //Or to take care of avoiding duplication of Tag
+                        //you could substitute the above line as
+                        $tag = Tags::firstOrCreate([
+                            'name' => $tagName,
+                            'slug' => Str::slug($tagName, '-'),
+                        ]);
+                        if ($tag) {
+                            $tagIds[] = $tag->id;
+                        }
+                    }
+                    $postUpdate->Tags()->sync($tagIds);
+                }
+        
+                $postUpdate->Categories()->sync($request->input('categories_id', []));
+        
+                return redirect()->route('posts.mypost')->with('success', 'Cập nhật tin tức thành công');
+            }
+    
+            // Còn nếu là admin hoặc quản lý vẫn vào sửa được
+            else if($role->id == 1 || $role->id == 2){
+                if ($newUpdate) {
+                    $resolveTags = str_replace("                                        ", "", $request->tagUpdate);
+                    $tagNames = explode(',', $resolveTags);
+                    //dd($tagNames);
+                    $tagIds = [];
+                    foreach ($tagNames as $tagName) {
+                        //$post->tags()->create(['name'=>$tagName]);
+                        //Or to take care of avoiding duplication of Tag
+                        //you could substitute the above line as
+                        $tag = Tags::firstOrCreate([
+                            'name' => $tagName,
+                            'slug' => Str::slug($tagName, '-'),
+                        ]);
+                        if ($tag) {
+                            $tagIds[] = $tag->id;
+                        }
+                    }
+                    $postUpdate->Tags()->sync($tagIds);
+                }
+        
+                $postUpdate->Categories()->sync($request->input('categories_id', []));
+        
+                return redirect()->route('posts.index')->with('success', 'Cập nhật tin tức thành công');
+            }
+            // Còn không thì return về trang 401
+            else {
+                return view('errors.401');
+            }
+            }
 
         // Add = attach
         // Delete = detach
@@ -306,8 +369,10 @@ class PostsController extends Controller
     }
 
     public function approvalPost(){
+        Carbon::setLocale('vi');
+        $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $approvalPosts = Posts::all()->where('status', '<>', 0);
-        return view('admin.posts.approvalPost', compact('approvalPosts'));
+        return view('admin.posts.approvalPost', compact('approvalPosts','dateTime'));
     }
 
     public function resolvedApprovalPost(Request $request, $id){

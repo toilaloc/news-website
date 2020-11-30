@@ -10,7 +10,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="h5 mb-0">{{ $subReply->Author->fullname }}</span>
                     <small
-                        class="text-muted">{{$dateTime->diffForHumans($subReply->created_at)}}</small>
+                        class="text-muted">{{$subReply->created_at->diffForHumans($dateTime)}}</small>
                 </div>
             </div>
             

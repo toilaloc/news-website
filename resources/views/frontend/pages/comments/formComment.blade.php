@@ -10,7 +10,7 @@
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <div class="js-form-message form-group">
                             <label class="input-label">Họ và tên:</label>
-                            <input type="text" class="form-control" id="authorComment"
+                            <input type="hidden" class="form-control" id="authorComment"
                                 value="{{ Auth::user()->fullname }}">
                         </div>
                         <div class="js-form-message form-group">

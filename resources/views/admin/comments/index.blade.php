@@ -42,7 +42,7 @@
                         <td>{{$comment->id}}</td>
                         <td>{{$comment->content}}</td>
                         <td>{{$comment->subComments->count()}}</td>
-                        <td><a href="{{url('user/'.$comment->Author->username)}}"><img data-toggle="tooltip" title="{{$comment->Author->fullname}}" style="height: 50px; width: 50px; border-radius: 50%;" src="{{asset('uploads/users/'.$comment->Author->thumbnail)}}"/></a></td>
+                        <td><a href="{{url('author/'.$comment->Author->username)}}"><img data-toggle="tooltip" title="{{$comment->Author->fullname}}" style="height: 50px; width: 50px; border-radius: 50%;" src="{{asset('uploads/users/'.$comment->Author->thumbnail)}}"/></a></td>
                         <td><a href="{{url('post/'.$comment->Posts->slug)}}">{{$comment->Posts->name}}</a></td>
                         <td>{{$comment->created_at}}</td>
                         <td>

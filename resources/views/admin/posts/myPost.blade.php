@@ -50,7 +50,7 @@
                                 <a href="#" class="badge badge-secondary">Đang chờ duyệt</a>
                                 @endif
                             </td>
-                            <td>{{ $mypost->date }}</td>
+                            <td>{{ $mypost->created_at->diffForHumans($dateTime)}}</td>
                             <td><a class="btn btn-success btn-sm" href="{{ route('posts.edit', $mypost->id) }}">Sửa</a></td>
                             {{-- <td>
                                 <form class="d-inline" action="{{ route('posts.destroy', $mypost->id) }}" method="POST">

@@ -18,6 +18,60 @@ class AjaxController extends Controller
         return response()->json(['formReply'=>$formReply]);   
     }
 
+    public function loadPostAuthor(Request $request){
+      $userId = $request->id;
+      $length = $request->length;
+      $lastId = $request->last;
+
+      $oldData = Posts::where('author_id', $userId)->orWhere('id','<', $lastId)->where('status','<>', 1)->orderBy('created_at','DESC')->take(3)->skip($length)->get();
+
+      if(!$oldData->isEmpty()){
+        $icon = 'success';
+        $message = 'Tải dữ liệu thành công';
+        $end = '';
+        $data = '';
+        foreach($oldData as $newData){
+            $data .= "<div class='row mb-2 pb-2 border-bottom listPostAuthor' data-postid='$newData->id'>
+            <div class='col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0'>
+              <div class='position-relative'>
+                <a href='course-description.html'>
+                <img class='img-fluid w-100' src='../../uploads/posts/thumbnail/$newData->thumbnail' alt='$newData->name' style='border-radius: 0rem;'>
+             </a>
+              </div>
+            </div>
+            <div class='col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8'>
+              <div class='media mb-2'>
+                <div class='media-body'>
+                <a href='post/$newData->slug'><h3 class='h4 text-hover-primary mb-0'>$newData->name</h3></a>
+                </div>
+              </div>
+              <div class='d-flex justify-content-start align-items-center small text-muted'>
+                <div class='d-inline-block mr-2'>
+                  $newData->created_at
+                </div>
+                <div class='d-inline-block mr-2'>";
+                foreach($newData->Categories as $category){
+                    $data .=   "<a style='color: #333;' href='../../category/$category->slug'>$category->name</a>";
+                }
+                $data .= "</div>
+              </div>
+              <p class='font-size-1 text-body mb-0 d-none d-md-block d-lg-block'>
+              $newData->desc</p>
+            </div>
+        </div>";
+
+        }
+    }
+    else {
+        $icon = 'error';
+        $message = 'Không còn dữ liệu';
+        $data =  "<li class='list-group-item'><center><strong>Không còn bài viết để hiển thị</strong></center></li>";
+        $end = "$('#loadPostCategory').remove()";
+    }
+            return response()->json(['data'=> $data,'icon' => $icon, 'message' => $message, 'end' => $end]);   
+
+    }
+
     public function loadPostCategoryAll(Request $request){
         // load chuyên mục cha có chứa nhiều chuyên mục con
         $categoryId = $request->id;
@@ -46,7 +100,7 @@ class AjaxController extends Controller
                 <div class='col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8'>
                   <div class='media mb-2'>
                     <div class='media-body'>
-                    <a href='post$newData->slug'><h3 class='h4 text-hover-primary mb-0'>$newData->name</h3></a>
+                    <a href='post/$newData->slug'><h3 class='h4 text-hover-primary mb-0'>$newData->name</h3></a>
                     </div>
                   </div>
                   <div class='d-flex justify-content-start align-items-center small text-muted'>

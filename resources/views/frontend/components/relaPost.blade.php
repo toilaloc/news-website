@@ -22,6 +22,9 @@
     </article>
     <!-- End Blog Card -->
 </div>
+@if($loop->index == 4)
+@break
+@endif
 @endif
 @endforeach
 @endif

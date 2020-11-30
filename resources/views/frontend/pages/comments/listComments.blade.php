@@ -11,7 +11,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="h5 mb-0" id="author_comment">{{ $item->Author->fullname }}</span>
                         <small
-                            class="text-muted">{{$dateTime->diffForHumans($item->created_at)}}</small>
+                            class="text-muted">{{$item->created_at->diffForHumans($dateTime)}}</small>
                     </div>
                 </div>
             </div>

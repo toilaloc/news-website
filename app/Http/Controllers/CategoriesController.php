@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Posts;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -128,6 +129,8 @@ class CategoriesController extends Controller
      */
     public function show($slug)
     {
+        Carbon::setLocale('vi');
+        $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $category = Categories::where('slug', $slug)->first();
         $categoryId = $category->id;
         $hotPosts = Posts::where('view','>', 0)->take(5)->where('status', '<>', 1)->get();
@@ -138,7 +141,7 @@ class CategoriesController extends Controller
                 $query->where('categories.id', $categoryId)->Orwhere('categories.category_id', $categoryId);
             })->orderBy('created_at', 'DESC')->take(4)->get();
             
-            return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts','getChildCate','hotPosts'));
+            return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts','getChildCate','hotPosts','dateTime'));
 
         }
         else{

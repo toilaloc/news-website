@@ -17,6 +17,9 @@
     </div>
     <!-- End Card Info -->
 </div>
+@if($loop->index == 3)
+@break
+@endif
 @endif
 @endforeach
 @endif

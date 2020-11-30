@@ -55,12 +55,18 @@ class Users extends Model
 
     public function hasPosts()
     {
-        return $this->hasMany(Posts::class, 'author_id');
+        return $this->hasMany(Posts::class, 'author_id')->where('status','<>', 1)->orderBy('created_at', 'DESC')->take(4);
     }
+
+    public function infoPosts()
+    {
+        return $this->hasMany(Posts::class, 'author_id')->where('status','<>', 1);
+    }
+
 
     public function hasComments()
     {
-        return $this->hasMany(Comments::class, 'user_id');
+        return $this->hasMany(Comments::class, 'user_id')->orderBy('created_at', 'DESC');
     }
     public function Following(){
         return $this->hasMany(Followers::class, 'user_id');

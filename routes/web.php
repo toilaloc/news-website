@@ -24,13 +24,14 @@ Route::get('loadFormReply', 'AjaxController@loadFormReply')->name('load.formRepl
 Route::post('load-status-profile', 'AjaxController@loadStatusProfile')->name('ajax.loadStatus');
 Route::get('load-post-category', 'AjaxController@loadPostCategory')->name('load.postCategory');
 Route::get('load-post-category-all', 'AjaxController@loadPostCategoryAll')->name('load.postCategoryAll');
+Route::get('load-post-author', 'AjaxController@loadPostAuthor')->name('load.postauthor');
 // Route::get('loadFormReply', 'AjaxController@loadFormReply')->name('load.formReply');
 
 // LOAD CATEGORY AJAX
 Route::get('load-categories', 'CategoriesController@loadCategories')->name('load.categories');
 Route::post('reporting', 'AjaxController@report')->name('reporting.store');
 // SEARCHING
-Route::post('search', 'SearchController@index')->name('search.index');
+Route::get('search', 'SearchController@index')->name('search.index');
 
 // ALL PANEL
 Route::group(['prefix' => 'panel', 'middleware' => ['auth', 'checkroles']],  function () {

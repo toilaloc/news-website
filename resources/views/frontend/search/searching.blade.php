@@ -43,6 +43,8 @@
             @endif
             @endforeach
 
+            {{ $result->withQueryString()->links() }}
+
 
             <!-- End Card -->
             <!-- Pagination -->
@@ -103,6 +105,7 @@
                     @endif
                     @endforeach
                     <!-- End Blog -->
+                    
                 </div>
 
             </div>

@@ -19,7 +19,7 @@
                 <!-- User Content -->
               <img style="height: 120px;" class="img-fluid rounded-circle mx-auto" src="{{asset('uploads/users')}}/{{$user->thumbnail}}" alt="Image Description" width="120" height="120">
   
-              <span class="d-block text-body font-size-1 mt-3">Tham gia kể từ {{$user->created_at}}</span>
+              <span class="d-block text-body font-size-1 mt-3">Tham gia kể từ {{$user->created_at->diffForHumans($dateTime)}}</span>
   
                 <div class="mt-3">
                   <a class="btn btn-sm btn-outline-primary transition-3d-hover" href="#">
@@ -88,7 +88,7 @@
                       <span class="avatar avatar-xs mr-3">
                         <img class="avatar-img" src="{{asset('frontend/assets/svg/illustrations/add-file.svg')}}" alt="Image Description">
                       </span>
-                      <span class="text-body font-size-1 mt-1">{{$user->hasPosts->count()}} Bài viết</span>
+                      <span class="text-body font-size-1 mt-1">{{$user->infoPosts->count()}} Bài viết</span>
                     </div>
                     <!-- End Icon Block -->
                   </div>
@@ -181,7 +181,7 @@
               </div>
   
               <div class="border-top text-center pt-4 mt-4">
-                <a class="text-body small" href="#">
+                <a class="text-body small" href="javacript:;">
                   <i class="far fa-flag mr-1"></i> Báo cáo vi phạm
                 </a>
               </div>
@@ -221,10 +221,10 @@
                   <h3 class="mb-4">Bình luận gần đây</h3>
                   <div class="row">
                   <div class="activity-feed">
-                    @foreach($user->hasComments as $comments)
+                    @foreach($comments as $comment)
                     <div class="feed-item">
-                    <div class="date">{{$comments->created_at}}</div>
-                      <div class="text">"<em>{{$comments->content}}</em>" tại <a href="{{url('post',$comments->Posts->slug)}}">{{$comments->Posts->name}}</a></div>
+                    <div class="date">{{$comment->created_at}}</div>
+                      <div class="text">"<em>{{$comment->content}}</em>" tại <a href="{{url('post',$comment->Posts->slug)}}">{{$comment->Posts->name}}</a></div>
                     </div>
                     @if($loop->index == 4)
                         @break
@@ -239,14 +239,14 @@
   
               <!-- Courses -->
               @foreach($user->roles as $roles)
-              @if($roles->pivot->role_id == 1 || $roles->pivot->role_idd == 2 || $roles->pivot->role_id == 3)
+              @if($roles->pivot->role_id == 1 || $roles->pivot->role_id == 2 || $roles->pivot->role_id == 3)
               <div class="border-top pt-5 mt-3">
               <h3 class="mb-4">Bài viết của Tác giả: {{$user->fullname}}</h3>
   
                     @if($user->hasPosts)
-                    @foreach($user->hasPosts as $post)
-                    @if($post->status != 1)
-                        <div class="row mb-2 pb-2 border-bottom">
+                    <div class="allPostAuthor">
+                    @foreach($posts as $post)
+                    <div class="row mb-2 pb-2 border-bottom listPostAuthor" data-postid="{{$post->id}}">
                             <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                                 <div class="position-relative">
                                     <a href="course-description.html">
@@ -274,24 +274,23 @@
                                 {{$post->desc}}</p>
                             </div>
                         </div>
-                        @if($loop->index == 4)
-                        @break
-                        @endif
-                        @endif
                         @endforeach
+                      </div>
                         @endif
-                       
+                        <input type="hidden" name="ajaxLoadPostAuthor" value="{{route('load.postauthor')}}"/>
                         @if($user->hasPosts->count() == 0)
                         <div class="row" style="margin-bottom: 20rem;">
                         <p class="pl-3">(Tác giả này hiện chưa có bài viết nào!)</p>
                           <script>$('#readMorePost').hide();</script>
                         </div>
+                        @else
+                        <div id="readMorePost" class="text-right font-size-1 mt-6">
+                          <a class="font-weight-bold loadPostAuthorActivity" data-userid="{{$user->id}}" href="javascript:;">Xem thêm <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+                        </div>
+                      </div>
                         @endif
                         @endif
-                <div id="readMorePost" class="text-right font-size-1 mt-6">
-                  <a class="font-weight-bold loadPostAuthor" href="javscript:;">Xem thêm <i class="fas fa-angle-right fa-sm ml-1"></i></a>
-                </div>
-              </div>
+               
        
       
              @endforeach
@@ -308,5 +307,6 @@
           </div>
         </div>
       </div>
+      <script src="{{asset('frontend/assets/js/load-post-author.js')}}"></script>
       <!-- End Profile Section -->
 @endsection

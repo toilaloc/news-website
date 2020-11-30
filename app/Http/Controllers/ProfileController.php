@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Users;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -44,9 +45,14 @@ class ProfileController extends Controller
         }
     }
     public function activityAccount($username){
+       
+        Carbon::setLocale('vi');
+        $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $user = Users::where('username', $username)->first();
+        $posts = $user->hasPosts;
+        $comments = $user->hasComments;
         if($user){
-            return view('frontend.pages.users_profile.activity-history', compact('user'));
+            return view('frontend.pages.users_profile.activity-history', compact('user', 'dateTime','posts','comments'));
         }
         else{
             return view('frontend.pages.errors.404');

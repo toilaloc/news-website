@@ -245,7 +245,7 @@
 
                     <!-- Search Form -->
                     <li class="d-none d-lg-inline-block navbar-nav-item flex-grow-1 mx-2">
-                    <form method="POST" action="{{route('search.index')}}" class="input-group input-group-sm input-group-merge w-75">
+                    <form method="GET" action="{{route('search.index')}}" class="input-group input-group-sm input-group-merge w-75">
                         @csrf
                       <div class="input-group-prepend">
                           <div class="input-group-text">

@@ -52,7 +52,7 @@
                                 @endforeach
                             </td>
                             <td>{{ $approvalPost->Author->fullname }}</td>
-                            <td>{{ $approvalPost->date }}</td>
+                            <td>{{ $approvalPost->created_at->diffForHumans($dateTime)}}</td>
                             <td><button class="btn btn-success btn-sm" href="javscript:;" data-toggle="modal" data-target="#exampleModalScrollable-{{$approvalPost->id}}">Xem bài</button>
                                 <!-- Button trigger modal -->
   

@@ -29,8 +29,9 @@ class HomeController extends Controller
     {
 
         // Sẽ viết lại vì vi phạm DRY
-
+        Carbon::setLocale('vi');
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
+       
         // Tin nóng bên trái
         $breakingNewsLeft = Categories::find(6);
         $slugLeft = $breakingNewsLeft->slug;
@@ -64,6 +65,8 @@ class HomeController extends Controller
         $idTinGiaiTri = 4;
         $tinGiaiTri = Categories::find($idTinGiaiTri);
         $getSubTinGiaiTri = $tinGiaiTri->childs;
+
+        // Tin tổng hợp
         $tinTongHop = Posts::all()->random(6)->where('status', '<>', 1);
 
 

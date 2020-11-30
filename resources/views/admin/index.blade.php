@@ -7,15 +7,17 @@
           </div>
 
           <!-- Content Row -->
+          @foreach(Auth::user()->Roles as $roleUser)
+          
           <div class="row">
-
+            @if($roleUser->id == 1 || $roleUser->id == 2)
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Người dùng</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tổng người dùng</div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{$user->count()}}</div>
                     </div>
                     <div class="col-auto">
@@ -32,7 +34,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Bài viết</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tổng bài viết</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$post->count()}}</div>
                     </div>
                     <div class="col-auto">
@@ -49,7 +51,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Bình Luận</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tổng bình Luận</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$comment->count()}}</div>
@@ -61,29 +63,90 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>  
             </div>
-
-            <!-- Pending Requests Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Tổng báo cáo</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$report->count()}}</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-flag fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              @else
+               <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Báo cáo</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$report->count()}}</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Bài viết của tôi</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{$myPosts->count()}}</div>
+                    <div class="h6 mb-0 font-weight-bold text-gray-800">{{$myPostApprovaling->count()}} bài đang duyệt</div>  
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-flag fa-2x text-gray-300"></i>
+                      <i class="fas fa-user fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Vi phạm của tôi</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$myReposts->count()}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Bình Luận của tôi</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$myComment->count()}}</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-comment fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              @endif
           </div>
+        
+          
+
+            <!-- Pending Requests Card Example -->
+          
 
           <!-- Content Row -->
-
+          @if($roleUser->id == 1 || $roleUser->id == 2)
           <div class="row">
 
             <!-- Area Chart -->
@@ -205,4 +268,6 @@
 
             </div>
           </div>
+          @endif
+          @endforeach
 @endsection

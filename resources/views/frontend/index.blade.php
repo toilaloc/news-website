@@ -471,7 +471,7 @@
             <div class="row mb-2 pb-2 border-bottom">
                 <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                     <div class="position-relative">
-                        <a href="course-description.html">
+                        <a href="{{url('category',$postTinTH->slug)}}">
                             <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postTinTH->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
                         </a>
                     </div>
@@ -484,7 +484,7 @@
                     </div>
                     <div class="d-flex justify-content-start align-items-center small text-muted">
                         <div class="d-inline-block mr-2">
-                            {{$dateTime->diffForHumans($postTinTH->created_at)}}
+                            {{$postTinTH->created_at->diffForHumans($dateTime)}}
                         </div>
                         <div class="d-inline-block mr-2">
                             @foreach($postTinTH->Categories as $categoryTH)
@@ -585,7 +585,7 @@
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
                             <div class="position-relative">
-                                <a href="{{url('post',$postXuatBan->thumbnail)}}">
+                                <a href="{{url('post',$postXuatBan->slug)}}">
                                 <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postXuatBan->thumbnail}}" alt="{{$postXuatBan->name}}" style="border-radius: 0rem;">
                                 </a>
                             </div>
@@ -593,7 +593,7 @@
                         <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
                             <div class="media mb-2">
                                 <div class="media-body">
-                                    <a href="{{url('post',$postXuatBan->thumbnail)}}"><h4 class="h6 text-hover-primary mb-0">{{$postXuatBan->name}}</h4></a>
+                                    <a href="{{url('post',$postXuatBan->slug)}}"><h4 class="h6 text-hover-primary mb-0">{{$postXuatBan->name}}</h4></a>
                                 </div>
                             </div>
                         </div>

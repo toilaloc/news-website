@@ -313,7 +313,7 @@
             },
             type: "GET",
             success: function(res){
-                console.log(res.result);
+                //console.log(res.result);
             }
         });
     });

@@ -37,7 +37,7 @@
                 </div>
                 <div class="d-flex justify-content-start align-items-center small text-muted">
                   <div class="d-inline-block mr-2">
-                    {{$post->created_at}}
+                  {{$post->created_at->diffForHumans($dateTime)}}
                   </div>
                   <div class="d-inline-block mr-2">
                       @foreach($post->Categories as $categories)
