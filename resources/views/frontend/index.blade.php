@@ -225,6 +225,10 @@
         <!-- End Blog -->
 
         <div class="col-sm-12 col-md-12 d-lg-none d-md-block">
+            <style>.slick-equal-height .slick-list {
+                    height: 100%!important;
+            }
+            </style>
             <div class="js-slick-carousel slick slick-equal-height slick-gutters-1"
                  data-hs-slick-carousel-options='{
           "prevArrow": "<span class=\"fas fa-arrow-left slick-arrow slick-arrow-soft-white slick-arrow-left slick-arrow-centered-y rounded-circle ml-sm-2 ml-xl-4\"></span>",
@@ -328,8 +332,7 @@
      {{"Không có bài viết để hiển thị"}}
      @else
     
-                @foreach($getAllSubCate as $subCate)
-                @foreach($subCate->getPosts($subCate->id) as $posts)
+                @foreach($getAllSubCate  as $posts)
                 
                 <div class="js-slide bg-img-hero-center">
                     <a class="card h-100 transition-3d-hover" href="{{url('post',$posts->slug)}}" >
@@ -340,10 +343,6 @@
                     </a>
                     <!-- End Card -->
                 </div>
-                @if($loop->index == 9)
-                    @break
-                @endif
-                @endforeach
                 @endforeach
                 @endif
                 
@@ -356,7 +355,7 @@
         <!-- Hien thi tren man hinh dien thoai -->
         <div class="d-lg-none col-sm-12 space-1">
             <div class="mb-3">
-                <h3>TIN TỔNG HỢP</h3>
+                <h3>TIN THỂ THAO</h3>
             </div>
             <div class="js-slick-carousel slick slick-gutters-1"
                  data-hs-slick-carousel-options='{
@@ -373,9 +372,10 @@
             }
           }]
         }'>
-
-        @foreach($getAllSubCate as $subCate)
-                @foreach($subCate->getPosts($subCate->id) as $posts)
+        @if($getAllSubCate->count() == 0)
+        {{"Không có bài viết để hiển thị"}}
+        @else
+        @foreach($getAllSubCate as $posts)
                 
                 <div class="js-slide bg-img-hero-center">
                     <a class="card h-100 transition-3d-hover" href="{{url('post',$posts->slug)}}">
@@ -387,11 +387,8 @@
                     </a>
                     <!-- End Card -->
                 </div>
-                @if($loop->index == 9)
-                    @break
+                @endforeach
                 @endif
-                @endforeach
-                @endforeach
                 <!-- End -->
             </div>
         </div>
@@ -588,7 +585,7 @@
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
                             <div class="position-relative">
-                                <a href="course-description.html">
+                                <a href="{{url('post',$postXuatBan->thumbnail)}}">
                                 <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postXuatBan->thumbnail}}" alt="{{$postXuatBan->name}}" style="border-radius: 0rem;">
                                 </a>
                             </div>
@@ -628,7 +625,7 @@
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
                             <div class="position-relative">
-                                <a href="course-description.html">
+                                <a href="{{url('post',$postSachHay->slug)}}">
                                 <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postSachHay->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
                                 </a>
                             </div>
@@ -659,7 +656,7 @@
                   border-top-right-radius: 0rem;">
                         </div>
                         <div class="card-body" style="padding: 0.5rem;">
-                            <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstTacGia->thumbnail)}}">{{$firstTacGia->name}}</a></h4>
+                            <h4 class="h5"><a class="text-inherit" href="{{url('post',$firstTacGia->slug)}}">{{$firstTacGia->name}}</a></h4>
                         </div>
                     </article>
                     @endif
@@ -668,7 +665,7 @@
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
                             <div class="position-relative">
-                                <a href="course-description.html">
+                                <a href="{{url('post',$postTacGia->slug)}}">
                                     <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postTacGia->thumbnail}}" alt="{{$postTacGia->name}}" style="border-radius: 0rem;">
                                 </a>
                             </div>
@@ -676,7 +673,7 @@
                         <div class="col-8 col-lg-8 col-md-8 col-sm-8" style="padding-right: 2px;  padding-left: 2px;">
                             <div class="media mb-2">
                                 <div class="media-body">
-                                    <a href="{{url('post',$postTacGia->thumbnail)}}"><h4 class="h6 text-hover-primary mb-0">
+                                    <a href="{{url('post',$postTacGia->slug)}}"><h4 class="h6 text-hover-primary mb-0">
                                         {{$postTacGia->name}}</h4></a>
                                 </div>
                             </div>
@@ -707,7 +704,7 @@
                     <div class="row mb-2 mt-2 pb-2 border-bottom">
                         <div class="col-4 col-lg-4 col-md-4 col-sm-4 mb-3 mb-md-0">
                             <div class="position-relative">
-                                <a href="course-description.html">
+                                <a href="{{url('post',$postTheGioi->thumbnail)}}">
                                     <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$postTheGioi->thumbnail}}" alt="{{$postTheGioi->name}}" style="border-radius: 0rem;">
                                 </a>
                             </div>

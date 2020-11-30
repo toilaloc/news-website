@@ -56,7 +56,9 @@ class HomeController extends Controller
         // Get all Post tin thể thao
         $idTinTheThao = 1;
         $tinTheThao = Categories::find($idTinTheThao);
-        $getAllSubCate = $tinTheThao->childs;
+        $getAllSubCate = Posts::WhereHas('categories', function($query) use ($idTinTheThao) {
+          $query->where('categories.id', $idTinTheThao)->Orwhere('categories.category_id', $idTinTheThao);
+      })->orderBy('created_at', 'DESC')->take(7)->get();
 
         // get all post tin giải trí
         $idTinGiaiTri = 4;

@@ -236,7 +236,7 @@
                         <div class="dropdown-divider my-3"></div>
 
                         <div class="px-4">
-                          <a class="btn btn-block btn-sm btn-primary transition-3d-hover" href="courses-listing.html">All Courses</a>
+                          <a class="btn btn-block btn-sm btn-primary transition-3d-hover" href="courses-listing.html">Tất cả danh mục</a>
                         </div>
                       </div>
                       <!-- End Courses - Submenu -->
@@ -260,13 +260,13 @@
                     
                     <!-- Pages -->
                     <li class="hs-has-sub-menu navbar-nav-item mr-lg-auto">
-                      <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Pages</a>
+                      <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Trang</a>
 
                       <!-- Pages - Submenu -->
                       <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
-                        <a class="dropdown-item" href="courses-listing.html">Courses</a>
-                        <a class="dropdown-item" href="course-description.html">Course description</a>
-                        <a class="dropdown-item" href="author.html">Author</a>
+                      <a class="dropdown-item" href="{{url('/frontend/contact')}}">Liên Hệ</a>
+                        <a class="dropdown-item" href="{{url('/frontend/term')}}">Góp ý</a>
+                        <a class="dropdown-item" href="{{url('/frontend/faq')}}">Hỏi đáp</a>
                       </div>
                       <!-- End Pages - Submenu -->
                     </li>
@@ -281,7 +281,7 @@
                             "maxWidth": "350px"
                           }
                         }'>
-                      <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">My courses</a>
+                      <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Thông báo</a>
 
                       <!-- My Courses - Submenu -->
                       <div class="hs-mega-menu dropdown-menu" aria-labelledby="myCoursesMegaMenu">
@@ -334,7 +334,7 @@
 
                           <div class="card-footer text-center py-3">
                             <a class="font-size-1" href="#">
-                              See all
+                              Đọc tất cả
                               <i class="fa fa-angle-right ml-1"></i>
                             </a>
                           </div>
