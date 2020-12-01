@@ -4,15 +4,15 @@
     <!-- Profile Section -->
     <div class="container space-top-1 space-top-sm-2 space-bottom-2">
         <div class="row">
-          <div id="stickyBlockStartPoint" class="col-md-5 col-lg-4 mb-7 mb-md-0">
+          <div id="stickyBlockStartPoint" class="col-md-5 col-lg-4 mb-7 mb-md-0"  style="top: 0px !important; z-index:9999 !important;">
             <div class="js-sticky-block card border p-4"
                  data-hs-sticky-block-options='{
                    "parentSelector": "#stickyBlockStartPoint",
                    "breakpoint": "md",
                    "startPoint": "#stickyBlockStartPoint",
                    "endPoint": "#stickyBlockEndPoint",
-                   "stickyOffsetTop": 12,
-                   "stickyOffsetBottom": 12
+                   "stickyOffsetTop": -120,
+                   "stickyOffsetBottom": -120
                  }'>
 
               <div class="text-center">
@@ -186,8 +186,8 @@
                 </a>
               </div>
               
-              <div id="modalReportUser" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalTopCoverTitle" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+              <div id="modalReportUser" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalTopCoverTitle" aria-hidden="true" style="display: none; z-index: 1 !important;">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 0 !important;">
                   <div class="modal-content">
                     <!-- Header -->
                     <div class="modal-top-cover bg-primary text-center">
