@@ -20,8 +20,8 @@ class Notifications extends Model
     public function Reporter(){
         return $this->hasOne(Users::class, 'id', 'reporter_id');
     }
-    public function Author(){
-        return $this->hasOne(Users::class, 'id', 'author_id');
+    public function User(){
+        return $this->hasOne(Users::class, 'id', 'user_id');
     }
     public function Post(){
         return $this->hasOne(Posts::class, 'id', 'post_id');

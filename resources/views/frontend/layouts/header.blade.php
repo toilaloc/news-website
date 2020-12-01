@@ -287,14 +287,48 @@
                       <div class="hs-mega-menu dropdown-menu" aria-labelledby="myCoursesMegaMenu">
                         <div class="card">
                           <div class="card-header py-3">
-                            <span class="text-dark font-weight-bold">Thông báo</span>
+                            <span class="text-dark font-weight-bold">Thông báo của tôi</span>
                           </div>
 
-                          <div class="card-body">
+                          <div class="card-body" >
                             <!-- Course -->
+                            @if($notifications->count() == 0)
+                            {{"Chưa có thông báo mới"}}
+                            @else
+
                             @foreach($notifications as $notification)
+                            
+                              @foreach($notification->User()->get() as $newNotif)
+
+                                @if(isset($newNotif->id))
+
+                                  @if($newNotif->id == Auth::user()->id)
+
+                            <a class="media border-bottom" href="">
+                              <div class="mt-1 mr-3">
+                                <div class="avatar">
+                                  <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
+                                </div>
+                              </div>
+                              <div class="media-body">
+                                <div class="mb-2">
+                                <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
+                                  Bạn đã bị báo cáo với lý do
+                                  "{{Illuminate\Support\Str::limit($notification->reason, $limit = 20, $end = '...') }}"
+                                </span>
+                                  <small class="d-block text-body">Bởi {{$notification->Reporter->fullname}}</small>
+                                </div>
+                                <div class="d-flex justify-content-between mb-1">
+                                </div>
+                              </div>
+                            </a>
+                            @endif
+                            @endif
+
+                            @if(isset($notification->Post->author_id))
+                                @if($notification->Post->author_id == Auth::user()->id)
                             <a class="media border-bottom" href="
-                              @if($notification->type == "post")
+                             @if($notification->type == "post")
                               {{url('post',$notification->Post->slug)}}
                               @else 
                               {{"#"}}                     
@@ -307,14 +341,7 @@
                               <div class="media-body">
                                 <div class="mb-2">
                                 <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
-                                  @if($notification->type == "comment")
-                                  {{"Bình luận của bạn"}}
-                                  @elseif($notification->type == "post")
-                                  {{"Bài viết của"}}
-                                  @else 
-                                  {{"Bạn"}}
-                                  @endif
-                                  đã bị báo cáo tại
+                                  Bài viết của đã bị báo cáo tại
                                   "{{Illuminate\Support\Str::limit($notification->Post->name, $limit = 20, $end = '...') }}"
                                 </span>
                                   <small class="d-block text-body">Bởi {{$notification->Reporter->fullname}}</small>
@@ -322,14 +349,22 @@
                                 <div class="d-flex justify-content-between mb-1">
                                 </div>
                               </div>
-                            </a>
+                            </a>                               
+                            @endif
                             @if($loop->index == 1)
                             @break
+                            @endif  
                             @endif
+                    
                             @endforeach
+                            @if($loop->index == 4)
+                            @break
+                            @endif  
+                            @endforeach
+                          
+                            @endif
                             <!-- End Course -->
-        
-                            <!-- End Course -->
+
                           </div>
 
                           <div class="card-footer text-center py-3">
