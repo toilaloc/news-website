@@ -50,7 +50,7 @@
                         <a class="card text-center h-100 transition-3d-hover" href="#">
                             <div class="card-body p-lg-5">
                                 <figure class="max-w-8rem w-100 mx-auto mb-4">
-                                    <img class="img-fluid" src="../../../../assets//svg/icons/icon-44.svg" alt="SVG">
+                                    <img class="img-fluid" src="{{asset('/admin/assets//svg/icons/icon-44.svg')}}" alt="SVG">
                                 </figure>
                                 <h3 class="h4">Developer APIs</h3>
                                 <p class="text-body mb-0">Cung cấp API dành cho nhà pháp triển.</p>

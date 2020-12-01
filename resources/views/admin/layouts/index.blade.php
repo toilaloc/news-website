@@ -171,6 +171,19 @@
       @endif
       @if($role->id == 1 || $role->id == 2)
       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContacts" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-bullhorn"></i>
+          <span>Liên hệ</span>
+        </a>
+        <div id="collapseContacts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Danh sách liên hệ:</h6>
+          <a class="collapse-item" href="{{url('panel/contacts')}}">Liên hệ</a>
+         
+            <div class="collapse-divider"></div>
+          </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-bullhorn"></i>
           <span>Báo cáo</span>
