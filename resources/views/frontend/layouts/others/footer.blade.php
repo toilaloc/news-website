@@ -40,9 +40,9 @@
 
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 flex-column">
-                        <li class="nav-item"><a class="nav-link" href="../pages/about-agency.html">Về chúng tôi</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/careers.html">Liên hệ </a></li>
-                        <li class="nav-item"><a class="nav-link" href="../blog/newsroom.html">Liện hệ quảng cáo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/frontend/about')}}">Về chúng tôi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/frontend/contact')}}">Liên hệ </a></li>
+                       
                     </ul>
                     <!-- End Nav Link -->
                 </div>
@@ -51,8 +51,8 @@
                     <h5>Trang</h5>
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 flex-column">
-                        <li class="nav-item"><a class="nav-link" href="#">Hỏi đáp</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Góp ý</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/frontend/faq')}}">Hỏi đáp</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/frontend/term')}}">Điều khoản</a></li>
                    
                      
                     </ul>
@@ -65,7 +65,7 @@
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 flex-column">
                         <li class="nav-item"><a class="nav-link" href="mailto:tuanmdpd03120@gmail.com">Hỗ trợ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{url('frontend/faq')}}">faq</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Liện hệ quảng cáo</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>

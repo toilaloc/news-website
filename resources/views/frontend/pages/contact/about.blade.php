@@ -2,11 +2,11 @@
 
 @section('content')
     <!-- Hero Section -->
-    <div class="container space-top-3 space-top-lg-4 space-bottom-2">
+    <div class="container space-top-3 space-top-lg-2 space-bottom-2">
         <div class="w-lg-80 text-center mx-lg-auto">
             <div class="mb-5 mb-md-11">
                 <h1 class="display-4">About Us</h1>
-                <p class="lead">Front is a web company that builds websites. Businesses of every size—from new startups to public companies—use our theme to build  and manage their businesses online.</p>
+                <p class="lead">Fnews là một website tin tức. Cập nhật nhanh các tin tức mới nhất trong ngày ở trong và ngoài nước đem đến cho người đọc những tin tức chính xác và nhanh chóng. </p>
             </div>
         </div>
 
@@ -44,8 +44,8 @@
             <div class="col-sm-4 col-lg-3 mb-7 mb-sm-0">
                 <!-- Stats -->
                 <div class="text-center">
-                    <span class="d-block display-4 font-size-md-down-4 text-dark text-uppercase mb-0">7</span>
-                    <span>years in business</span>
+                    <span class="d-block display-4 font-size-md-down-4 text-dark text-uppercase mb-0">2</span>
+                    <span>Tháng hoạt động</span>
                 </div>
                 <!-- End Stats -->
             </div>
@@ -53,8 +53,8 @@
             <div class="col-sm-4 col-lg-3 mb-7 mb-sm-0">
                 <!-- Stats -->
                 <div class="text-center">
-                    <span class="d-block display-4 font-size-md-down-4 text-dark text-uppercase mb-0">3,5k+</span>
-                    <span>copies sold</span>
+                    <span class="d-block display-4 font-size-md-down-4 text-dark text-uppercase mb-0">1k+</span>
+                    <span>Người đọc truy cập</span>
                 </div>
                 <!-- End Stats -->
             </div>
@@ -63,7 +63,7 @@
                 <!-- Stats -->
                 <div class="text-center">
                     <span class="d-block display-4 font-size-md-down-4 text-dark text-uppercase mb-0">85%</span>
-                    <span>happy customers</span>
+                    <span>Người đọc đánh giá tốt</span>
                 </div>
                 <!-- End Stats -->
             </div>
@@ -79,19 +79,7 @@
     </div>
     <!-- End Divider -->
 
-    <!-- About Section -->
-    <div class="container space-2 space-lg-3">
-        <div class="row justify-content-lg-between">
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <h2>Tools should adapt to the user, not the other way around.</h2>
-            </div>
-            <div class="col-lg-6">
-                <p>Since 2007, we have helped 25 companies launch over 1k incredible products. We believe the best digital solutions are built at the intersection of business strategy, available technology, and real user's needs.</p>
-                <p>Things can get really complex, really quickly, and a pragmatic, synthetic and clear vision is essential to be able to create something that, after all, is meant to be used. Emotions also have a big role to play and developing clear and beautiful aesthetics is of the utmost importance to create a pleasant environment in which the user actually enjoys the time spent in it. In the end, we're all suckers for beautiful things that just work</p>
-            </div>
-        </div>
-    </div>
-    <!-- End About Section -->
+  
 
     <!-- Divider -->
     <div class="container">
@@ -105,8 +93,8 @@
     <div class="container space-2 space-lg-3">
         <!-- Title -->
         <div class="w-md-80 w-lg-60 text-center mx-md-auto mb-5 mb-md-9">
-            <span class="d-block small font-weight-bold text-cap mb-2">Our team</span>
-            <h2>Creative mind by people like you</h2>
+            <span class="d-block small font-weight-bold text-cap mb-2">ĐỘI CỦA CHÚNG TÔI</span>
+            <h2>Đầu óc sáng tạo của những người như bạn</h2>
         </div>
         <!-- End Title -->
 
@@ -119,9 +107,9 @@
                             <img class="avatar-img" src="{{asset('frontend/assets//img/100x100/img1.jpg')}}" alt="Image Description">
                         </div>
 
-                        <span class="d-block small font-weight-bold text-cap mb-1">Founder / CEO</span>
-                        <h4 class="text-lh-sm">Christina Kray</h4>
-                        <p class="font-size-1">I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                        <span class="d-block small font-weight-bold text-cap mb-1">NHÀ SÁNG LẬP / GIÁM ĐỐC ĐIỀU HÀNH</span>
+                        <h4 class="text-lh-sm">Lê Xuân Lộc</h4>
+                        <p class="font-size-1">Tôi là một người tham công tiếc việc, nhưng ngoài điều đó ra, tôi là một người khá đơn giản.</p>
                     </div>
 
                     <div class="card-footer border-0 pt-0">
@@ -157,9 +145,9 @@
                             <img class="avatar-img" src="{{asset('frontend/assets//img/100x100/img3.jpg')}}" alt="Image Description">
                         </div>
 
-                        <span class="d-block small font-weight-bold text-cap mb-1">Project Manager</span>
-                        <h4 class="text-lh-sm">Jeff Fisher</h4>
-                        <p class="font-size-1">I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                        <span class="d-block small font-weight-bold text-cap mb-1">QUẢN LÝ DỰ ÁN</span>
+                        <h4 class="text-lh-sm">Lê Hoàng</h4>
+                        <p class="font-size-1">Tôi là một người tham công tiếc việc, nhưng ngoài điều đó ra, tôi là một người khá đơn giản.</p>
                     </div>
 
                     <div class="card-footer border-0 pt-0">
@@ -195,9 +183,9 @@
                             <img class="avatar-img" src="{{asset('frontend/assets//img/100x100/img11.jpg')}}" alt="Image Description">
                         </div>
 
-                        <span class="d-block small font-weight-bold text-cap mb-1">Product Designer</span>
-                        <h4 class="text-lh-sm">Amy Forren</h4>
-                        <p class="font-size-1">I am an ambitious workaholic, but apart from that, pretty simple person.</p>
+                        <span class="d-block small font-weight-bold text-cap mb-1">NGƯỜI THIẾT KẾ SẢN PHẨM</span>
+                        <h4 class="text-lh-sm">Mai Đức Tuấn</h4>
+                        <p class="font-size-1">Tôi là một người tham công tiếc việc, nhưng ngoài điều đó ra, tôi là một người khá đơn giản.</p>
                     </div>
 
                     <div class="card-footer border-0 pt-0">
@@ -230,29 +218,41 @@
                 <div class="card h-100 transition-3d-hover">
                     <div class="card-body">
                         <div class="avatar avatar-lg avatar-circle mb-4">
-                            <img class="avatar-img" src="{{asset('frontend/assets//img/100x100/img12.jpg')}}" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('frontend/assets//img/100x100/img11.jpg')}}" alt="Image Description">
                         </div>
 
-                        <span class="d-block small font-weight-bold text-cap mb-1">Want a new challenge?</span>
-                        <h4 class="text-lh-sm">Join us</h4>
-                        <p class="font-size-1">Browse through our job opportunities and become a member of the family!</p>
+                        <span class="d-block small font-weight-bold text-cap mb-1">NGƯỜI THIẾT KẾ SẢN PHẨM</span>
+                        <h4 class="text-lh-sm">Trần Thanh Nam</h4>
+                        <p class="font-size-1">Tôi là một người tham công tiếc việc, nhưng ngoài điều đó ra, tôi là một người khá đơn giản.</p>
                     </div>
 
                     <div class="card-footer border-0 pt-0">
-                        <a class="btn btn-xs btn-soft-secondary" href="#">View Open Jobs</a>
+                        <!-- Social Networks -->
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item">
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="#">
+                                    <i class="fab fa-google"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="#">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- End Social Networks -->
                     </div>
                 </div>
                 <!-- End Team -->
             </div>
         </div>
 
-        <!-- Info -->
-        <div class="text-center">
-            <div class="d-inline-block font-size-1 border bg-white text-center rounded-pill py-3 px-4">
-                Wanna work with us? <a class="font-weight-bold ml-3" href="hire-us.html">We are hiring <span class="fas fa-angle-right fa-sm ml-1"></span></a>
-            </div>
-        </div>
-        <!-- End Info -->
+     
     </div>
     <!-- End Team Section -->
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
     <!-- Hero Section -->
     <div class="bg-img-hero" style="background-image: url(../../../../assets//svg/components/abstract-shapes-12.svg);">
-        <div class="container space-top-3 space-top-lg-4 space-bottom-2 position-relative z-index-2">
+        <div class="container space-top-3 space-top-lg-2 space-bottom-2 position-relative z-index-2">
             <div class="w-md-80 w-lg-60 text-center mx-md-auto">
                 <h1>Điều khoản &amp; Điều kiện phía trước</h1>
                 <p>Ngày có hiệu lực: 01/10/2020</p>
