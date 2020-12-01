@@ -292,10 +292,10 @@
                     <label class="sr-only" for="subscribeSrArticle">Subscribe</label>
                     <div class="input-group">
                     <input type="hidden" name="author_id" value="{{ $post->author_id }}">
-                        <input type="email" name="email" class="form-control" id="subscribeSrArticle" placeholder="Your email"
+                        <input type="email" name="email" class="form-control" id="subscribeSrArticle" placeholder="Email của bạn"
                             aria-label="Your email" required> 
                     </div>
-                    <button type="submit" class="btn btn-light ml-3">Đăng ký</button>
+                    <button type="submit" class="btn btn-light ml-3">Nhận tin</button>
                 </div>
             </div>
         </form>
