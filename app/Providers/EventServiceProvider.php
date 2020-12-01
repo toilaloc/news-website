@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserReports' => [
             'App\Listeners\ResolveReport',
         ],
+        'App\Events\ViewsCounter' => [
+            'App\Listeners\ResolveViewCounter',
+        ],
     ];
 
     /**

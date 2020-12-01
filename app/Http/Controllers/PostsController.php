@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ViewsCounter;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Post_votes;
@@ -169,9 +170,15 @@ class PostsController extends Controller
         $post = Posts::where('slug', $slug)->firstOrFail(); 
         $authorId = $post->author_id;
        // $categoryId = $post->category_id;
+
+       $postsCountView = Posts::where('slug', $slug)->firstOrFail();
+
+       event(new ViewsCounter($postsCountView));
+
         
         $postNew = Posts::take(5)->orderBy('id', 'DESC')->get();
         $hotPosts = Posts::where('view','>','0')->take(5)->get();
+
          foreach($post->Categories as $category){
           $categoryId = $category["id"];
           $relaPost = Posts::whereHas('Categories', function($query) use ($categoryId) {

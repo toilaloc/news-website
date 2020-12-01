@@ -29,8 +29,11 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="d-flex justify-content-md-end align-items-center">
-                                    <span class="d-block text-muted">{{ $post->Author->fullname }},
-                                        {{ $dateTime->diffForHumans($post->created_at) }}</span>
+                                    <span class="d-block text-muted pr-2"><i class="far fa-eye"></i> {{$post->view}}</span>
+                                        <span class="d-block text-muted pr-2"><i class="fas fa-pen-nib"></i> {{ $post->Author->fullname }}
+                                            </span>
+                                            <span class="d-block text-muted"><i class="far fa-clock"></i> {{$post->created_at->diffForHumans($dateTime)}}
+                                            </span>  
                                 </div>
                             </div>
                         </div>
