@@ -56,18 +56,11 @@
         <div class="col-lg-3">
             <div class="mb-7">
                 <div class="mb-3">
-                    <h3>Newsletter</h3>
+                    <h3>Đăng ký nhận tin</h3>
                 </div>
 
                 <!-- Form -->
-                <form class="js-validate mb-2">
-                    <label class="sr-only" for="subscribeSr">Subscribe</label>
-                    <div class="input-group input-group-flush mb-3">
-                        <input type="email" class="form-control form-control-sm" name="email" id="subscribeSr" placeholder="Your email" aria-label="Your email" required
-                               data-msg="Please enter a valid email address.">
-                    </div>
-                    <button type="submit" class="btn btn-sm btn-primary btn-block">Subscribe</button>
-                </form>
+                @include('frontend.components.subcribe')
                 <!-- End Form -->
             </div>
 
