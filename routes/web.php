@@ -44,6 +44,11 @@ Route::group(['prefix' => 'panel', 'middleware' => ['auth', 'checkroles']],  fun
     Route::resource('roles', 'RolesController');
     Route::resource('permissions', 'PermissionsController');
     Route::resource('reports', 'ReportController');
+    // contacts
+    Route::get('contacts','ContactsController@getContacts');
+    Route::get('EmailContacts/{id}', 'ContactsController@reply');
+    Route::post('EmailContacts/{id}', 'ContactsController@postReply');
+    Route::get('contactsDelete/{id}', 'ContactsController@destroy');
 });
 
 // SHOW CONTENT
@@ -88,9 +93,11 @@ Route::group(['prefix' => 'frontend'], function () {
     Route::get('about', function () {
         return view('frontend.pages.contact.about');
     });
-    Route::get('contact', function () {
+    Route::get('contacts', function () {
         return view('frontend.pages.contact.contact');
     });
+    Route::post('contacts','ContactsController@store'); 
+
     Route::get('faq', function () {
         return view('frontend.pages.contact.faq');
     });
