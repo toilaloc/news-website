@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-
+Route::resource('subcribe', 'SubcribeController');
 
 // GET SLUG WHEN POSTING
 Route::get('get-post-slug', 'PostsController@getSlug')->name('posts.getslug');
@@ -106,12 +106,6 @@ Route::group(['prefix' => 'frontend'], function () {
     });
 });
 
-Route::get('send-mail', function () {
-
-    Mail::to('hoangxam2@gmail.com')->send(new \App\Mail\SendPassword());
-
-    dd("Email is Sent.");
-});
 
 Auth::routes();
 

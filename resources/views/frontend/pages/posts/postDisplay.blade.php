@@ -280,21 +280,22 @@
     <script>
         swal({'dsdsd'});
     </script>
-
     <div class="card bg-img-hero bg-navy text-white text-center p-4 my-4 w-md-60  mx-md-auto "
         style="background-image: url({{ asset('frontend/assets/svg/components/abstract-shapes-1.svg') }});">
-        <h4 class="text-white mb-3">Like what you're reading? Subscribe to our top stories.</h4>
+        <h4 class="text-white mb-3">Bài viết có thú vị không? Nếu có hãy đăng ký để nhận thông báo khi có bài viết của thác giả này.</h4>
 
         <!-- Form -->
-        <form class="js-validate w-md-75 mx-md-auto">
+        <form action="{{ route('subcribe.store')}}" method="POST" class="js-validate w-md-75 mx-md-auto">
+        @csrf
             <div class="js-form-message">
                 <div class="d-flex align-items-center">
                     <label class="sr-only" for="subscribeSrArticle">Subscribe</label>
                     <div class="input-group">
-                        <input type="email" class="form-control" id="subscribeSrArticle" placeholder="Your email"
-                            aria-label="Your email">
+                    <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                        <input type="email" name="email" class="form-control" id="subscribeSrArticle" placeholder="Your email"
+                            aria-label="Your email" required> 
                     </div>
-                    <button type="submit" class="btn btn-light ml-3">Submit</button>
+                    <button type="submit" class="btn btn-light ml-3">Đăng ký</button>
                 </div>
             </div>
         </form>
