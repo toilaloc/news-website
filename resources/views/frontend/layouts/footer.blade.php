@@ -40,38 +40,38 @@
 
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 flex-column">
-                        <li class="nav-item"><a class="nav-link" href="../pages/about-agency.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../pages/careers.html">contacts </a></li>
-                        <li class="nav-item"><a class="nav-link" href="../blog/newsroom.html">Liện hệ quảng cáo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/frontend/about')}}">Về chúng tôi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/frontend/contact')}}">Liên hệ </a></li>
+                       
                     </ul>
                     <!-- End Nav Link -->
                 </div>
 
                 <div class="col-6 col-md-3 col-lg mb-5 mb-lg-0">
-                    <h5>pages</h5>
+                    <h5>Trang</h5>
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 flex-column">
-                        <li class="nav-item"><a class="nav-link" href="#">Press</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Release notes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Integrations</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/frontend/faq')}}">Hỏi đáp</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url('/frontend/term')}}">Điều khoản</a></li>
+                   
+                     
                     </ul>
                     <!-- End Nav Link -->
                 </div>
 
                 <div class="col-6 col-md-3 col-lg">
-                    <h5>Documentation</h5>
+                    <h5>Tài liệu</h5>
 
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 flex-column">
-                        <li class="nav-item"><a class="nav-link" href="mailto:tuanmdpd03120@gmail.com">Support</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{url('frontend/faq')}}">faq</a></li>
+                        <li class="nav-item"><a class="nav-link" href="mailto:tuanmdpd03120@gmail.com">Hỗ trợ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Liện hệ quảng cáo</a></li>
                     </ul>
                     <!-- End Nav Link -->
                 </div>
 
                 <div class="col-6 col-md-3 col-lg">
-                    <h5>Resources</h5>
+                    <h5>Tài nguyên</h5>
 
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 flex-column">
@@ -79,7 +79,7 @@
                             <a class="nav-link" href="#">
                   <span class="media align-items-center">
                     <i class="fa fa-info-circle mr-2"></i>
-                    <span class="media-body">Help</span>
+                    <span class="media-body">Báo cáo</span>
                   </span>
                             </a>
                         </li>
@@ -87,7 +87,7 @@
                             <a class="nav-link" href="#">
                   <span class="media align-items-center">
                     <i class="fa fa-user-circle mr-2"></i>
-                    <span class="media-body">Your Account</span>
+                    <span class="media-body">Tài khoản của bạn</span>
                   </span>
                             </a>
                         </li>
@@ -105,15 +105,15 @@
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="../pages/privacy.html">Privacy &amp; Policy</a>
+                            <a class="nav-link" href="../pages/privacy.html">Chính sách &amp; Bảo mật</a>
                         </li>
                         <li class="nav-item opacity mx-3">/</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../pages/terms.html">Terms</a>
+                            <a class="nav-link" href="../pages/terms.html">Điều kiện</a>
                         </li>
                         <li class="nav-item opacity mx-3">/</li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('sitemap.xml')}}">Site Map</a>
+                            <a class="nav-link" href="{{url('sitemap.xml')}}">Sơ đồ trang web</a>
                         </li>
                     </ul>
                     <!-- End Nav Link -->

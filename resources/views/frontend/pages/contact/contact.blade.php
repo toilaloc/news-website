@@ -4,10 +4,10 @@
     <!-- Hero Section -->
     <div class="position-relative">
         <div class="bg-img-hero" style="background-image: url(../../../../assets//svg/components/abstract-shapes-12.svg);">
-            <div class="container space-top-3 space-top-lg-4 space-bottom-2 position-relative z-index-2">
+            <div class="container space-top-3 space-top-lg-2 space-bottom-2 position-relative z-index-2">
                 <div class="w-md-80 w-lg-60 text-center mx-md-auto mb-5 mb-md-9">
                     <h1>Liên hệ chúng tôi</h1>
-                    <p>We'd love to talk about how we can help you.</p>
+                    <p>Chúng tôi muốn nói về cách chúng tôi có thể giúp bạn.</p>
                 </div>
 
                 <div class="row">
@@ -16,13 +16,13 @@
                         <a class="card text-center h-100 transition-3d-hover" href="#">
                             <div class="card-body p-lg-5">
                                 <figure class="max-w-8rem w-100 mx-auto mb-4">
-                                    <img class="img-fluid" src="../../../../assets//svg/icons/icon-7.svg" alt="SVG">
+                                    <img class="img-fluid" src="{{asset('frontend/assets/svg/icons/icon-7.svg')}}" alt="SVG">
                                 </figure>
                                 <h3 class="h4">Tư vấn</h3>
                                 <p class="text-body mb-0">Tư vấn dành cho tác giả và đọc giả.</p>
                             </div>
                             <div class="card-footer font-weight-bold py-3 px-lg-5">
-                                Contact support <i class="fas fa-angle-right fa-sm ml-1"></i>
+                               Liên hệ hỗ trợ<i class="fas fa-angle-right fa-sm ml-1"></i>
                             </div>
                         </a>
                         <!-- End Card -->
@@ -33,13 +33,13 @@
                         <a class="card text-center h-100 transition-3d-hover" href="#">
                             <div class="card-body p-lg-5">
                                 <figure class="max-w-8rem w-100 mx-auto mb-4">
-                                    <img class="img-fluid" src="../../../../assets//svg/icons/icon-4.svg" alt="SVG">
+                                    <img class="img-fluid" src="{{asset('frontend/assets/svg/icons/icon-4.svg')}}" alt="SVG">
                                 </figure>
-                                <h3 class="h4">FAQ</h3>
+                                <h3 class="h4">Câu hỏi thường gặp</h3>
                                 <p class="text-body mb-0">Giải đáp mọi điều khoản của hệ thống.</p>
                             </div>
                             <div class="card-footer font-weight-bold py-3 px-lg-5">
-                                Visit FAQ <i class="fas fa-angle-right fa-sm ml-1"></i>
+                               Truy cập câu hỏi thường gặp <i class="fas fa-angle-right fa-sm ml-1"></i>
                             </div>
                         </a>
                         <!-- End Card -->
@@ -50,13 +50,17 @@
                         <a class="card text-center h-100 transition-3d-hover" href="#">
                             <div class="card-body p-lg-5">
                                 <figure class="max-w-8rem w-100 mx-auto mb-4">
+<<<<<<< HEAD
                                     <img class="img-fluid" src="{{asset('/admin/assets//svg/icons/icon-44.svg')}}" alt="SVG">
+=======
+                                    <img class="img-fluid" src="{{asset('frontend/assets/svg/icons/icon-44.svg')}}" alt="SVG">
+>>>>>>> feature/vietsub
                                 </figure>
-                                <h3 class="h4">Developer APIs</h3>
+                                <h3 class="h4">API nhà phát triển</h3>
                                 <p class="text-body mb-0">Cung cấp API dành cho nhà pháp triển.</p>
                             </div>
                             <div class="card-footer font-weight-bold py-3 px-lg-5">
-                                Contact sales <i class="fas fa-angle-right fa-sm ml-1"></i>
+                                liên hệ nhà cung cấp <i class="fas fa-angle-right fa-sm ml-1"></i>
                             </div>
                         </a>
                         <!-- End Card -->
@@ -115,8 +119,13 @@
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
                             <label class="input-label">Tên của bạn</label>
+<<<<<<< HEAD
                             <input type="text" class="form-control" name="contact_name" placeholder="Tên của bạn" aria-label="Tên của bạn" required
                                    data-msg="Làm ơn nhập tên của bạn.">
+=======
+                            <input type="text" class="form-control" name="name" placeholder="Nhập tên của bạn..." aria-label="Nhập tên của bạn..." required
+                                   data-msg="Hãy nhập tên của bạn">
+>>>>>>> feature/vietsub
                         </div>
                     </div>
                     <!-- End Input -->
@@ -125,8 +134,13 @@
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
                             <label class="input-label">Địa chỉ email</label>
+<<<<<<< HEAD
                             <input type="email" class="form-control" name="contact_email" placeholder="Địa chỉ email" aria-label="Địa chỉ email" required
                                    data-msg="Làm ơn nhập địa chỉ email.">
+=======
+                            <input type="email" class="form-control" name="email" placeholder="Nhập email..." aria-label="Nhập email..." required
+                                   data-msg="Vui lòng nhập một địa chỉ email hợp lệ.">
+>>>>>>> feature/vietsub
                         </div>
                     </div>
                     <!-- End Input -->
@@ -136,9 +150,15 @@
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
+<<<<<<< HEAD
                             <label class="input-label">Tiều đề</label>
                             <input type="text" class="form-control" name="contact_title" placeholder="Tiêu đề" aria-label="Tiêu đề" required
                                    data-msg="Làm ơn nhập tiêu đề.">
+=======
+                            <label class="input-label">Tiêu đề</label>
+                            <input type="text" class="form-control" name="subject" placeholder="Nhập tiêu đề..." aria-label="Web design" required
+                                   data-msg="Vui lòng nhập tiêu đề.">
+>>>>>>> feature/vietsub
                         </div>
                     </div>
                     <!-- End Input -->
@@ -147,8 +167,13 @@
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
                             <label class="input-label">Số điện thoại</label>
+<<<<<<< HEAD
                             <input type="number" class="form-control" name="contact_phone" placeholder="+84 1111 1111 1" aria-label="+84 1111 1111 1" required
                                    data-msg="Làm ơn nhập đúng số điệ thoại.">
+=======
+                            <input type="number" class="form-control" name="phone" placeholder="Nhập số điện thoại..." aria-label="1-800-643-4500" required
+                                   data-msg="Vui lòng nhập một số điện thoại hợp lệ.">
+>>>>>>> feature/vietsub
                         </div>
                     </div>
                     <!-- End Input -->
@@ -169,17 +194,26 @@
                 
                 <!-- Input -->
                 <div class="js-form-message mb-6">
-                    <label class="input-label">How can we help you?</label>
+                    <label class="input-label">Làm thế nào chúng tôi có thể giúp bạn?</label>
                     <div class="input-group">
+<<<<<<< HEAD
               <textarea class="form-control" rows="4" name="contact_message" placeholder="Hi there, I would like to ..." aria-label="Hi there, I would like to ..." required
+=======
+              <textarea class="form-control" rows="4" name="text" placeholder="Xin chào, tôi muốn ..." aria-label="Hi there, I would like to ..." required
+>>>>>>> feature/vietsub
                         data-msg="Please enter a reason."></textarea>
                     </div>
                 </div>
                 <!-- End Input -->
 
                 <div class="text-center">
+<<<<<<< HEAD
                     <button type="submit" class="btn btn-primary btn-wide transition-3d-hover mb-4">Submit</button>
                     <p class="small">Chúng tôi sẽ trả lời bạn trong vòng 1-2 ngày.</p>
+=======
+                    <button type="submit" class="btn btn-primary btn-wide transition-3d-hover mb-4">Gửi đi</button>
+                    <p class="small">Chúng tôi sẽ liên hệ lại với bạn sau 1-2 ngày làm việc.</p>
+>>>>>>> feature/vietsub
                 </div>
             </form>
             <!-- End Contacts Form -->
@@ -187,26 +221,6 @@
     </div>
     <!-- End Contact Form Section -->
     <!-- Leaflet -->
-    <div class="container-fluid mb-3">
-        <div id="map" class="min-h-450rem rounded"
-             data-hs-leaflet-options='{
-             "map": {
-               "scrollWheelZoom": false,
-               "coords": [37.4040344, -122.0289704]
-             },
-             "marker": [
-               {
-                 "coords": [37.4040344, -122.0289704],
-                 "icon": {
-                   "iconUrl": "../../../../assets//svg/components/map-pin.svg",
-                   "iconSize": [50, 45]
-                 },
-                 "popup": {
-                   "text": "153 Williamson Plaza, Maggieberg"
-                 }
-               }
-             ]
-            }'></div>
-    </div>
+ 
     <!-- End Leaflet -->
 @endsection
