@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ViewsCounter' => [
             'App\Listeners\ResolveViewCounter',
         ],
+        'App\Events\NotificationPosting' => [
+            'App\Listeners\ResolveNotificationPosting',
+        ],
     ];
 
     /**

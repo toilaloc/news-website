@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NotificationPosting;
 use App\Events\ViewsCounter;
 use Illuminate\Http\Request;
 use App\Models\Posts;
@@ -11,6 +12,7 @@ use App\Models\Subcribe;
 use App\Models\Tags;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Notifications\Notification;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
@@ -450,6 +452,7 @@ class PostsController extends Controller
         ]);
 
         if ($newUpdate) {
+            event(new NotificationPosting($approvalPost));
             return back()->with('success', 'Đã duyệt bài');
         }
 

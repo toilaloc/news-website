@@ -32,8 +32,9 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function($view)
         {
             $notifications = Notifications::orderBy('id', 'DESC')->get();
+            $notificationsPosting = Notifications::where('type','newpost')->orderBy('id', 'DESC')->get();
             $categoriesMenu = Categories::all()->whereNull('category_id');
-            $view->with(['categoriesMenu' => $categoriesMenu, 'notifications' => $notifications]);
+            $view->with(['categoriesMenu' => $categoriesMenu, 'notifications' => $notifications, 'notificationsPosting' => $notificationsPosting]);
         });
        
     }

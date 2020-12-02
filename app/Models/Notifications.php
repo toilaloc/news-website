@@ -26,6 +26,9 @@ class Notifications extends Model
     public function Post(){
         return $this->hasOne(Posts::class, 'id', 'post_id');
     }
+    public function hasPost(){
+        return $this->hasMany(Posts::class, 'post_id');
+    }
     public function Comment(){
         return $this->hasOne(Comments::class, 'id', 'user_id');
     }

@@ -293,15 +293,42 @@
                                   {{"Chưa có thông báo mới"}}
                                   @else
 
-                                  @foreach($notifications as $notification)
-                                  
-                                    @foreach($notification->User()->get() as $newNotif)
-
-                                      @if(isset($newNotif->id))
-
-                                        @if($newNotif->id == Auth::user()->id)
-
-                                  <a class="media border-bottom" href="">
+                                 
+                          @foreach($notificationsPosting as $notif) 
+                           @if(isset($notif->author_id))     
+                           @foreach(App\Models\Followers::where('user_id', '=', $notif->user_id)->get() as $userFollowing)
+                            @if($userFollowing->user_id == Auth::user()->id && $userFollowing->author_id == $notif->author_id)
+                           {{-- @if($userFollowing->user_id == Auth::user()->id && $notif->author_id == $userFollowing->author_id) --}}
+                            <div class="media border-bottom" href="javascript:;">
+                              <div class="mt-1 mr-3">
+                                <div class="avatar">
+                                  <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
+                                </div>
+                              </div>
+                              <div class="media-body">
+                                <div class="mb-2">
+                                <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
+                                  {{$notif->Reporter->fullname}} vừa ra bài viết
+                                  "<a class="text-dark" href="{{url('post',$notif->Post->slug)}}">{{Illuminate\Support\Str::limit($notif->Post->name, $limit = 50, $end = '...') }}</a>"
+                                </span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-1">
+                                </div>
+                              </div>
+                            </div>  
+                            @endif
+                            @endforeach
+                            @if($loop->index == 2)
+                            @break
+                            @endif
+                            @endif
+                            @endforeach
+                              
+                            @foreach($notifications as $notification)    
+                              @foreach($notification->User()->get() as $newNotif)
+                                    @if(isset($newNotif->id))
+                                      @if($newNotif->id == Auth::user()->id && $notification->type == "user")
+                                  <div class="media border-bottom" href="javascript:;">
                                     <div class="mt-1 mr-3">
                                       <div class="avatar">
                                         <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
@@ -318,13 +345,21 @@
                                       <div class="d-flex justify-content-between mb-1">
                                       </div>
                                     </div>
-                                  </a>
+                                  </div>
                                   @endif
                                   @endif
+                                  @if($loop->index == 2)
+                                  @break
+                                  @endif
+                                  @endforeach
+                                  @endforeach
 
-                                  @if(isset($notification->Post->author_id))
-                                      @if($notification->Post->author_id == Auth::user()->id)
-                                  <a class="media border-bottom" href="
+                
+                                  @foreach($notifications as $notification)    
+                                  @foreach($notification->User()->get() as $newNotif)
+                                  @if(isset($notification->Post->author_id))                        
+                                      @if($notification->Post->author_id == Auth::user()->id && $notification->type == "post")
+                                  <div class="media border-bottom" href="
                                    @if($notification->type == "post")
                                     {{url('post',$notification->Post->slug)}}
                                     @else 
@@ -346,18 +381,15 @@
                                       <div class="d-flex justify-content-between mb-1">
                                       </div>
                                     </div>
-                                  </a>                               
+                                  </div>                               
                                   @endif
-                                  @if($loop->index == 1)
-                                  @break
-                                  @endif  
                                   @endif
-                          
-                                  @endforeach
-                                  @if($loop->index == 4)
+                                  @if($loop->index == 2)
                                   @break
-                                  @endif  
+                                  @endif
                                   @endforeach
+                                  @endforeach
+                                 
                                 
                                   @endif
                                   <!-- End Course -->
@@ -365,7 +397,7 @@
                                 </div>
 
                                 <div class="card-footer text-center py-3">
-                                  <a class="font-size-1" href="#">
+                                  <a class="font-size-1" href="javascript:;">
                                     Xem thêm
                                     <i class="fa fa-angle-right ml-1"></i>
                                   </a>

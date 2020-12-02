@@ -129,7 +129,7 @@
                                     @csrf
                                     <input type="hidden" name="type" value="post" />
                                 <input type="hidden" name="post_id" value="{{$post->id}}" />
-                                <input type="hidden" name="author_id" value="{{$post->Author->id}}" />
+                                <input type="hidden" name="user_id" value="{{$post->Author->id}}" />
             
                                 <label for="">Lý do báo cáo:</label>
                                  <textarea id="my-textarea" class="form-control" name="reason" rows="3" required></textarea>
@@ -167,7 +167,7 @@
                                         @csrf
                                         <h3 class="mb-0">{{ $post->Author->fullname }}
                                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-                                            <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                                            <input type="hidden" name="author_id" value="{{$post->author_id}}">
                                             <button type="submit"
                                                 class="btn btn-xs btn-soft-danger font-weight-bold transition-3d-hover py-1 px-2 ml-1"
                                                 name="unfollow" value="unfollow">Unfollow

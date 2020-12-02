@@ -253,19 +253,19 @@ class AjaxController extends Controller
             'type'
         ]);
 
-        if($request->user_id){
+        if(isset($request->user_id)){
             $userId = $request->user_id;
         }else{
             $userId = NULL;
         }
 
-        if($request->post_id){
+        if(isset($request->post_id)){
             $postId = $request->post_id;
         }else{
             $postId = NULL;
         }
 
-        if($request->comment_id){
+        if(isset($request->comment_id)){
             $commentId = $request->comment_id;
         }else{
             $commentId = NULL;
