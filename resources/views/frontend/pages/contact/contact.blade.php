@@ -50,11 +50,7 @@
                         <a class="card text-center h-100 transition-3d-hover" href="#">
                             <div class="card-body p-lg-5">
                                 <figure class="max-w-8rem w-100 mx-auto mb-4">
-<<<<<<< HEAD
-                                    <img class="img-fluid" src="{{asset('/admin/assets//svg/icons/icon-44.svg')}}" alt="SVG">
-=======
                                     <img class="img-fluid" src="{{asset('frontend/assets/svg/icons/icon-44.svg')}}" alt="SVG">
->>>>>>> feature/vietsub
                                 </figure>
                                 <h3 class="h4">API nhà phát triển</h3>
                                 <p class="text-body mb-0">Cung cấp API dành cho nhà pháp triển.</p>
@@ -119,13 +115,8 @@
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
                             <label class="input-label">Tên của bạn</label>
-<<<<<<< HEAD
                             <input type="text" class="form-control" name="contact_name" placeholder="Tên của bạn" aria-label="Tên của bạn" required
                                    data-msg="Làm ơn nhập tên của bạn.">
-=======
-                            <input type="text" class="form-control" name="name" placeholder="Nhập tên của bạn..." aria-label="Nhập tên của bạn..." required
-                                   data-msg="Hãy nhập tên của bạn">
->>>>>>> feature/vietsub
                         </div>
                     </div>
                     <!-- End Input -->
@@ -134,13 +125,8 @@
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
                             <label class="input-label">Địa chỉ email</label>
-<<<<<<< HEAD
                             <input type="email" class="form-control" name="contact_email" placeholder="Địa chỉ email" aria-label="Địa chỉ email" required
                                    data-msg="Làm ơn nhập địa chỉ email.">
-=======
-                            <input type="email" class="form-control" name="email" placeholder="Nhập email..." aria-label="Nhập email..." required
-                                   data-msg="Vui lòng nhập một địa chỉ email hợp lệ.">
->>>>>>> feature/vietsub
                         </div>
                     </div>
                     <!-- End Input -->
@@ -150,15 +136,9 @@
                     <!-- Input -->
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
-<<<<<<< HEAD
                             <label class="input-label">Tiều đề</label>
                             <input type="text" class="form-control" name="contact_title" placeholder="Tiêu đề" aria-label="Tiêu đề" required
                                    data-msg="Làm ơn nhập tiêu đề.">
-=======
-                            <label class="input-label">Tiêu đề</label>
-                            <input type="text" class="form-control" name="subject" placeholder="Nhập tiêu đề..." aria-label="Web design" required
-                                   data-msg="Vui lòng nhập tiêu đề.">
->>>>>>> feature/vietsub
                         </div>
                     </div>
                     <!-- End Input -->
@@ -167,13 +147,8 @@
                     <div class="col-sm-6 mb-4">
                         <div class="js-form-message">
                             <label class="input-label">Số điện thoại</label>
-<<<<<<< HEAD
                             <input type="number" class="form-control" name="contact_phone" placeholder="+84 1111 1111 1" aria-label="+84 1111 1111 1" required
                                    data-msg="Làm ơn nhập đúng số điệ thoại.">
-=======
-                            <input type="number" class="form-control" name="phone" placeholder="Nhập số điện thoại..." aria-label="1-800-643-4500" required
-                                   data-msg="Vui lòng nhập một số điện thoại hợp lệ.">
->>>>>>> feature/vietsub
                         </div>
                     </div>
                     <!-- End Input -->
@@ -196,24 +171,15 @@
                 <div class="js-form-message mb-6">
                     <label class="input-label">Làm thế nào chúng tôi có thể giúp bạn?</label>
                     <div class="input-group">
-<<<<<<< HEAD
               <textarea class="form-control" rows="4" name="contact_message" placeholder="Hi there, I would like to ..." aria-label="Hi there, I would like to ..." required
-=======
-              <textarea class="form-control" rows="4" name="text" placeholder="Xin chào, tôi muốn ..." aria-label="Hi there, I would like to ..." required
->>>>>>> feature/vietsub
                         data-msg="Please enter a reason."></textarea>
                     </div>
                 </div>
                 <!-- End Input -->
 
                 <div class="text-center">
-<<<<<<< HEAD
                     <button type="submit" class="btn btn-primary btn-wide transition-3d-hover mb-4">Submit</button>
                     <p class="small">Chúng tôi sẽ trả lời bạn trong vòng 1-2 ngày.</p>
-=======
-                    <button type="submit" class="btn btn-primary btn-wide transition-3d-hover mb-4">Gửi đi</button>
-                    <p class="small">Chúng tôi sẽ liên hệ lại với bạn sau 1-2 ngày làm việc.</p>
->>>>>>> feature/vietsub
                 </div>
             </form>
             <!-- End Contacts Form -->

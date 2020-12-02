@@ -93,10 +93,10 @@ Route::group(['prefix' => 'frontend'], function () {
     Route::get('about', function () {
         return view('frontend.pages.contact.about');
     });
-    Route::get('contacts', function () {
+    Route::get('contact', function () {
         return view('frontend.pages.contact.contact');
     });
-    Route::post('contacts','ContactsController@store'); 
+    Route::post('contact','ContactsController@store'); 
 
     Route::get('faq', function () {
         return view('frontend.pages.contact.faq');
