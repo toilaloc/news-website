@@ -34,7 +34,7 @@ class AjaxController extends Controller
             $data .= "<div class='row mb-2 pb-2 border-bottom listPostAuthor' data-postid='$newData->id'>
             <div class='col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0'>
               <div class='position-relative'>
-                <a href='course-description.html'>
+                <a href='post/$newData->slug'>
                 <img class='img-fluid w-100' src='../../uploads/posts/thumbnail/$newData->thumbnail' alt='$newData->name' style='border-radius: 0rem;'>
              </a>
               </div>
@@ -92,7 +92,7 @@ class AjaxController extends Controller
                 $data .= "<div class='row mb-2 pb-2 border-bottom listPostCategory' data-post='$newData->id'>
                 <div class='col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0'>
                   <div class='position-relative'>
-                    <a href='course-description.html'>
+                    <a href='../post/$newData->slug'>
                     <img class='img-fluid w-100' src='../../uploads/posts/thumbnail/$newData->thumbnail' alt='$newData->name' style='border-radius: 0rem;'>
                  </a>
                   </div>
@@ -100,7 +100,7 @@ class AjaxController extends Controller
                 <div class='col-8 col-lg-8 col-md-8 col-sm-8 col-xs-8'>
                   <div class='media mb-2'>
                     <div class='media-body'>
-                    <a href='post/$newData->slug'><h3 class='h4 text-hover-primary mb-0'>$newData->name</h3></a>
+                    <a href='../post/$newData->slug'><h3 class='h4 text-hover-primary mb-0'>$newData->name</h3></a>
                     </div>
                   </div>
                   <div class='d-flex justify-content-start align-items-center small text-muted'>
@@ -149,7 +149,7 @@ class AjaxController extends Controller
                 $data .= "<div class='row mb-2 pb-2 border-bottom listPostCategory' data-post='$newData->id'>
                 <div class='col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0'>
                   <div class='position-relative'>
-                    <a href='course-description.html'>
+                    <a href='../../post/$newData->slug'>
                     <img class='img-fluid w-100' src='../../uploads/posts/thumbnail/$newData->thumbnail' alt='$newData->name' style='border-radius: 0rem;'>
                  </a>
                   </div>

@@ -148,7 +148,7 @@ class CategoriesController extends Controller
             $posts = Posts::whereHas('categories', function($query) use ($slug) {
                 $query->whereSlug($slug)->where('status', '<>', 1);
               })->take(4)->orderBy('created_at', 'DESC')->get();
-            return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts','hotPosts'));
+            return view('frontend.pages.categories.categoriesDisplay', compact('category', 'posts','hotPosts','dateTime'));
         }
     }
 

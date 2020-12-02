@@ -24,7 +24,7 @@
         <div class="row mb-2 pb-2 border-bottom listPostCategory" data-post="{{$post->id}}">
               <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                 <div class="position-relative">
-                  <a href="course-description.html">
+                  <a href="{{url('post', $post->slug)}}">
                   <div  style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$post->thumbnail}}'); min-height: 150px; max-height:150px; background-position: center; background-repeat: no-repeat; background-size: cover; ">
 
  
