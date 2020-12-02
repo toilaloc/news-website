@@ -1,4 +1,4 @@
-<footer class="bg-light">
+<footer class="bg-light"  style="z-index: -1 !important; display: block;">
     <div class="container">
         <div class="space-top-2 space-bottom-1 space-bottom-lg-2">
             <div class="row justify-content-lg-between">
@@ -18,7 +18,7 @@
                   <span class="media">
                     <span class="fas fa-location-arrow mt-1 mr-2"></span>
                     <span class="media-body">
-                      153 Williamson Plaza, Maggieberg
+                      153 Williamson Plaza, Maggiebersg
                     </span>
                   </span>
                             </a>

@@ -29,7 +29,7 @@
         <div id="logoAndNav" class="container">
             <nav class="navbar">
             <a class="navbar-brand" href="{{route('home')}}" aria-label="Front">
-                    <img src="{{asset('frontend/assets/svg/logos/logo.svg')}}" width="100" height="100" alt="Logo">
+                    <img src="{{asset('frontend/assets/svg/logos/logo.png')}}" width="100" height="100" alt="Logo">
                 </a>
             </nav>
         </div>

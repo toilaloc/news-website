@@ -175,14 +175,15 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
-    {   Carbon::setLocale('vi');
+    {   
+        
+        Carbon::setLocale('vi');
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $post = Posts::where('slug', $slug)->firstOrFail(); 
         $authorId = $post->author_id;
-       // $categoryId = $post->category_id;
+
 
        $postsCountView = Posts::where('slug', $slug)->firstOrFail();
-
        event(new ViewsCounter($postsCountView));
 
         
@@ -197,7 +198,14 @@ class PostsController extends Controller
          }
          
         $postAuthor = Posts::where('author_id','=',$authorId)->take(3)->get();
-        return view('frontend.pages.posts.postDisplay', compact('post','dateTime','postNew','hotPosts','relaPost', 'postAuthor'));
+        return view('frontend.pages.posts.postDisplay', compact(
+            'post',
+            'dateTime',
+            'postNew',
+            'hotPosts',
+            'relaPost', 
+            'postAuthor'
+        ));
     }
 
     /**
