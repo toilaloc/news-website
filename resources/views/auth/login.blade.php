@@ -1,7 +1,7 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', 'F8News - Đăng nhập hệ thống')
 @section('content')
-    <div class="container space-2 space-lg-3">
+    <div class="container space-1 space-lg-3">
         <form method="POST" action="{{ route('login') }}" class="js-validate w-md-75 w-lg-50 mx-md-auto">
             @csrf
             <!-- Title -->
@@ -31,7 +31,7 @@
                     <span class="d-flex justify-content-between align-items-center">
                         Mật khẩu:
                         @if (Route::has('password.request'))
-                            <a class="link-underline text-capitalize font-weight-normal"
+                            <a class="link-underline text-capitalize font-weight-normal small text-muted"
                                 href="{{ route('password.request') }}">Quên mật khẩu?</a>
                         @endif
                     </span>
@@ -51,25 +51,43 @@
                     <input class="form-check-input" type="checkbox" name="remember" id="remember"
                         {{ old('remember') ? 'checked' : '' }}>
 
-                    <label class="form-check-label" for="remember">
+                    <label class="form-check-label small text-muted" for="remember">
                         {{ __('Ghi nhớ đăng nhập') }}
                     </label>
                 </div>
             </div>
             <!-- End Form Group -->
 
+            <button type="submit" class="btn btn-sm btn-primary btn-block mb-2" href="#">
+                <span class="d-flex justify-content-center align-items-center">
+
+                    Đăng nhập
+                </span>
+            </button>
+            <div class="text-center mb-3">
+                <span class="divider divider-xs divider-text">Hoặc</span>
+            </div>
+
+            <a class="btn btn-sm btn-ghost-secondary btn-block mb-2" href="login/facebook">
+                <span class="d-flex justify-content-center align-items-center">
+                <img class="mr-2" src="{{asset('img/600px-Facebook_Logo_(2019).png')}}" alt="Image Description" width="14"
+                        height="14">
+
+                    Đăng nhập bằng Facebook
+                </span>
+            </a>
+            <a class="btn btn-sm btn-ghost-secondary btn-block mb-2" href="#">
+                <span class="d-flex justify-content-center align-items-center">
+                <img class="mr-2" src="{{asset('img/google.svg')}}" alt="Image Description" width="14"
+                        height="14">
+
+                    Đăng nhập bằng Google
+                </span>
+            </a>
             <!-- Button -->
-            <div class="row align-items-center mb-5">
-                <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="text-center mb-5">
                     <span class="font-size-1 text-muted">Bạn chưa có tài khoản?</span>
                     <a class="font-size-1 font-weight-bold" href="{{ route('register') }}">Đăng ký</a>
-                </div>
-
-                <div class="col-sm-6 text-sm-right">
-                    <button type="submit" class="btn btn-primary transition-3d-hover">Đăng nhập</button>
-                    <a href="login/facebook" class="text-primary">
-                        Đăng nhập bằng Facebook
-                    </a>
                 </div>
             </div>
             <!-- End Button -->

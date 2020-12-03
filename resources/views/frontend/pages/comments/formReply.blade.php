@@ -3,7 +3,7 @@
 <div class="col-sm-6 mb-3 mb-sm-0" style="padding-left: 0px;">
     <a class="font-size-1 font-weight-bold" href="javascript:backComment()" id="backToComment"><i class="fas fa-angle-left fa-sm mr-1"></i>Trở lại</a>
 </div>
-    <form method="POST" action="{{route('comments.store')}}" class="js-validate pb-md-9">
+    <form method="POST" action="{{route('components.storeComment')}}" class="js-validate pb-md-9">
         @csrf
         <div class="form-row">
             <div class="col-12 mb-sm-3">
@@ -37,7 +37,6 @@
         <div class="card-body">
             <p class="card-text">Bạn phải đăng nhập mới có thể bình luận được</p>
         </div>
-    </div>
 @endif
 </div>
 {{--

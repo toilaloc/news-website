@@ -13,21 +13,21 @@
   @endif
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">EDIT CATEGORY: {{$category->name}}</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Chỉnh sửa danh mục: {{$category->name}}</h6>
       </div>
       <div class="card-body">
         <form action="{{route('categories.update', $category->id)}}" method="post" enctype="multipart/form-data">
           @method('PATCH')
           @csrf
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Tên danh mục</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control" name="name" id="categoryName" value="{{$category->name}}">
               <input type="hidden" name="slugCategory" value="{{route('categories.getslug')}}" />
               </div>
             </div>
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">URL</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Đường dẫn</label>
                 <div class="col-sm-10">
                 <input type="text" class="form-control" name="slug" id="categorySlug" value="{{$category->slug}}">
                 </div>

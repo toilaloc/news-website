@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Danh sách người dùng")
 @section('content')
 
 @if(session()->get('success'))
@@ -12,10 +12,10 @@
 @endif
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">List of Categories</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Danh Sách Người Dùng</h6>
     </div>
     <div class="card-body">
-    <table class="table table-bordered">
+    <table id="tableUser" class="table table-striped table-bordered">
     <thead>
       <tr>
         <th scope="col">Tên người dùng</th>
@@ -27,14 +27,16 @@
         <th scope="col">Đang theo dõi</th>
         <th scope="col">Trạng thái</th>
         <th scope="col">Vai trò</th>
+        <th scope="col">Số bài viết</th>
         <th scope="col">Ngày đăng ký</th>
-        <th scope="col" colspan="2">Chức năng</th>
+        <th scope="col">Sửa</th>
+        <th scope="col">Xóa</th>
       </tr>
     </thead>
     <tbody>
         @foreach($users as $user)
         <tr>
-        <td><a href="{{url('/user', $user->username)}}">{{$user->fullname}}</a></td>
+        <td><a href="{{url('/author', $user->username)}}">{{$user->fullname}}</a></td>
         <td> <img class="rounded-circle" src="{{url('uploads/users/', $user->thumbnail)}}" alt="{{$user->fullname}}" height="50px" width="50px"></td>
         <td>{{$user->address}}</td>
         <td>@if($user->gender == 0)
@@ -46,8 +48,8 @@
                 @endif
         </td>
         <td>{{$user->email}}</td>
-        <td>{{$user->follower}}</td>
-        <td>{{$user->following}}</td>
+        <td>{{$user->hasFollowers->count()}}</td>
+        <td>{{$user->Following->count()}}</td>
         <td>
             @if($user->status == 0)
             {{"Chưa xác thực"}}
@@ -55,19 +57,22 @@
             {{"Đã xác thực"}}
             @endif
         </td>
-        <td>Thành viên</td>
+      <td>
+      @foreach($user->Roles as $role)
+        {{$role->name}}
+      @endforeach
+      </td>
+      <td>{{$user->hasPosts->count()}}</td>
         <td>{{$user->created_at}}</td>
       <td><a class="btn btn-success btn-sm" href="{{route('users.edit', $user->id)}}">Sửa</a></td>
         <td>
           <form action="{{route('users.destroy',$user->id)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-sm">Xóa</button></td>
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('bạn có chắc muốn xóa');">Xóa</button></td>
         </form>
         </tr>
-        <tr>
-        <td colspan="12">Giới thiệu: {{$user->bio}}</td>
-        </tr>
+        
           @endforeach
     </tbody>
   </table>

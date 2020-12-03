@@ -1,16 +1,11 @@
 @extends('frontend.layouts.others.index')
 @section('title', $post->name)
+@section('description', $post->desc)
+@section('og-title', $post->name)
+@section('og-image', asset('uploads/posts/thumbnail/'.$post->thumbnail))
+@section('og-description', $post->desc)
+@section('og-url', url('post',$post->slug))
 @section('content')
-    <style>
-        .reply-button {
-            color: #377dff;
-        }
-
-        .reply-button:hover {
-            color: #0052ea;
-        }
-
-    </style>
     <hr>
     <!-- Content Section -->
     <div class="container space-lg-0">
@@ -39,8 +34,11 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="d-flex justify-content-md-end align-items-center">
-                                    <span class="d-block text-muted">{{ $post->Author->fullname }},
-                                        {{ $dateTime->diffForHumans($post->created_at) }}</span>
+                                    <span class="d-block text-muted pr-2"><i class="far fa-eye"></i> {{$post->view}}</span>
+                                        <span class="d-block text-muted pr-2"><i class="fas fa-pen-nib"></i> {{ $post->Author->fullname }}
+                                            </span>
+                                            <span class="d-block text-muted"><i class="far fa-clock"></i> {{$post->created_at->diffForHumans($dateTime)}}
+                                            </span>
                                 </div>
                             </div>
                         </div>
@@ -48,33 +46,25 @@
                     <!-- End Author -->
                 </div>
                 <div class="pl-lg-1" style="text-align: justify">
-                    <p class="h3">{{ $post->desc }}</p>
-
-
-
-                    {{-- <div class="pt-4 pt-sm-7 pb-5 pb-sm-9">
-                        <img class="img-fluid rounded" src="../../../assets/img/900x450/img13.jpg" alt="Image Description">
-                    </div> --}}
-
-                    <p>
-                        @php
-                        $content = $post->content;
-                        echo str_replace("<img","<img class='img-fluid rounded'",$content);
-                                @endphp
-                            </p>
-
-                                            <!-- Badges -->
-                                            <div class=" mt-5">
-                            @foreach ($post->Tags as $tag)
-                                <a class="btn btn-xs btn-soft-secondary mb-1"
-                                    href="{{ url('tag', $tag->slug) }}">{{ $tag->name }}</a>
-                            @endforeach
+                    @php
+                    $content = $post->content;
+                    echo str_replace("<img","<img
+                        class='img-fluid rounded'",$content);
+                                                                                                                                                                                                                                                                                        @endphp
+                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                          <!-- Badges -->
+                                                                                                                                                                                                                                                                          <div class="
+                        mt-5">
+                        @foreach ($post->Tags as $tag)
+                            <a class="btn btn-xs btn-soft-secondary mb-1"
+                                href="{{ url('tag', $tag->slug) }}">{{ $tag->name }}</a>
+                        @endforeach
                 </div>
                 <!-- End Badges -->
 
                 <!-- Share -->
                 <div class="row justify-content-sm-between align-items-sm-center space-1 ">
-                    <div class="col-sm-6 mb-2 mb-sm-0">
+                    <div class="col-sm-7 mb-2 mb-sm-0">
                         <div class="d-flex align-items-center">
                             <span class="d-block small font-weight-bold text-cap mr-2">Share:</span>
 
@@ -92,26 +82,80 @@
                             </a>
                         </div>
                     </div>
-
-                    <div class="col-sm-6 text-sm-right">
-                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle mr-2" href="#" data-toggle="tooltip"
-                            data-placement="top" title="Bookmark story">
-                            <i class="far fa-bookmark"></i>
-                        </a>
-                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle" href="#" data-toggle="tooltip"
+                    <div class="col-sm-7 mb-2 mb-sm-0">
+                        <div class="d-flex align-items-center">
+                            <span class="d-block small font-weight-bold text-cap mr-2">Đánh giá:</span>
+                            @include('frontend.pages.posts.voteDisplay',[
+                            'votes' => $post->Rate($post->id),
+                            'post_id'=>$post->checkRate($post->id)
+                            ])
+                        </div>
+                    </div>
+                    @if (Auth::check())
+                    <div class="col-sm-2 text-sm-right">
+                        <a class="btn btn-xs btn-icon btn-soft-secondary rounded-circle reporting" data-toggle="modal" data-target="#exampleModalTopCover" href="javascript:;" data-toggle="tooltip"
                             data-placement="top" title="Report story">
                             <i class="far fa-flag"></i>
                         </a>
                     </div>
+                    @endif
                 </div>
                 <!-- End Share -->
+
+                  <div id="exampleModalTopCover" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalTopCoverTitle" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <!-- Header -->
+                        <div class="modal-top-cover bg-primary text-center">
+                          <figure class="position-absolute right-0 bottom-0 left-0">
+                            <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
+                              <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
+                            </svg>
+                          </figure>
+
+                          <div class="modal-close">
+                            <button type="button" class="btn btn-icon btn-sm btn-ghost-light" data-dismiss="modal" aria-label="Close">
+                              <svg width="16" height="16" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"></path>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                        <!-- End Header -->
+
+                        <div class="modal-top-cover-avatar">
+                          <img class="avatar avatar-lg avatar-circle avatar-border-lg avatar-centered shadow-soft" src="{{asset('frontend/assets/svg/brands/front.svg')}}" alt="Logo">
+                        </div>
+
+                        <div class="modal-body content-report">
+
+                            <div class="form-group">
+                                <form action="{{route('reporting.store')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="type" value="post" />
+                                <input type="hidden" name="post_id" value="{{$post->id}}" />
+                                <input type="hidden" name="user_id" value="{{$post->Author->id}}" />
+
+                                <label for="">Lý do báo cáo:</label>
+                                 <textarea id="my-textarea" class="form-control" name="reason" rows="3" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-sm btn-primary float-right send-report">Báo cáo</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
 
                 <div class="border-top pt-3">
                     <h3 class="mb-4">Thông tin tác giả</h3>
-
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 pl-7">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-3">
                             <div class="avatar avatar-xl avatar-circle mb-3">
                                 <img class="avatar-img" style="width: 100%;height: 100%;"
                                     src="{{ asset('uploads/users') }}/{{ $post->Author->thumbnail }}"
@@ -120,11 +164,39 @@
                             <!-- End Icon Block -->
                         </div>
 
-                        <div class="col-lg-9 col-md-9 col-sm-9">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-9">
                             <!-- Info -->
-                            <h3 class="mb-0">{{ $post->Author->fullname }} <button type="button"
-                                    class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1">Follow</button>
-                            </h3>
+                            @if (Auth::check())
+                                @if (App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
+                                    <form action="{{ route('followers.store') }}" method="POST">
+                                        @csrf
+                                        <h3 class="mb-0">{{ $post->Author->fullname }}
+                                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                            <input type="hidden" name="author_id" value="{{$post->author_id}}">
+                                            <button type="submit"
+                                                class="btn btn-xs btn-soft-danger font-weight-bold transition-3d-hover py-1 px-2 ml-1"
+                                                name="unfollow" value="unfollow">Unfollow
+                                            </button>
+                                        </h3>
+                                    </form>
+                                @else
+                                    <form action="{{ route('followers.store') }}" method="POST">
+                                        @csrf
+                                        <h3 class="mb-0">{{ $post->Author->fullname }}
+                                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                                            <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                                            <button type="submit"
+                                                class="btn btn-xs btn-soft-primary font-weight-bold transition-3d-hover py-1 px-2 ml-1"
+                                                name="follow" value="follow">Follow
+                                            </button>
+                                        </h3>
+                                    </form>
+                                @endif
+                                @else
+                                <h3 class="mb-0">{{ $post->Author->fullname }}</h3>
+                            @endif
+
+
                             <p style="text-align: justify;">{{ $post->Author->bio }} </p>
                             <!-- End Info -->
                         </div>
@@ -132,32 +204,24 @@
                 </div>
 
 
-                <div class="pt-2 mb-11 border-top space-lg-1">
+                <div class="pt-2  border-top space-lg-1">
                     <div class="pt-2 mb-11">
                         <div class="mb-4">
-                            <h3>3 Comments</h3>
+                            <h3>{{ $post->hasComments->count() }} Bình luận</h3>
                         </div>
                         @include('frontend.pages.comments.listComments',['comments'=>$post->Comment_post($post->id)])
+                        <div class="mb-5">
+                            <h3>Bình luận</h3>
+                        </div>
+                        <!-- Form -->
+                        @include('frontend.pages.comments.formComment',['post_id'=>$post->id])
+                        <!-- End Form -->
                     </div>
-
-                    <div class="mb-5">
-                        <h3>Bình luận</h3>
-                    </div>
-                    <!-- Form -->
-                    @include('frontend.pages.comments.formComment',['post_id'=>$post->id])
-                    <!-- End Form -->
                 </div>
             </div>
             <div id="stickyBlockStartPoint" class="col-lg-4 mb-7 mb-lg-0">
                 <!-- Sidebar Content -->
-                <div class="js-sticky-block card bg-white" data-hs-sticky-block-options='{
-                                           "parentSelector": "#stickyBlockStartPoint",
-                                           "startPoint": "#stickyBlockStartPoint",
-                                           "endPoint": "#stickyBlockEndPoint",
-                                           "stickyOffsetTop": 24,
-                                           "stickyOffsetBottom": 24
-                                         }'>
-
+                <div class="card bg-white">
                     {{-- Include 5 Post New --}}
                     @include('frontend.components.postNew')
 
@@ -167,76 +231,8 @@
                                 <div class="mb-3 border-bottom">
                                     <h3>Tin nổi bật</h3>
                                 </div>
-
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                    miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                    miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                    miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- End Blog -->
-                                <!-- Blog -->
-                                <article class="mb-3">
-                                    <div class="media">
-                                        <div class="avatar avatar-lg mr-3">
-                                            <img class="img-fluid"
-                                                src="https://znews-photo.zadn.vn/w210/Uploaded/lce_qjlcv/2020_11_09/bao_so_12_9.11_thumb.jpg"
-                                                alt="Image Description">
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="h6 mb-0"><a class="text-inherit" href="#">Bão số 12 hình thành,
-                                                    miền
-                                                    Trung mưa lớn</a></h4>
-                                            <small class="d-inline-block">Feb 15, 2020</small>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <!-- End Blog -->
+                                @include('frontend.components.hotPosts')
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -253,7 +249,6 @@
 
     <!-- Testimonials -->
     <div class="bg-light">
-
     </div>
     <!-- Testimonials -->
 
@@ -269,177 +264,113 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <!-- Blog Card -->
-                        <article class="border-bottom h-100 py-5">
-                            <div class="row justify-content-between">
-                                <div class="col-6">
-                                    <a class="d-block small font-weight-bold text-cap mb-2" href="#">Product</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Better is when
-                                            everything works together</a></h4>
-                                </div>
-
-                                <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img1.jpg"
-                                        alt="Image Description">
-                                </div>
-                            </div>
-                        </article>
-                        <!-- End Blog Card -->
-                    </div>
-
-                    <div class="col-md-6">
-                        <!-- Blog Card -->
-                        <article class="border-bottom h-100 py-5">
-                            <div class="row justify-content-between">
-                                <div class="col-6">
-                                    <a class="d-block small font-weight-bold text-cap mb-2" href="#">Tech</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Should You Buy An
-                                            Apple Pencil?</a></h4>
-                                </div>
-
-                                <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img3.jpg"
-                                        alt="Image Description">
-                                </div>
-                            </div>
-                        </article>
-                        <!-- End Blog Card -->
-                    </div>
-
-                    <div class="col-md-6">
-                        <!-- Blog Card -->
-                        <article class="border-bottom h-100 py-5">
-                            <div class="row justify-content-between">
-                                <div class="col-6">
-                                    <a class="d-block small font-weight-bold text-cap mb-2" href="#">Product</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">This Watch gym
-                                            partnerships give you perks for working out</a></h4>
-                                </div>
-
-                                <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img5.jpg"
-                                        alt="Image Description">
-                                </div>
-                            </div>
-                        </article>
-                        <!-- End Blog Card -->
-                    </div>
-
-                    <div class="col-md-6">
-                        <!-- Blog Card -->
-                        <article class="border-bottom h-100 py-5">
-                            <div class="row justify-content-between">
-                                <div class="col-6">
-                                    <a class="d-block small font-weight-bold text-cap mb-2" href="#">Tech</a>
-                                    <h4 class="mb-0"><a class="text-inherit" href="single-article.html">Drone Company
-                                            PrecisionHawk Names New CEO</a></h4>
-                                </div>
-
-                                <div class="col-5">
-                                    <img class="img-fluid" src="../../../assets/img/500x280/img7.jpg"
-                                        alt="Image Description">
-                                </div>
-                            </div>
-                        </article>
-                        <!-- End Blog Card -->
-                    </div>
+                    @include('frontend.components.relaPost')
                 </div>
 
 
 
                 <div class="mb-3 border-bottom mt-3">
-                    <h3>Có thể bạn quan tâm</h3>
+                <h3>Bài khác của tác giả {{$post->Author->fullname}}</h3>
                 </div>
                 <!-- End Title -->
 
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 mb-5">
-                        <!-- Card Info -->
-                        <div class="card h-100">
-                            <img class="card-img-top" src="../../../assets/img/480x320/img13.jpg" alt="Image Description">
-                            <div class="card-body">
-                                <div class="max-w-13rem w-100 mb-3">
-                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/amazon-original.svg"
-                                        alt="Logo">
-                                </div>
-                                <p class="mb-0">Amazon launched their enterprise platform and built a powerful user
-                                    experience.</p>
-                            </div>
-                            <div class="card-footer">
-                                <a class="font-weight-bold" href="customer-story.html">Read story <i
-                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
-                            </div>
-                        </div>
-                        <!-- End Card Info -->
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 mb-5">
-                        <!-- Card Info -->
-                        <div class="card h-100">
-                            <img class="card-img-top" src="../../../assets/img/480x320/img17.jpg" alt="Image Description">
-                            <div class="card-body">
-                                <div class="max-w-13rem w-100 mb-3">
-                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/mapbox-original.svg"
-                                        alt="Logo">
-                                </div>
-                                <p class="mb-0">Mapbox empowers marketers to create digital marketing dashboards easily and
-                                    share them with their team.</p>
-                            </div>
-                            <div class="card-footer">
-                                <a class="font-weight-bold" href="customer-story.html">Read story <i
-                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
-                            </div>
-                        </div>
-                        <!-- End Card Info -->
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 mb-5">
-                        <!-- Card Info -->
-                        <div class="card h-100">
-                            <img class="card-img-top" src="../../../assets/img/480x320/img16.jpg" alt="Image Description">
-                            <div class="card-body">
-                                <div class="max-w-13rem w-100 mb-3">
-                                    <img class="img-fluid" src="../../../assets/svg/clients-logo/netflix-original.svg"
-                                        alt="Logo">
-                                </div>
-                                <p class="mb-0">Netflix's mission is to create a planet run by the sun. In order to achieve
-                                    this goal, they needed to find a way to make solar simple.</p>
-                            </div>
-                            <div class="card-footer">
-                                <a class="font-weight-bold" href="customer-story.html">Read story <i
-                                        class="fas fa-angle-right fa-sm ml-1"></i></a>
-                            </div>
-                        </div>
-                        <!-- End Card Info -->
-                    </div>
+                    @include('frontend.components.postAuthor')
                 </div>
             </div>
             <!-- End Stories Section -->
         </div>
     </div>
     <!-- End Blog Card Section -->
-
+    <script>
+        swal({'dsdsd'});
+    </script>
     <div class="card bg-img-hero bg-navy text-white text-center p-4 my-4 w-md-60  mx-md-auto "
         style="background-image: url({{ asset('frontend/assets/svg/components/abstract-shapes-1.svg') }});">
-        <h4 class="text-white mb-3">Like what you're reading? Subscribe to our top stories.</h4>
+        <h4 class="text-white mb-3">Bài viết có thú vị không? Nếu có hãy đăng ký để nhận thông báo khi có bài viết của thác giả này.</h4>
 
         <!-- Form -->
-        <form class="js-validate w-md-75 mx-md-auto">
+        <form action="{{ route('subcribe.store')}}" method="POST" class="js-validate w-md-75 mx-md-auto">
+        @csrf
             <div class="js-form-message">
                 <div class="d-flex align-items-center">
                     <label class="sr-only" for="subscribeSrArticle">Subscribe</label>
                     <div class="input-group">
-                        <input type="email" class="form-control" id="subscribeSrArticle" placeholder="Your email"
-                            aria-label="Your email">
+                    <input type="hidden" name="author_id" value="{{ $post->author_id }}">
+                        <input type="email" name="email" class="form-control" id="subscribeSrArticle" placeholder="Email của bạn"
+                            aria-label="Your email" required>
                     </div>
-                    <button type="submit" class="btn btn-light ml-3">Submit</button>
+                    <button type="submit" class="btn btn-light ml-3">Nhận tin</button>
                 </div>
             </div>
         </form>
         <!-- End Form -->
     </div>
+    <input type="hidden" name="ajaxReport" value="{{route('reporting.store')}}" />
+    <script>
+    $(document).ready(function() {
+        token = $('meta[name="csrf-token"]').attr('content');
+        var url = $("input[name=ajaxReport]").val();
+        $('.send-report').on('click', function(){
+        $.ajax({
+            url: url,
+            data: {
+                posts_id: {{$post->id}},
+                authors_id: {{$post->Author->id}},
+                types: "report_post",
+                '_token': token,
+            },
+            type: "GET",
+            success: function(res){
+                //console.log(res.result);
+            }
+        });
+    });
+     });
+    </script>
+    <script>
+        function calcRate(r) {
+            const f = ~~r, //Tương tự Math.floor(r)
+                id = 'star' + f + (r % f ? 'half' : '')
+            id && (document.getElementById(id).checked = !0)
+        }
+        // $(document).on('change', 'input[type=star]', function() {
+        //     if ($(this).is(':checked')) {
+        //         ids.push($(this).val());
+        //         count++;
+        //         // alert(123);
+        //     } else {
+        //         ids.splice($.inArray($(this).val(), ids), 1);
+        //         count--;
+        //         // alert(321);
+        //     }
+        // })
+        $(document).on('change', 'input[name="star"]', function() {
+            // alert($(this).val());
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                        'content')
+                }
+            });
+            $.ajax({
+                url: "{{ url('post_vote') }}",
+                type: "post",
+                data: {
+                    'star': $(this).val(),
+                    'user_id': '{{ Auth::id() }}',
+                    'post_id': '{{ $post->id }}'
+                },
+                success: function(data) {
+                    document.location.reload(true);
+                },
+                error: function(error) {
+                    document.location.reload(true);
+                }
+            });
+        });
 
+    </script>
 
 
 

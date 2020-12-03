@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Admin Dashboard</title>
+  <title>@yield('title')</title>
   <!-- Custom fonts for this template-->
   <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('admin/css/sb-admin-2.css')}}" rel="stylesheet" type="text/css">
@@ -17,14 +17,17 @@
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
   <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('frontend/assets/css/custom.css')}}"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 </head>
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
+      @foreach(Auth::user()->Roles as $role) 
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
@@ -32,7 +35,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">ADMIN PANEL <sup>NEWS SITE</sup></div>
+        <div class="sidebar-brand-text mx-3">QUẢN LÝ<BR><sup>TIN TỨC</sup></div>
       </a>
 
       <!-- Divider -->
@@ -42,7 +45,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Tổng quan</span></a>
       </li>
 
       <!-- Divider -->
@@ -50,20 +53,28 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Add New
+        Thêm mới
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Add Contents</span>
+          <span>Thêm Nội Dung</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Add New A:</h6>
-          <a class="collapse-item" href="{{route('posts.create')}}">Post</a>
-          <a class="collapse-item" href="{{route('categories.create')}}">Category</a>
+            <h6 class="collapse-header">Thêm mới:</h6>
+        
+          <a class="collapse-item" href="{{route('posts.create')}}">Bài viết</a>
+          @if($role->id != 3)
+          <a class="collapse-item" href="{{route('categories.create')}}">Danh mục</a>
+          @if($role->id == 1)
+          <a class="collapse-item" href="{{route('users.create')}}">Người dùng</a>
+          <a class="collapse-item" href="{{route('roles.create')}}">Quyền người dùng</a>
+          <a class="collapse-item" href="{{route('permissions.create')}}">Quyền chi tiết</a>
+          @endif
+          @endif
           </div>
         </div>
       </li>
@@ -73,89 +84,132 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Panel
+        Quản lý
       </div>
-
+      @if($role->id == 3)
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePosts" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-archive"></i>
+          <span>Bài viết</span>
+        </a>
+        <div id="collapsePosts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Posts:</h6>
+            <a class="collapse-item" href="{{route('posts.mypost')}}">Bài viết của tôi</a>
+            <div class="collapse-divider"></div>
+          </div>
+      </li>
+      @endif
       <!-- Nav Item - Pages Collapse Menu -->
+      @if($role->id == 1 || $role->id == 2)
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Categories</span>
+          <span>Danh mục</span>
         </a>
         <div id="collapseCategories" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Categories:</h6>
-            <a class="collapse-item" href="{{route('categories.index')}}">List Categories</a>
+            <a class="collapse-item" href="{{route('categories.index')}}">Danh sách danh mục</a>
             <div class="collapse-divider"></div>
           </div>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePosts" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-archive"></i>
-          <span>Posts</span>
+          <span>Bài viết</span>
         </a>
         <div id="collapsePosts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Posts:</h6>
-            <a class="collapse-item" href="{{route('posts.index')}}">List Posts</a>
+            <a class="collapse-item" href="{{route('posts.index')}}">Danh sách bài viết</a>
+            <a class="collapse-item" href="{{route('posts.approval')}}">Duyệt bài viết</a>
             <div class="collapse-divider"></div>
           </div>
       </li>
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseComments" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-comments"></i>
-          <span>Comments</span>
+          <span>Bình luận</span>
         </a>
         <div id="collapseComments" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Comments:</h6>
-            <a class="collapse-item" href="{{route('comments.index')}}">List Comments</a>
+            <a class="collapse-item" href="{{route('comments.index')}}">Danh sách bình luận</a>
             <div class="collapse-divider"></div>
           </div>
       </li>
+       @endif
 
+      @if($role->id == 1)
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapsePages">
           <i class="far fa-address-card"></i>
-          <span>Users</span>
+          <span>Người dùng</span>
         </a>
         <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Users:</h6>
-          <a class="collapse-item" href="{{route('users.index')}}">List Users</a>
+          <a class="collapse-item" href="{{route('users.index')}}">Danh sách người dùng</a>
             <div class="collapse-divider"></div>
           </div>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-bullhorn"></i>
-          <span>Reports</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRoles" aria-expanded="true" aria-controls="collapseRoles">
+          <i class="far fa-address-card"></i>
+          <span>Quyền người dùng</span>
         </a>
-        <div id="collapseReports" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseRoles" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">All Reports:</h6>
-            <a class="collapse-item" href="login.html">Report Posts</a>
-            <a class="collapse-item" href="login.html">Report Users</a>
-            <a class="collapse-item" href="login.html">Report Comments</a>
+            <h6 class="collapse-header">Quyền:</h6>
+          <a class="collapse-item" href="{{route('roles.index')}}">Danh sách quyền</a>
+          <a class="collapse-item" href="{{route('permissions.index')}}">Danh sách quyền chi tiết</a>
             <div class="collapse-divider"></div>
           </div>
       </li>
-
-
+      @endif
+      @if($role->id == 1 || $role->id == 2)
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContacts" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-bullhorn"></i>
+          <span>Liên hệ</span>
+        </a>
+        <div id="collapseContacts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Danh sách liên hệ:</h6>
+          <a class="collapse-item" href="{{url('panel/contacts')}}">Liên hệ</a>
+         
+            <div class="collapse-divider"></div>
+          </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-bullhorn"></i>
+          <span>Báo cáo</span>
+        </a>
+        <div id="collapseReports" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Danh sách báo cáo:</h6>
+          <a class="collapse-item" href="{{route('reports.index')}}">Báo cáo</a>
+         
+            <div class="collapse-divider"></div>
+          </div>
+      </li>
+      
       <!-- Nav Item - Charts -->
       <li class="nav-item">
       <a class="nav-link" href="{{route('tags.index')}}">
           <i class="fas fa-tags"></i>
-          <span>Tag</span></a>
+          <span>Từ khóa</span></a>
       </li>
+      @endif
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
       <a class="nav-link" href="{{url('sitemap.xml')}}">
           <i class="fas fa-sitemap"></i>
-          <span>Sitemap</span></a>
+          <span>Sơ đồ trang web</span></a>
       </li>
 
       <hr class="sidebar-divider d-none d-md-block">
@@ -166,6 +220,7 @@
       </div>
 
     </ul>
+    @endforeach
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -240,28 +295,6 @@
                     <span class="font-weight-bold">A new monthly report is ready to download!</span>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
@@ -288,66 +321,37 @@
                     <div class="small text-gray-500">Emily Fowler · 58m</div>
                   </div>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Xem Thêm</a>
               </div>
             </li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
-
+            
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->fullname}}</span>
+              <img class="img-profile rounded-circle" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{url('user',Auth::user()->username)}}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
+                  Thông tin cá nhân
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="{{url('author',Auth::user()->username)}}">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
+                  Nhật ký hoạt động
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Đăng xuất
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
                 </a>
               </div>
             </li>
@@ -403,7 +407,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Đăng xuất ngay bây giờ.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <a class="btn btn-primary" href="login.html">Logout</a>
@@ -418,7 +422,50 @@
   <!-- Core plugin JavaScript-->
   <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
   <script src="{{asset('admin/js/taginput.js')}}"></script>
-
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script>
+   $(document).ready(function() {
+    $('#tablePost').DataTable( {
+        "order": [[ 4, "desc" ]]
+    } );
+} );
+$(document).ready(function() {
+    $('#tableMyPost').DataTable( {
+        "order": [[ 5, "desc" ]]
+    } );
+} );
+$(document).ready(function() {
+    $('#tableTag').DataTable( {
+        "order": [[ 0, "desc" ]]
+    } );
+} );
+$(document).ready(function() {
+    $('#tableApproval').DataTable( {
+        "order": [[ 4, "desc" ]]
+    } );
+} );
+$(document).ready(function() {
+    $('#tableReport').DataTable( {
+        "order": [[ 0, "desc" ]]
+    } );
+} );
+$(document).ready(function() {
+    $('#tableComment').DataTable( {
+        "order": [[ 0, "desc" ]]
+    });
+} );
+$(document).ready(function() {
+    $('#tableUser').DataTable( {
+        "order": [[ 10, "desc" ]]
+    });
+} );
+$(document).ready(function() {
+    $('#tablePermissions').DataTable();
+} );
+</script>
+@include('sweetalert::alert')
   <script>
 $(document).ready(function() {
     $('#categoryName').change(function(){

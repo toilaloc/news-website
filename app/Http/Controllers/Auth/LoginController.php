@@ -66,7 +66,7 @@ class LoginController extends Controller
             $data->fullname = $user->name;
             $data->email = $user->email;
             $data->password = $user->id;
-            $data->thumbnail = $user->avatar;
+            $data->thumbnail = 'default.png';
             $data->active = 1;
             $data->status = 0;
             $data->save();

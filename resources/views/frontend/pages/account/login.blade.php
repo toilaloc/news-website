@@ -1,5 +1,5 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', 'F8News - Đăng nhập hệ thống')
 @section('content')
     <div class="container space-2 space-lg-3">
         <form class="js-validate w-md-75 w-lg-50 mx-md-auto" action="213135341">

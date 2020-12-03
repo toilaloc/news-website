@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comments;
+use App\Models\Post_votes;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
@@ -14,10 +15,19 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function __construct()
     {
        
-        $comments =  Comments::all()->whereNull('comment_id');
+       $this->middleware('checkpermissions:xoa-binh-luan,quan-ly-binh-luan')->except(['store']);;
+        
+    }
+
+
+    public function index()
+    {
+
+        $comments =  Comments::all();
         return view('admin.comments.index', compact('comments'));
     }
 
@@ -47,25 +57,23 @@ class CommentsController extends Controller
             'vote'
         ]);
 
-        if(!empty($request->comment_id)){
+        if (!empty($request->comment_id)) {
             $comment_id = $request->comment_id;
-        }
-        else{
+        } else {
             $comment_id = NULL;
         }
 
         if ($validateData) {
-           $comment =  Comments::create([
-                'post_id' => $request->post_id, 
-                'user_id' => $request->user_id, 
-                'content' => $request->content, 
+            $comment =  Comments::create([
+                'post_id' => $request->post_id,
+                'user_id' => $request->user_id,
+                'content' => $request->content,
                 'comment_id' => $comment_id,
                 'date' => $request->date,
                 'vote' => NULL
             ]);
-
-            //dd($comment);
-             return back()->with('success', 'Đã bình luận');
+            // dd($request->star);
+            return back()->with('success', 'Đã bình luận');
         }
     }
 
@@ -111,6 +119,10 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteComments = Comments::find($id)->delete();
+        if ($deleteComments) {
+            return redirect()->route('comments.index')
+                ->with('success', 'Đã xóa bình luận');
+        }
     }
 }

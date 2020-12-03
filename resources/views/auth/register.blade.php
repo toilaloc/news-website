@@ -1,5 +1,5 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', 'F8News - Đăng ký thành viên')
 @section('content')
     <!-- Login Form -->
     <div class="container space-2 space-lg-3">
@@ -11,9 +11,9 @@
                 <h1 class="h2 mb-0">Chào mừng bạn đến với hệ thống</h1>
                 <p>Điền vào biểu mẫu để tiến hành đăng ký.</p>
 
-                @if ($errors->any())
+                {{-- @if ($errors->any())
                 @foreach ($errors->all() as $error)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">   
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
             {{ $error}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -22,9 +22,9 @@
             </button>
           </div>
           @endforeach
-          @endif
+          @endif --}}
             </div>
-           
+
             <!-- End Title -->
 
             <!-- Form Group -->
@@ -65,21 +65,25 @@
             <!-- Form Group -->
             <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrPassword">Mật khẩu:</label>
-                <input type="password" class="form-control" name="password" id="signinSrPassword" placeholder="********" aria-label="********" 
-                       data-msg="Your password is invalid. Please try again.">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                       @error('password')
+                       <span class="invalid-feedback" role="alert">
+                           <strong>{{ $message }}</strong>
+                       </span>
+                   @enderror
             </div>
             <!-- End Form Group -->
 
             <!-- Form Group -->
             <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrConfirmPassword">Nhập lại mật khẩu:</label>
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" data-msg="Password does not match the confirm password.">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" data-msg="Mật khẩu không khớp nhau.">
             </div>
 
              <!-- Form Group -->
              <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrEmail">Ảnh đại diện:</label>
-                       <input id="thumbnail" type="file" class="form-control @error('thumbnail') is-invalid @enderror" name="thumbnail" value="{{ old('thumbnail') }}" autocomplete="thumbnail" autofocus>
+                       <input id="thumbnail" type="file" class="form-control @error('thumbnail') is-invalid @enderror" name="thumbnail" autocomplete="thumbnail" autofocus>
                        @error('thumbnail')
                            <span class="invalid-feedback" role="alert">
                                <strong>{{ $message }}</strong>
@@ -142,7 +146,7 @@
               <div class="js-form-message form-group">
                 <label class="input-label" for="signinSrEmail">Giới thiệu bản thân:</label>
                 <textarea class="form-control" name="bio" id="bio"  @error('bio') is-invalid @enderror cols="30" rows="3"></textarea>
-                                
+
                 @error('bio')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -157,11 +161,11 @@
             <div class="js-form-message mb-5">
                 <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
                     <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" required
-                           data-msg="Please accept our Terms and Conditions.">
+                           data-msg="Vui lòng chấp nhận điều khoản và quy định để đăng ký.">
                     <label class="custom-control-label" for="termsCheckbox">
                         <small>
                             Tôi đồng ý với
-                            <a class="link-underline" href="../pages/terms.html">Điều khoản và quy định</a>
+                        <a class="link-underline" href="{{url('frontend/faq')}}">Điều khoản và quy định</a>
                             của hệ thống.
                         </small>
                     </label>
@@ -186,7 +190,7 @@
     <!-- End Login Form -->
 
 
-{{-- 
+{{--
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -289,7 +293,7 @@
 
                             <div class="col-md-6">
                                 <textarea class="form-control" name="bio" id="bio"  @error('bio') is-invalid @enderror cols="30" rows="3"></textarea>
-                                
+
                                 @error('bio')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -297,7 +301,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Giới tính') }}</label>
 
@@ -314,7 +318,7 @@
                                     <input class="form-check-input" @error('gender') is-invalid @enderror type="radio" name="gender" id="inlineRadio2">
                                     <label class="form-check-label" for="inlineRadio2">Khác</label>
                                   </div>
-                               
+
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -325,10 +329,10 @@
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Ảnh đại diện') }}</label>
-    
+
                                 <div class="col-md-6">
                                     <input id="thumbnail"  class="form-control" type="file" @error('thumbnail') is-invalid @enderror name="thumbnail">
-    
+
                                     @error('thumbnail')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -336,7 +340,7 @@
                                     @enderror
                                 </div>
                             </div>
-                
+
 
                         <div class="form-group row mb-3">
                             <div class="col-md-6 offset-md-4">
@@ -345,7 +349,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>

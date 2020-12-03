@@ -19,19 +19,19 @@ class Users extends Model
      */
 
     protected $fillable = [
-        'username', 
-        'fullname', 
-        'email', 
-        'bio', 
-        'address', 
-        'gender', 
-        'phone', 
-        'active', 
-        'thumbnail', 
-        'vote', 
-        'status', 
-        'follower', 
-        'following', 
+        'username',
+        'fullname',
+        'email',
+        'bio',
+        'address',
+        'gender',
+        'phone',
+        'active',
+        'thumbnail',
+        'vote',
+        'status',
+        'follower',
+        'following',
         'password',
     ];
 
@@ -53,4 +53,34 @@ class Users extends Model
         'email_verified_at' => 'datetime',
     ];
 
+    public function hasPosts()
+    {
+        return $this->hasMany(Posts::class, 'author_id')->where('status','<>', 1)->orderBy('created_at', 'DESC')->take(4);
+    }
+
+    public function infoPosts()
+    {
+        return $this->hasMany(Posts::class, 'author_id')->where('status','<>', 1);
+    }
+
+
+    public function hasComments()
+    {
+        return $this->hasMany(Comments::class, 'user_id')->orderBy('created_at', 'DESC');
+    }
+    public function Following(){
+        return $this->hasMany(Followers::class, 'user_id');
+    }
+    public function hasFollowers(){
+        return $this->hasMany(Followers::class, 'author_id');
+    }
+
+    public function Roles()
+    {
+        return $this->belongsToMany(Roles::class,'users_roles', 'user_id', 'role_id');
+    }
+
+    public function infoFollow($id){
+        return Users::find($id);
+    }
 }

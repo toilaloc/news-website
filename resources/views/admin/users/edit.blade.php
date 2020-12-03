@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Chỉnh sửa người dùng")
 @section('content')
 <div class="col-lg-12 mb-12 sm-12">
     @if(session()->get('success'))
@@ -8,6 +8,15 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
+    </div>
+    @endif
+    @if($errors->any())
+    <div class="alert alert-danger" role="alert">
+       <ul>
+           @foreach($errors->all() as $error)
+           <li>{{$error}}</li>
+           @endforeach
+       </ul> 
     </div>
     @endif
   <div class="card shadow mb-4">
@@ -100,7 +109,7 @@
                         {{"checked"}}
                         @endif
                         >
-                        <label class="form-check-label" for="inlineRadio1">Có</label>
+                        <label class="form-check-label" for="inlineRadio1">Công khai</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="1"
@@ -108,7 +117,7 @@
                         {{"checked"}}
                         @endif
                         >
-                        <label class="form-check-label" for="inlineRadio2">Không</label>
+                        <label class="form-check-label" for="inlineRadio2">Riêng tư</label>
                       </div>
                 </div>
               </div>
@@ -129,6 +138,20 @@
                    
                 </div>
               </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Quyền người dùng</label>
+                <div class="col-sm-10">
+                    <select name="role_id[]" class="form-control">
+                    @foreach($roles as $role)  
+                    <option value="{{$role->id}}"
+                      @foreach($user->Roles as $userRoles)
+                      @if($userRoles->pivot->role_id == $role->id) {{"selected"}} @endif
+                      @endforeach
+                      >{{$role->name}}</option>
+                    @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="form-group row">
               <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Đổi thông tin</button>

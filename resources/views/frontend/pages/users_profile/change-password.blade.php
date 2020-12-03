@@ -1,8 +1,8 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', "F8News - Đổi mật khẩu")
 @section('content')
     <!-- Breadcrumb Section -->
-    <div class="bg-navy" style="background-image: url(../../../../assets//svg/components/abstract-shapes-20.svg);">
+    <div class="bg-navy" style="background-image: url({{asset('frontend/assets/svg/components/abstract-shapes-20.svg')}});">
         <div class="container space-1 space-top-lg-2 space-bottom-lg-3">
             <div class="row align-items-center">
                 <div class="col">
@@ -45,6 +45,38 @@
 
     <!-- Content Section -->
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+<div class="alert alert-danger alert-dismissible fade show" role="alert">   
+    {{ $error}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+      </svg>
+    </button>
+  </div>
+  @endforeach
+  @endif
+        @if(session()->get('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session()->get('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+              </svg>
+            </button>
+          </div>
+          @endif   
+          @if(session()->get('danger'))
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session()->get('danger') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+                </svg>
+              </button>
+            </div>
+            @endif   
         <div class="row">
             <div class="col-lg-3">
                 <!-- Navbar -->
@@ -56,12 +88,12 @@
                                 <!-- Avatar -->
                                 <div class="d-none d-lg-block text-center mb-5">
                                     <div class="avatar avatar-xxl avatar-circle mb-3">
-                                        <img class="avatar-img" src="../../../../assets//img/160x160/img1.jpg" alt="Image Description">
-                                        <img class="avatar-status avatar-lg-status" src="../../../../assets//svg/illustrations/top-vendor.svg" alt="Image Description" data-toggle="tooltip" data-placement="top" title="Verified user">
+                                    <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{$user->thumbnail}}" alt="{{$user->fullname}}">
+                                        <img class="avatar-status avatar-lg-status" src="{{asset('frontend/assets/svg/illustrations/top-vendor.svg')}}" data-toggle="tooltip" data-placement="top" title="Verified user">
                                     </div>
 
-                                    <h4 class="card-title">Trần Thanh Nam</h4>
-                                    <p class="card-text font-size-1">namttpd02755@fpt.edu.vn</p>
+                                <h4 class="card-title">{{$user->name}}</h4>
+                                <p class="card-text font-size-1">{{$user->email}}</p>
                                 </div>
                                 <!-- End Avatar -->
 
@@ -70,65 +102,38 @@
                                 <!-- List -->
                                 <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.html">
+                                    <a class="nav-link" href="{{url('user', $user->username)}}">
                                             <i class="fas fa-id-card nav-icon"></i> Thông tin cá nhân
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="login-and-security.html">
-                                            <i class="fas fa-shield-alt nav-icon"></i> Đăng nhập &amp; bảo mật
+                                    <a class="nav-link" href="{{url('/change-password',$user->username)}}">
+                                            <i class="fas fa-shield-alt nav-icon"></i> Đổi mật khẩu
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="notifications.html">
-                                            <i class="fas fa-bell nav-icon"></i> Thông báo
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">1</span>
+                                    <a class="nav-link" href="{{url('author',$user->username)}}">
+                                            <i class="fas fa-chart-line nav-icon"></i> Hoạt động
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="preferences.html">
-                                            <i class="fas fa-sliders-h nav-icon"></i> Sở thích
-                                        </a>
-                                    </li>
+    
                                 </ul>
                                 <!-- End List -->
 
-                                <h6 class="text-cap small">Mua sắm</h6>
-
-                                <!-- List -->
-                                <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="orders.html">
-                                            <i class="fas fa-shopping-basket nav-icon"></i>Đơn đặt hàng của bạn
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="wishlist.html">
-                                            <i class="fas fa-heart nav-icon"></i> Danh sách yêu thích
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">2</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!-- End List -->
-
-                                <h6 class="text-cap small">Thanh toán</h6>
+                                <h6 class="text-cap small">Theo dõi</h6>
 
                                 <!-- List -->
                                 <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="billing.html">
-                                            <i class="fas fa-credit-card nav-icon"></i> Các gói &amp; Thanh toán
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="address.html">
-                                            <i class="fas fa-map-marker-alt nav-icon"></i> Địa chỉ
+                                        <a class="nav-link" href="teams.html">
+                                            <i class="fas fa-users nav-icon"></i> Đang theo dõi
+                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->Following->count()}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="teams.html">
-                                            <i class="fas fa-users nav-icon"></i> Đội
-                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">+2 người dùng mới</span>
+                                            <i class="fas fa-user-friends nav-icon"></i> Người theo dõi
+                                            <span class="badge badge-soft-navy badge-pill nav-link-badge">{{$user->hasFollowers->count()}}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -140,8 +145,13 @@
                                     <!-- List -->
                                     <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2">
                                         <li class="nav-item">
-                                            <a class="nav-link text-primary" href="#">
-                                                <i class="fas fa-sign-out-alt nav-icon"></i> Đăng xuất
+                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                             @csrf
+                                         </form>
+                                            <a class="nav-link text-primary" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-sign-out-alt nav-icon"></i> Đăng xuất
                                             </a>
                                         </li>
                                     </ul>
@@ -159,53 +169,21 @@
                 <!-- Card -->
                 <div class="card mb-3 mb-lg-5">
                     <div class="card-header">
-                        <div class="d-flex align-items-center">
-                            <h5 class="card-title">Xác minh hai bước
-                            </h5>
-                            <span class="badge badge-soft-danger ml-2">Ẩn</span>
-                        </div>
-                    </div>
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <p class="card-text">Bắt đầu bằng cách nhập mật khẩu của bạn để chúng tôi biết đó là bạn. Sau đó, chúng tôi sẽ hướng dẫn bạn qua hai bước đơn giản hơn.</p>
-                        <form>
-                            <!-- Form Group -->
-                            <div class="row form-group">
-                                <label for="accountPasswordLabel" class="col-sm-3 col-form-label input-label">Mật khẩu tài khoản</label>
-
-                                <div class="col-sm-9">
-                                    <input type="password" class="form-control" name="currentPassword" id="accountPasswordLabel" placeholder="Enter current password" aria-label="Enter current password">
-                                    <small class="form-text">Đây là mật khẩu bạn sử dụng để đăng nhập vào tài khoản Mặt trận của mình.</small>
-                                </div>
-                            </div>
-                            <!-- End Form Group -->
-
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">Thiết lập</button>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- End Body -->
-                </div>
-                <!-- End Card -->
-
-                <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
-                    <div class="card-header">
                         <h5 class="card-title">Mât khẩu</h5>
                     </div>
 
                     <!-- Body -->
                     <div class="card-body">
                         <!-- Form -->
-                        <form>
+                        <form method="POST" action="{{route('userfront.pass',$user->username)}}" enctype="multipart/form-data">
+                            @csrf
+                            @method('PATCH')
                             <!-- Form Group -->
                             <div class="row form-group">
                                 <label for="currentPasswordLabel" class="col-sm-3 col-form-label input-label">Mật khẩu hiện tại</label>
 
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" name="currentPassword" id="currentPasswordLabel" placeholder="Enter current password" aria-label="Enter current password">
+                                    <input type="password" class="form-control" name="currentPassword" id="currentPasswordLabel" placeholder="Nhập mật khẩu cũ" aria-label="Nhập mật khẩu cũ">
                                 </div>
                             </div>
                             <!-- End Form Group -->
@@ -215,7 +193,7 @@
                                 <label for="newPassword" class="col-sm-3 col-form-label input-label">Mật khẩu mới</label>
 
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="Enter new password" aria-label="Enter new password">
+                                    <input type="password" class="form-control" name="password" id="newPassword" placeholder="Nhập mật khẩu mới" aria-label="Nhập mật khẩu mới">
                                 </div>
                             </div>
                             <!-- End Form Group -->
@@ -226,7 +204,7 @@
 
                                 <div class="col-sm-9">
                                     <div class="mb-3">
-                                        <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPasswordLabel" placeholder="Confirm your new password" aria-label="Confirm your new password">
+                                        <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPasswordLabel" placeholder="Nhập lại mật khẩu mới" aria-label="Nhập lại mật khẩu mới">
                                     </div>
 
                                     <h5>Yêu cầu mật khẩu:</h5>

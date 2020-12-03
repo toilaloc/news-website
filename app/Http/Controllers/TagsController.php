@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Posts;
 use App\Models\Tags;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class TagsController extends Controller
 {
     /**
@@ -12,6 +14,14 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+       
+       $this->middleware('checkpermissions:quan-ly-tu-khoa,xoa-tu-khoa')->except(['show']);;
+        
+    }
+
     public function index()
     {
         $tags = Tags::all();
@@ -45,9 +55,15 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $posts = Posts::whereHas('tags', function($query) use ($slug) {
+            $query->whereSlug($slug)->where('status', '<>', 1);;
+          })->orderBy('id', 'DESC')->get();
+        $tag = Tags::where('slug', $slug)->first();
+        $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
+        $hotPosts = Posts::take(5)->where('status', '<>', 1)->get();
+        return view('frontend.pages.tags.index', compact('posts', 'tag', 'dateTime', 'hotPosts'));
     }
 
     /**

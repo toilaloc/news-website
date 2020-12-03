@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Posts extends Model
 {
@@ -36,12 +37,21 @@ class Posts extends Model
 
     public function Comment_post($id)
     {
-        return Comments::where('post_id', $id)->whereNull('comment_id')->get();
+        return  Comments::where('post_id', $id)->whereNull('comment_id')->get();
     }
 
-    public function Comments()
+    public function Rate($id)
     {
-        return $this->hasMany(Comments::class, 'id', 'post_id');
+        return Post_votes::where('post_id', $id)->get();
+    }
+    public function checkRate($id)
+    {
+        return Post_votes::where(['post_id' => $id, 'user_id' => Auth::id()])->exists();
+    }
+
+    public function hasComments()
+    {
+        return $this->hasMany(Comments::class, 'post_id');
     }
 
 

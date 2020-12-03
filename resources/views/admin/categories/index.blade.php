@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Danh sách danh mục")
 @section('content')
 <div class="col-lg-12 mb-12 sm-12">
   @if($errors->any())
@@ -13,7 +13,7 @@
   @endif
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">List of Categories</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách danh mục</h6>
       </div>
       <div class="card-body">
 

@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Thêm bài viết mới")
 @section('content')
 <div class="col-lg-12 mb-12 sm-12">
   @if ($errors->any())
@@ -117,20 +117,6 @@
                      </script>
                 </div>
               </div>
-
-              <div class="form-group row ">
-                <label class="col-sm-2 pt-4 col-form-label">Chế độ đăng</label>
-                <div class="col-sm-10 pt-4">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio"  name="status" value="0">
-                  <label class="form-check-label" for="inlineRadio1">Đăng ngay</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" n name="status" value="1">
-                  <label class="form-check-label" for="inlineRadio2">Lưu nháp</label>
-                </div>
-              </div>
-            </div>
 
             <div class="form-group row">
               <div class="col-sm-10">

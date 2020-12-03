@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Quản lý từ khóa")
 @section('content')
 
 <div class="card shadow mb-4">
@@ -7,7 +7,7 @@
       <h6 class="m-0 font-weight-bold text-primary">Danh sách từ khóa</h6>
     </div>
     <div class="card-body">
-    <table class="table table-bordered">
+    <table id="tableTag" class="table table-bordered">
     <thead>
       <tr>
         <th scope="col" width="5%">#</th>
@@ -19,12 +19,12 @@
         @foreach($tags as $tag)
         <tr>
         <th>{{$tag->id}}</th>
-        <td><a href="{{url('/tags', $tag->slug)}}">{{$tag->name}}</a></td>
+        <td><a href="{{url('/tag', $tag->slug)}}">{{$tag->name}}</a></td>
         <td>
         <form class="d-inline" action="{{route('tags.destroy',$tag->id)}}" method="POST">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-sm d-inline">Xóa</button>
+            <button type="submit" class="btn btn-danger btn-sm d-inline" onclick="return confirm('bạn có chắc muốn xóa');">Xóa</button>
         </form>
         </td>
         </tr>
