@@ -1,6 +1,10 @@
 @extends('frontend.layouts.others.index')
 @section('title', $post->name)
 @section('description', $post->desc)
+@section('og-title', $post->name)
+@section('og-image', asset('uploads/posts/thumbnail/'.$post->thumbnail))
+@section('og-description', $post->desc)
+@section('og-url', url('post',$post->slug))
 @section('content')
     <hr>
     <!-- Content Section -->

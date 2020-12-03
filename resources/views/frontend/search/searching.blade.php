@@ -1,6 +1,7 @@
 
 @extends('frontend.layouts.others.index')
 @section('title', "Kết quả tìm kiếm từ khóa ".$key)
+@section('og-title', "Kết quả tìm kiếm từ khóa ".$key)
 @section('content')
 <!-- Hero Section -->
 <div class="container space-2 space-lg-3">

@@ -1,6 +1,7 @@
 
 @extends('frontend.layouts.others.index')
-@section('title', "Danh sách bài viết có từ khóa ".$post->name)
+@section('title', "Danh sách bài viết có từ khóa ".$tag->name)
+@section('og-title', "Danh sách bài viết có từ khóa ".$tag->name)
 @section('keywords', $tag->name)
 @section('content')
 <!-- Hero Section -->

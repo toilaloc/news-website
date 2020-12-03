@@ -1,5 +1,7 @@
 @extends('frontend.layouts.others.index')
 @section('title', 'F8News - FAQ')
+@section('og-title', 'F8News - FAQ')
+@section('og-url', url('frontend/faq'))
 @section('content')
     <!-- Hero Section -->
     <div class="bg-img-hero" style="background-image: url(../../../../assets//svg/components/abstract-shapes-12.svg);">

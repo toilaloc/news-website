@@ -11,6 +11,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="@yield('og-title')">
+    <meta property="og:image" content="@yield('og-image')">
+    <meta property="og:description" content="@yield('og-description')">
+    <meta property="og:url" content="@yield('og-url')">
+    <meta property="fb:app_id" content="329159957633823">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('frontend/assets/favicon.ico')}}">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

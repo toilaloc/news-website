@@ -1,5 +1,7 @@
 @extends('frontend.layouts.others.index')
 @section('title', 'F8News - Giới thiệu')
+@section('og-title', 'F8News - Giới thiệu')
+@section('og-url', url('frontend/about'))
 @section('content')
     <!-- Hero Section -->
     <div class="container space-top-3 space-top-lg-2 space-bottom-2">
