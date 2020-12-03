@@ -103,7 +103,7 @@
                                 <!-- List -->
                                 <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.html">
+                                        <a class="nav-link" href="javascript:;">
                                             <i class="fas fa-id-card nav-icon"></i> Thông tin cá nhân
                                         </a>
                                     </li>

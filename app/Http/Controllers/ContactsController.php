@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class ContactsController extends Controller
 {
+
+    public function __construct()
+    {
+       
+       $this->middleware('checkpermissions:quan-ly-lien-he')->except(['show']);
+        
+    }
+
     public function index()
     {
          return view('frontend.pages.contact.contact');
