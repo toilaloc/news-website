@@ -256,7 +256,17 @@
                       </form>
                     </li>
                     <!-- End Search Form -->
+                    <li class="hs-has-sub-menu navbar-nav-item mr-lg-auto">
+                      <a id="pagesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="pagesSubMenu">Trang</a>
 
+                      <!-- Pages - Submenu -->
+                      <div id="pagesSubMenu" class="hs-sub-menu dropdown-menu" aria-labelledby="pagesMegaMenu" style="min-width: 230px;">
+                      <a class="dropdown-item" href="{{url('/frontend/contact')}}">Liên Hệ</a>
+                        <a class="dropdown-item" href="{{url('/frontend/term')}}">Điều khoản</a>
+                        <a class="dropdown-item" href="{{url('/frontend/faq')}}">Hỏi đáp</a>
+                      </div>
+                      <!-- End Pages - Submenu -->
+                    </li>
                     
                                             <!-- My Courses -->
                                             @if(Auth::user())
