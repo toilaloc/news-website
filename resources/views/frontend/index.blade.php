@@ -27,7 +27,8 @@
            ]
          }'>
 
-        <div class="js-slide d-flex gradient-x-overlay-sm-navy bg-img-hero min-h-620rem" style="background-image: url(https://static.thebristolcable.org/uploads/2016/04/07-cover-1900x1080.jpg);">
+         @foreach($bannerPost as $banner)
+        <div class="js-slide d-flex gradient-x-overlay-sm-navy bg-img-hero min-h-620rem" style="background-image: url({{asset('uploads/posts/thumbnail/'.$banner->thumbnail)}});">
             <!-- News Block -->
             <div class="container d-flex align-items-center min-h-620rem">
                 <div class="w-lg-40 mr-5">
@@ -35,10 +36,10 @@
                     <div class="media align-items-center mb-3"
                          data-hs-slick-carousel-animation="fadeInUp">
                         <div class="avatar avatar-sm avatar-circle mr-3">
-                            <img class="avatar-img" src="{{asset('frontend/assets/img/100x100/img10.jpg')}}" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('uploads/users/'.$banner->Author->thumbnail)}}" alt="Image Description">
                         </div>
                         <div class="media-body">
-                            <a class="text-white" href="single-article.html">Christina Kray</a>
+                            <a class="text-white" href="{{url('author',$banner->Author->username)}}">{{$banner->Author->fullname}}</a>
                         </div>
                     </div>
                     <!-- End Author -->
@@ -46,73 +47,16 @@
                     <div class="mb-5">
                         <h3 class="h1 font-weight-bold text-white"
                             data-hs-slick-carousel-animation="fadeInUp"
-                            data-hs-slick-carousel-animation-delay="150">Front Interview with a Lead Designer of the Hubble</h3>
+                    data-hs-slick-carousel-animation-delay="150">{{$banner->name}}</h3>
                     </div>
-                    <a class="btn btn-primary btn-wide transition-3d-hover" href="single-article.html"
+                <a class="btn btn-primary btn-wide transition-3d-hover" href="{{url('post', $banner->slug)}}"
                        data-hs-slick-carousel-animation="fadeInUp"
-                       data-hs-slick-carousel-animation-delay="300">Read Article <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+                       data-hs-slick-carousel-animation-delay="300">Đọc tin <i class="fas fa-angle-right fa-sm ml-1"></i></a>
                 </div>
             </div>
             <!-- End News Block -->
         </div>
-
-        <div class="js-slide d-flex gradient-x-overlay-sm-navy bg-img-hero min-h-620rem" style="background-image: url(https://wallpapercave.com/wp/wp1923873.jpg);">
-            <!-- News Block -->
-            <div class="container d-flex align-items-center min-h-620rem">
-                <div class="w-lg-40 mr-5">
-                    <!-- Author -->
-                    <div class="media align-items-center mb-3"
-                         data-hs-slick-carousel-animation="fadeInUp">
-                        <div class="avatar avatar-sm avatar-circle mr-3">
-                            <img class="avatar-img" src="{{asset('frontend/assets/img/100x100/img10.jpg')}}" alt="Image Description">
-                        </div>
-                        <div class="media-body">
-                            <a class="text-white" href="single-article.html">Christina Kray</a>
-                        </div>
-                    </div>
-                    <!-- End Author -->
-
-                    <div class="mb-5">
-                        <h2 class="h1 font-weight-bold text-white"
-                            data-hs-slick-carousel-animation="fadeInUp"
-                            data-hs-slick-carousel-animation-delay="150">Front Corporate - let's work together</h2>
-                    </div>
-                    <a class="btn btn-primary btn-wide transition-3d-hover" href="single-article.html"
-                       data-hs-slick-carousel-animation="fadeInUp"
-                       data-hs-slick-carousel-animation-delay="300">Read Article <i class="fas fa-angle-right fa-sm ml-1"></i></a>
-                </div>
-            </div>
-            <!-- End News Block -->
-        </div>
-
-        <div class="js-slide d-flex gradient-x-overlay-sm-navy bg-img-hero min-h-620rem" style="background-image: url(https://www.beltandroad.news/wp-content/uploads/2019/10/388273782-1900x1080.jpg);">
-            <!-- News Block -->
-            <div class="container d-flex align-items-center min-h-620rem">
-                <div class="w-lg-40 mr-5">
-                    <div class="mb-7">
-                        <!-- Author -->
-                        <div class="media align-items-center mb-3"
-                             data-hs-slick-carousel-animation="fadeInUp">
-                            <div class="avatar avatar-sm avatar-circle mr-3">
-                                <img class="avatar-img" src="{{asset('frontend/assets/img/100x100/img4.jpg')}}" alt="Image Description">
-                            </div>
-                            <div class="media-body">
-                                <a class="text-white" href="single-article.html">Jeff Fisher</a>
-                            </div>
-                        </div>
-                        <!-- End Author -->
-
-                        <h1 class="font-weight-bold text-white"
-                            data-hs-slick-carousel-animation="fadeInUp"
-                            data-hs-slick-carousel-animation-delay="150">How Google Assistant now helps you record stories</h1>
-                    </div>
-                    <a class="btn btn-primary btn-wide transition-3d-hover" href="single-article.html"
-                       data-hs-slick-carousel-animation="fadeInUp"
-                       data-hs-slick-carousel-animation-delay="300">Read Article <i class="fas fa-angle-right fa-sm ml-1"></i></a>
-                </div>
-            </div>
-            <!-- End News Block -->
-        </div>
+        @endforeach
     </div>
     <!-- End Main Slider -->
 
@@ -129,27 +73,15 @@
                "isThumbs": true,
                "asNavFor": "#heroSlider"
              }'>
+             @foreach($bannerPost as $banner)
                 <div class="js-slide my-3">
-                    <span class="text-white">Front Interview with a Lead Designer of the Hubble</span>
+                <span class="text-white">{{$banner->name}}</span>
 
                     <span class="slick-pagination-line-progress">
               <span class="slick-pagination-line-progress-helper"></span>
             </span>
                 </div>
-                <div class="js-slide my-3">
-                    <span class="text-white">Front Corporate - let's work together</span>
-
-                    <span class="slick-pagination-line-progress">
-              <span class="slick-pagination-line-progress-helper"></span>
-            </span>
-                </div>
-                <div class="js-slide my-3">
-                    <span class="text-white">How Google Assistant now helps you record stories</span>
-
-                    <span class="slick-pagination-line-progress">
-              <span class="slick-pagination-line-progress-helper"></span>
-            </span>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
