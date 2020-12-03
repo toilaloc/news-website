@@ -215,7 +215,7 @@
                         <div class="hs-has-sub-menu">
                         <a id="navLink-{{$categoryParent->id}}" class="hs-mega-menu-invoker dropdown-item dropdown-item-toggle" href="{{url('category',$categoryParent->slug)}}" aria-haspopup="true" aria-expanded="false" aria-controls="navSubmenu-{{$categoryParent->id}}">
                             <span class="min-w-4rem text-center opacity-lg mr-1">
-                              <i class="fa fa-laptop-code font-size-1 mr-1"></i>
+                            
                             </span>
                             {{$categoryParent->name}}
                         </a>
