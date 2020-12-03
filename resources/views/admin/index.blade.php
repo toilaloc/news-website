@@ -1,4 +1,5 @@
 @extends('admin.layouts.index')
+@section('title', "Quản lý hệ thống tin tức")
 @section('content')
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">

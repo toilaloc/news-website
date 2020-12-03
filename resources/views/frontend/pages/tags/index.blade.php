@@ -1,6 +1,7 @@
 
 @extends('frontend.layouts.others.index')
-
+@section('title', "Danh sách bài viết có từ khóa ".$post->name)
+@section('keywords', $tag->name)
 @section('content')
 <!-- Hero Section -->
 <div class="container space-2 space-lg-3">

@@ -1,5 +1,6 @@
 @extends('frontend.layouts.others.index')
 @section('title', $post->name)
+@section('description', $post->desc)
 @section('content')
     <hr>
     <!-- Content Section -->
@@ -150,7 +151,7 @@
                 <div class="border-top pt-3">
                     <h3 class="mb-4">Thông tin tác giả</h3>
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 pl-7">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-3">
                             <div class="avatar avatar-xl avatar-circle mb-3">
                                 <img class="avatar-img" style="width: 100%;height: 100%;"
                                     src="{{ asset('uploads/users') }}/{{ $post->Author->thumbnail }}"
@@ -159,7 +160,7 @@
                             <!-- End Icon Block -->
                         </div>
 
-                        <div class="col-lg-9 col-md-9 col-sm-9">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-9">
                             <!-- Info -->
                             @if (Auth::check())
                                 @if (App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())

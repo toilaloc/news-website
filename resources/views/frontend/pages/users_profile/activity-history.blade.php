@@ -1,5 +1,5 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', "Tác giả ". $user->fullname)
 @section('content')
     <!-- Profile Section -->
     <div class="container space-top-1 space-top-sm-2 space-bottom-2">

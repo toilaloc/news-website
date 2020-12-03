@@ -1,5 +1,5 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', 'F8News - Lấy lại mật khẩu')
 @section('content')
     <!-- Login Form -->
     <div class="container space-2 space-lg-3">

@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Sửa quyền chi tiết")
 @section('content')
 <div class="col-lg-12 mb-12 sm-12">
   @if($errors->any())

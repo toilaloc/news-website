@@ -1,5 +1,5 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', 'F8News - Liên hệ')
 @section('content')
     <!-- Hero Section -->
     <div class="position-relative">

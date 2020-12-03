@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Danh sách báo cáo")
 @section('content')
 
 <div class="card shadow mb-4">
@@ -17,29 +17,31 @@
         <th scope="col">Người bị báo cáo</th>
         <th scope="col">Loại báo cáo</th>
         <th scope="col">Xem</th>
-        <th scope="col">Xử lý</th>
+        {{-- <th scope="col">Xử lý</th> --}}
       </tr>
     </thead>
     <tbody>
         @foreach($reports as $report)
+       
         <tr>
         <th>{{$report->id}}</th>
-        <td>{{$report->Post->name}}</td>
+        <td> @if($report->post_id != NULL){{$report->Post->name}} @endif</td>
         <th>{{$report->reason}}</th>
         <td>{{$report->Reporter->fullname}}</td>
-        <td>{{App\Models\Users::find($report->Post->author_id)->fullname}}</td>
+        <td> @if($report->post_id != NULL){{App\Models\Users::find($report->Post->author_id)->fullname}} @endif</td>
         <td> <span class="badge badge-success">{{$report->type}}</span></td>
         <td>
-        <a type="submit" class="btn btn-primary btn-sm d-inline" href="{{url('post', $report->Post->slug)}}">Xem</a>
+        <a type="submit" class="btn btn-primary btn-sm d-inline" href="@if($report->post_id != NULL){{url('post', $report->Post->slug)}} @endif">Xem</a>
         </td>
-        <td>
+        {{-- <td>
             <form class="d-inline" action="" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger btn-sm d-inline" onclick="return confirm('bạn có chắc muốn xóa');">Xử lý</button>
             </form>
-            </td>
+            </td> --}}
         </tr>
+       
           @endforeach
     </tbody>
   </table>

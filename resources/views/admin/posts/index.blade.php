@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Danh sách bài viết")
 @section('content')
 
     @if (session()->get('success'))

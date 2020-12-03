@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Danh sách người dùng")
 @section('content')
 
 @if(session()->get('success'))

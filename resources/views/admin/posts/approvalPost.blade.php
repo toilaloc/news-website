@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Phê duyệt bài viết")
 @section('content')
 @if ($errors->any())
 <div class="alert alert-danger">

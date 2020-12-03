@@ -9,6 +9,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="@yield('keywords')">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('frontend/assets/favicon.ico')}}">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

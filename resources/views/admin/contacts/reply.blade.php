@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Trả lời liên hệ")
 @section('content')
 
     @if (session()->get('success'))

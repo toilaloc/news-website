@@ -1,5 +1,5 @@
 @extends('admin.layouts.index')
-
+@section('title', "Quản lý từ khóa")
 @section('content')
 
 <div class="card shadow mb-4">

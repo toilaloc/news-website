@@ -1,5 +1,5 @@
 @extends('frontend.layouts.others.index')
-@section('title', $user->fullname)
+@section('title', "Thông tin tài khoản ". $user->fullname)
 @section('content')
     <!-- Breadcrumb Section -->
     <div class="bg-navy" style="background-image: url({{asset('frontend/assets/svg/components/abstract-shapes-20.svg')}});">

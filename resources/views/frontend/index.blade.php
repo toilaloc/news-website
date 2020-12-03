@@ -1,6 +1,8 @@
 
 @extends('frontend.layouts.index')
-
+@section('title', 'F8News - Trang tin tức tổng hợp chính xác và uy tín')
+@section('description', 'F8News là Trang tin tức phi lợi nhuận. Với mục đích đem lại tin tức chính xác và cập nhật cho mọi người dân.')
+@section('keywords', 'f8news, tin tức mới, đọc tin tức, đọc báo online, đọc tin tức nhanh, báo mạng, đọc báo mạng')
 @section('content')
 <!-- Hero Section -->
 <div class="position-relative">

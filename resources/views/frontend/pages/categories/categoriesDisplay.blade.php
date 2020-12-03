@@ -1,5 +1,7 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', 'Danh mục '.$category->name)
+@section('description', $category->description)
+@section('keywords', $category->name)
 @section('content')
  <!-- Hero Section -->
 <input type="hidden" name="ajaxLoadPostCategory" value="{{route('load.postCategory')}}" />

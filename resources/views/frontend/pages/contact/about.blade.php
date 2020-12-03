@@ -1,11 +1,11 @@
 @extends('frontend.layouts.others.index')
-
+@section('title', 'F8News - Giới thiệu')
 @section('content')
     <!-- Hero Section -->
     <div class="container space-top-3 space-top-lg-2 space-bottom-2">
         <div class="w-lg-80 text-center mx-lg-auto">
             <div class="mb-5 mb-md-11">
-                <h1 class="display-4">About Us</h1>
+                <h1 class="display-4">Về chúng tôi</h1>
                 <p class="lead">Fnews là một website tin tức. Cập nhật nhanh các tin tức mới nhất trong ngày ở trong và ngoài nước đem đến cho người đọc những tin tức chính xác và nhanh chóng. </p>
             </div>
         </div>

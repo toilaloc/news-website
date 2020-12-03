@@ -1,6 +1,6 @@
 
 @extends('frontend.layouts.others.index')
-
+@section('title', "Kết quả tìm kiếm từ khóa ".$key)
 @section('content')
 <!-- Hero Section -->
 <div class="container space-2 space-lg-3">
@@ -16,7 +16,7 @@
             <div class="row mb-2 pb-2 border-bottom">
                 <div class="col-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 px-md-2 mb-3 mb-md-0">
                     <div class="position-relative">
-                        <a href="course-description.html">
+                        <a href="{{url('post',$post->slug)}}">
                         <img class="img-fluid w-100" src="{{asset('uploads/posts/thumbnail')}}/{{$post->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
                         </a>
                     </div>
