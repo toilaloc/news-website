@@ -68,17 +68,11 @@
                         <div class="d-flex align-items-center">
                             <span class="d-block small font-weight-bold text-cap mr-2">Share:</span>
 
-                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                        <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="https://www.facebook.com/sharer/sharer.php?u={{url('post', $post->slug)}}">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
+                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="https://twitter.com/intent/tweet?url={{url('post', $post->slug)}}">
                                 <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a class="btn btn-xs btn-icon btn-ghost-secondary rounded-circle mr-2" href="#">
-                                <i class="fab fa-telegram"></i>
                             </a>
                         </div>
                     </div>
