@@ -16,7 +16,14 @@
                 </div>
             </div>
 
-            <p style="margin-bottom: 0rem">{{ $subComment->content }}</p>
+            <p style="margin-bottom: 0rem">{{ $subComment->content }}
+                @if(Auth::check())
+                <span class="ml-3 d-flex flex-row-reverse">
+                    <a class="text-muted report-comment" data-id="{{$subComment->id}}" href="javascript:;" data-toggle="modal" data-target="#exampleModalReportComment" href="javascript:;" data-toggle="tooltip"
+                        data-placement="top" title="Report story"><i class="far fa-flag text-body mr-1"></i></a>
+                </span> 
+                @endif
+            </p>
 
         <button class="font-weight-bold btn reply-button" style="padding: 0rem 0rem" id="replyComment" data-idCmt="{{$subComment->id}}" data-authorReply="{{$subComment->Author->fullname}}">Trả lời</button>
         </div>    

@@ -16,7 +16,15 @@
             
         </div>
 
-        <p style="margin-bottom: 0rem">{{ $subReply->content }}</p>
+        <p style="margin-bottom: 0rem">{{ $subReply->content }}
+            @if(Auth::check())
+            <span class="ml-3 d-flex flex-row-reverse">
+                <a class="text-muted report-comment"  data-id="{{$subReply->id}}" href="javascript:;" data-toggle="modal" data-target="#exampleModalReportComment" href="javascript:;" data-toggle="tooltip"
+                    data-placement="top" title="Report story"><i class="far fa-flag text-body mr-1"></i></a>
+                </span>
+                @endif
+        </p>
+
         <div class="card bg-light shadow-none p-3 mt-4">
             <div class="media">
               <div class="media-body">
