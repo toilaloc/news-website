@@ -53,12 +53,12 @@
     <!-- End Breadcrumb Section -->
 
 
-  
+
 
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
         @if ($errors->any())
         @foreach ($errors->all() as $error)
-<div class="alert alert-danger alert-dismissible fade show" role="alert">   
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
     {{ $error}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +77,7 @@
               </svg>
             </button>
           </div>
-          @endif   
+          @endif
         <div class="row">
             <div class="col-lg-3">
                 <!-- Navbar -->
@@ -89,7 +89,11 @@
                                 <!-- Avatar -->
                                 <div class="d-none d-lg-block text-center mb-5">
                                     <div class="avatar avatar-xxl avatar-circle mb-3">
-                                    <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{$user->thumbnail}}" alt="{{$user->fullname}}">
+                                        @if (Str::substr(Auth::user()->username, 5, 8) == 'facebook' || Str::substr(Auth::user()->username, 5, 6) == 'google' )
+                                            <img class="avatar-img w-100" src="{{Auth::user()->thumbnail}}"  alt="{{$user->fullname}}">
+                                        @else
+                                            <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}"  alt="{{$user->fullname}}">
+                                        @endif
                                         <img class="avatar-status avatar-lg-status" src="{{asset('frontend/assets/svg/illustrations/top-vendor.svg')}}" data-toggle="tooltip" data-placement="top" title="Verified user">
                                     </div>
 
@@ -117,7 +121,7 @@
                                             <i class="fas fa-chart-line nav-icon"></i> Hoạt động
                                         </a>
                                     </li>
-    
+
                                 </ul>
                                 <!-- End List -->
 
@@ -196,7 +200,7 @@
                                  }'>
                                             </div>
 
-                                         
+
                                         </div>
                                     </div>
                                 </div>
@@ -302,8 +306,8 @@
                             <!-- End Form Group -->
 
                             <!-- Form Group -->
-        
-                        
+
+
                     </div>
                     <!-- End Body -->
 
@@ -334,7 +338,7 @@
                                     <span class="d-block font-size-1 mb-2">Ai có thể xem ảnh hồ sơ của bạn? <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="Your visibility setting only applies to your profile photo. Your header image is always visible to anyone."></i></span>
                                 </div>
  <input type="hidden" name="ajaxLoadStatus" value="{{route('ajax.loadStatus')}}" />
-                                      
+
                                 <div class="col-sm-9 resDataStatus">
                                     <!-- Select -->
                                     <div class="select2-custom">

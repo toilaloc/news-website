@@ -76,7 +76,7 @@
                     Đăng nhập bằng Facebook
                 </span>
             </a>
-            <a class="btn btn-sm btn-ghost-secondary btn-block mb-2" href="#">
+            <a class="btn btn-sm btn-ghost-secondary btn-block mb-2" href="login/google">
                 <span class="d-flex justify-content-center align-items-center">
                 <img class="mr-2" src="{{asset('img/google.svg')}}" alt="Image Description" width="14"
                         height="14">

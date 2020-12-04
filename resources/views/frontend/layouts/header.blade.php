@@ -127,7 +127,11 @@
                         <div class="card-header p-4">
                           <a class="media align-items-center" href="#">
                             <div class="avatar mr-3">
-                            <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}" alt="Image Description">
+                                @if (Str::substr(Auth::user()->username, 5, 8) == 'facebook' || Str::substr(Auth::user()->username, 5, 6) == 'google' )
+                                    <img class="avatar-img w-100" src="{{Auth::user()->thumbnail}}" alt="Image Description">
+                                @else
+                                    <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}" alt="Image Description">
+                                @endif
                             </div>
                             <div class="media-body">
                             <span class="d-block font-weight-bold">{{Auth::user()->fullname}} <span class="badge badge-success ml-1">@foreach(Auth::user()->Roles as $role) {{$role->name}} @endforeach</span></span>
