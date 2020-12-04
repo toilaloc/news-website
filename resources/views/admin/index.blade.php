@@ -218,6 +218,15 @@
             </div>
           </div>
 
+          <style>
+            .mod-avatar {
+              position: relative;
+              display: inline-block;
+              width: 2.625rem;
+              height: 2.625rem;
+              border-radius: .3125rem;
+            }
+          </style>
           <!-- Content Row -->
           <div class="row">
 
@@ -229,7 +238,17 @@
                   <h6 class="m-0 font-weight-bold text-primary">Bài viết mới</h6>
                 </div>
                 <div class="card-body">
-                  
+                  @foreach($newPosts as $newPost)
+                  <div class="mb-2 border-bottom pb-2">
+                  <a class="d-flex align-items-center" href="{{url('post',$newPost->slug)}}">
+                      <img class="mod-avatar" src="{{asset('uploads/posts/thumbnail/'.$newPost->thumbnail)}}" alt="Image Description">
+                      <div class="ml-3">
+                        <span style="font-size: .875rem; color: #1e2022;" class="d-block h5 text-hover-primary mb-0">{{$newPost->name}} <i class="tio-verified text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Earned extra bonus"></i></span>
+                        <span style="color: #677788!important; font-size: .8125rem;" class="d-block font-size-sm text-body">Đăng vào {{$newPost->created_at}}</span>
+                      </div>
+                    </a>
+                  </div>
+                  @endforeach
                 </div>
               </div>
 
@@ -238,8 +257,19 @@
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Bình luận mới</h6>
                 </div>
-                <div class="card-body">
-                  
+                <div class="card-body pt-0">
+                  <div class="my-3 p-2 bg-white rounded box-shadow">
+                    
+                    @foreach($newComments as $newComment)
+                    <div class="media text-muted">
+                    <img data-src="{{asset('uploads/users/'.$newComment->Author->thumbnail)}}" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="{{asset('uploads/users/'.$newComment->Author->thumbnail)}}" data-holder-rendered="true">
+                      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <strong class="d-block text-gray-dark">{{$newComment->Author->fullname}}</strong>
+                        <em>"{{$newComment->content}}"</em> - vào {{$newComment->created_at}}
+                      </p>
+                    </div>
+                    @endforeach
+                  </div>
                 </div>
               </div>
 
@@ -252,8 +282,21 @@
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Người dùng mới</h6>
                 </div>
-                <div class="card-body">
-                  
+                <div class="card-body pt-0">
+                  <div class="my-3 p-3 bg-white rounded box-shadow">
+                    @foreach($newUsers as $newUser)
+                    <div class="media text-muted ">
+                    <img data-src="{{asset('uploads/users/'.$newUser->thumbnail)}}" alt="32x32" class="mr-2 rounded" src="{{asset('uploads/users/'.$newUser->thumbnail)}}" data-holder-rendered="true" style="width: 32px; height: 32px;">
+                      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">{{$newUser->fullname}}</strong>
+                        <a href="{{url('author', $newUser->username)}}">Xem trang cá nhân</a>
+                        </div>
+                      <span class="d-block">{{"@"}}{{$newUser->username}}</span>
+                      </div>
+                    </div>
+                    @endforeach
+                  </div>
                 </div>
               </div>
 
@@ -263,7 +306,16 @@
                   <h6 class="m-0 font-weight-bold text-primary">Báo cáo mới</h6>
                 </div>
                 <div class="card-body">
-               
+                  <ul class="list-group">
+                   @foreach($newReports as $newReport)
+                  <li class="list-group-item">
+                    <a href="{{url('author',$newReport->Reporter->username)}}">{{$newReport->Reporter->fullname}}</a> đã report 
+                    @if(isset($newReport->post_id) && $newReport->type == "post") {{"bài viết"}} "<a href="{{url('post',$newReport->Post->slug)}}">{{$newReport->Post->name}}</a>" @endif
+                    @if(isset($newReport->user_id) && $newReport->type == "user") {{"người dùng"}} {{$newReport->User->fullname}} @endif
+                    @if(isset($newReport->comment_id) && $newReport->type == "comment") {{"bình luận"}} "{{$newReport->reportComment->content}}" @endif
+                  </li>
+                  @endforeach
+                  </ul>
                 </div>
               </div>
 

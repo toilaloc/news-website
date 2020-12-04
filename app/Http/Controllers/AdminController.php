@@ -17,6 +17,10 @@ class AdminController extends Controller
         $user = Users::all();
         $post = Posts::all();
         $comment = Comments::all();
+        $newComments = Comments::orderBy('created_at', 'DESC')->take(5)->get();
+        $newUsers = Users::orderBy('created_at', 'DESC')->take(5)->get();
+        $newPosts = Posts::orderBy('created_at', 'DESC')->take(5)->get();
+        $newReports = Report::orderBy('created_at', 'DESC')->take(5)->get();
         $myComment = Comments::where('user_id', $currentUser)->get();
         $report = Report::all();
         $myPosts = Posts::where('author_id', $currentUser)->get();
@@ -30,7 +34,11 @@ class AdminController extends Controller
             'myPosts',
             'myPostApprovaling',
             'myReposts',
-            'myComment'
+            'myComment',
+            'newComments',
+            'newUsers',
+            'newPosts',
+            'newReports'
         ));
     }
 }
