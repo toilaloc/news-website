@@ -63,9 +63,12 @@ Route::get('/tag/{slug}', 'TagsController@show');
 Route::post('post_vote', 'PostsController@post_vote');
 
 //LOGIN FACEBOOK
-Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
-Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/facebook', 'Auth\LoginController@redirectToFacebook');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
 
+//LOGIN GOOGLE
+Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 // ADD COMMENT
 Route::post('add-comment', 'ComponentsController@storeComment')->name('components.storeComment');
