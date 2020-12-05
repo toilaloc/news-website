@@ -12,9 +12,11 @@ use App\Models\Subcribe;
 use App\Models\Tags;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Mail\SendNotification;
 use Illuminate\Notifications\Notification;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PostsController extends Controller
 {
@@ -26,13 +28,13 @@ class PostsController extends Controller
 
     public function __construct()
     {
-       
-       $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet')->except(['create','show','getSlug', 'store', 'myPost', 'edit', 'update']);
+
+        $this->middleware('checkpermissions:quan-ly-bai-viet,them-bai-viet,quan-ly-bai-viet,sua-bai-viet,xoa-bai-viet')->except(['create', 'show', 'getSlug', 'store', 'myPost', 'edit', 'update']);
     }
 
     public function index()
     {
-        $posts = Posts::orderBy('id', 'DESC')->where('status','<>',1)->get();
+        $posts = Posts::orderBy('id', 'DESC')->where('status', '<>', 1)->get();
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -57,7 +59,7 @@ class PostsController extends Controller
             'user_id' => $request->user_id,
             'rate' => $request->star,
         ]);
-        
+
         return "success";
     }
     /**
@@ -92,14 +94,14 @@ class PostsController extends Controller
             $thumbnail = "default.png";
         }
 
-        foreach(Auth::user()->Roles as $role) {
-        if($role->id == 3 && $role->id != 4){
-            $status = 1;                                                  
-        }else{
-            $status = 0;
+        foreach (Auth::user()->Roles as $role) {
+            if ($role->id == 3 && $role->id != 4) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
         }
-        }                               
-                   
+
 
         $post = new Posts();
         $post->name = $request->name;
@@ -131,28 +133,29 @@ class PostsController extends Controller
             $post->Tags()->sync($tagIds);
         }
 
-        $sub = Subcribe::where('author_id',Auth::id())->get();
+        $sub = Subcribe::where('author_id', Auth::id())->get();
+
+        $data = [
+            'link' => $request->slug,
+            'name' => $request->name,
+            'author' =>  Auth::user()->name,
+        ];
         foreach ($sub as $value) {
-
-            Mail::to($value->email)->send('mail.SendNotification',[
-                'link'=>'http://127.0.0.1:8000/post/'.$request->slug,
-                'author'=>Auth::user()->name
-            ]);
-
+            Mail::to($value->email)->send(new SendNotification($data));
         }
 
-        foreach(Auth::user()->Roles as $role) {
-            if($role->id == 3){
-        return redirect()->route('posts.mypost')->with('success', 'Thêm tin tức thành công');
-            }
-            else {
+        foreach (Auth::user()->Roles as $role) {
+            if ($role->id == 3) {
+                return redirect()->route('posts.mypost')->with('success', 'Thêm tin tức thành công');
+            } else {
                 return redirect()->route('posts.index')->with('success', 'Thêm tin tức thành công');
             }
         }
     }
 
 
-    public function myPost(){
+    public function myPost()
+    {
         Carbon::setLocale('vi');
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $myposts = Posts::where('author_id', Auth::user()->id)->get();
@@ -177,35 +180,35 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
-    {   
-        
+    {
+
         Carbon::setLocale('vi');
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
-        $post = Posts::where('slug', $slug)->firstOrFail(); 
+        $post = Posts::where('slug', $slug)->firstOrFail();
         $authorId = $post->author_id;
 
 
-       $postsCountView = Posts::where('slug', $slug)->firstOrFail();
-       event(new ViewsCounter($postsCountView));
+        $postsCountView = Posts::where('slug', $slug)->firstOrFail();
+        event(new ViewsCounter($postsCountView));
 
-        
+
         $postNew = Posts::take(5)->orderBy('id', 'DESC')->get();
-        $hotPosts = Posts::where('view','>','0')->take(5)->get();
+        $hotPosts = Posts::where('view', '>', '0')->take(5)->get();
 
-         foreach($post->Categories as $category){
-          $categoryId = $category["id"];
-          $relaPost = Posts::whereHas('Categories', function($query) use ($categoryId) {
-            $query->where('id','=', $categoryId);
-          })->get();
-         }
-         
-        $postAuthor = Posts::where('author_id','=',$authorId)->take(3)->get();
+        foreach ($post->Categories as $category) {
+            $categoryId = $category["id"];
+            $relaPost = Posts::whereHas('Categories', function ($query) use ($categoryId) {
+                $query->where('id', '=', $categoryId);
+            })->get();
+        }
+
+        $postAuthor = Posts::where('author_id', '=', $authorId)->take(3)->get();
         return view('frontend.pages.posts.postDisplay', compact(
             'post',
             'dateTime',
             'postNew',
             'hotPosts',
-            'relaPost', 
+            'relaPost',
             'postAuthor'
         ));
     }
@@ -222,23 +225,22 @@ class PostsController extends Controller
         $postEditing = Posts::find($id);
 
 
-        foreach(Auth::user()->Roles as $role) {
+        foreach (Auth::user()->Roles as $role) {
 
-        // Nếu là tác giả của bài viết đó thì được sửa    
-        if(Auth::user()->id == $postEditing->author_id){
-            return view('admin.posts.edit', compact('postEditing', 'categories'));
-        }
+            // Nếu là tác giả của bài viết đó thì được sửa
+            if (Auth::user()->id == $postEditing->author_id) {
+                return view('admin.posts.edit', compact('postEditing', 'categories'));
+            }
 
-        // Còn nếu là admin hoặc quản lý vẫn vào sửa được
-        else if($role->id == 1 || $role->id == 2){
-            return view('admin.posts.edit', compact('postEditing', 'categories'));
+            // Còn nếu là admin hoặc quản lý vẫn vào sửa được
+            else if ($role->id == 1 || $role->id == 2) {
+                return view('admin.posts.edit', compact('postEditing', 'categories'));
+            }
+            // Còn không thì return về trang 401
+            else {
+                return view('errors.401');
+            }
         }
-        // Còn không thì return về trang 401
-        else {
-            return view('errors.401');
-        }
-        }
-       
     }
 
     /**
@@ -306,15 +308,15 @@ class PostsController extends Controller
             'reviewer' => $reviewer,
         ]);
 
-        if(empty($postUpdate->author_id)){
+        if (empty($postUpdate->author_id)) {
             return view('errors.404');
         }
 
 
-        foreach(Auth::user()->Roles as $role) {
+        foreach (Auth::user()->Roles as $role) {
 
-            // Nếu là tác giả của bài viết đó thì được sửa    
-            if(Auth::user()->id == $postUpdate->author_id){
+            // Nếu là tác giả của bài viết đó thì được sửa
+            if (Auth::user()->id == $postUpdate->author_id) {
                 if ($newUpdate) {
                     $resolveTags = str_replace("                                        ", "", $request->tagUpdate);
                     $tagNames = explode(',', $resolveTags);
@@ -334,14 +336,14 @@ class PostsController extends Controller
                     }
                     $postUpdate->Tags()->sync($tagIds);
                 }
-        
+
                 $postUpdate->Categories()->sync($request->input('categories_id', []));
-        
+
                 return redirect()->route('posts.mypost')->with('success', 'Cập nhật tin tức thành công');
             }
-    
+
             // Còn nếu là admin hoặc quản lý vẫn vào sửa được
-            else if($role->id == 1 || $role->id == 2){
+            else if ($role->id == 1 || $role->id == 2) {
                 if ($newUpdate) {
                     $resolveTags = str_replace("                                        ", "", $request->tagUpdate);
                     $tagNames = explode(',', $resolveTags);
@@ -361,16 +363,16 @@ class PostsController extends Controller
                     }
                     $postUpdate->Tags()->sync($tagIds);
                 }
-        
+
                 $postUpdate->Categories()->sync($request->input('categories_id', []));
-        
+
                 return redirect()->route('posts.index')->with('success', 'Cập nhật tin tức thành công');
             }
             // Còn không thì return về trang 401
             else {
                 return view('errors.401');
             }
-            }
+        }
 
         // Add = attach
         // Delete = detach
@@ -395,14 +397,16 @@ class PostsController extends Controller
         }
     }
 
-    public function approvalPost(){
+    public function approvalPost()
+    {
         Carbon::setLocale('vi');
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
         $approvalPosts = Posts::all()->where('status', '<>', 0);
-        return view('admin.posts.approvalPost', compact('approvalPosts','dateTime'));
+        return view('admin.posts.approvalPost', compact('approvalPosts', 'dateTime'));
     }
 
-    public function resolvedApprovalPost(Request $request, $id){
+    public function resolvedApprovalPost(Request $request, $id)
+    {
 
         $approvalPost = Posts::findOrFail($id);
 
@@ -422,16 +426,16 @@ class PostsController extends Controller
         ]);
 
 
-            $thumbnail = $approvalPost->thumbnail;
+        $thumbnail = $approvalPost->thumbnail;
 
         // điều kiện ? đúng : sai
-         $name = $approvalPost->name;
+        $name = $approvalPost->name;
         $content = $approvalPost->content;
-       $slug = $approvalPost->slug;
+        $slug = $approvalPost->slug;
         $vote = $approvalPost->vote;
-       $date = $approvalPost->date;
+        $date = $approvalPost->date;
         $view = $approvalPost->view;
-         $desc = $approvalPost->desc;
+        $desc = $approvalPost->desc;
         $endThumbnail = $thumbnail;
         $status = 0;
         $authorId = $approvalPost->author_id;
@@ -455,9 +459,5 @@ class PostsController extends Controller
             event(new NotificationPosting($approvalPost));
             return back()->with('success', 'Đã duyệt bài');
         }
-
-
-
-      
     }
 }
