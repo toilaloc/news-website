@@ -117,7 +117,11 @@
                         "hideOnScroll": "true"
                        }'>
                       <span class="avatar avatar-xs avatar-circle">
-                        <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}" alt="Image Description">
+                        @if (Str::substr(Auth::user()->username, 5, 8) == 'facebook' || Str::substr(Auth::user()->username, 5, 6) == 'google' )
+                            <img class="avatar-img w-100" src="{{Auth::user()->thumbnail}}" alt="Image Description">
+                        @else
+                            <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}" alt="Image Description">
+                        @endif
                       </span>
                     </a>
 
@@ -335,7 +339,7 @@
                                                       </ul>
                                                     </div>
                                                     <!-- End Nav -->
-                                                    
+
                                                     <!-- Tab Content -->
                                                     <div class="tab-content">
                                                       <div class="tab-pane fade show active" id="pills-one-code-features-example1" role="tabpanel" aria-labelledby="pills-one-code-features-example1-tab">
@@ -373,12 +377,12 @@
                                                   @endforeach
                                                   @endif
                                                       </div>
-                                                    
+
                                                       <div class="tab-pane fade" id="pills-two-code-features-example1" role="tabpanel" aria-labelledby="pills-two-code-features-example1-tab">
                                                         @if($notifications->count() == 0)
                                                           {{"Chưa có thông báo mới"}}
                                                          @else
-                  
+
                                                          @foreach($notifications as $notification)
                                                          @foreach($notification->User()->get() as $newNotif)
                                                                @if(isset($newNotif->id))
@@ -408,9 +412,9 @@
                                                              @endif
                                                              @endforeach
                                                              @endforeach
-                  
+
                                                     <!-- end thông báo cá nhân -->
-                  
+
                                                     @foreach($notifications as $notification)
                                                         @foreach($notification->User()->get() as $newNotif)
                                                            @if(isset($notification->Post->author_id))
@@ -445,12 +449,12 @@
                                                              @endif
                                                              @endforeach
                                                              @endforeach
-                  
-                  
+
+
                                                   @endif
-                  
+
                                          </div>
-                                       
+
                                          <div class="tab-pane fade" id="pills-three-code-features-example1" role="tabpanel" aria-labelledby="pills-three-code-features-example1-tab">
                                           @if($notifications->count() == 0)
                                           {{"Chưa có thông báo mới"}}
@@ -460,7 +464,7 @@
                                           @if($notification->type == "comment")
                                           {{-- Nếu user đang online == user bị report thì hiện thông báo --}}
                                             @if($notification->reportComment->user_id == Auth::id())
-                  
+
                                                 <div class="media border-bottom" href="javascript:;">
                                                  <div class="mt-1 mr-3">
                                                    <div class="avatar">
@@ -487,13 +491,13 @@
                                                {{-- @endforeach
                                                @endif --}}
                                                @endforeach
-                  
+
                                           @endif
                                          </div>
                                        </div>
-                  
+
                                      </div>
-                  
+
                                      <div class="card-footer text-center py-3">
                                        <a class="font-size-1" href="javascript:;">
                                          Xem thêm
