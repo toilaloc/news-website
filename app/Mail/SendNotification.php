@@ -16,9 +16,9 @@ class SendNotification extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -26,7 +26,7 @@ class SendNotification extends Mailable
      *
      * @return $this
      */
-    public function build($data)
+    public function build()
     {
         return $this->view('mail.SendNotification');
     }
