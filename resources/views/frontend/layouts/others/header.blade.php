@@ -113,9 +113,9 @@
                              }'>
                             <span class="avatar avatar-xs avatar-circle">
                                 @if (Str::substr(Auth::user()->username, 5, 8) == 'facebook' || Str::substr(Auth::user()->username, 5, 6) == 'google' )
-                                <img class="avatar-img w-100" src="{{Auth::user()->thumbnail}}"  alt="{{$user->fullname}}">
+                                <img class="avatar-img w-100" src="{{Auth::user()->thumbnail}}" >
                             @else
-                                <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}"  alt="{{$user->fullname}}">
+                                <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}" >
                             @endif
                             </span>
                           </a>
@@ -126,11 +126,12 @@
                               <div class="card-header p-4">
                                 <a class="media align-items-center" href="#">
                                   <div class="avatar mr-3">
+
                                     @if (Str::substr(Auth::user()->username, 5, 8) == 'facebook' || Str::substr(Auth::user()->username, 5, 6) == 'google' )
-                                    <img class="avatar-img w-100" src="{{Auth::user()->thumbnail}}"  alt="{{$user->fullname}}">
-                                @else
-                                    <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}"  alt="{{$user->fullname}}">
-                                @endif
+                                        <img class="avatar-img w-100" src="{{Auth::user()->thumbnail}}"  >
+                                    @else
+                                        <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}" >
+                                     @endif
                                   </div>
                                   <div class="media-body">
                                     <span class="d-block font-weight-bold">{{Auth::user()->fullname}} <span class="badge badge-success ml-1">@foreach(Auth::user()->Roles as $role) {{$role->name}} @endforeach</span></span>
