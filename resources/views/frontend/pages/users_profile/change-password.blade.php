@@ -47,7 +47,7 @@
     <div class="container space-1 space-top-lg-0 mt-lg-n10">
         @if ($errors->any())
         @foreach ($errors->all() as $error)
-<div class="alert alert-danger alert-dismissible fade show" role="alert">   
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
     {{ $error}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <svg aria-hidden="true" class="mb-0" width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@
               </svg>
             </button>
           </div>
-          @endif   
+          @endif
           @if(session()->get('danger'))
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
               {{ session()->get('danger') }}
@@ -76,7 +76,7 @@
                 </svg>
               </button>
             </div>
-            @endif   
+            @endif
         <div class="row">
             <div class="col-lg-3">
                 <!-- Navbar -->
@@ -107,16 +107,11 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                    <a class="nav-link" href="{{url('/change-password',$user->username)}}">
-                                            <i class="fas fa-shield-alt nav-icon"></i> Đổi mật khẩu
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
                                     <a class="nav-link" href="{{url('author',$user->username)}}">
                                             <i class="fas fa-chart-line nav-icon"></i> Hoạt động
                                         </a>
                                     </li>
-    
+
                                 </ul>
                                 <!-- End List -->
 

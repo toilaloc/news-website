@@ -27,11 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         // Sẽ viết lại vì vi phạm DRY
         Carbon::setLocale('vi');
         $dateTime  = Carbon::now('Asia/Ho_Chi_Minh');
-       
+
         // Tin nóng bên trái
         $breakingNewsLeft = Categories::find(6);
         $slugLeft = $breakingNewsLeft->slug;
@@ -99,7 +98,7 @@ class HomeController extends Controller
           $query->whereSlug($slugTSH)->where('status', '<>', 1);;
         })->skip(1)->take(3)->orderBy('id', 'DESC')->get();
 
-       
+
         // ****  Tác Giả   **** //
         $idTacGia = 13;
         $tinTacGia = Categories::find($idTacGia);
@@ -130,12 +129,12 @@ class HomeController extends Controller
 
         $hotPosts = Posts::where('view','>','0')->take(5)->get();
         return view('frontend.index', compact(
-          'breakingNewsLeft', 
-          'breakingNewsCenter', 
-          'breakingNewsRight', 
-          'getAllSubCate', 
-          'getSubTinGiaiTri', 
-          'tinTongHop', 
+          'breakingNewsLeft',
+          'breakingNewsCenter',
+          'breakingNewsRight',
+          'getAllSubCate',
+          'getSubTinGiaiTri',
+          'tinTongHop',
           'dateTime',
           'firstXuatBan',
           'lastXuatBan',

@@ -1,14 +1,14 @@
 <div class="container space-top-1 space-top-sm-2 space-bottom-2">
     <div class="row">
-      <div id="stickyBlockStartPoint" class="col-md-5 col-lg-4 mb-7 mb-md-0"  style="top: 0px !important; z-index:9999 !important;">
+      <div id="stickyBlockStartPoint" class="col-md-5 col-lg-4 mb-7 mb-md-0"  style="top: 0px !important; z-index:9 !important;">
         <div class="js-sticky-block card border p-4"
              data-hs-sticky-block-options='{
                "parentSelector": "#stickyBlockStartPoint",
                "breakpoint": "md",
                "startPoint": "#stickyBlockStartPoint",
                "endPoint": "#stickyBlockEndPoint",
-               "stickyOffsetTop": -120,
-               "stickyOffsetBottom": -120
+               "stickyOffsetTop": 30,
+               "stickyOffsetBottom": 0
              }'>
 
           <div class="text-center">
@@ -17,7 +17,7 @@
 
           <span class="d-block text-body font-size-1 mt-3">Tham gia kể từ {{$user->created_at->diffForHumans($dateTime)}}</span>
 
-          
+
             <!-- End User Content -->
           </div>
 
@@ -120,7 +120,7 @@
                         <h5 class="modal-title" id="staticBackdropLabel">Đang theo dõi</h5>
                       </div>
                       <div class="modal-body">
-                       @foreach($user->Following as $following)  
+                       @foreach($user->Following as $following)
                        @foreach(App\Models\Users::all()->where('id', $following->author_id) as $follow)
                        <div class="d-flex align-items-center mr-4">
                         <div class="avatar-group">
@@ -129,9 +129,9 @@
                           </span>
                         </div>
                         <span class="pl-2"><a class="link-underline" href="{{url('author', $follow->username)}}">{{$follow->fullname}}</a></span>
-                        
-                      </div> 
-                               @endforeach       
+
+                      </div>
+                               @endforeach
                         @endforeach
                       </div>
                       <div class="modal-footer">
@@ -147,7 +147,7 @@
                         <h5 class="modal-title" id="staticBackdropLabel">Người theo dõi</h5>
                       </div>
                       <div class="modal-body">
-                       @foreach($user->hasFollowers as $followers)  
+                       @foreach($user->hasFollowers as $followers)
                        @foreach(App\Models\Users::where('id',$followers->user_id)->get() as $follower)
                        <div class="d-flex align-items-center mr-4">
                         <div class="avatar-group">
@@ -156,8 +156,8 @@
                           </span>
                         </div>
                       <span class="pl-2"><a class="link-underline" href="{{url('author',$follower->username)}}">{{$follower->fullname}}</a></span>
-                      </div>     
-                         @endforeach      
+                      </div>
+                         @endforeach
                         @endforeach
                       </div>
                       <div class="modal-footer">
@@ -176,7 +176,7 @@
               <i class="far fa-flag mr-1"></i> Báo cáo vi phạm
             </a>
           </div>
-          
+
           <div id="modalReportUser" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalTopCoverTitle" aria-hidden="true" style="display: none; z-index: 1 !important;">
             <div class="modal-dialog modal-dialog-centered" role="document" style="z-index: 0 !important;">
               <div class="modal-content">
@@ -203,24 +203,24 @@
                 </div>
 
                 <div class="modal-body content-report">
-                
+
                     <div class="form-group">
                         <form action="{{route('reporting.store')}}" method="post">
                             @csrf
                             <input type="hidden" name="type" value="user" />
                         <input type="hidden" name="user_id" value="{{$user->id}}" />
                         <input type="hidden" name="reporter_id" value=" @if(Auth::check()){{Auth::user()->id}} @endif" />
-    
+
                         <label for="">Lý do báo cáo:</label>
                          <textarea id="my-textarea" class="form-control" name="reason" rows="3" required></textarea>
                     </div>
-                
+
                     <button type="submit" class="btn btn-sm btn-primary float-right send-report">Báo cáo</button>
                     </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                 
+
                 </div>
               </div>
             </div>
@@ -241,14 +241,13 @@
             </div>
           </div>
 
-        <p>{{$user->bio}}</p>
-
+        <p>{{Str::substr($user->bio, 0, 80) }}
           <!-- Read More - Collapse -->
-          <div class="collapse" id="collapseDescriptionSection">
-            <p>Over the course of her career she has developed a skill set in analyzing data and she hopes to use her experience in teaching and data science to help other people learn the power of programming the ability to analyze data, as well as present the data in clear and beautiful visualizations.</p>
-          </div>
+          <span class="collapse" id="collapseDescriptionSection">
+            {{Str::substr($user->bio, 80) }}
+          </span>
           <!-- End Read More - Collapse -->
-
+        </p>
           <!-- Link -->
           <a class="link link-collapse small font-size-1 font-weight-bold" data-toggle="collapse" href="#collapseDescriptionSection" role="button" aria-expanded="false" aria-controls="collapseDescriptionSection">
             <span class="link-collapse-default">Đọc thêm</span>
@@ -330,11 +329,11 @@
                   </div>
                     @endif
                     @endif
-           
-   
-  
+
+
+
          @endforeach
-        
+
           <!-- End Courses -->
                     @if($user->hasPosts->count() == 0)
                       <script>$('#readMorePost').hide();</script>

@@ -138,7 +138,11 @@
                                 @endif
                             </div>
                             <div class="media-body">
-                            <span class="d-block font-weight-bold">{{Auth::user()->fullname}} <span class="badge badge-success ml-1">@foreach(Auth::user()->Roles as $role) {{$role->name}} @endforeach</span></span>
+                            <span class="d-block font-weight-bold">
+                                <a href="{{ asset('user/' . Auth::user()->username) }}">
+                                {{Auth::user()->fullname}}
+                                </a>
+                                <span class="badge badge-success ml-1">@foreach(Auth::user()->Roles as $role) {{$role->name}} @endforeach</span></span>
                               <span class="d-block small text-muted">{{Auth::user()->email}}</span>
                             </div>
                           </a>
@@ -172,12 +176,7 @@
                           </a>
                           @endif
                           @endforeach
-                          <a class="dropdown-item px-0" href="#">
-                            <span class="dropdown-item-icon">
-                              <i class="fas fa-credit-card"></i>
-                            </span>
-                            Nhuận bút
-                          </a>
+
 
                           <div class="dropdown-divider"></div>
 

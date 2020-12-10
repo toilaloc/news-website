@@ -168,13 +168,6 @@
                           </a>
                           @endif
                           @endforeach
-                                <a class="dropdown-item px-0" href="#">
-                                  <span class="dropdown-item-icon">
-                                    <i class="fas fa-credit-card"></i>
-                                  </span>
-                                  Nhuận bút
-                                </a>
-
                                 <div class="dropdown-divider"></div>
 
                                 <a class="dropdown-item px-0" href="#">

@@ -26,7 +26,7 @@
                         <li class="nav-item">
                             <a class="nav-link media" href="tel:1-062-109-9222">
                   <span class="media">
-                    <span class="fas fa-phone-alt mt-1 mr-2"></span>  
+                    <span class="fas fa-phone-alt mt-1 mr-2"></span>
                      <span class="media-body" href="tel:0376637703">03 7663 7703</span>
                   </span>
                             </a>
@@ -42,7 +42,7 @@
                     <ul class="nav nav-sm nav-x-0 flex-column">
                         <li class="nav-item"><a class="nav-link" href="{{url('/frontend/about')}}">Về chúng tôi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{url('/frontend/contact')}}">Liên hệ </a></li>
-                       
+
                     </ul>
                     <!-- End Nav Link -->
                 </div>
@@ -53,8 +53,8 @@
                     <ul class="nav nav-sm nav-x-0 flex-column">
                         <li class="nav-item"><a class="nav-link" href="{{url('/frontend/faq')}}">Hỏi đáp</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{url('/frontend/term')}}">Điều khoản</a></li>
-                   
-                     
+
+
                     </ul>
                     <!-- End Nav Link -->
                 </div>
@@ -80,14 +80,6 @@
                   <span class="media align-items-center">
                     <i class="fa fa-info-circle mr-2"></i>
                     <span class="media-body">Báo cáo</span>
-                  </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                  <span class="media align-items-center">
-                    <i class="fa fa-user-circle mr-2"></i>
-                    <span class="media-body">Tài khoản của bạn</span>
                   </span>
                             </a>
                         </li>

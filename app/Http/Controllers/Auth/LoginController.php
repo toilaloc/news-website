@@ -49,7 +49,7 @@ class LoginController extends Controller
     }
     public function redirectToGoogle()
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('google')->redirect();
     }
     /**
      * Obtain the user information from GitHub.

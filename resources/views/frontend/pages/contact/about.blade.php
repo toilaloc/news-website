@@ -15,25 +15,25 @@
         <!-- Gallery Section -->
         <div class="row mx-n2">
             <div class="col-6 col-md px-2 mb-3">
-                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets//img/480x320/img17.jpg')}});"></div>
+                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets/img/img17.jpg')}});"></div>
             </div>
             <div class="col-md-3 d-none d-md-block px-2 mb-3">
-                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets//img/480x320/img6.jpg')}});"></div>
+                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets/img/img6.jpg')}});"></div>
             </div>
             <div class="col-6 col-md px-2 mb-3">
-                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets//img/480x320/img14.jpg')}});"></div>
+                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets/img/img14.jpg')}});"></div>
             </div>
 
             <div class="w-100"></div>
 
             <div class="col-6 col-md px-2 mb-3 mb-md-0">
-                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets//img/480x320/img25.jpg')}});"></div>
+                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets/img/img25.jpg')}});"></div>
             </div>
             <div class="col-md-4 d-none d-md-block px-2 mb-3 mb-md-0">
-                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets//img/480x320/img16.jpg')}});"></div>
+                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets/img/img16.jpg')}});"></div>
             </div>
             <div class="col-6 col-md px-2">
-                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets//img/480x320/img12.jpg')}});"></div>
+                <div class="h-250rem bg-img-hero" style="background-image: url({{asset('frontend/assets/img/img12.jpg')}});"></div>
             </div>
         </div>
         <!-- End Gallery Section -->
@@ -81,7 +81,7 @@
     </div>
     <!-- End Divider -->
 
-  
+
 
     <!-- Divider -->
     <div class="container">
@@ -106,7 +106,7 @@
                 <div class="card h-100 transition-3d-hover">
                     <div class="card-body">
                         <div class="avatar avatar-lg avatar-circle mb-4">
-                            <img class="avatar-img" src="{{asset('frontend/assets//img/100x100/img1.jpg')}}" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('frontend/assets/img/loc.jpg')}}" alt="Image Description">
                         </div>
 
                         <span class="d-block small font-weight-bold text-cap mb-1">NHÀ SÁNG LẬP / GIÁM ĐỐC ĐIỀU HÀNH</span>
@@ -118,7 +118,7 @@
                         <!-- Social Networks -->
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
-                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="#">
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.facebook.com/toilalocdabinguoikhacdathuhu">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                             </li>
@@ -144,7 +144,7 @@
                 <div class="card h-100 transition-3d-hover">
                     <div class="card-body">
                         <div class="avatar avatar-lg avatar-circle mb-4">
-                            <img class="avatar-img" src="{{asset('frontend/assets//img/100x100/img3.jpg')}}" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('frontend/assets/img/hoang.jpg')}}" alt="Image Description">
                         </div>
 
                         <span class="d-block small font-weight-bold text-cap mb-1">QUẢN LÝ DỰ ÁN</span>
@@ -156,7 +156,7 @@
                         <!-- Social Networks -->
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
-                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="#">
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.facebook.com/hoanglee217/">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                             </li>
@@ -182,7 +182,7 @@
                 <div class="card h-100 transition-3d-hover">
                     <div class="card-body">
                         <div class="avatar avatar-lg avatar-circle mb-4">
-                            <img class="avatar-img" src="{{asset('frontend/assets//img/100x100/img11.jpg')}}" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('frontend/assets/img/tuan.jpg')}}" alt="Image Description">
                         </div>
 
                         <span class="d-block small font-weight-bold text-cap mb-1">NGƯỜI THIẾT KẾ SẢN PHẨM</span>
@@ -194,7 +194,7 @@
                         <!-- Social Networks -->
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
-                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="#">
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.facebook.com/maiductuan15042k/">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                             </li>
@@ -220,7 +220,7 @@
                 <div class="card h-100 transition-3d-hover">
                     <div class="card-body">
                         <div class="avatar avatar-lg avatar-circle mb-4">
-                            <img class="avatar-img" src="{{asset('frontend/assets//img/100x100/img11.jpg')}}" alt="Image Description">
+                            <img class="avatar-img" src="{{asset('frontend/assets/img/nam.jpg')}}" alt="Image Description">
                         </div>
 
                         <span class="d-block small font-weight-bold text-cap mb-1">NGƯỜI THIẾT KẾ SẢN PHẨM</span>
@@ -232,7 +232,7 @@
                         <!-- Social Networks -->
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
-                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="#">
+                                <a class="btn btn-xs btn-icon btn-soft-secondary rounded" href="https://www.facebook.com/2TNam/">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
                             </li>
@@ -254,7 +254,7 @@
             </div>
         </div>
 
-     
+
     </div>
     <!-- End Team Section -->
 @endsection

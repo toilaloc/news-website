@@ -107,11 +107,6 @@
                                 <!-- List -->
                                 <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="javascript:;">
-                                            <i class="fas fa-id-card nav-icon"></i> Thông tin cá nhân
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
                                     <a class="nav-link" href="{{url('/change-password',$user->username)}}">
                                             <i class="fas fa-shield-alt nav-icon"></i> Đổi mật khẩu
                                         </a>
