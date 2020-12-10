@@ -84,7 +84,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="">
                   <span class="media align-items-center">
                     <i class="fa fa-user-circle mr-2"></i>
                     <span class="media-body">Tài khoản của bạn</span>
@@ -123,7 +123,7 @@
                     <ul class="list-inline mb-0">
                         <!-- Social Networks -->
                         <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-soft-secondary" href="#">
+                            <a class="btn btn-xs btn-icon btn-soft-secondary" target="blank" href="https://www.facebook.com/F8News-100133455314532/">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
