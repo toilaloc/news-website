@@ -59,11 +59,11 @@
                 <div id="intro" class="space-bottom-1">
                     <!-- Title -->
                     <div class="mb-3">
-                        <h2 class="h3">Chào mừng bạn đến với Fnews</h2>
+                        <h2 class="h3">Chào mừng bạn đến với F8news</h2>
                     </div>
                     <!-- End Title -->
 
-                    <p>Cảm ơn bạn đã sử dụng sản phẩm và dịch vụ của chúng tôi ("Dịch vụ"). Dịch vụ được cung cấp bởi Fnews. có địa chỉ tại 137 Nguyễn Thị Thập - Hòa Minh - Liên Chiểu - Đà Nẵng.
+                    <p>Cảm ơn bạn đã sử dụng sản phẩm và dịch vụ của chúng tôi ("Dịch vụ"). Dịch vụ được cung cấp bởi F8news. có địa chỉ tại 137 Nguyễn Thị Thập - Hòa Minh - Liên Chiểu - Đà Nẵng.
                     <p>Bằng cách sử dụng Dịch vụ của chúng tôi, bạn đồng ý với các điều khoản này. Hãy đọc chúng một cách cẩn thận.</p>
                     <p>Dịch vụ của chúng tôi rất đa dạng, vì vậy đôi khi có thể áp dụng các điều khoản bổ sung hoặc yêu cầu sản phẩm (bao gồm cả yêu cầu về độ tuổi). Các điều khoản bổ sung sẽ có sẵn với các Dịch vụ liên quan và các điều khoản bổ sung đó trở thành một phần trong thỏa thuận của bạn với chúng tôi nếu bạn sử dụng các Dịch vụ đó.</p>
                 </div>
@@ -88,7 +88,7 @@
                     <p>Dữ liệu Cá nhân là bất kỳ thông tin nào liên quan đến một cá nhân được xác định hoặc nhận dạng được. Dữ liệu Cá nhân mà bạn cung cấp trực tiếp cho chúng tôi thông qua Trang web của chúng tôi sẽ rõ ràng theo ngữ cảnh mà bạn cung cấp dữ liệu. Đặc biệt:</p>
 
                     <ul>
-                        <li class="pb-2">Khi bạn đăng ký tài khoản Fnews, chúng tôi sẽ thu thập họ tên, địa chỉ email và thông tin đăng nhập tài khoản của bạn.</li>
+                        <li class="pb-2">Khi bạn đăng ký tài khoản F8news, chúng tôi sẽ thu thập họ tên, địa chỉ email và thông tin đăng nhập tài khoản của bạn.</li>
                         <li class="pb-2">Khi bạn điền vào biểu mẫu trực tuyến của chúng tôi để liên hệ với nhóm bán hàng của chúng tôi, chúng tôi sẽ thu thập họ tên, email công việc, quốc gia của bạn và bất kỳ thông tin nào khác mà bạn cho chúng tôi biết về dự án, nhu cầu và tiến trình của bạn.</li>
                         <li class="pb-2">Khi bạn sử dụng tính năng "Ghi nhớ thông tin" của Front Checkout, chúng tôi sẽ thu thập địa chỉ email, số thẻ thanh toán, mã CVC và ngày hết hạn của bạn.</li>
                     </ul>

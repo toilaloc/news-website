@@ -8,7 +8,7 @@
         <div class="w-lg-80 text-center mx-lg-auto">
             <div class="mb-5 mb-md-11">
                 <h1 class="display-4">Về chúng tôi</h1>
-                <p class="lead">Fnews là một website tin tức. Cập nhật nhanh các tin tức mới nhất trong ngày ở trong và ngoài nước đem đến cho người đọc những tin tức chính xác và nhanh chóng. </p>
+                <p class="lead">F8news là một website tin tức. Cập nhật nhanh các tin tức mới nhất trong ngày ở trong và ngoài nước đem đến cho người đọc những tin tức chính xác và nhanh chóng. </p>
             </div>
         </div>
 
