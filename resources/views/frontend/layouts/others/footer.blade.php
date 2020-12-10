@@ -75,27 +75,16 @@
 
                     <!-- Nav Link -->
                     <ul class="nav nav-sm nav-x-0 flex-column">
-                    @if (Auth::check())
                         <li class="nav-item">
-                           
-                
-                 
+                            <a class="nav-link" href="#">
                   <span class="media align-items-center">
-                        <a class="nav-link" data-toggle="modal" data-target="#exampleModalTopCover" href="javascript:;" data-toggle="tooltip"
-                            data-placement="top" title="Report story">
-                           <i class="fa fa-info-circle mr-2"></i>
+                    <i class="fa fa-info-circle mr-2"></i>
                     <span class="media-body">Báo cáo</span>
-                        </a>
-                   
-                   
-                  
                   </span>
-                 
-
+                            </a>
                         </li>
-                        @endif
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('user', Auth::user()->username)}}">
+                            <a class="nav-link" href="#">
                   <span class="media align-items-center">
                     <i class="fa fa-user-circle mr-2"></i>
                     <span class="media-body">Tài khoản của bạn</span>
@@ -134,7 +123,7 @@
                     <ul class="list-inline mb-0">
                         <!-- Social Networks -->
                         <li class="list-inline-item">
-                            <a class="btn btn-xs btn-icon btn-soft-secondary" href="https://www.facebook.com/F8News-100133455314532/">
+                            <a class="btn btn-xs btn-icon btn-soft-secondary" target="blank" href="https://www.facebook.com/F8News-100133455314532/">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
