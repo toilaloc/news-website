@@ -322,6 +322,7 @@
     });
      });
     </script>
+    
     <script>
         function calcRate(r) {
             const f = ~~r, //Tương tự Math.floor(r)

@@ -512,7 +512,7 @@ border-top-right-radius: 0rem; visibility:hidden; ">
                             <img class="avatar-img" src="{{asset('uploads/posts/thumbnail')}}/{{$hotPost->thumbnail}}" alt="{{$hotPost->name}}">
                             </div>
                             <div class="media-body">
-                            <h4 class="h6 mb-0"><a class="text-inherit" href="{{url('post',$hotPost->name)}}">{{$hotPost->name}}</a></h4>
+                            <h4 class="h6 mb-0"><a class="text-inherit" href="{{url('post',$hotPost->slug)}}">{{$hotPost->name}}</a></h4>
                             </div>
                         </div>
                     </article>
