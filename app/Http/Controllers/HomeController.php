@@ -64,7 +64,13 @@ class HomeController extends Controller
         // get all post tin giải trí
         $idTinGiaiTri = 4;
         $tinGiaiTri = Categories::find($idTinGiaiTri);
-        $getSubTinGiaiTri = $tinGiaiTri->childs;
+        $getSubTinGiaiTriFirst  = Posts::WhereHas('categories', function($query) use ($idTinTheThao) {
+          $query->where('categories.id', $idTinTheThao)->Orwhere('categories.category_id', $idTinTheThao)->Orwhere('posts.status', '<>', 1);
+      })->orderBy('created_at', 'DESC')->take(1)->get();
+      
+        $getSubTinGiaiTriLast  = Posts::WhereHas('categories', function($query) use ($idTinTheThao) {
+        $query->where('categories.id', $idTinTheThao)->Orwhere('categories.category_id', $idTinTheThao)->Orwhere('posts.status', '<>', 1);
+    })->orderBy('created_at', 'DESC')->skip(1)->take(4)->get();
 
         // Tin tổng hợp
         $tinTongHop = Posts::all()->random(6)->where('status', '<>', 1);
@@ -134,7 +140,8 @@ class HomeController extends Controller
           'breakingNewsCenter', 
           'breakingNewsRight', 
           'getAllSubCate', 
-          'getSubTinGiaiTri', 
+          'getSubTinGiaiTriFirst', 
+          'getSubTinGiaiTriLast',
           'tinTongHop', 
           'dateTime',
           'firstXuatBan',
