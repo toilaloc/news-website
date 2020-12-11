@@ -85,4 +85,3 @@
     @endforeach
 
 </ul>
-<div class="show-more"><button class="btn btn-primary show-comment-more">Show More</button></div>

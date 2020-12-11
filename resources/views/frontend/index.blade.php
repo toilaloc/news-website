@@ -355,18 +355,18 @@
             <div class="row" style="background: rgba(245, 202, 153, 0.1)">
                 <div class="col-lg-6 col-md-6 order-md-2 col-sm-12 col-12 order-2 order-lg-2 mb-5 mb-lg-0">
                     <div class="row">
-                    @foreach($getSubTinGiaiTriLast as $postOfTinGiaiTri)
+                    @foreach($getSubTinGiaiTriLast as $tinGiaiTriLast)
                         <div class="col-lg-6 col-md-12 mb-md-2 col-sm-12 mb-sm-2 mb-4">
-                            <a class="card transition-3d-hover" href="{{url('post',$postOfTinGiaiTri->slug)}}" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
-                            <div class="card-img-top d-none d-lg-block remove-border-radius" style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}}'); min-height: 145px;  max-height: 145px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
+                            <a class="card transition-3d-hover" href="{{url('post',$tinGiaiTriLast->slug)}}" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
+                            <div class="card-img-top d-none d-lg-block remove-border-radius" style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$tinGiaiTriLast->thumbnail}}'); min-height: 145px;  max-height: 145px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
 
  
 
-<img class="card-img-top d-none d-lg-block" src="{{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}}" alt="{{$postOfTinGiaiTri->name}}" style="border-top-left-radius: 0rem;
+<img class="card-img-top d-none d-lg-block" src="{{asset('uploads/posts/thumbnail')}}/{{$tinGiaiTriLast->thumbnail}}" alt="{{$tinGiaiTriLast->name}}" style="border-top-left-radius: 0rem;
 border-top-right-radius: 0rem; visibility:hidden; ">
 </div>
                                 <div class="card-body" style="background: rgba(245, 202, 153, 0.1); padding: 4px 4px 4px 4px;">
-                                    <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> {{$postOfTinGiaiTri->name}}</h5>
+                                    <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> {{$tinGiaiTriLast->name}}</h5>
                                 </div>
                             </a>
                         </div>
@@ -378,11 +378,11 @@ border-top-right-radius: 0rem; visibility:hidden; ">
 
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 order-1 order-md-1">
                     <!-- Blog -->
-                    @foreach($getSubTinGiaiTriFirst as $subTinGiaiTri)
+                    @foreach($getSubTinGiaiTriFirst as $tinGiaiTriFirst)
                         <article>
-                        <a class="card align-items-start flex-wrap flex-row h-380rem gradient-x-overlay-sm-navy bg-img-hero transition-3d-hover mb-1 remove-border-radius" href="{{url('post',$postOfTinGiaiTri->slug)}}" style="background-image: url({{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}});">
+                        <a class="card align-items-start flex-wrap flex-row h-380rem gradient-x-overlay-sm-navy bg-img-hero transition-3d-hover mb-1 remove-border-radius" href="{{url('post',$tinGiaiTriFirst->slug)}}" style="background-image: url({{asset('uploads/posts/thumbnail')}}/{{$tinGiaiTriFirst->thumbnail}});">
                             <div class="card-footer border-0 bg-transparent mt-auto">
-                            <h3 class="h2 text-white">{{$postOfTinGiaiTri->name}}</h3>
+                            <h3 class="h2 text-white">{{$tinGiaiTriFirst->name}}</h3>
                             </div>
                         </a>
                     </article>    
