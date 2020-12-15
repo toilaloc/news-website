@@ -107,11 +107,6 @@
                                 <!-- List -->
                                 <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="javascript:;">
-                                            <i class="fas fa-id-card nav-icon"></i> Thông tin cá nhân
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
                                     <a class="nav-link" href="{{url('/change-password',$user->username)}}">
                                             <i class="fas fa-shield-alt nav-icon"></i> Đổi mật khẩu
                                         </a>
@@ -188,7 +183,11 @@
                                 <div class="col-sm-9">
                                     <div class="media align-items-center">
                                         <label class="avatar avatar-xl avatar-circle mr-4" for="avatarUploader">
-                                        <img id="avatarImg" class="avatar-img w-100" src="{{asset('uploads/users')}}/{{$user->thumbnail}}" alt="{{$user->fullname}}">
+                                        @if (Str::substr(Auth::user()->username, 5, 8) == 'facebook' || Str::substr(Auth::user()->username, 5, 6) == 'google' )
+                                            <img class="avatar-img w-100" src="{{Auth::user()->thumbnail}}"  alt="{{$user->fullname}}">
+                                        @else
+                                            <img class="avatar-img w-100" src="{{asset('uploads/users')}}/{{Auth::user()->thumbnail}}"  alt="{{$user->fullname}}">
+                                        @endif
                                         </label>
 
                                         <div class="media-body">
