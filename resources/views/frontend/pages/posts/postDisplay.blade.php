@@ -20,7 +20,7 @@
                     </ol>
                 </nav>
             </div>
-            <div class="mb-1 pl-3">
+            <div class="mb-1 pl-3 col-lg-12">
                 <h1 class="h2">{{ $post->name }}</h1>
             </div>
             <div class="col-lg-8">
@@ -35,7 +35,7 @@
                             <div class="col-md-7">
                                 <div class="d-flex justify-content-md-end align-items-center">
                                     <span class="d-block text-muted pr-2"><i class="far fa-eye"></i> {{$post->view}}</span>
-                                        <span class="d-block text-muted pr-2"><i class="fas fa-pen-nib"></i> {{ $post->Author->fullname }}
+                                        <span class="d-block text-muted pr-2"><i class="fas fa-pen-nib"></i> <a href="{{url('author', $post->Author->username)}}" class="text-inherit">{{ $post->Author->fullname }}</a>
                                             </span>
                                             <span class="d-block text-muted"><i class="far fa-clock"></i> {{$post->created_at->diffForHumans($dateTime)}}
                                             </span>
@@ -145,7 +145,7 @@
                     </div>
                   </div>
 
-
+               
                 <div class="border-top pt-3">
                     <h3 class="mb-4">Thông tin tác giả</h3>
                     <div class="row">
@@ -164,7 +164,7 @@
                                 @if (App\Models\Followers::where(['author_id' => $post->author_id, 'user_id' => Auth::user()->id])->exists())
                                     <form action="{{ route('followers.store') }}" method="POST">
                                         @csrf
-                                        <h3 class="mb-0">{{ $post->Author->fullname }}
+                                    <h3 class="mb-0"><a href="{{url('author', $post->Author->username)}}" class="text-inherit">{{ $post->Author->fullname }}</a>
                                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                                             <input type="hidden" name="author_id" value="{{$post->author_id}}">
                                             <button type="submit"
@@ -176,7 +176,7 @@
                                 @else
                                     <form action="{{ route('followers.store') }}" method="POST">
                                         @csrf
-                                        <h3 class="mb-0">{{ $post->Author->fullname }}
+                                        <h3 class="mb-0"><a href="{{url('author', $post->Author->username)}}" class="text-inherit">{{ $post->Author->fullname }}</a>
                                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                                             <input type="hidden" name="author_id" value="{{ $post->author_id }}">
                                             <button type="submit"
@@ -187,16 +187,16 @@
                                     </form>
                                 @endif
                                 @else
-                                <h3 class="mb-0">{{ $post->Author->fullname }}</h3>
+                                <h3 class="mb-0"><a href="{{url('author', $post->Author->username)}}" class="text-inherit">{{ $post->Author->fullname }}</a></h3>
                             @endif
 
 
-                            <p style="text-align: justify;">{{ $post->Author->bio }} </p>
+                            <p style="text-align: justify;">{{$post->Author->bio }}</p>
                             <!-- End Info -->
                         </div>
                     </div>
                 </div>
-
+               
 
                 <div class="pt-2  border-top space-lg-1">
                     <div class="pt-2 mb-11">
@@ -213,7 +213,18 @@
                     </div>
                 </div>
             </div>
+          
             <div id="stickyBlockStartPoint" class="col-lg-4 mb-7 mb-lg-0">
+                <nav class="js-sticky-block card shadow-none bg-light"
+               data-hs-sticky-block-options='{
+                 "parentSelector": "#stickyBlockStartPoint",
+                 "targetSelector": "#logoAndNav",
+                 "breakpoint": "md",
+                 "startPoint": "#stickyBlockStartPoint",
+                 "endPoint": "#stickyBlockEndPoint",
+                 "stickyOffsetTop": 24,
+                 "stickyOffsetBottom": 24
+               }'>
                 <!-- Sidebar Content -->
                 <div class="card bg-white">
                     {{-- Include 5 Post New --}}
@@ -230,6 +241,7 @@
                             </div>
                         </div>
                     </div>
+                </nav>
                 </div>
             </div>
             <!-- End Sidebar Content -->
@@ -240,7 +252,6 @@
 
     <!-- Sticky Block End Point -->
     <div id="stickyBlockEndPoint"></div>
-
     <!-- Testimonials -->
     <div class="bg-light">
     </div>
@@ -263,22 +274,14 @@
 
 
 
-                <div class="mb-3 border-bottom mt-3">
-                <h3>Bài khác của tác giả {{$post->Author->fullname}}</h3>
-                </div>
-                <!-- End Title -->
-
-                <div class="row">
                     @include('frontend.components.postAuthor')
-                </div>
-            </div>
+
             <!-- End Stories Section -->
         </div>
     </div>
+    </div>
     <!-- End Blog Card Section -->
-    <script>
-        swal({'dsdsd'});
-    </script>
+
     <div class="card bg-img-hero bg-navy text-white text-center p-4 my-4 w-md-60  mx-md-auto "
         style="background-image: url({{ asset('frontend/assets/svg/components/abstract-shapes-1.svg') }});">
         <h4 class="text-white mb-3">Bài viết có thú vị không? Nếu có hãy đăng ký để nhận thông báo khi có bài viết của thác giả này.</h4>

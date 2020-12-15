@@ -407,24 +407,20 @@
                                                              </div>
                                                              @endif
                                                              @endif
-                                                             @if($loop->index == 2)
+                                                             @if($loop->index == 1)
                                                              @break
                                                              @endif
                                                              @endforeach
                                                              @endforeach
+                                                             @endif
 
                                                     <!-- end thông báo cá nhân -->
-
+{{-- 
                                                     @foreach($notifications as $notification)
                                                         @foreach($notification->User()->get() as $newNotif)
                                                            @if(isset($notification->Post->author_id))
                                                               @if($notification->Post->author_id == Auth::user()->id && $notification->type == "post")
-                                                              <div class="media border-bottom" href="
-                                                              @if($notification->type == "post")
-                                                               {{url('post',$notification->Post->slug)}}
-                                                               @else
-                                                               {{"#"}}
-                                                               @endif">
+                                                              <div class="media border-bottom" href="{{url('post',$notification->Post->slug)}}">
                                                                <div class="mt-1 mr-3">
                                                                  <div class="avatar">
                                                                    <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
@@ -448,11 +444,8 @@
                                                              @break
                                                              @endif
                                                              @endforeach
-                                                             @endforeach
-
-
-                                                  @endif
-
+                                                             @endforeach --}}
+                                                           
                                          </div>
 
                                          <div class="tab-pane fade" id="pills-three-code-features-example1" role="tabpanel" aria-labelledby="pills-three-code-features-example1-tab">

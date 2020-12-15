@@ -22,7 +22,7 @@
     </article>
     <!-- End Blog Card -->
 </div>
-@if($loop->index == 4)
+@if($loop->index == 3)
 @break
 @endif
 @endif

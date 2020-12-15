@@ -5,6 +5,11 @@
 @section('keywords', 'f8news, tin tức mới, đọc tin tức, đọc báo online, đọc tin tức nhanh, báo mạng, đọc báo mạng')
 @section('content')
 <!-- Hero Section -->
+<style>
+    .remove-border-radius {
+        border-radius: 0rem!important;
+    }
+</style>
 <div class="position-relative">
     <!-- Main Slider -->
     <div id="heroSlider" class="js-slick-carousel slick"
@@ -36,7 +41,7 @@
                     <div class="media align-items-center mb-3"
                          data-hs-slick-carousel-animation="fadeInUp">
                         <div class="avatar avatar-sm avatar-circle mr-3">
-                            <img class="avatar-img" src="{{asset('uploads/users/'.$banner->Author->thumbnail)}}" alt="Image Description">
+                            <img class="avatar-img " src="{{asset('uploads/users/'.$banner->Author->thumbnail)}}" alt="Image Description">
                         </div>
                         <div class="media-body">
                             <a class="text-white" href="{{url('author',$banner->Author->username)}}">{{$banner->Author->fullname}}</a>
@@ -104,7 +109,7 @@
             <article class="mb-3 pb-3 border-bottom">
                 <div class="media  text-inherit">
                     <div class="avatar avatar-lg mr-3">
-                    <img class="avatar-img" src="{{asset('uploads/posts/thumbnail')}}/{{$contentsLeft->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
+                    <img class="avatar-img " src="{{asset('uploads/posts/thumbnail')}}/{{$contentsLeft->thumbnail}}" alt="Image Description" style="border-radius: 0rem;">
                     </div>
                     <div class="media-body">
                         <h4 class="h6 mb-0"><a class="text-inherit" href="{{url('post',$contentsLeft->slug)}}">{!! Str::limit($contentsLeft->name, 65, ' ...') !!}</a></h4>
@@ -126,7 +131,7 @@
             @foreach($breakingNewsCenter as $postCenter)
                 @if($loop->first)
                 <article class="card" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1)">
-                <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$postCenter->thumbnail}}" alt="Image Description">
+                <img class="card-img-top remove-border-radius" src="{{asset('uploads/posts/thumbnail')}}/{{$postCenter->thumbnail}}" alt="Image Description">
                 <div class="card-body" style="padding: 0.3rem;">
                     <h2 class="h3"><a class="text-inherit" href="{{url('post',$postCenter->slug)}}">{!! Str::limit($postCenter->name, 75, ' ...') !!}</a></h2>
                     <p>{{$postCenter->desc}}</p>
@@ -144,7 +149,7 @@
             @foreach($breakingNewsRight as $postRight) 
             <article class="card" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1)">
                 <div class="card-img-top">
-                <img class="card-img-top" src="{{asset('uploads/posts/thumbnail')}}/{{$postRight->thumbnail}}" alt="Image Description">
+                <img class="card-img-top remove-border-radius" src="{{asset('uploads/posts/thumbnail')}}/{{$postRight->thumbnail}}" alt="Image Description">
                 </div>
                 <div class="card-body" style="padding: 0.1rem;">
                     <h5><a class="text-inherit" href="{{url('post',$postRight->slug)}}">{!! Str::limit($postRight->name, 45, ' ...') !!}</a></h5>
@@ -183,9 +188,6 @@
             }
           }]
         }'>
-        @if($breakingNewsLeft->count() == 0)
-        {{'Không có bài viết để hiển thị'}}  
-        @else
         @foreach($breakingNewsLeft as $contentsLeft)
                 <div class="js-slide bg-img-hero-center">
                 <a class="card h-100 transition-3d-hover" href="{{url('post',$contentsLeft->slug)}}">
@@ -206,11 +208,7 @@
                     </a>
                 </div>
         @endforeach
-        @endif
 
-        @if($breakingNewsCenter->count() == 0)
-        {{'Không có bài viết để hiển thị'}}  
-        @else
         @foreach($breakingNewsCenter as $contentCenter)
         @if($loop->first)
                 <div class="js-slide bg-img-hero-center">
@@ -231,11 +229,8 @@
                 </div>
         @endif
         @endforeach
-        @endif
 
-        @if($breakingNewsRight->count() == 0)
-        {{'Không có bài viết để hiển thị'}}  
-        @else
+       
         @foreach($breakingNewsRight as $contentRight)
 
                 <div class="js-slide bg-img-hero-center">
@@ -258,7 +253,6 @@
                 @break
             @endif
         @endforeach
-        @endif
 
 
             </div>
@@ -361,33 +355,21 @@
             <div class="row" style="background: rgba(245, 202, 153, 0.1)">
                 <div class="col-lg-6 col-md-6 order-md-2 col-sm-12 col-12 order-2 order-lg-2 mb-5 mb-lg-0">
                     <div class="row">
-                    @foreach($getSubTinGiaiTri as $subTinGiaiTri)
-                        @foreach($subTinGiaiTri->getPosts($subTinGiaiTri->id) as $postOfTinGiaiTri)
-                        @if($postOfTinGiaiTri->status != 1)
+                    @foreach($getSubTinGiaiTriLast as $tinGiaiTriLast)
                         <div class="col-lg-6 col-md-12 mb-md-2 col-sm-12 mb-sm-2 mb-4">
-                            <a class="card transition-3d-hover" href="{{url('post',$postOfTinGiaiTri->slug)}}" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
-                            <div class="card-img-top d-none d-lg-block" style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}}'); min-height: 145px;  max-height: 145px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
+                            <a class="card transition-3d-hover" href="{{url('post',$tinGiaiTriLast->slug)}}" style="box-shadow: 0px 0px 0px rgba(140, 152, 164, 0.1);">
+                            <div class="card-img-top d-none d-lg-block remove-border-radius" style=" background-image: url('{{asset('uploads/posts/thumbnail')}}/{{$tinGiaiTriLast->thumbnail}}'); min-height: 145px;  max-height: 145px;background-position: center; background-repeat: no-repeat; background-size: cover; ">
 
  
 
-<img class="card-img-top d-none d-lg-block" src="{{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}}" alt="{{$postOfTinGiaiTri->name}}" style="border-top-left-radius: 0rem;
+<img class="card-img-top d-none d-lg-block" src="{{asset('uploads/posts/thumbnail')}}/{{$tinGiaiTriLast->thumbnail}}" alt="{{$tinGiaiTriLast->name}}" style="border-top-left-radius: 0rem;
 border-top-right-radius: 0rem; visibility:hidden; ">
 </div>
-
-
-
-
                                 <div class="card-body" style="background: rgba(245, 202, 153, 0.1); padding: 4px 4px 4px 4px;">
-                                    <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> {{$postOfTinGiaiTri->name}}</h5>
+                                    <h5 class="mb-0"><span class="dot-icon d-lg-none mr-2"></span> {{$tinGiaiTriLast->name}}</h5>
                                 </div>
                             </a>
                         </div>
-                            {{-- @if($loop->first)  --}}
-                            @if($loop->index == 1) 
-                            @break
-                            @endif  
-                            @endif
-                    @endforeach
                     @endforeach
                 </div>
                 </div>
@@ -396,27 +378,14 @@ border-top-right-radius: 0rem; visibility:hidden; ">
 
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 order-1 order-md-1">
                     <!-- Blog -->
-                    @foreach($getSubTinGiaiTri as $subTinGiaiTri)
-                    @foreach($subTinGiaiTri->getPosts($subTinGiaiTri->id) as $postOfTinGiaiTri)
-                    @if($postOfTinGiaiTri->status != 1)
+                    @foreach($getSubTinGiaiTriFirst as $tinGiaiTriFirst)
                         <article>
-                        <a class="card align-items-start flex-wrap flex-row h-380rem gradient-x-overlay-sm-navy bg-img-hero transition-3d-hover mb-1" href="{{url('post',$postOfTinGiaiTri->slug)}}" style="background-image: url({{asset('uploads/posts/thumbnail')}}/{{$postOfTinGiaiTri->thumbnail}});">
+                        <a class="card align-items-start flex-wrap flex-row h-380rem gradient-x-overlay-sm-navy bg-img-hero transition-3d-hover mb-1 remove-border-radius" href="{{url('post',$tinGiaiTriFirst->slug)}}" style="background-image: url({{asset('uploads/posts/thumbnail')}}/{{$tinGiaiTriFirst->thumbnail}});">
                             <div class="card-footer border-0 bg-transparent mt-auto">
-                            <h3 class="h2 text-white">{{$postOfTinGiaiTri->name}}</h3>
+                            <h3 class="h2 text-white">{{$tinGiaiTriFirst->name}}</h3>
                             </div>
                         </a>
                     </article>    
-                    @endif 
-                    @if ($loop->first) 
-                    @break
-                    @endif
-                         
-                    @endforeach
-                    @if($loop->index == 1)
-                    @break
-                    @endif 
-                  
-                   
                     @endforeach
                     <!-- End Blog -->
                 </div>
@@ -509,7 +478,7 @@ border-top-right-radius: 0rem; visibility:hidden; ">
                     <article class="mb-5">
                         <div class="media align-items-center text-inherit">
                             <div class="avatar avatar-lg mr-3">
-                            <img class="avatar-img" src="{{asset('uploads/posts/thumbnail')}}/{{$hotPost->thumbnail}}" alt="{{$hotPost->name}}">
+                            <img class="avatar-img remove-border-radius" src="{{asset('uploads/posts/thumbnail')}}/{{$hotPost->thumbnail}}" alt="{{$hotPost->name}}">
                             </div>
                             <div class="media-body">
                             <h4 class="h6 mb-0"><a class="text-inherit" href="{{url('post',$hotPost->slug)}}">{{$hotPost->name}}</a></h4>

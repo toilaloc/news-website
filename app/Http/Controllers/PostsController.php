@@ -17,6 +17,7 @@ use Illuminate\Notifications\Notification;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Pusher\Pusher;
 
 class PostsController extends Controller
 {
@@ -132,17 +133,17 @@ class PostsController extends Controller
             }
             $post->Tags()->sync($tagIds);
         }
+        
+        // $sub = Subcribe::where('author_id', Auth::id())->get();
 
-        $sub = Subcribe::where('author_id', Auth::id())->get();
-
-        $data = [
-            'link' => $request->slug,
-            'name' => $request->name,
-            'author' =>  Auth::user()->name,
-        ];
-        foreach ($sub as $value) {
-            Mail::to($value->email)->send(new SendNotification($data));
-        }
+        // $data = [
+        //     'link' => $request->slug,
+        //     'name' => $request->name,
+        //     'author' =>  Auth::user()->name,
+        // ];
+        // foreach ($sub as $value) {
+        //     Mail::to($value->email)->send(new SendNotification($data));
+        // }
 
         foreach (Auth::user()->Roles as $role) {
             if ($role->id == 3) {
@@ -202,7 +203,7 @@ class PostsController extends Controller
             })->get();
         }
 
-        $postAuthor = Posts::where('author_id', '=', $authorId)->take(3)->get();
+        $postAuthor = Posts::where('author_id', '=', $authorId)->where('status', '<>', 1)->take(4)->get();
         return view('frontend.pages.posts.postDisplay', compact(
             'post',
             'dateTime',

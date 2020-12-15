@@ -307,64 +307,51 @@
                           <!-- End Pages -->
 
                           <!-- My Courses -->
-                          @if(Auth::user())
-                          <li class="hs-has-mega-menu navbar-nav-item d-none d-lg-inline-block"
-                              data-hs-mega-menu-item-options='{
-                                "desktop": {
-                                  "position": "right",
-                                  "maxWidth": "350px"
-                                }
-                              }'>
-                            <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Thông báo</a>
+                            <!-- My Courses -->
+                            @if(Auth::user())
+                            <li class="hs-has-mega-menu navbar-nav-item d-none d-lg-inline-block"
+                                data-hs-mega-menu-item-options='{
+                                  "desktop": {
+                                    "position": "right",
+                                    "maxWidth": "350px"
+                                  }
+                                }'>
+                              <a id="myCoursesMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Thông báo</a>
 
-                            <!-- My Courses - Submenu -->
-                            <div class="hs-mega-menu dropdown-menu" aria-labelledby="myCoursesMegaMenu">
-                              <div class="card">
-                                <div class="card-header py-3">
-                                  <span class="text-dark font-weight-bold">Thông báo của tôi</span>
-                                </div>
+                              <!-- My Courses - Submenu -->
+                              <div class="hs-mega-menu dropdown-menu" aria-labelledby="myCoursesMegaMenu">
+                                <div class="card">
+                                  <div class="card-header py-3">
+                                    <span class="text-dark font-weight-bold">Thông báo của tôi</span>
+                                  </div>
 
-                                <div class="card-body" >
-                                  <!-- Course -->
-                                  @if($notifications->count() == 0)
+                                  <div class="card-body" style="padding-top: 0.5rem;">
+                                    <div class="text-center">
+                                      <ul class="nav nav-segment nav-pills scrollbar-horizontal" role="tablist" style="padding-bottom: .5rem;">
+                                        <li class="nav-item">
+                                          <a class="nav-link active" style="    color: #677788;padding-top: 0rem; padding-bottom: 0rem;" id="pills-one-code-features-example1-tab" data-toggle="pill" href="#pills-one-code-features-example1" role="tab" aria-controls="pills-one-code-features-example1" aria-selected="true">Bài mới</a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link" style="    color: #677788;padding-top: 0rem; padding-bottom: 0rem;" id="pills-two-code-features-example1-tab" data-toggle="pill" href="#pills-two-code-features-example1" role="tab" aria-controls="pills-two-code-features-example1" aria-selected="false">Cá nhân</a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link" style="    color: #677788;padding-top: 0rem; padding-bottom: 0rem;" id="pills-three-code-features-example1-tab" data-toggle="pill" href="#pills-three-code-features-example1" role="tab" aria-controls="pills-three-code-features-example1" aria-selected="false">Bình luận</a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <!-- End Nav -->
+
+                                    <!-- Tab Content -->
+                                    <div class="tab-content">
+                                      <div class="tab-pane fade show active" id="pills-one-code-features-example1" role="tabpanel" aria-labelledby="pills-one-code-features-example1-tab">
+                                @if($notificationsPosting->count() == 0)
                                   {{"Chưa có thông báo mới"}}
-                                  @else
-
-
-                          @foreach($notificationsPosting as $notif)
-                           @if(isset($notif->author_id))
-                           @foreach(App\Models\Followers::where('user_id', '=', $notif->user_id)->get() as $userFollowing)
-                            @if($userFollowing->user_id == Auth::user()->id && $userFollowing->author_id == $notif->author_id)
-                           {{-- @if($userFollowing->user_id == Auth::user()->id && $notif->author_id == $userFollowing->author_id) --}}
-                            <div class="media border-bottom" href="javascript:;">
-                              <div class="mt-1 mr-3">
-                                <div class="avatar">
-                                  <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
-                                </div>
-                              </div>
-                              <div class="media-body">
-                                <div class="mb-2">
-                                <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
-                                  {{$notif->Reporter->fullname}} vừa ra bài viết
-                                  "<a class="text-dark" href="{{url('post',$notif->Post->slug)}}">{{Illuminate\Support\Str::limit($notif->Post->name, $limit = 50, $end = '...') }}</a>"
-                                </span>
-                                </div>
-                                <div class="d-flex justify-content-between mb-1">
-                                </div>
-                              </div>
-                            </div>
-                            @endif
-                            @endforeach
-                            @if($loop->index == 2)
-                            @break
-                            @endif
-                            @endif
-                            @endforeach
-
-                            @foreach($notifications as $notification)
-                              @foreach($notification->User()->get() as $newNotif)
-                                    @if(isset($newNotif->id))
-                                      @if($newNotif->id == Auth::user()->id && $notification->type == "user")
+                                 @else
+                                @foreach($notificationsPosting as $notif)
+                                 @if(isset($notif->author_id))
+                                 @foreach(App\Models\Followers::where('user_id', '=', $notif->user_id)->get() as $userFollowing)
+                                  @if($userFollowing->user_id == Auth::user()->id && $userFollowing->author_id == $notif->author_id)
+                                 {{-- @if($userFollowing->user_id == Auth::user()->id && $notif->author_id == $userFollowing->author_id) --}}
                                   <div class="media border-bottom" href="javascript:;">
                                     <div class="mt-1 mr-3">
                                       <div class="avatar">
@@ -374,77 +361,149 @@
                                     <div class="media-body">
                                       <div class="mb-2">
                                       <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
-                                        Bạn đã bị báo cáo với lý do
-                                        "{{Illuminate\Support\Str::limit($notification->reason, $limit = 20, $end = '...') }}"
+                                        {{$notif->Reporter->fullname}} vừa ra bài viết
+                                        "<a class="text-dark" href="{{url('post',$notif->Post->slug)}}">{{Illuminate\Support\Str::limit($notif->Post->name, $limit = 50, $end = '...') }}</a>"
                                       </span>
-                                        <small class="d-block text-body">Bởi {{$notification->Reporter->fullname}}</small>
                                       </div>
                                       <div class="d-flex justify-content-between mb-1">
                                       </div>
                                     </div>
                                   </div>
                                   @endif
-                                  @endif
-                                  @if($loop->index == 2)
+                                  @endforeach
+                                  @if($loop->index == 4)
                                   @break
                                   @endif
+                                  @endif
                                   @endforeach
-                                  @endforeach
-
-
-                                  @foreach($notifications as $notification)
-                                  @foreach($notification->User()->get() as $newNotif)
-                                  @if(isset($notification->Post->author_id))
-                                      @if($notification->Post->author_id == Auth::user()->id && $notification->type == "post")
-                                  <div class="media border-bottom" href="
-                                   @if($notification->type == "post")
-                                    {{url('post',$notification->Post->slug)}}
-                                    @else
-                                    {{"#"}}
-                                    @endif">
-                                    <div class="mt-1 mr-3">
-                                      <div class="avatar">
-                                        <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
+                                  @endif
                                       </div>
-                                    </div>
-                                    <div class="media-body">
-                                      <div class="mb-2">
-                                      <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
-                                        Bài viết của đã bị báo cáo tại
-                                        "{{Illuminate\Support\Str::limit($notification->Post->name, $limit = 20, $end = '...') }}"
-                                      </span>
-                                        <small class="d-block text-body">Bởi {{$notification->Reporter->fullname}}</small>
-                                      </div>
-                                      <div class="d-flex justify-content-between mb-1">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  @endif
-                                  @endif
-                                  @if($loop->index == 2)
-                                  @break
-                                  @endif
-                                  @endforeach
-                                  @endforeach
 
+                                      <div class="tab-pane fade" id="pills-two-code-features-example1" role="tabpanel" aria-labelledby="pills-two-code-features-example1-tab">
+                                        @if($notifications->count() == 0)
+                                          {{"Chưa có thông báo mới"}}
+                                         @else
 
-                                  @endif
-                                  <!-- End Course -->
+                                         @foreach($notifications as $notification)
+                                         @foreach($notification->User()->get() as $newNotif)
+                                               @if(isset($newNotif->id))
+                                                 @if($newNotif->id == Auth::user()->id && $notification->type == "user")
+                                             <div class="media border-bottom" href="javascript:;">
+                                               <div class="mt-1 mr-3">
+                                                 <div class="avatar">
+                                                   <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
+                                                 </div>
+                                               </div>
+                                               <div class="media-body">
+                                                 <div class="mb-2">
+                                                 <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
+                                                   Bạn đã bị báo cáo với lý do
+                                                   "{{Illuminate\Support\Str::limit($notification->reason, $limit = 20, $end = '...') }}"
+                                                 </span>
+                                                   <small class="d-block text-body">Bởi {{$notification->Reporter->fullname}}</small>
+                                                 </div>
+                                                 <div class="d-flex justify-content-between mb-1">
+                                                 </div>
+                                               </div>
+                                             </div>
+                                             @endif
+                                             @endif
+                                             @if($loop->index == 1)
+                                             @break
+                                             @endif
+                                             @endforeach
+                                             @endforeach
+                                             @endif
 
-                                </div>
+                                    <!-- end thông báo cá nhân -->
+{{-- 
+                                    @foreach($notifications as $notification)
+                                        @foreach($notification->User()->get() as $newNotif)
+                                           @if(isset($notification->Post->author_id))
+                                              @if($notification->Post->author_id == Auth::user()->id && $notification->type == "post")
+                                              <div class="media border-bottom" href="{{url('post',$notification->Post->slug)}}">
+                                               <div class="mt-1 mr-3">
+                                                 <div class="avatar">
+                                                   <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
+                                                 </div>
+                                               </div>
+                                               <div class="media-body">
+                                                 <div class="mb-2">
+                                                 <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
+                                                   Bài viết của đã bị báo cáo tại
+                                                   "{{Illuminate\Support\Str::limit($notification->Post->name, $limit = 20, $end = '...') }}"
+                                                 </span>
+                                                   <small class="d-block text-body">Bởi {{$notification->Reporter->fullname}}</small>
+                                                 </div>
+                                                 <div class="d-flex justify-content-between mb-1">
+                                                 </div>
+                                               </div>
+                                             </div>
+                                             @endif
+                                             @endif
+                                             @if($loop->index == 2)
+                                             @break
+                                             @endif
+                                             @endforeach
+                                             @endforeach --}}
+                                           
+                         </div>
 
-                                <div class="card-footer text-center py-3">
-                                  <a class="font-size-1" href="javascript:;">
-                                    Xem thêm
-                                    <i class="fa fa-angle-right ml-1"></i>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- End My Courses - Submenu -->
-                          </li>
+                         <div class="tab-pane fade" id="pills-three-code-features-example1" role="tabpanel" aria-labelledby="pills-three-code-features-example1-tab">
+                          @if($notifications->count() == 0)
+                          {{"Chưa có thông báo mới"}}
+                          @else
+                          @foreach($notifications as $notification)
+                          {{-- Nếu thông báo dạng "báo cáo bình luận" thì hiện thông báo --}}
+                          @if($notification->type == "comment")
+                          {{-- Nếu user đang online == user bị report thì hiện thông báo --}}
+                            @if($notification->reportComment->user_id == Auth::id())
+
+                                <div class="media border-bottom" href="javascript:;">
+                                 <div class="mt-1 mr-3">
+                                   <div class="avatar">
+                                     <img class="avatar-img rounded-sm" src="{{asset('frontend/assets/svg/components/graphics-8.svg')}}" alt="Image Description">
+                                   </div>
+                                 </div>
+                                 <div class="media-body">
+                                   <div class="mb-2">
+                                   <span class="d-block text-dark text-hover-primary font-size-1 font-weight-bold mb-1">
+                                     Bình luận của đã bị báo cáo tại
+                                     "{{Illuminate\Support\Str::limit($notification->reportComment->content, $limit = 20, $end = '...') }}"
+                                   </span>
+                                     <small class="d-block text-body">Bởi {{$notification->Reporter->fullname}}</small>
+                                   </div>
+                                   <div class="d-flex justify-content-between mb-1">
+                                   </div>
+                                 </div>
+                               </div>
+                               @endif
+                               @if($loop->index == 2)
+                               @break
+                               @endif
+                               @endif
+                               {{-- @endforeach
+                               @endif --}}
+                               @endforeach
+
                           @endif
-                          <!-- End My Courses -->
+                         </div>
+                       </div>
+
+                     </div>
+
+                     <div class="card-footer text-center py-3">
+                       <a class="font-size-1" href="javascript:;">
+                         Xem thêm
+                         <i class="fa fa-angle-right ml-1"></i>
+                       </a>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- End My Courses - Submenu -->
+               </li>
+                            @endif
+                            <!-- End My Courses -->
                         </ul>
                       </div>
                       <!-- End Navigation -->
